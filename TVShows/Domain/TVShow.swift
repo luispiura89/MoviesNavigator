@@ -10,4 +10,11 @@ public struct TVShow {
     public let name: String
     public let overview: String
     public let voteAverage: Double
+    
+    public init(id: Int, name: String, overview: String, voteAverage: Double) {
+        self.id = id
+        self.name = name
+        self.overview = overview
+        self.voteAverage = voteAverage
+    }
 }
