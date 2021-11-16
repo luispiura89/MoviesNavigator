@@ -1,14 +1,14 @@
 //
-//  MoviesNavigatorTests.swift
-//  MoviesNavigatorTests
+//  TVShowsTests.swift
+//  TVShowsTests
 //
 //  Created by Luis Francisco Piura Mejia on 16/11/21.
 //
 
 import XCTest
-@testable import MoviesNavigator
+@testable import TVShows
 
-class MoviesNavigatorTests: XCTestCase {
+class TVShowsTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

@@ -7,43 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CD280A1D27444E4A00C773C7 /* MoviesNavigator.docc in Sources */ = {isa = PBXBuildFile; fileRef = CD280A1C27444E4A00C773C7 /* MoviesNavigator.docc */; };
-		CD280A2327444E4A00C773C7 /* MoviesNavigator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A1827444E4A00C773C7 /* MoviesNavigator.framework */; };
-		CD280A2827444E4A00C773C7 /* MoviesNavigatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD280A2727444E4A00C773C7 /* MoviesNavigatorTests.swift */; };
-		CD280A2927444E4A00C773C7 /* MoviesNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = CD280A1B27444E4A00C773C7 /* MoviesNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CD280A5C27445AA600C773C7 /* TVShows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A5427445AA600C773C7 /* TVShows.framework */; };
+		CD280A6127445AA600C773C7 /* TVShowsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD280A6027445AA600C773C7 /* TVShowsTests.swift */; };
+		CD280A6227445AA600C773C7 /* TVShows.h in Headers */ = {isa = PBXBuildFile; fileRef = CD280A5627445AA600C773C7 /* TVShows.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		CD280A2427444E4A00C773C7 /* PBXContainerItemProxy */ = {
+		CD280A5D27445AA600C773C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CD280A0F27444E4A00C773C7 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = CD280A1727444E4A00C773C7;
-			remoteInfo = MoviesNavigator;
+			remoteGlobalIDString = CD280A5327445AA600C773C7;
+			remoteInfo = TVShows;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CD280A1827444E4A00C773C7 /* MoviesNavigator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MoviesNavigator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD280A1B27444E4A00C773C7 /* MoviesNavigator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoviesNavigator.h; sourceTree = "<group>"; };
-		CD280A1C27444E4A00C773C7 /* MoviesNavigator.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = MoviesNavigator.docc; sourceTree = "<group>"; };
-		CD280A2227444E4A00C773C7 /* MoviesNavigatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviesNavigatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD280A2727444E4A00C773C7 /* MoviesNavigatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesNavigatorTests.swift; sourceTree = "<group>"; };
+		CD280A5427445AA600C773C7 /* TVShows.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TVShows.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD280A5627445AA600C773C7 /* TVShows.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVShows.h; sourceTree = "<group>"; };
+		CD280A5B27445AA600C773C7 /* TVShowsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVShowsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD280A6027445AA600C773C7 /* TVShowsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		CD280A1527444E4A00C773C7 /* Frameworks */ = {
+		CD280A5127445AA600C773C7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CD280A1F27444E4A00C773C7 /* Frameworks */ = {
+		CD280A5827445AA600C773C7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD280A2327444E4A00C773C7 /* MoviesNavigator.framework in Frameworks */,
+				CD280A5C27445AA600C773C7 /* TVShows.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,8 +51,8 @@
 		CD280A0E27444E4A00C773C7 = {
 			isa = PBXGroup;
 			children = (
-				CD280A1A27444E4A00C773C7 /* MoviesNavigator */,
-				CD280A2627444E4A00C773C7 /* MoviesNavigatorTests */,
+				CD280A5527445AA600C773C7 /* TVShows */,
+				CD280A5F27445AA600C773C7 /* TVShowsTests */,
 				CD280A1927444E4A00C773C7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,77 +60,76 @@
 		CD280A1927444E4A00C773C7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CD280A1827444E4A00C773C7 /* MoviesNavigator.framework */,
-				CD280A2227444E4A00C773C7 /* MoviesNavigatorTests.xctest */,
+				CD280A5427445AA600C773C7 /* TVShows.framework */,
+				CD280A5B27445AA600C773C7 /* TVShowsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CD280A1A27444E4A00C773C7 /* MoviesNavigator */ = {
+		CD280A5527445AA600C773C7 /* TVShows */ = {
 			isa = PBXGroup;
 			children = (
-				CD280A1B27444E4A00C773C7 /* MoviesNavigator.h */,
-				CD280A1C27444E4A00C773C7 /* MoviesNavigator.docc */,
+				CD280A5627445AA600C773C7 /* TVShows.h */,
 			);
-			path = MoviesNavigator;
+			path = TVShows;
 			sourceTree = "<group>";
 		};
-		CD280A2627444E4A00C773C7 /* MoviesNavigatorTests */ = {
+		CD280A5F27445AA600C773C7 /* TVShowsTests */ = {
 			isa = PBXGroup;
 			children = (
-				CD280A2727444E4A00C773C7 /* MoviesNavigatorTests.swift */,
+				CD280A6027445AA600C773C7 /* TVShowsTests.swift */,
 			);
-			path = MoviesNavigatorTests;
+			path = TVShowsTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		CD280A1327444E4A00C773C7 /* Headers */ = {
+		CD280A4F27445AA600C773C7 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD280A2927444E4A00C773C7 /* MoviesNavigator.h in Headers */,
+				CD280A6227445AA600C773C7 /* TVShows.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		CD280A1727444E4A00C773C7 /* MoviesNavigator */ = {
+		CD280A5327445AA600C773C7 /* TVShows */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CD280A2C27444E4A00C773C7 /* Build configuration list for PBXNativeTarget "MoviesNavigator" */;
+			buildConfigurationList = CD280A6327445AA600C773C7 /* Build configuration list for PBXNativeTarget "TVShows" */;
 			buildPhases = (
-				CD280A1327444E4A00C773C7 /* Headers */,
-				CD280A1427444E4A00C773C7 /* Sources */,
-				CD280A1527444E4A00C773C7 /* Frameworks */,
-				CD280A1627444E4A00C773C7 /* Resources */,
+				CD280A4F27445AA600C773C7 /* Headers */,
+				CD280A5027445AA600C773C7 /* Sources */,
+				CD280A5127445AA600C773C7 /* Frameworks */,
+				CD280A5227445AA600C773C7 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = MoviesNavigator;
-			productName = MoviesNavigator;
-			productReference = CD280A1827444E4A00C773C7 /* MoviesNavigator.framework */;
+			name = TVShows;
+			productName = TVShows;
+			productReference = CD280A5427445AA600C773C7 /* TVShows.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		CD280A2127444E4A00C773C7 /* MoviesNavigatorTests */ = {
+		CD280A5A27445AA600C773C7 /* TVShowsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CD280A2F27444E4A00C773C7 /* Build configuration list for PBXNativeTarget "MoviesNavigatorTests" */;
+			buildConfigurationList = CD280A6627445AA600C773C7 /* Build configuration list for PBXNativeTarget "TVShowsTests" */;
 			buildPhases = (
-				CD280A1E27444E4A00C773C7 /* Sources */,
-				CD280A1F27444E4A00C773C7 /* Frameworks */,
-				CD280A2027444E4A00C773C7 /* Resources */,
+				CD280A5727445AA600C773C7 /* Sources */,
+				CD280A5827445AA600C773C7 /* Frameworks */,
+				CD280A5927445AA600C773C7 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				CD280A2527444E4A00C773C7 /* PBXTargetDependency */,
+				CD280A5E27445AA600C773C7 /* PBXTargetDependency */,
 			);
-			name = MoviesNavigatorTests;
-			productName = MoviesNavigatorTests;
-			productReference = CD280A2227444E4A00C773C7 /* MoviesNavigatorTests.xctest */;
+			name = TVShowsTests;
+			productName = TVShowsTests;
+			productReference = CD280A5B27445AA600C773C7 /* TVShowsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -145,10 +142,10 @@
 				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
-					CD280A1727444E4A00C773C7 = {
+					CD280A5327445AA600C773C7 = {
 						CreatedOnToolsVersion = 13.1;
 					};
-					CD280A2127444E4A00C773C7 = {
+					CD280A5A27445AA600C773C7 = {
 						CreatedOnToolsVersion = 13.1;
 					};
 				};
@@ -166,21 +163,21 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CD280A1727444E4A00C773C7 /* MoviesNavigator */,
-				CD280A2127444E4A00C773C7 /* MoviesNavigatorTests */,
+				CD280A5327445AA600C773C7 /* TVShows */,
+				CD280A5A27445AA600C773C7 /* TVShowsTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		CD280A1627444E4A00C773C7 /* Resources */ = {
+		CD280A5227445AA600C773C7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CD280A2027444E4A00C773C7 /* Resources */ = {
+		CD280A5927445AA600C773C7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -190,29 +187,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		CD280A1427444E4A00C773C7 /* Sources */ = {
+		CD280A5027445AA600C773C7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD280A1D27444E4A00C773C7 /* MoviesNavigator.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CD280A1E27444E4A00C773C7 /* Sources */ = {
+		CD280A5727445AA600C773C7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD280A2827444E4A00C773C7 /* MoviesNavigatorTests.swift in Sources */,
+				CD280A6127445AA600C773C7 /* TVShowsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		CD280A2527444E4A00C773C7 /* PBXTargetDependency */ = {
+		CD280A5E27445AA600C773C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CD280A1727444E4A00C773C7 /* MoviesNavigator */;
-			targetProxy = CD280A2427444E4A00C773C7 /* PBXContainerItemProxy */;
+			target = CD280A5327445AA600C773C7 /* TVShows */;
+			targetProxy = CD280A5D27445AA600C773C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -338,7 +334,7 @@
 			};
 			name = Release;
 		};
-		CD280A2D27444E4A00C773C7 /* Debug */ = {
+		CD280A6427445AA600C773C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -357,7 +353,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.MoviesNavigator;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.TVShows;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -365,7 +361,7 @@
 			};
 			name = Debug;
 		};
-		CD280A2E27444E4A00C773C7 /* Release */ = {
+		CD280A6527445AA600C773C7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -384,7 +380,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.MoviesNavigator;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.TVShows;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -392,7 +388,7 @@
 			};
 			name = Release;
 		};
-		CD280A3027444E4A00C773C7 /* Debug */ = {
+		CD280A6727445AA600C773C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -405,14 +401,14 @@
 					"@loader_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.MoviesNavigatorTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.TVShowsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		CD280A3127444E4A00C773C7 /* Release */ = {
+		CD280A6827445AA600C773C7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -425,7 +421,7 @@
 					"@loader_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.MoviesNavigatorTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.TVShowsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -444,20 +440,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CD280A2C27444E4A00C773C7 /* Build configuration list for PBXNativeTarget "MoviesNavigator" */ = {
+		CD280A6327445AA600C773C7 /* Build configuration list for PBXNativeTarget "TVShows" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CD280A2D27444E4A00C773C7 /* Debug */,
-				CD280A2E27444E4A00C773C7 /* Release */,
+				CD280A6427445AA600C773C7 /* Debug */,
+				CD280A6527445AA600C773C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CD280A2F27444E4A00C773C7 /* Build configuration list for PBXNativeTarget "MoviesNavigatorTests" */ = {
+		CD280A6627445AA600C773C7 /* Build configuration list for PBXNativeTarget "TVShowsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CD280A3027444E4A00C773C7 /* Debug */,
-				CD280A3127444E4A00C773C7 /* Release */,
+				CD280A6727445AA600C773C7 /* Debug */,
+				CD280A6827445AA600C773C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
