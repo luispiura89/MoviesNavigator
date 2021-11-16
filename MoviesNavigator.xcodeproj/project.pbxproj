@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		CD280A5C27445AA600C773C7 /* TVShows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A5427445AA600C773C7 /* TVShows.framework */; };
 		CD280A6127445AA600C773C7 /* TVShowsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD280A6027445AA600C773C7 /* TVShowsTests.swift */; };
-		CD280A6227445AA600C773C7 /* TVShows.h in Headers */ = {isa = PBXBuildFile; fileRef = CD280A5627445AA600C773C7 /* TVShows.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CD280A6B27445ECF00C773C7 /* TVShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD280A6A27445ECF00C773C7 /* TVShow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,9 +24,9 @@
 
 /* Begin PBXFileReference section */
 		CD280A5427445AA600C773C7 /* TVShows.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TVShows.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD280A5627445AA600C773C7 /* TVShows.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVShows.h; sourceTree = "<group>"; };
 		CD280A5B27445AA600C773C7 /* TVShowsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVShowsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD280A6027445AA600C773C7 /* TVShowsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsTests.swift; sourceTree = "<group>"; };
+		CD280A6A27445ECF00C773C7 /* TVShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +69,7 @@
 		CD280A5527445AA600C773C7 /* TVShows */ = {
 			isa = PBXGroup;
 			children = (
-				CD280A5627445AA600C773C7 /* TVShows.h */,
+				CD280A6927445EB700C773C7 /* Domain */,
 			);
 			path = TVShows;
 			sourceTree = "<group>";
@@ -82,6 +82,14 @@
 			path = TVShowsTests;
 			sourceTree = "<group>";
 		};
+		CD280A6927445EB700C773C7 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				CD280A6A27445ECF00C773C7 /* TVShow.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -89,7 +97,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD280A6227445AA600C773C7 /* TVShows.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +151,7 @@
 				TargetAttributes = {
 					CD280A5327445AA600C773C7 = {
 						CreatedOnToolsVersion = 13.1;
+						LastSwiftMigration = 1310;
 					};
 					CD280A5A27445AA600C773C7 = {
 						CreatedOnToolsVersion = 13.1;
@@ -191,6 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD280A6B27445ECF00C773C7 /* TVShow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +346,7 @@
 		CD280A6427445AA600C773C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -357,6 +367,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -364,6 +375,7 @@
 		CD280A6527445AA600C773C7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -391,6 +403,7 @@
 		CD280A6727445AA600C773C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -411,6 +424,7 @@
 		CD280A6827445AA600C773C7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
