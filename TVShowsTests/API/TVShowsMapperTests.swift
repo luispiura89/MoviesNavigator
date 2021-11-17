@@ -10,7 +10,7 @@ import TVShows
 
 final class TVShowsMapperTests: XCTestCase {
     
-    func test_map_showSendErrorOnNon200HTTPResponse() throws {
+    func test_map_shouldThrowOnNon200HTTPResponse() throws {
         let invalidResponseCodes = [199, 300, 400, 499, 500]
         let data = Data("Invalid json".utf8)
         let url = URL(string: "https://any-url.com")!
@@ -23,6 +23,18 @@ final class TVShowsMapperTests: XCTestCase {
                 )
             )
         }
+    }
+    
+    func test_map_shouldThrowOn200HTTPResponseAndInvalidData() throws {
+        let data = Data("Invalid json".utf8)
+        let url = URL(string: "https://any-url.com")!
+        
+        try XCTAssertThrowsError(
+            TVShowsMapper.map(
+                data,
+                for: HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            )
+        )
     }
     
 }
