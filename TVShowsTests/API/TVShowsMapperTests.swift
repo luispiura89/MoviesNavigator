@@ -37,4 +37,19 @@ final class TVShowsMapperTests: XCTestCase {
         )
     }
     
+    func test_map_shouldThrowOn200HTTPResponseAndEmptyItemsList() {
+        let data = try! JSONSerialization.data(withJSONObject: [
+            "page": 1,
+            "results": []
+        ])
+        let url = URL(string: "https://any-url.com")!
+        
+        try XCTAssertThrowsError(
+            TVShowsMapper.map(
+                data,
+                for: HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            )
+        )
+    }
+    
 }
