@@ -38,11 +38,30 @@ final class URLSessionHTTPClientTests: XCTestCase {
         XCTAssertNotNil(errorResult(for: makeSUT(with: URLProtocolStub.Stub(error: nil, data: nil, response: anyNonHTTPURLResponse()))))
         XCTAssertNotNil(errorResult(for: makeSUT(with: URLProtocolStub.Stub(error: nil, data: anyData(), response: anyNonHTTPURLResponse()))))
         XCTAssertNotNil(errorResult(for: makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: anyData(), response: nil))))
-        XCTAssertNotNil(errorResult(for: makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: nil, response: nil))))
         XCTAssertNotNil(errorResult(for: makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: nil, response: anyHTTPURLResponse()))))
         XCTAssertNotNil(errorResult(for: makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: nil, response: anyNonHTTPURLResponse()))))
         XCTAssertNotNil(errorResult(for: makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: anyData(), response: anyNonHTTPURLResponse()))))
         XCTAssertNotNil(errorResult(for: makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: anyData(), response: anyHTTPURLResponse()))))
+    }
+    
+    func test_get_sendsRequestToProvidedURL() {
+        let sut = makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: nil, response: nil))
+        var url: URL?
+        var method: String?
+        URLProtocolStub.observeRequest = { request in
+            url = request?.url
+            method = request?.httpMethod
+        }
+        
+        let exp = expectation(description: "Wait for load")
+        sut.get(from: anyURL()) { _ in
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertEqual(url, anyURL())
+        XCTAssertEqual(method, "GET")
     }
     
     // MARK: - Helpers
@@ -122,6 +141,8 @@ final class URLSessionHTTPClientTests: XCTestCase {
             let response: URLResponse?
         }
         
+        static var observeRequest: ((URLRequest?) -> Void)?
+        
         private static var stub: Stub?
         
         static func stub(with stub: Stub) {
@@ -130,6 +151,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
         
         static func removeStub() {
             stub = nil
+            observeRequest = nil
         }
         
         override class func canInit(with request: URLRequest) -> Bool {
@@ -142,6 +164,12 @@ final class URLSessionHTTPClientTests: XCTestCase {
         
         override func startLoading() {
             guard let stub = URLProtocolStub.stub else {
+                return
+            }
+            
+            if let observeRequest = URLProtocolStub.observeRequest {
+                observeRequest(request)
+                client?.urlProtocolDidFinishLoading(self)
                 return
             }
             
