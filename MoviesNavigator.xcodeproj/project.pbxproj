@@ -13,6 +13,8 @@
 		CD280A712745872D00C773C7 /* TVShowsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD280A702745872D00C773C7 /* TVShowsMapper.swift */; };
 		CD280A7F2745D3C900C773C7 /* SharedAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A772745D3C900C773C7 /* SharedAPI.framework */; };
 		CD5AE0482746AED900CED0DE /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE0472746AED900CED0DE /* HTTPClient.swift */; };
+		CD5AE04C2746B0C800CED0DE /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE04B2746B0C800CED0DE /* URLSessionHTTPClient.swift */; };
+		CD5AE04E2746B11C00CED0DE /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE04D2746B11C00CED0DE /* URLSessionHTTPClientTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,8 @@
 		CD280A772745D3C900C773C7 /* SharedAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SharedAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD280A7E2745D3C900C773C7 /* SharedAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharedAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD5AE0472746AED900CED0DE /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		CD5AE04B2746B0C800CED0DE /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
+		CD5AE04D2746B11C00CED0DE /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +147,7 @@
 		CD280A782745D3C900C773C7 /* SharedAPI */ = {
 			isa = PBXGroup;
 			children = (
+				CD5AE0492746B08E00CED0DE /* Infra */,
 				CD5AE0462746AEB700CED0DE /* HTTP Client */,
 			);
 			path = SharedAPI;
@@ -151,6 +156,7 @@
 		CD280A822745D3C900C773C7 /* SharedAPITests */ = {
 			isa = PBXGroup;
 			children = (
+				CD5AE04A2746B0A600CED0DE /* Infra */,
 			);
 			path = SharedAPITests;
 			sourceTree = "<group>";
@@ -161,6 +167,22 @@
 				CD5AE0472746AED900CED0DE /* HTTPClient.swift */,
 			);
 			path = "HTTP Client";
+			sourceTree = "<group>";
+		};
+		CD5AE0492746B08E00CED0DE /* Infra */ = {
+			isa = PBXGroup;
+			children = (
+				CD5AE04B2746B0C800CED0DE /* URLSessionHTTPClient.swift */,
+			);
+			path = Infra;
+			sourceTree = "<group>";
+		};
+		CD5AE04A2746B0A600CED0DE /* Infra */ = {
+			isa = PBXGroup;
+			children = (
+				CD5AE04D2746B11C00CED0DE /* URLSessionHTTPClientTests.swift */,
+			);
+			path = Infra;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +300,7 @@
 					};
 					CD280A7D2745D3C900C773C7 = {
 						CreatedOnToolsVersion = 13.1;
+						LastSwiftMigration = 1310;
 					};
 				};
 			};
@@ -356,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD5AE0482746AED900CED0DE /* HTTPClient.swift in Sources */,
+				CD5AE04C2746B0C800CED0DE /* URLSessionHTTPClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +387,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD5AE04E2746B11C00CED0DE /* URLSessionHTTPClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -663,6 +688,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -676,6 +702,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.SharedAPITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -684,6 +711,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
