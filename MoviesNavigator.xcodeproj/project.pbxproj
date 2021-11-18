@@ -11,6 +11,8 @@
 		CD280A6B27445ECF00C773C7 /* TVShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD280A6A27445ECF00C773C7 /* TVShow.swift */; };
 		CD280A6E2745867B00C773C7 /* TVShowsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD280A6D2745867B00C773C7 /* TVShowsMapperTests.swift */; };
 		CD280A712745872D00C773C7 /* TVShowsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD280A702745872D00C773C7 /* TVShowsMapper.swift */; };
+		CD280A7F2745D3C900C773C7 /* SharedAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A772745D3C900C773C7 /* SharedAPI.framework */; };
+		CD5AE0482746AED900CED0DE /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE0472746AED900CED0DE /* HTTPClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -21,6 +23,13 @@
 			remoteGlobalIDString = CD280A5327445AA600C773C7;
 			remoteInfo = TVShows;
 		};
+		CD280A802745D3C900C773C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD280A0F27444E4A00C773C7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD280A762745D3C900C773C7;
+			remoteInfo = SharedAPI;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +38,9 @@
 		CD280A6A27445ECF00C773C7 /* TVShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShow.swift; sourceTree = "<group>"; };
 		CD280A6D2745867B00C773C7 /* TVShowsMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsMapperTests.swift; sourceTree = "<group>"; };
 		CD280A702745872D00C773C7 /* TVShowsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsMapper.swift; sourceTree = "<group>"; };
+		CD280A772745D3C900C773C7 /* SharedAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SharedAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD280A7E2745D3C900C773C7 /* SharedAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharedAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD5AE0472746AED900CED0DE /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +59,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CD280A742745D3C900C773C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD280A7B2745D3C900C773C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD280A7F2745D3C900C773C7 /* SharedAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -55,6 +82,8 @@
 			children = (
 				CD280A5527445AA600C773C7 /* TVShows */,
 				CD280A5F27445AA600C773C7 /* TVShowsTests */,
+				CD280A782745D3C900C773C7 /* SharedAPI */,
+				CD280A822745D3C900C773C7 /* SharedAPITests */,
 				CD280A1927444E4A00C773C7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,6 +93,8 @@
 			children = (
 				CD280A5427445AA600C773C7 /* TVShows.framework */,
 				CD280A5B27445AA600C773C7 /* TVShowsTests.xctest */,
+				CD280A772745D3C900C773C7 /* SharedAPI.framework */,
+				CD280A7E2745D3C900C773C7 /* SharedAPITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,10 +140,40 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		CD280A782745D3C900C773C7 /* SharedAPI */ = {
+			isa = PBXGroup;
+			children = (
+				CD5AE0462746AEB700CED0DE /* HTTP Client */,
+			);
+			path = SharedAPI;
+			sourceTree = "<group>";
+		};
+		CD280A822745D3C900C773C7 /* SharedAPITests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SharedAPITests;
+			sourceTree = "<group>";
+		};
+		CD5AE0462746AEB700CED0DE /* HTTP Client */ = {
+			isa = PBXGroup;
+			children = (
+				CD5AE0472746AED900CED0DE /* HTTPClient.swift */,
+			);
+			path = "HTTP Client";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
 		CD280A4F27445AA600C773C7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD280A722745D3C900C773C7 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -158,6 +219,42 @@
 			productReference = CD280A5B27445AA600C773C7 /* TVShowsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		CD280A762745D3C900C773C7 /* SharedAPI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD280A862745D3C900C773C7 /* Build configuration list for PBXNativeTarget "SharedAPI" */;
+			buildPhases = (
+				CD280A722745D3C900C773C7 /* Headers */,
+				CD280A732745D3C900C773C7 /* Sources */,
+				CD280A742745D3C900C773C7 /* Frameworks */,
+				CD280A752745D3C900C773C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SharedAPI;
+			productName = SharedAPI;
+			productReference = CD280A772745D3C900C773C7 /* SharedAPI.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CD280A7D2745D3C900C773C7 /* SharedAPITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD280A892745D3C900C773C7 /* Build configuration list for PBXNativeTarget "SharedAPITests" */;
+			buildPhases = (
+				CD280A7A2745D3C900C773C7 /* Sources */,
+				CD280A7B2745D3C900C773C7 /* Frameworks */,
+				CD280A7C2745D3C900C773C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CD280A812745D3C900C773C7 /* PBXTargetDependency */,
+			);
+			name = SharedAPITests;
+			productName = SharedAPITests;
+			productReference = CD280A7E2745D3C900C773C7 /* SharedAPITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -173,6 +270,13 @@
 						LastSwiftMigration = 1310;
 					};
 					CD280A5A27445AA600C773C7 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					CD280A762745D3C900C773C7 = {
+						CreatedOnToolsVersion = 13.1;
+						LastSwiftMigration = 1310;
+					};
+					CD280A7D2745D3C900C773C7 = {
 						CreatedOnToolsVersion = 13.1;
 					};
 				};
@@ -192,6 +296,8 @@
 			targets = (
 				CD280A5327445AA600C773C7 /* TVShows */,
 				CD280A5A27445AA600C773C7 /* TVShowsTests */,
+				CD280A762745D3C900C773C7 /* SharedAPI */,
+				CD280A7D2745D3C900C773C7 /* SharedAPITests */,
 			);
 		};
 /* End PBXProject section */
@@ -205,6 +311,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD280A5927445AA600C773C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD280A752745D3C900C773C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD280A7C2745D3C900C773C7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -231,6 +351,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CD280A732745D3C900C773C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD5AE0482746AED900CED0DE /* HTTPClient.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD280A7A2745D3C900C773C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -238,6 +373,11 @@
 			isa = PBXTargetDependency;
 			target = CD280A5327445AA600C773C7 /* TVShows */;
 			targetProxy = CD280A5D27445AA600C773C7 /* PBXContainerItemProxy */;
+		};
+		CD280A812745D3C900C773C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD280A762745D3C900C773C7 /* SharedAPI */;
+			targetProxy = CD280A802745D3C900C773C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -462,6 +602,105 @@
 			};
 			name = Release;
 		};
+		CD280A872745D3C900C773C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.SharedAPI;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		CD280A882745D3C900C773C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.SharedAPI;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		CD280A8A2745D3C900C773C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.SharedAPITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		CD280A8B2745D3C900C773C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.SharedAPITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -488,6 +727,24 @@
 			buildConfigurations = (
 				CD280A6727445AA600C773C7 /* Debug */,
 				CD280A6827445AA600C773C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CD280A862745D3C900C773C7 /* Build configuration list for PBXNativeTarget "SharedAPI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD280A872745D3C900C773C7 /* Debug */,
+				CD280A882745D3C900C773C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CD280A892745D3C900C773C7 /* Build configuration list for PBXNativeTarget "SharedAPITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD280A8A2745D3C900C773C7 /* Debug */,
+				CD280A8B2745D3C900C773C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

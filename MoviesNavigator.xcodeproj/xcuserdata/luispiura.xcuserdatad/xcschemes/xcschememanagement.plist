@@ -4,10 +4,15 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>TVShows.xcscheme_^#shared#^_</key>
+		<key>SharedAPI.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
+		</dict>
+		<key>TVShows.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -28,6 +33,16 @@
 			<true/>
 		</dict>
 		<key>CD280A5A27445AA600C773C7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CD280A762745D3C900C773C7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CD280A7D2745D3C900C773C7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
