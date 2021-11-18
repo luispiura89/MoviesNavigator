@@ -12,53 +12,47 @@ final class TVShowsMapperTests: XCTestCase {
     
     func test_map_shouldThrowOnNon200HTTPResponse() throws {
         let invalidResponseCodes = [199, 300, 400, 499, 500]
-        let data = Data("Invalid json".utf8)
-        let url = URL(string: "https://any-url.com")!
+        let invalidJSON = anyData()
         
         try invalidResponseCodes.forEach { code in
             try XCTAssertThrowsError(
                 TVShowsMapper.map(
-                    data,
-                    for: HTTPURLResponse(url: url, statusCode: code, httpVersion: nil, headerFields: nil)!
+                    invalidJSON,
+                    for: makeHTTPURLResponse(code: code)
                 )
             )
         }
     }
     
     func test_map_shouldThrowOn200HTTPResponseAndInvalidData() throws {
-        let data = Data("Invalid json".utf8)
-        let url = URL(string: "https://any-url.com")!
+        let invalidJSON = anyData()
         
         try XCTAssertThrowsError(
             TVShowsMapper.map(
-                data,
-                for: HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
+                invalidJSON,
+                for: makeHTTPURLResponse(code: 200)
             )
         )
     }
     
     func test_map_shouldThrowOn200HTTPResponseAndEmptyItemsList() {
-        let data = try! JSONSerialization.data(withJSONObject: [
-            "page": 1,
-            "results": []
-        ])
-        let url = URL(string: "https://any-url.com")!
+        let emptyResultData = makeResultsJSON(page: 1, results: [])
         
         try XCTAssertThrowsError(
             TVShowsMapper.map(
-                data,
-                for: HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
+                emptyResultData,
+                for: makeHTTPURLResponse(code: 200)
             )
         )
     }
     
     func test_map_shouldReturnMappedItemsData() {
-        let url = URL(string: "https://any-url.com")!
-        let show0 = makeTVShow(id: 1, name: "a show", overview: "an overview", voteAverage: 3.0, posterPath: nil)
-        let show1 = makeTVShow(id: 2, name: "another show", overview: "another overview", voteAverage: 9.9, posterPath: nil)
-        let data = makeResultsJSON(page: 1, results: [show0.json, show1.json])
+        let url = anyURL()
+        let show0 = makeTVShow(id: 1, name: "a show", overview: "an overview", voteAverage: 3.0, posterPath: url)
+        let show1 = makeTVShow(id: 2, name: "another show", overview: "another overview", voteAverage: 9.9, posterPath: url)
+        let nonEmptyResultData = makeResultsJSON(page: 1, results: [show0.json, show1.json])
         
-        XCTAssertEqual(try TVShowsMapper.map(data, for: HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!), [show0.model, show1.model])
+        XCTAssertEqual(try TVShowsMapper.map(nonEmptyResultData, for: makeHTTPURLResponse(code: 200)), [show0.model, show1.model])
     }
     
     // MARK: - Helpers
@@ -84,9 +78,21 @@ final class TVShowsMapperTests: XCTestCase {
     }
     
     private func makeResultsJSON(page: Int, results: [[String: Any]]) -> Data {
-        return try! JSONSerialization.data(withJSONObject: [
+        try! JSONSerialization.data(withJSONObject: [
             "page": page,
             "results": results
         ])
+    }
+    
+    private func anyURL() -> URL {
+        URL(string: "https://any-url.com")!
+    }
+    
+    private func anyData() -> Data {
+        Data("Invalid json".utf8)
+    }
+    
+    private func makeHTTPURLResponse(code: Int) -> HTTPURLResponse {
+        HTTPURLResponse(url: anyURL(), statusCode: code, httpVersion: nil, headerFields: nil)!
     }
 }
