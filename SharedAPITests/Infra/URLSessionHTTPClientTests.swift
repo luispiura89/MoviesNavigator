@@ -15,26 +15,24 @@ final class URLSessionHTTPClientTests: XCTestCase {
     }
     
     func test_get_shouldDeliverErrorOnHTTPRequestError() {
-        URLProtocolStub.stub(with: anyNSError())
-        let sut = makeSUT()
+        let sut = makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: nil, response: nil))
         
         errorResult(for: sut, with: .failure(anyNSError()))
     }
     
     func test_get_shouldDeliverRequestDataOnSuccessfulRequestAndValidHTTPURLResponse() {
-        URLProtocolStub.stub(with: anyData())
-        URLProtocolStub.stub(with: anyHTTPURLResponse())
-        let sut = makeSUT()
+        let sut = makeSUT(with: URLProtocolStub.Stub(error: nil, data: anyData(), response: anyHTTPURLResponse()))
         
         succesfulResult(for: sut, with: .success((anyData(), anyHTTPURLResponse())))
     }
     
     // MARK: - Helpers
     
-    private func makeSUT() -> HTTPClient {
+    private func makeSUT(with stub: URLProtocolStub.Stub) -> HTTPClient {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [URLProtocolStub.self]
         let session = URLSession(configuration: configuration)
+        URLProtocolStub.stub(with: stub)
         return URLSessionHTTPClient(session: session)
     }
     
@@ -97,25 +95,20 @@ final class URLSessionHTTPClientTests: XCTestCase {
     
     final class URLProtocolStub: URLProtocol {
         
-        private static var error: NSError?
-        private static var data: Data?
-        private static var response: URLResponse?
-        
-        static func stub(with error: NSError) {
-            URLProtocolStub.error = error
+        struct Stub {
+            let error: NSError?
+            let data: Data?
+            let response: URLResponse?
         }
         
-        static func stub(with data: Data) {
-            URLProtocolStub.data = data
-        }
+        private static var stub: Stub?
         
-        static func stub(with response: URLResponse) {
-            URLProtocolStub.response = response
+        static func stub(with stub: Stub) {
+            URLProtocolStub.stub = stub
         }
         
         static func removeStub() {
-            error = nil
-            data = nil
+            stub = nil
         }
         
         override class func canInit(with request: URLRequest) -> Bool {
@@ -127,13 +120,17 @@ final class URLSessionHTTPClientTests: XCTestCase {
         }
         
         override func startLoading() {
-            if let data = URLProtocolStub.data {
+            guard let stub = URLProtocolStub.stub else {
+                return
+            }
+            
+            if let data = stub.data {
                 client?.urlProtocol(self, didLoad: data)
             }
-            if let response = URLProtocolStub.response {
+            if let response = stub.response {
                 client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
             }
-            if let error = URLProtocolStub.error {
+            if let error = stub.error {
                 client?.urlProtocol(self, didFailWithError: error)
             }
             
