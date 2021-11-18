@@ -17,13 +17,32 @@ final class URLSessionHTTPClientTests: XCTestCase {
     func test_get_shouldDeliverErrorOnHTTPRequestError() {
         let sut = makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: nil, response: nil))
         
-        errorResult(for: sut, with: .failure(anyNSError()))
+        let error = errorResult(for: sut) as NSError?
+        
+        XCTAssertEqual(error?.code, anyNSError().code)
     }
     
     func test_get_shouldDeliverRequestDataOnSuccessfulRequestAndValidHTTPURLResponse() {
         let sut = makeSUT(with: URLProtocolStub.Stub(error: nil, data: anyData(), response: anyHTTPURLResponse()))
         
-        succesfulResult(for: sut, with: .success((anyData(), anyHTTPURLResponse())))
+        let result = successfulResult(for: sut)
+        
+        XCTAssertEqual(result?.data, anyData())
+        XCTAssertEqual(result?.response.statusCode, anyHTTPURLResponse().statusCode)
+        XCTAssertEqual(result?.response.url, anyHTTPURLResponse().url)
+    }
+    
+    func test_get_shouldDeliverErrorForAllInvalidCases() {
+        XCTAssertNotNil(errorResult(for: makeSUT(with: URLProtocolStub.Stub(error: nil, data: nil, response: nil))))
+        XCTAssertNotNil(errorResult(for: makeSUT(with: URLProtocolStub.Stub(error: nil, data: anyData(), response: nil))))
+        XCTAssertNotNil(errorResult(for: makeSUT(with: URLProtocolStub.Stub(error: nil, data: nil, response: anyNonHTTPURLResponse()))))
+        XCTAssertNotNil(errorResult(for: makeSUT(with: URLProtocolStub.Stub(error: nil, data: anyData(), response: anyNonHTTPURLResponse()))))
+        XCTAssertNotNil(errorResult(for: makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: anyData(), response: nil))))
+        XCTAssertNotNil(errorResult(for: makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: nil, response: nil))))
+        XCTAssertNotNil(errorResult(for: makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: nil, response: anyHTTPURLResponse()))))
+        XCTAssertNotNil(errorResult(for: makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: nil, response: anyNonHTTPURLResponse()))))
+        XCTAssertNotNil(errorResult(for: makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: anyData(), response: anyNonHTTPURLResponse()))))
+        XCTAssertNotNil(errorResult(for: makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: anyData(), response: anyHTTPURLResponse()))))
     }
     
     // MARK: - Helpers
@@ -36,26 +55,28 @@ final class URLSessionHTTPClientTests: XCTestCase {
         return URLSessionHTTPClient(session: session)
     }
     
-    func succesfulResult(for sut: HTTPClient, with expectedResult: HTTPClient.GetResult, file: StaticString = #filePath, line: UInt = #line) {
+    @discardableResult
+    func successfulResult(for sut: HTTPClient, file: StaticString = #filePath, line: UInt = #line) -> (data: Data, response: HTTPURLResponse)? {
         let receivedResult = resultFor(sut)
         
-        switch (expectedResult, receivedResult) {
-        case let (.success((expectedData, _)), .success((receivedData, _))):
-            XCTAssertEqual(expectedData, receivedData, file: file, line: line)
+        switch receivedResult {
+        case let .success((receivedData, receivedResponse)):
+            return (receivedData, receivedResponse)
         default:
-            XCTFail("Expected \(expectedResult) got \(receivedResult) instead", file: file, line: line)
+            XCTFail("Expected succesful result got \(receivedResult) instead", file: file, line: line)
+            return nil
         }
     }
     
     @discardableResult
-    func errorResult(for sut: HTTPClient, with expectedResult: HTTPClient.GetResult, file: StaticString = #filePath, line: UInt = #line) -> HTTPClient.GetResult? {
+    func errorResult(for sut: HTTPClient, file: StaticString = #filePath, line: UInt = #line) -> Error? {
         let receivedResult = resultFor(sut)
         
-        switch (expectedResult, receivedResult) {
-        case (.failure, .failure):
-            return receivedResult
+        switch receivedResult {
+        case let .failure(error):
+            return error
         default:
-            XCTFail("Expected \(expectedResult) got \(receivedResult) instead", file: file, line: line)
+            XCTFail("Expected failure got \(receivedResult) instead", file: file, line: line)
             return nil
         }
     }
