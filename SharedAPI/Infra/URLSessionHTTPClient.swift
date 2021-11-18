@@ -17,9 +17,15 @@ final public class URLSessionHTTPClient: HTTPClient {
     
     public func get(from url: URL, completion: @escaping GetCompletion) {
         session.dataTask(with: url) { data, response, error in
-            if let error = error {
-                completion(.failure(error))
-            }
+            completion(Result {
+                if let error = error {
+                    throw error
+                } else if let data = data {
+                    return (data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!)
+                } else {
+                    fatalError("")
+                }
+            })
         }.resume()
     }
 }
