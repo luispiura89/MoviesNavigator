@@ -92,10 +92,6 @@ final class TVShowsMapperTests: XCTestCase {
         ])
     }
     
-    private func anyURL() -> URL {
-        URL(string: "https://any-url.com")!
-    }
-    
     private func anyData() -> Data {
         Data("Invalid json".utf8)
     }

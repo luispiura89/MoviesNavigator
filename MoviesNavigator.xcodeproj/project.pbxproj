@@ -15,6 +15,9 @@
 		CD5AE0482746AED900CED0DE /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE0472746AED900CED0DE /* HTTPClient.swift */; };
 		CD5AE04C2746B0C800CED0DE /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE04B2746B0C800CED0DE /* URLSessionHTTPClient.swift */; };
 		CD5AE04E2746B11C00CED0DE /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE04D2746B11C00CED0DE /* URLSessionHTTPClientTests.swift */; };
+		CD845A3D276BC302000881E0 /* TVShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A3C276BC302000881E0 /* TVShowPresenter.swift */; };
+		CD845A40276BC38F000881E0 /* TVShowPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A3F276BC38F000881E0 /* TVShowPresenterTests.swift */; };
+		CD845A43276BC5FE000881E0 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A42276BC5FE000881E0 /* TestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		CD5AE0472746AED900CED0DE /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		CD5AE04B2746B0C800CED0DE /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
 		CD5AE04D2746B11C00CED0DE /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
+		CD845A3C276BC302000881E0 /* TVShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowPresenter.swift; sourceTree = "<group>"; };
+		CD845A3F276BC38F000881E0 /* TVShowPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowPresenterTests.swift; sourceTree = "<group>"; };
+		CD845A42276BC5FE000881E0 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,7 @@
 		CD280A5527445AA600C773C7 /* TVShows */ = {
 			isa = PBXGroup;
 			children = (
+				CD845A3B276BBDBA000881E0 /* Presentation */,
 				CD280A6F2745871000C773C7 /* API */,
 				CD280A6927445EB700C773C7 /* Domain */,
 			);
@@ -115,6 +122,8 @@
 		CD280A5F27445AA600C773C7 /* TVShowsTests */ = {
 			isa = PBXGroup;
 			children = (
+				CD845A41276BC5EE000881E0 /* Helpers */,
+				CD845A3E276BC360000881E0 /* Presentation */,
 				CD280A6C2745864B00C773C7 /* API */,
 			);
 			path = TVShowsTests;
@@ -183,6 +192,30 @@
 				CD5AE04D2746B11C00CED0DE /* URLSessionHTTPClientTests.swift */,
 			);
 			path = Infra;
+			sourceTree = "<group>";
+		};
+		CD845A3B276BBDBA000881E0 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				CD845A3C276BC302000881E0 /* TVShowPresenter.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		CD845A3E276BC360000881E0 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				CD845A3F276BC38F000881E0 /* TVShowPresenterTests.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		CD845A41276BC5EE000881E0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CD845A42276BC5FE000881E0 /* TestHelpers.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,6 +396,7 @@
 			files = (
 				CD280A6B27445ECF00C773C7 /* TVShow.swift in Sources */,
 				CD280A712745872D00C773C7 /* TVShowsMapper.swift in Sources */,
+				CD845A3D276BC302000881E0 /* TVShowPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +405,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD280A6E2745867B00C773C7 /* TVShowsMapperTests.swift in Sources */,
+				CD845A40276BC38F000881E0 /* TVShowPresenterTests.swift in Sources */,
+				CD845A43276BC5FE000881E0 /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
