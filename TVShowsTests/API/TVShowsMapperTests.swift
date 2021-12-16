@@ -48,8 +48,8 @@ final class TVShowsMapperTests: XCTestCase {
     
     func test_map_shouldReturnMappedItemsData() {
         let url = anyURL()
-        let show0 = makeTVShow(id: 1, name: "a show", overview: "an overview", voteAverage: 3.0, posterPath: url)
-        let show1 = makeTVShow(id: 2, name: "another show", overview: "another overview", voteAverage: 9.9, posterPath: url)
+        let show0 = makeTVShow(id: 1, name: "a show", overview: "an overview", voteAverage: 3.0, firstAirDate: "2021-10-22", posterPath: url)
+        let show1 = makeTVShow(id: 2, name: "another show", overview: "another overview", voteAverage: 9.9, firstAirDate: "2021-12-12", posterPath: url)
         let nonEmptyResultData = makeResultsJSON(page: 1, results: [show0.json, show1.json])
         
         XCTAssertEqual(try TVShowsMapper.map(nonEmptyResultData, for: makeHTTPURLResponse(code: 200)), [show0.model, show1.model])
@@ -62,16 +62,24 @@ final class TVShowsMapperTests: XCTestCase {
         name: String,
         overview: String,
         voteAverage: Double,
+        firstAirDate: String,
         posterPath: URL?
     ) -> (model: TVShow, json: [String: Any]) {
         
-        let model = TVShow(id: id, name: name, overview: overview, voteAverage: voteAverage, posterPath: posterPath)
+        let model = TVShow(
+            id: id,
+            name: name,
+            overview: overview,
+            voteAverage: voteAverage,
+            firstAirDate: firstAirDate,
+            posterPath: posterPath)
         
         var json: [String: Any] = [:]
         json["id"] = model.id
         json["name"] = model.name
         json["overview"] = model.overview
         json["vote_average"] = model.voteAverage
+        json["first_air_date"] = model.firstAirDate
         json["poster_path"] = posterPath?.absoluteString
         
         return (model, json.compactMapValues { $0 })

@@ -12,13 +12,15 @@ public struct TVShow: Hashable {
     public let name: String
     public let overview: String
     public let voteAverage: Double
+    public let firstAirDate: String
     public let posterPath: URL?
     
-    public init(id: Int, name: String, overview: String, voteAverage: Double, posterPath: URL?) {
+    public init(id: Int, name: String, overview: String, voteAverage: Double, firstAirDate: String, posterPath: URL?) {
         self.id = id
         self.name = name
         self.overview = overview
         self.voteAverage = voteAverage
         self.posterPath = posterPath
+        self.firstAirDate = firstAirDate
     }
 }

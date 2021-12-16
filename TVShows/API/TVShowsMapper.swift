@@ -14,7 +14,15 @@ final public class TVShowsMapper {
         let results: [Result]
         
         var shows: [TVShow] {
-            results.map { TVShow(id: $0.id, name: $0.name, overview: $0.overview, voteAverage: $0.vote_average, posterPath: $0.poster_path) }
+            results.map {
+                TVShow(
+                    id: $0.id,
+                    name: $0.name,
+                    overview: $0.overview,
+                    voteAverage: $0.vote_average,
+                    firstAirDate: $0.first_air_date,
+                    posterPath: $0.poster_path)
+            }
         }
     }
     
@@ -23,6 +31,7 @@ final public class TVShowsMapper {
         let name: String
         let overview: String
         let vote_average: Double
+        let first_air_date: String
         let poster_path: URL?
     }
     
