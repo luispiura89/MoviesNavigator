@@ -15,6 +15,8 @@
 		CD5AE0482746AED900CED0DE /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE0472746AED900CED0DE /* HTTPClient.swift */; };
 		CD5AE04C2746B0C800CED0DE /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE04B2746B0C800CED0DE /* URLSessionHTTPClient.swift */; };
 		CD5AE04E2746B11C00CED0DE /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE04D2746B11C00CED0DE /* URLSessionHTTPClientTests.swift */; };
+		CD747802276BFCBF00043EC9 /* TVShows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A5427445AA600C773C7 /* TVShows.framework */; platformFilter = ios; };
+		CD747803276BFCBF00043EC9 /* TVShows.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A5427445AA600C773C7 /* TVShows.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CD845A3D276BC302000881E0 /* TVShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A3C276BC302000881E0 /* TVShowPresenter.swift */; };
 		CD845A40276BC38F000881E0 /* TVShowPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A3F276BC38F000881E0 /* TVShowPresenterTests.swift */; };
 		CD845A43276BC5FE000881E0 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A42276BC5FE000881E0 /* TestHelpers.swift */; };
@@ -26,6 +28,8 @@
 		CD845A6B276BF040000881E0 /* TV_SHOWS_WITH_CONTENT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = CD845A6A276BF040000881E0 /* TV_SHOWS_WITH_CONTENT_light.png */; };
 		CD845A6D276BF10A000881E0 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD845A6C276BF10A000881E0 /* Colors.xcassets */; };
 		CD845A70276BF239000881E0 /* UIColor+TVShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A6F276BF239000881E0 /* UIColor+TVShows.swift */; };
+		CD845A73276BF3E8000881E0 /* TVShowCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A72276BF3E8000881E0 /* TVShowCellController.swift */; };
+		CD845A76276BFB46000881E0 /* TVShowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A75276BFB46000881E0 /* TVShowTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +47,13 @@
 			remoteGlobalIDString = CD280A762745D3C900C773C7;
 			remoteInfo = SharedAPI;
 		};
+		CD747804276BFCBF00043EC9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD280A0F27444E4A00C773C7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD280A5327445AA600C773C7;
+			remoteInfo = TVShows;
+		};
 		CD845A52276BE89F000881E0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CD280A0F27444E4A00C773C7 /* Project object */;
@@ -51,6 +62,20 @@
 			remoteInfo = TVShowsiOS;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CD747806276BFCBF00043EC9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CD747803276BFCBF00043EC9 /* TVShows.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		CD280A5427445AA600C773C7 /* TVShows.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TVShows.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +100,8 @@
 		CD845A6A276BF040000881E0 /* TV_SHOWS_WITH_CONTENT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TV_SHOWS_WITH_CONTENT_light.png; sourceTree = "<group>"; };
 		CD845A6C276BF10A000881E0 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		CD845A6F276BF239000881E0 /* UIColor+TVShows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+TVShows.swift"; sourceTree = "<group>"; };
+		CD845A72276BF3E8000881E0 /* TVShowCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowCellController.swift; sourceTree = "<group>"; };
+		CD845A75276BFB46000881E0 /* TVShowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD747802276BFCBF00043EC9 /* TVShows.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +164,7 @@
 				CD845A4A276BE89F000881E0 /* TVShowsiOS */,
 				CD845A54276BE89F000881E0 /* TVShowsiOSTests */,
 				CD280A1927444E4A00C773C7 /* Products */,
+				CD747801276BFCBF00043EC9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -237,6 +266,13 @@
 			path = Infra;
 			sourceTree = "<group>";
 		};
+		CD747801276BFCBF00043EC9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CD845A3B276BBDBA000881E0 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +326,8 @@
 		CD845A63276BEDB6000881E0 /* TV Shows */ = {
 			isa = PBXGroup;
 			children = (
+				CD845A74276BFB1E000881E0 /* TV Shows Cells */,
+				CD845A71276BF3A1000881E0 /* TV Shows Cell Controllers */,
 				CD845A6E276BF1C5000881E0 /* TV Shows Resources */,
 				CD845A64276BEDD2000881E0 /* TVShowsViewController.swift */,
 			);
@@ -320,6 +358,22 @@
 				CD845A6F276BF239000881E0 /* UIColor+TVShows.swift */,
 			);
 			path = "TV Shows Resources";
+			sourceTree = "<group>";
+		};
+		CD845A71276BF3A1000881E0 /* TV Shows Cell Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CD845A72276BF3E8000881E0 /* TVShowCellController.swift */,
+			);
+			path = "TV Shows Cell Controllers";
+			sourceTree = "<group>";
+		};
+		CD845A74276BFB1E000881E0 /* TV Shows Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CD845A75276BFB46000881E0 /* TVShowTableViewCell.swift */,
+			);
+			path = "TV Shows Cells";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -429,10 +483,12 @@
 				CD845A45276BE89F000881E0 /* Sources */,
 				CD845A46276BE89F000881E0 /* Frameworks */,
 				CD845A47276BE89F000881E0 /* Resources */,
+				CD747806276BFCBF00043EC9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CD747805276BFCBF00043EC9 /* PBXTargetDependency */,
 			);
 			name = TVShowsiOS;
 			productName = TVShowsiOS;
@@ -604,6 +660,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD845A70276BF239000881E0 /* UIColor+TVShows.swift in Sources */,
+				CD845A73276BF3E8000881E0 /* TVShowCellController.swift in Sources */,
+				CD845A76276BFB46000881E0 /* TVShowTableViewCell.swift in Sources */,
 				CD845A65276BEDD2000881E0 /* TVShowsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -630,6 +688,12 @@
 			isa = PBXTargetDependency;
 			target = CD280A762745D3C900C773C7 /* SharedAPI */;
 			targetProxy = CD280A802745D3C900C773C7 /* PBXContainerItemProxy */;
+		};
+		CD747805276BFCBF00043EC9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = CD280A5327445AA600C773C7 /* TVShows */;
+			targetProxy = CD747804276BFCBF00043EC9 /* PBXContainerItemProxy */;
 		};
 		CD845A53276BE89F000881E0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -783,6 +847,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.TVShows;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "macosx ihponeos iphonesimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -812,6 +877,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.TVShows;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "macosx ihponeos iphonesimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -833,6 +899,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.TVShowsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 			};
@@ -854,6 +921,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.TVShowsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 			};

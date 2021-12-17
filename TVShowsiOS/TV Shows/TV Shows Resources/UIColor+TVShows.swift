@@ -11,4 +11,10 @@ extension UIColor {
     static var blackBackground: UIColor {
         UIColor(named: "BlackBackground", in: Bundle(for: TVShowsViewController.self), compatibleWith: nil)!
     }
+    static var tVShowCellBackground: UIColor {
+        UIColor(named: "TVShowCellBackground", in: Bundle(for: TVShowsViewController.self), compatibleWith: nil)!
+    }
+    static var tVShowCellTextColor: UIColor {
+        UIColor(named: "TVShowCellTextColor", in: Bundle(for: TVShowsViewController.self), compatibleWith: nil)!
+    }
 }
