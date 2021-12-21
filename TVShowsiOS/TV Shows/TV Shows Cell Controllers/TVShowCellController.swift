@@ -8,12 +8,19 @@
 import UIKit
 import TVShows
 
+public protocol TVShowCellControllerDelegate {
+    func requestImage()
+}
+
 public final class TVShowCellController: NSObject, UICollectionViewDataSource {
     
     private let viewModel: TVShowViewModel
+    private var cell: TVShowHomeCell?
+    private let delegate: TVShowCellControllerDelegate
     
-    public init(viewModel: TVShowViewModel) {
+    public init(viewModel: TVShowViewModel, delegate: TVShowCellControllerDelegate) {
         self.viewModel = viewModel
+        self.delegate = delegate
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -21,14 +28,18 @@ public final class TVShowCellController: NSObject, UICollectionViewDataSource {
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell =
-        collectionView.dequeueReusableCell(withReuseIdentifier: TVShowHomeCell.dequeueIdentifier, for: indexPath) as! TVShowHomeCell
+        cell = (collectionView.dequeueReusableCell(withReuseIdentifier: TVShowHomeCell.dequeueIdentifier, for: indexPath) as? TVShowHomeCell)
         
-        cell.nameLabel.text = viewModel.name
-        cell.dateLabel.text = viewModel.firstAirDate
-        cell.voteAverageLabel.text = viewModel.voteAverage
-        cell.overviewLabel.text = viewModel.overview
+        cell?.nameLabel.text = viewModel.name
+        cell?.dateLabel.text = viewModel.firstAirDate
+        cell?.voteAverageLabel.text = viewModel.voteAverage
+        cell?.overviewLabel.text = viewModel.overview
+        delegate.requestImage()
         
-        return cell
+        return cell!
+    }
+    
+    public func setPosterImage(_ image: UIImage) {
+        cell?.posterImageView.image = image
     }
 }
