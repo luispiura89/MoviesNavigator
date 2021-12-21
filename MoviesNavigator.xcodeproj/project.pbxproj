@@ -29,7 +29,7 @@
 		CD845A6D276BF10A000881E0 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD845A6C276BF10A000881E0 /* Colors.xcassets */; };
 		CD845A70276BF239000881E0 /* UIColor+TVShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A6F276BF239000881E0 /* UIColor+TVShows.swift */; };
 		CD845A73276BF3E8000881E0 /* TVShowCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A72276BF3E8000881E0 /* TVShowCellController.swift */; };
-		CD845A76276BFB46000881E0 /* TVShowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A75276BFB46000881E0 /* TVShowTableViewCell.swift */; };
+		CD845A76276BFB46000881E0 /* TVShowHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A75276BFB46000881E0 /* TVShowHomeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,7 +101,7 @@
 		CD845A6C276BF10A000881E0 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		CD845A6F276BF239000881E0 /* UIColor+TVShows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+TVShows.swift"; sourceTree = "<group>"; };
 		CD845A72276BF3E8000881E0 /* TVShowCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowCellController.swift; sourceTree = "<group>"; };
-		CD845A75276BFB46000881E0 /* TVShowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowTableViewCell.swift; sourceTree = "<group>"; };
+		CD845A75276BFB46000881E0 /* TVShowHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowHomeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -371,7 +371,7 @@
 		CD845A74276BFB1E000881E0 /* TV Shows Cells */ = {
 			isa = PBXGroup;
 			children = (
-				CD845A75276BFB46000881E0 /* TVShowTableViewCell.swift */,
+				CD845A75276BFB46000881E0 /* TVShowHomeCell.swift */,
 			);
 			path = "TV Shows Cells";
 			sourceTree = "<group>";
@@ -661,7 +661,7 @@
 			files = (
 				CD845A70276BF239000881E0 /* UIColor+TVShows.swift in Sources */,
 				CD845A73276BF3E8000881E0 /* TVShowCellController.swift in Sources */,
-				CD845A76276BFB46000881E0 /* TVShowTableViewCell.swift in Sources */,
+				CD845A76276BFB46000881E0 /* TVShowHomeCell.swift in Sources */,
 				CD845A65276BEDD2000881E0 /* TVShowsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,5 +1,5 @@
 //
-//  TVShowTableViewCell.swift
+//  TVShowHomeCell.swift
 //  TVShowsiOS
 //
 //  Created by Luis Francisco Piura Mejia on 16/12/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TVShowTableViewCell: UITableViewCell {
+final class TVShowHomeCell: UICollectionViewCell {
     
     static var dequeueIdentifier = "TVShowTableViewCell"
     
@@ -18,6 +18,7 @@ final class TVShowTableViewCell: UITableViewCell {
         label.adjustsFontForContentSizeCategory = true
         label.font = .preferredFont(forTextStyle: .headline)
         label.numberOfLines = 0
+        label.heightAnchor.constraint(equalToConstant: 60).isActive = true
         return label
     }()
     
@@ -28,6 +29,7 @@ final class TVShowTableViewCell: UITableViewCell {
         label.adjustsFontForContentSizeCategory = true
         label.font = .preferredFont(forTextStyle: .body)
         label.numberOfLines = 0
+        label.heightAnchor.constraint(equalToConstant: 120).isActive = true
         return label
     }()
     
@@ -39,6 +41,7 @@ final class TVShowTableViewCell: UITableViewCell {
         label.font = .preferredFont(forTextStyle: .subheadline)
         label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        label.heightAnchor.constraint(equalToConstant: 60).isActive = true
         return label
     }()
     
@@ -74,9 +77,10 @@ final class TVShowTableViewCell: UITableViewCell {
     
     lazy var containerView: UIView = {
         let view = UIView()
+        
+        view.backgroundColor = .tVShowCellBackground
         view.clipsToBounds = true
         view.layer.cornerRadius = 5
-        view.backgroundColor = .tVShowCellBackground
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(bottomStackView)
         bottomStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 8).isActive = true
@@ -86,22 +90,15 @@ final class TVShowTableViewCell: UITableViewCell {
         return view
     }()
     
-    convenience init() {
-        self.init(style: .default, reuseIdentifier: Self.dequeueIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
-        contentView.addSubview(containerView)
+        addSubview(containerView)
         
-        containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8).isActive = true
-        containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 8).isActive = true
-        contentView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 8).isActive = true
-    }
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = .blackBackground
-        selectionStyle = .none
-        translatesAutoresizingMaskIntoConstraints = false
+        containerView.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
+        containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
+        bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 0).isActive = true
+        trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0).isActive = true
     }
     
     required init?(coder: NSCoder) {

@@ -13,6 +13,7 @@ final class TVShowsSnapshotTests: XCTestCase {
     
     func test_tvShows_withContent() {
         let sut = TVShowsViewController()
+        sut.loadViewIfNeeded()
         
         sut.controllers = content()
         
@@ -27,12 +28,6 @@ final class TVShowsSnapshotTests: XCTestCase {
                                         overview: "An Overview",
                                         voteAverage: "5.0",
                                         firstAirDate: "Jan 13, 2021")),
-            TVShowCellController(viewModel:
-                                    TVShowViewModel(
-                                        name: "Another Show",
-                                        overview: "Another Overview",
-                                        voteAverage: "6.0",
-                                        firstAirDate: "Jan 15, 2021")),
             TVShowCellController(viewModel:
                                     TVShowViewModel(
                                         name: "Another Show",
