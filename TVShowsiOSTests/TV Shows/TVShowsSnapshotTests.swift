@@ -13,12 +13,11 @@ final class TVShowsSnapshotTests: XCTestCase {
     
     func test_tvShows_withContent() {
         let sut = TVShowsViewController()
-        
         sut.loadViewIfNeeded()
         
-        sut.controllers = content()
+        sut.setCellControllers(headers: [HomeHeaderController()], controllers: content())
         
-        record(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "TV_SHOWS_WITH_CONTENT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "TV_SHOWS_WITH_CONTENT_light")
     }
     
     private func content() -> [TVShowCellController] {

@@ -17,4 +17,7 @@ extension UIColor {
     static var tVShowCellTextColor: UIColor {
         UIColor(named: "TVShowCellTextColor", in: Bundle(for: TVShowsViewController.self), compatibleWith: nil)!
     }
+    static var homeSegmentBackground: UIColor {
+        UIColor(named: "HomeSegmentBackground", in: Bundle(for: TVShowsViewController.self), compatibleWith: nil)!
+    }
 }
