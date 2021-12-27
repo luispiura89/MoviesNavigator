@@ -80,16 +80,14 @@ final class TVShowHomeCell: UICollectionViewCell {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.alignment = .top
         return stackView
     }()
     
     private lazy var dateAndVotesStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [dateLabel, voteAverageLabel])
         stackView.axis = .horizontal
-        stackView.distribution = .fill
+        stackView.distribution = .equalSpacing
         stackView.spacing = 8
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
