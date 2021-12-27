@@ -69,7 +69,11 @@ private final class ImageStub: TVShowCellControllerDelegate {
     }
     
     func requestImage() {
-        controller?.setPosterImage(UIImage.make(withColor: color))
+        if color == UIColor.red {
+            controller?.setLoadingErrorState()
+        } else {
+            controller?.setPosterImage(UIImage.make(withColor: color))
+        }
     }
 }
 

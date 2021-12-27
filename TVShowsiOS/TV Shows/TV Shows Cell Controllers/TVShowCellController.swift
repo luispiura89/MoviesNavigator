@@ -42,4 +42,9 @@ public final class TVShowCellController: NSObject, UICollectionViewDataSource {
     public func setPosterImage(_ image: UIImage) {
         cell?.posterImageView.image = image
     }
+    
+    public func setLoadingErrorState() {
+        cell?.posterImageView.image = nil
+        cell?.retryLoadingButton.isHidden = false
+    }
 }

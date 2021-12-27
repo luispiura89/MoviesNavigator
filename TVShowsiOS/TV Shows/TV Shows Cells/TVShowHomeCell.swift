@@ -70,7 +70,20 @@ final class TVShowHomeCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.addSubview(retryLoadingButton)
+        retryLoadingButton.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 0).isActive = true
+        retryLoadingButton.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 0).isActive = true
+        imageView.bottomAnchor.constraint(equalTo: retryLoadingButton.bottomAnchor, constant: 0).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: retryLoadingButton.trailingAnchor, constant: 0).isActive = true
         return imageView
+    }()
+    
+    lazy var retryLoadingButton: UIButton = {
+        let button = UIButton()
+        button.isHidden = true
+        button.setImage(UIImage.retryLoading, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     private lazy var bottomStackView: UIStackView = {

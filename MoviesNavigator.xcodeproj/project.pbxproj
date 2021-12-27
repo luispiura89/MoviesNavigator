@@ -17,6 +17,7 @@
 		CD5AE04E2746B11C00CED0DE /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE04D2746B11C00CED0DE /* URLSessionHTTPClientTests.swift */; };
 		CD747802276BFCBF00043EC9 /* TVShows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A5427445AA600C773C7 /* TVShows.framework */; platformFilter = ios; };
 		CD747803276BFCBF00043EC9 /* TVShows.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A5427445AA600C773C7 /* TVShows.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CD8120E0277A6C1A00277EF1 /* UIImage+TVShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8120DF277A6C1A00277EF1 /* UIImage+TVShows.swift */; };
 		CD845A3D276BC302000881E0 /* TVShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A3C276BC302000881E0 /* TVShowPresenter.swift */; };
 		CD845A40276BC38F000881E0 /* TVShowPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A3F276BC38F000881E0 /* TVShowPresenterTests.swift */; };
 		CD845A43276BC5FE000881E0 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A42276BC5FE000881E0 /* TestHelpers.swift */; };
@@ -90,6 +91,7 @@
 		CD5AE0472746AED900CED0DE /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		CD5AE04B2746B0C800CED0DE /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
 		CD5AE04D2746B11C00CED0DE /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
+		CD8120DF277A6C1A00277EF1 /* UIImage+TVShows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TVShows.swift"; sourceTree = "<group>"; };
 		CD845A3C276BC302000881E0 /* TVShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowPresenter.swift; sourceTree = "<group>"; };
 		CD845A3F276BC38F000881E0 /* TVShowPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowPresenterTests.swift; sourceTree = "<group>"; };
 		CD845A42276BC5FE000881E0 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 			children = (
 				CD845A6C276BF10A000881E0 /* Colors.xcassets */,
 				CD845A6F276BF239000881E0 /* UIColor+TVShows.swift */,
+				CD8120DF277A6C1A00277EF1 /* UIImage+TVShows.swift */,
 			);
 			path = "TV Shows Resources";
 			sourceTree = "<group>";
@@ -669,6 +672,7 @@
 				CD8E77AB2773BCF5007F5A7A /* HomeHeaderController.swift in Sources */,
 				CD845A73276BF3E8000881E0 /* TVShowCellController.swift in Sources */,
 				CD845A76276BFB46000881E0 /* TVShowHomeCell.swift in Sources */,
+				CD8120E0277A6C1A00277EF1 /* UIImage+TVShows.swift in Sources */,
 				CD845A65276BEDD2000881E0 /* TVShowsViewController.swift in Sources */,
 				CD8E77A92773B371007F5A7A /* HomeHeader.swift in Sources */,
 			);
