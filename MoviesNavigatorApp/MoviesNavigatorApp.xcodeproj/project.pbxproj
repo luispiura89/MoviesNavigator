@@ -15,13 +15,13 @@
 		CD8120F5277A718D00277EF1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8120F3277A718D00277EF1 /* Main.storyboard */; };
 		CD8120F7277A719100277EF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD8120F6277A719100277EF1 /* Assets.xcassets */; };
 		CD8120FA277A719100277EF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8120F8277A719100277EF1 /* LaunchScreen.storyboard */; };
+		CD812105277A719100277EF1 /* MoviesNavigatorAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD812104277A719100277EF1 /* MoviesNavigatorAppTests.swift */; };
 		CD81210F277A719100277EF1 /* MoviesNavigatorAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81210E277A719100277EF1 /* MoviesNavigatorAppUITests.swift */; };
 		CD812111277A719100277EF1 /* MoviesNavigatorAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD812110277A719100277EF1 /* MoviesNavigatorAppUITestsLaunchTests.swift */; };
 		CD812123277A722A00277EF1 /* TVShows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD81211F277A722A00277EF1 /* TVShows.framework */; };
 		CD812124277A722A00277EF1 /* TVShows.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD81211F277A722A00277EF1 /* TVShows.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CD812125277A722A00277EF1 /* TVShowsiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD812120277A722A00277EF1 /* TVShowsiOS.framework */; };
 		CD812126277A722A00277EF1 /* TVShowsiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD812120277A722A00277EF1 /* TVShowsiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CDBAB75F277BB59E004621EF /* TVShowsViewControllerIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBAB75E277BB59E004621EF /* TVShowsViewControllerIntegrationTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +68,7 @@
 		CD8120F9277A719100277EF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD8120FB277A719100277EF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD812100277A719100277EF1 /* MoviesNavigatorAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviesNavigatorAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD812104277A719100277EF1 /* MoviesNavigatorAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesNavigatorAppTests.swift; sourceTree = "<group>"; };
 		CD81210A277A719100277EF1 /* MoviesNavigatorAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviesNavigatorAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD81210E277A719100277EF1 /* MoviesNavigatorAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesNavigatorAppUITests.swift; sourceTree = "<group>"; };
 		CD812110277A719100277EF1 /* MoviesNavigatorAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesNavigatorAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -75,7 +76,6 @@
 		CD81211F277A722A00277EF1 /* TVShows.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TVShows.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD812120277A722A00277EF1 /* TVShowsiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TVShowsiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD812128277A72EB00277EF1 /* SharedAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CDBAB75E277BB59E004621EF /* TVShowsViewControllerIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsViewControllerIntegrationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,7 +130,6 @@
 		CD8120EC277A718D00277EF1 /* MoviesNavigatorApp */ = {
 			isa = PBXGroup;
 			children = (
-				CDBAB75C277BB3A0004621EF /* HomeComposition */,
 				CD8120ED277A718D00277EF1 /* AppDelegate.swift */,
 				CD8120EF277A718D00277EF1 /* SceneDelegate.swift */,
 				CD8120F1277A718D00277EF1 /* ViewController.swift */,
@@ -145,7 +144,7 @@
 		CD812103277A719100277EF1 /* MoviesNavigatorAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				CDBAB75D277BB57B004621EF /* Home Integration Tests */,
+				CD812104277A719100277EF1 /* MoviesNavigatorAppTests.swift */,
 			);
 			path = MoviesNavigatorAppTests;
 			sourceTree = "<group>";
@@ -169,21 +168,6 @@
 				CD812120277A722A00277EF1 /* TVShowsiOS.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		CDBAB75C277BB3A0004621EF /* HomeComposition */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = HomeComposition;
-			sourceTree = "<group>";
-		};
-		CDBAB75D277BB57B004621EF /* Home Integration Tests */ = {
-			isa = PBXGroup;
-			children = (
-				CDBAB75E277BB59E004621EF /* TVShowsViewControllerIntegrationTests.swift */,
-			);
-			path = "Home Integration Tests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,7 +242,6 @@
 					};
 					CD8120FF277A719100277EF1 = {
 						CreatedOnToolsVersion = 13.1;
-						LastSwiftMigration = 1310;
 						TestTargetID = CD8120E9277A718D00277EF1;
 					};
 					CD812109277A719100277EF1 = {
@@ -329,7 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDBAB75F277BB59E004621EF /* TVShowsViewControllerIntegrationTests.swift in Sources */,
+				CD812105277A719100277EF1 /* MoviesNavigatorAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,7 +535,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -566,7 +548,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.MoviesNavigatorAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoviesNavigatorApp.app/MoviesNavigatorApp";
@@ -578,7 +559,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;

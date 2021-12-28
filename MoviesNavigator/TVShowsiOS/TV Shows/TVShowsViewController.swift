@@ -7,19 +7,13 @@
 
 import UIKit
 
-public protocol TVShowsViewControllerDelegate {
-    func loadPopularShows()
-}
-
 public final class TVShowsViewController: UICollectionViewController {
     
     private var controllers = [TVShowCellController]()
     private var headers =  [HomeHeaderController]()
-    private var delegate: TVShowsViewControllerDelegate?
     
-    public convenience init(delegate: TVShowsViewControllerDelegate? = nil) {
+    convenience init() {
         self.init(collectionViewLayout: TVShowsViewController.makeLayout())
-        self.delegate = delegate
     }
     
     public override func viewDidLoad() {
@@ -27,7 +21,6 @@ public final class TVShowsViewController: UICollectionViewController {
         view.backgroundColor = .blackBackground
         collectionView.backgroundColor = .clear
         registerCells()
-        delegate?.loadPopularShows()
     }
     
     private func registerCells() {
