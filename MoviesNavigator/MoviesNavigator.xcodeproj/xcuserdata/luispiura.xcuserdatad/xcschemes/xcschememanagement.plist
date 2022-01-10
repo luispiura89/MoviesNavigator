@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>SharedPresentation.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>TVShows.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -48,6 +53,16 @@
 			<true/>
 		</dict>
 		<key>CD280A7D2745D3C900C773C7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CDE05A7D277E3C0300CD8859</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CDE05A84277E3C0300CD8859</key>
 		<dict>
 			<key>primary</key>
 			<true/>
