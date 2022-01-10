@@ -49,8 +49,7 @@ public class LoadResourcePresenter {
 final class LoadResourcePresenterTests: XCTestCase {
     
     func test_startLoading_sendsStartLoadingMessageToView() {
-        let viewSpy = ViewSpy()
-        let sut = LoadResourcePresenter(loadingView: viewSpy, errorView: viewSpy)
+        let (sut, viewSpy) = makeSUT()
         
         sut.didStartLoadingResource()
         
@@ -84,6 +83,22 @@ final class LoadResourcePresenterTests: XCTestCase {
         
         func update(_ viewModel: ErrorViewModel) {
             messages.append(.error(viewModel.message))
+        }
+    }
+    
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (LoadResourcePresenter, ViewSpy) {
+        let viewSpy = ViewSpy()
+        let sut = LoadResourcePresenter(loadingView: viewSpy, errorView: viewSpy)
+        
+        trackMemoryLeaks(sut, file: file, line: line)
+        trackMemoryLeaks(viewSpy, file: file, line: line)
+        
+        return (sut, viewSpy)
+    }
+    
+    private func trackMemoryLeaks(_ instance: AnyObject, file: StaticString = #filePath, line: UInt = #line) {
+        addTeardownBlock { [weak instance] in
+            XCTAssertNil(instance, file: file, line: line)
         }
     }
     
