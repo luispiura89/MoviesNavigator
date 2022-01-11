@@ -24,26 +24,28 @@ public protocol ErrorView {
     func update(_ viewModel: ErrorViewModel)
 }
 
-public struct ResourceViewModel {
-    public let resource: String
+public struct ResourceViewModel<Resource> {
+    public let resource: Resource
 }
 
 public protocol ResourceView {
-    func update(_ viewModel: ResourceViewModel)
+    associatedtype Resource
+    
+    func update(_ viewModel: ResourceViewModel<Resource>)
 }
 
-public class LoadResourcePresenter {
+public class LoadResourcePresenter<InputResource, View: ResourceView> {
     
-    public typealias ResourceMapper = (String) -> String
+    public typealias ResourceMapper = (InputResource) -> View.Resource
     
     private let loadingView: LoadingView
     private let errorView: ErrorView
-    private let resourceView: ResourceView
-    private let resourceMapper: (String) -> String
+    private let resourceView: View
+    private let resourceMapper: ResourceMapper
     
-    public static var generalError = "Something went wrong"
+    public let generalError = "Something went wrong"
     
-    public init(loadingView: LoadingView, errorView: ErrorView, resourceView: ResourceView, resourceMapper: @escaping ResourceMapper) {
+    public init(loadingView: LoadingView, errorView: ErrorView, resourceView: View, resourceMapper: @escaping ResourceMapper) {
         self.loadingView = loadingView
         self.errorView = errorView
         self.resourceView = resourceView
@@ -56,10 +58,10 @@ public class LoadResourcePresenter {
     
     public func didFinishLoading(with error: Error) {
         loadingView.update(LoadingViewModel(isLoading: false))
-        errorView.update(ErrorViewModel(message: LoadResourcePresenter.generalError))
+        errorView.update(ErrorViewModel(message: generalError))
     }
     
-    public func didFinishLoading(with resource: String) {
+    public func didFinishLoading(with resource: InputResource) {
         loadingView.update(LoadingViewModel(isLoading: false))
         resourceView.update(ResourceViewModel(resource: resourceMapper(resource)))
     }
@@ -81,7 +83,7 @@ final class LoadResourcePresenterTests: XCTestCase {
         
         sut.didFinishLoading(with: error)
         
-        XCTAssertEqual(viewSpy.messages, [.isLoading(false), .error(LoadResourcePresenter.generalError)])
+        XCTAssertEqual(viewSpy.messages, [.isLoading(false), .error(sut.generalError)])
     }
     
     func test_completeLoadingWithResource_sendsSuccessfulMessageToResourceView() {
@@ -112,16 +114,18 @@ final class LoadResourcePresenterTests: XCTestCase {
             messages.append(.error(viewModel.message))
         }
         
-        func update(_ viewModel: ResourceViewModel) {
+        func update(_ viewModel: ResourceViewModel<String>) {
             messages.append(.resource(viewModel.resource))
         }
     }
     
+    private typealias StringResourcePresenter = LoadResourcePresenter<String, ViewSpy>
+    
     private func makeSUT(
-        resourceMapper: @escaping LoadResourcePresenter.ResourceMapper = { _ in "" },
+        resourceMapper: @escaping StringResourcePresenter.ResourceMapper = { _ in "" },
         file: StaticString = #filePath,
         line: UInt = #line
-    ) -> (LoadResourcePresenter, ViewSpy) {
+    ) -> (StringResourcePresenter, ViewSpy) {
         let viewSpy = ViewSpy()
         let sut = LoadResourcePresenter(loadingView: viewSpy, errorView: viewSpy, resourceView: viewSpy, resourceMapper: resourceMapper)
         
