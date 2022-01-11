@@ -34,8 +34,11 @@
 		CD8E77A92773B371007F5A7A /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E77A82773B371007F5A7A /* HomeHeader.swift */; };
 		CD8E77AB2773BCF5007F5A7A /* HomeHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E77AA2773BCF5007F5A7A /* HomeHeaderController.swift */; };
 		CDCED40C278CF32E006998EC /* LoadResourcePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCED40B278CF32E006998EC /* LoadResourcePresenterTests.swift */; };
+		CDCED40F278D02A0006998EC /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCED40E278D02A0006998EC /* ErrorView.swift */; };
+		CDCED411278D0303006998EC /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCED410278D0303006998EC /* LoadingView.swift */; };
+		CDCED413278D0381006998EC /* ResourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCED412278D0381006998EC /* ResourceView.swift */; };
+		CDCED415278D04A9006998EC /* LoadResourcePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCED414278D04A9006998EC /* LoadResourcePresenter.swift */; };
 		CDE05A86277E3C0300CD8859 /* SharedPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE05A7E277E3C0300CD8859 /* SharedPresentation.framework */; };
-		CDE05A8C277E3C0300CD8859 /* SharedPresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = CDE05A80277E3C0300CD8859 /* SharedPresentation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,8 +122,11 @@
 		CD8E77A82773B371007F5A7A /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		CD8E77AA2773BCF5007F5A7A /* HomeHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderController.swift; sourceTree = "<group>"; };
 		CDCED40B278CF32E006998EC /* LoadResourcePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresenterTests.swift; sourceTree = "<group>"; };
+		CDCED40E278D02A0006998EC /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		CDCED410278D0303006998EC /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		CDCED412278D0381006998EC /* ResourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceView.swift; sourceTree = "<group>"; };
+		CDCED414278D04A9006998EC /* LoadResourcePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresenter.swift; sourceTree = "<group>"; };
 		CDE05A7E277E3C0300CD8859 /* SharedPresentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SharedPresentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CDE05A80277E3C0300CD8859 /* SharedPresentation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharedPresentation.h; sourceTree = "<group>"; };
 		CDE05A85277E3C0300CD8859 /* SharedPresentationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharedPresentationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -418,10 +424,21 @@
 			path = "TV Shows Cells";
 			sourceTree = "<group>";
 		};
+		CDCED40D278D0285006998EC /* Load Resource Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				CDCED40E278D02A0006998EC /* ErrorView.swift */,
+				CDCED410278D0303006998EC /* LoadingView.swift */,
+				CDCED412278D0381006998EC /* ResourceView.swift */,
+				CDCED414278D04A9006998EC /* LoadResourcePresenter.swift */,
+			);
+			path = "Load Resource Presenter";
+			sourceTree = "<group>";
+		};
 		CDE05A7F277E3C0300CD8859 /* SharedPresentation */ = {
 			isa = PBXGroup;
 			children = (
-				CDE05A80277E3C0300CD8859 /* SharedPresentation.h */,
+				CDCED40D278D0285006998EC /* Load Resource Presenter */,
 			);
 			path = SharedPresentation;
 			sourceTree = "<group>";
@@ -462,7 +479,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDE05A8C277E3C0300CD8859 /* SharedPresentation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,6 +665,7 @@
 					};
 					CDE05A7D277E3C0300CD8859 = {
 						CreatedOnToolsVersion = 13.1;
+						LastSwiftMigration = 1310;
 					};
 					CDE05A84277E3C0300CD8859 = {
 						CreatedOnToolsVersion = 13.1;
@@ -808,6 +825,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDCED40F278D02A0006998EC /* ErrorView.swift in Sources */,
+				CDCED411278D0303006998EC /* LoadingView.swift in Sources */,
+				CDCED415278D04A9006998EC /* LoadResourcePresenter.swift in Sources */,
+				CDCED413278D0381006998EC /* ResourceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1285,6 +1306,7 @@
 		CDE05A8D277E3C0300CD8859 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1307,6 +1329,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1315,6 +1338,7 @@
 		CDE05A8E277E3C0300CD8859 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1346,6 +1370,7 @@
 		CDE05A8F277E3C0300CD8859 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1371,6 +1396,7 @@
 		CDE05A90277E3C0300CD8859 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

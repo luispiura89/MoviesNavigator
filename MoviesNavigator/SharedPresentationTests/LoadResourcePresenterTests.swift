@@ -6,66 +6,8 @@
 //
 
 import Foundation
+import SharedPresentation
 import XCTest
-
-public struct LoadingViewModel {
-    public let isLoading: Bool
-}
-
-public protocol LoadingView {
-    func update(_ viewModel: LoadingViewModel)
-}
-
-public struct ErrorViewModel {
-    public let message: String
-}
-
-public protocol ErrorView {
-    func update(_ viewModel: ErrorViewModel)
-}
-
-public struct ResourceViewModel<Resource> {
-    public let resource: Resource
-}
-
-public protocol ResourceView {
-    associatedtype Resource
-    
-    func update(_ viewModel: ResourceViewModel<Resource>)
-}
-
-public class LoadResourcePresenter<InputResource, View: ResourceView> {
-    
-    public typealias ResourceMapper = (InputResource) -> View.Resource
-    
-    private let loadingView: LoadingView
-    private let errorView: ErrorView
-    private let resourceView: View
-    private let resourceMapper: ResourceMapper
-    
-    public let generalError = "Something went wrong"
-    
-    public init(loadingView: LoadingView, errorView: ErrorView, resourceView: View, resourceMapper: @escaping ResourceMapper) {
-        self.loadingView = loadingView
-        self.errorView = errorView
-        self.resourceView = resourceView
-        self.resourceMapper = resourceMapper
-    }
-    
-    public func didStartLoadingResource() {
-        loadingView.update(LoadingViewModel(isLoading: true))
-    }
-    
-    public func didFinishLoading(with error: Error) {
-        loadingView.update(LoadingViewModel(isLoading: false))
-        errorView.update(ErrorViewModel(message: generalError))
-    }
-    
-    public func didFinishLoading(with resource: InputResource) {
-        loadingView.update(LoadingViewModel(isLoading: false))
-        resourceView.update(ResourceViewModel(resource: resourceMapper(resource)))
-    }
-}
 
 final class LoadResourcePresenterTests: XCTestCase {
     
