@@ -23,7 +23,9 @@ public struct TVShowViewModel: Equatable {
 
 public final class TVShowPresenter {
     
-    public static func map(_ models: [TVShow], locale: Locale = .current) -> [TVShowViewModel] {
+    public static var locale: Locale = .current
+    
+    public static func map(_ models: [TVShow]) -> [TVShowViewModel] {
         models.map {
             let formatter = DateFormatter()
             formatter.locale = locale

@@ -28,7 +28,9 @@ final class TVShowPresenterTests: XCTestCase {
                 posterPath: anyURL())
         ]
         
-        XCTAssertEqual(TVShowPresenter.map(models, locale: Locale(identifier: "en_US")), [
+        TVShowPresenter.locale = .current
+        
+        XCTAssertEqual(TVShowPresenter.map(models), [
             TVShowViewModel(
                 name: "A Show",
                 overview: "An Overview",
@@ -41,7 +43,8 @@ final class TVShowPresenterTests: XCTestCase {
                 firstAirDate: "Feb 14, 2021")
         ])
         
-        XCTAssertEqual(TVShowPresenter.map(models, locale: Locale(identifier: "es")), [
+        TVShowPresenter.locale = Locale(identifier: "es")
+        XCTAssertEqual(TVShowPresenter.map(models), [
             TVShowViewModel(
                 name: "A Show",
                 overview: "An Overview",
