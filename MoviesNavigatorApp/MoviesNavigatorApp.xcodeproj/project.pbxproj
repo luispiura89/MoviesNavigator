@@ -15,7 +15,6 @@
 		CD8120F5277A718D00277EF1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8120F3277A718D00277EF1 /* Main.storyboard */; };
 		CD8120F7277A719100277EF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD8120F6277A719100277EF1 /* Assets.xcassets */; };
 		CD8120FA277A719100277EF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8120F8277A719100277EF1 /* LaunchScreen.storyboard */; };
-		CD812105277A719100277EF1 /* MoviesNavigatorAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD812104277A719100277EF1 /* MoviesNavigatorAppTests.swift */; };
 		CD81210F277A719100277EF1 /* MoviesNavigatorAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81210E277A719100277EF1 /* MoviesNavigatorAppUITests.swift */; };
 		CD812111277A719100277EF1 /* MoviesNavigatorAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD812110277A719100277EF1 /* MoviesNavigatorAppUITestsLaunchTests.swift */; };
 		CD812123277A722A00277EF1 /* TVShows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD81211F277A722A00277EF1 /* TVShows.framework */; };
@@ -68,7 +67,6 @@
 		CD8120F9277A719100277EF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD8120FB277A719100277EF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD812100277A719100277EF1 /* MoviesNavigatorAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviesNavigatorAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD812104277A719100277EF1 /* MoviesNavigatorAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesNavigatorAppTests.swift; sourceTree = "<group>"; };
 		CD81210A277A719100277EF1 /* MoviesNavigatorAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviesNavigatorAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD81210E277A719100277EF1 /* MoviesNavigatorAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesNavigatorAppUITests.swift; sourceTree = "<group>"; };
 		CD812110277A719100277EF1 /* MoviesNavigatorAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesNavigatorAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -144,7 +142,6 @@
 		CD812103277A719100277EF1 /* MoviesNavigatorAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				CD812104277A719100277EF1 /* MoviesNavigatorAppTests.swift */,
 			);
 			path = MoviesNavigatorAppTests;
 			sourceTree = "<group>";
@@ -312,7 +309,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD812105277A719100277EF1 /* MoviesNavigatorAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
