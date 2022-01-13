@@ -53,7 +53,6 @@ final class TVShowViewAdapter: ResourceView {
     
     func update(_ viewModel: ResourceViewModel<[TVShowViewModel]>) {
         controller?.setCellControllers(
-            headers: [HomeHeaderController()],
             controllers: viewModel.resource.map {
                 TVShowCellController(viewModel: $0, delegate: nil)
             }
@@ -69,6 +68,7 @@ final class HomeScreenComposer {
         let presentationAdapter = LoadResourcePresentationAdapter<[TVShow], TVShowViewAdapter>(loader: loader)
         let loadShowsController = TVShowsRefreshController(delegate: presentationAdapter)
         let controller = TVShowsViewController(loadController: loadShowsController)
+        controller.setHeaders(headers: [HomeHeaderController()])
         let viewAdapter = TVShowViewAdapter(controller: controller)
         let presenter = LoadResourcePresenter<[TVShow], TVShowViewAdapter>(
             loadingView: loadShowsController,

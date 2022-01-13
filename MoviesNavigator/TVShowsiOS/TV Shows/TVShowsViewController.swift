@@ -34,8 +34,11 @@ public final class TVShowsViewController: UICollectionViewController {
             HomeHeader.self, forSupplementaryViewOfKind: HomeHeader.viewKind, withReuseIdentifier: HomeHeader.reuseIdentifier)
     }
     
-    public func setCellControllers(headers: [HomeHeaderController], controllers: [TVShowCellController]) {
+    public func setHeaders(headers: [HomeHeaderController]) {
         self.headers = headers
+    }
+    
+    public func setCellControllers(controllers: [TVShowCellController]) {
         self.controllers = controllers
         collectionView.reloadData()
     }

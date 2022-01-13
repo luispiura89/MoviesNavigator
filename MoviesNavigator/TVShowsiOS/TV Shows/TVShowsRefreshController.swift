@@ -15,7 +15,7 @@ public protocol TVShowsRefreshControllerDelegate {
 
 public final class TVShowsRefreshController: LoadingView {
     
-    public private(set) var isLoading: Bool {
+    public var isLoading: Bool {
         set { newValue ? refreshView.beginRefreshing() : refreshView.endRefreshing() }
         get { refreshView.isRefreshing }
     }

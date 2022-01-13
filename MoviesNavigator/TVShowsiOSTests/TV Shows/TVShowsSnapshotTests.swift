@@ -15,7 +15,9 @@ final class TVShowsSnapshotTests: XCTestCase {
         let sut = TVShowsViewController(loadController: TVShowsRefreshController(delegate: nil))
         sut.loadViewIfNeeded()
         
-        sut.setCellControllers(headers: [HomeHeaderController()], controllers: content())
+        sut.setHeaders(headers: [HomeHeaderController()])
+        sut.setCellControllers(controllers: content())
+        sut.loadShowsController?.isLoading = false
         
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "TV_SHOWS_WITH_CONTENT_light")
     }
