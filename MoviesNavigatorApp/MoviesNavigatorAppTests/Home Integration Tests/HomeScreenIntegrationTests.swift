@@ -145,6 +145,7 @@ final class HomeScreenIntegrationTests: XCTestCase {
     }
     
     private func shouldRender(_ models: [TVShow], in controller: TVShowsViewController, file: StaticString = #filePath, line: UInt = #line) {
+        XCTAssertEqual(controller.renderedCells(), models.count, "Expected to render \(models.count) cells", file: file, line: line)
         
         TVShowPresenter.map(models).enumerated().forEach {
             XCTAssertEqual(controller.name(at: $0), $1.name, "Name at \($0) failed", file: file, line: line)
@@ -164,9 +165,15 @@ private extension TVShowsViewController {
     private var showsSection: Int { 0 }
     
     private func cell(at index: Int) -> TVShowHomeCell? {
+        guard renderedCells() > index else { return nil }
         let ds = collectionView.dataSource
         let index = IndexPath(row: index, section: showsSection)
         return ds?.collectionView(collectionView, cellForItemAt: index) as? TVShowHomeCell
+    }
+    
+    func renderedCells() -> Int {
+        let ds = collectionView.dataSource
+        return ds?.collectionView(collectionView, numberOfItemsInSection: showsSection) ?? 0
     }
     
     func name(at index: Int) -> String? {
