@@ -39,6 +39,7 @@
 		CDCED413278D0381006998EC /* ResourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCED412278D0381006998EC /* ResourceView.swift */; };
 		CDCED415278D04A9006998EC /* LoadResourcePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCED414278D04A9006998EC /* LoadResourcePresenter.swift */; };
 		CDE05A86277E3C0300CD8859 /* SharedPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE05A7E277E3C0300CD8859 /* SharedPresentation.framework */; };
+		CDE1D234278FAC750033918A /* TVShowsRefreshController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE1D233278FAC750033918A /* TVShowsRefreshController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +129,7 @@
 		CDCED414278D04A9006998EC /* LoadResourcePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresenter.swift; sourceTree = "<group>"; };
 		CDE05A7E277E3C0300CD8859 /* SharedPresentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SharedPresentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDE05A85277E3C0300CD8859 /* SharedPresentationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharedPresentationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDE1D233278FAC750033918A /* TVShowsRefreshController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsRefreshController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -375,6 +377,7 @@
 				CD845A71276BF3A1000881E0 /* TV Shows Cell Controllers */,
 				CD845A6E276BF1C5000881E0 /* TV Shows Resources */,
 				CD845A64276BEDD2000881E0 /* TVShowsViewController.swift */,
+				CDE1D233278FAC750033918A /* TVShowsRefreshController.swift */,
 			);
 			path = "TV Shows";
 			sourceTree = "<group>";
@@ -808,6 +811,7 @@
 				CD8120E0277A6C1A00277EF1 /* UIImage+TVShows.swift in Sources */,
 				CD845A65276BEDD2000881E0 /* TVShowsViewController.swift in Sources */,
 				CD8E77A92773B371007F5A7A /* HomeHeader.swift in Sources */,
+				CDE1D234278FAC750033918A /* TVShowsRefreshController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

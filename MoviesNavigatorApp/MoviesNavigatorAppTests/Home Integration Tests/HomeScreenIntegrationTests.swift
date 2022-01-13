@@ -30,7 +30,7 @@ final class LoadResourcePresentationAdapter<Resource, View: ResourceView> {
     }
 }
 
-extension LoadResourcePresentationAdapter: TVShowsViewControllerDelegate {
+extension LoadResourcePresentationAdapter: TVShowsRefreshControllerDelegate {
     func loadShows() {
         presenter?.didStartLoadingResource()
         cancellable = loader().sink { _ in
@@ -71,7 +71,8 @@ final class HomeScreenComposer {
     
     static func composeWith(loader: @escaping () -> LoadShowsPublisher) -> TVShowsViewController {
         let presentationAdapter = LoadResourcePresentationAdapter<[TVShow], TVShowViewAdapter>(loader: loader)
-        let controller = TVShowsViewController(delegate: presentationAdapter)
+        let loadShowsController = TVShowsRefreshController(delegate: presentationAdapter)
+        let controller = TVShowsViewController(loadController: loadShowsController)
         let viewAdapter = TVShowViewAdapter(controller: controller)
         let presenter = LoadResourcePresenter<[TVShow], TVShowViewAdapter>(
             loadingView: LoadingViewAdapter(),
