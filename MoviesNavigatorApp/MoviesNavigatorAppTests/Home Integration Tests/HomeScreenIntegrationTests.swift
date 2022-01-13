@@ -12,10 +12,6 @@ import TVShows
 import SharedPresentation
 import Combine
 
-final class LoadingViewAdapter: LoadingView {
-    func update(_ viewModel: LoadingViewModel) {}
-}
-
 final class ErrorViewAdapter: ErrorView {
     func update(_ viewModel: ErrorViewModel) {}
 }
@@ -75,7 +71,7 @@ final class HomeScreenComposer {
         let controller = TVShowsViewController(loadController: loadShowsController)
         let viewAdapter = TVShowViewAdapter(controller: controller)
         let presenter = LoadResourcePresenter<[TVShow], TVShowViewAdapter>(
-            loadingView: LoadingViewAdapter(),
+            loadingView: loadShowsController,
             errorView: ErrorViewAdapter(),
             resourceView: viewAdapter,
             resourceMapper: TVShowPresenter.map
@@ -91,7 +87,35 @@ final class HomeScreenIntegrationTests: XCTestCase {
     func test_homeScreen_rendersTVShows() {
         let loaderSpy = LoaderSpy()
         let controller = makeSUT(loader: loaderSpy.loader)
-        let models = [
+        
+        loaderSpy.completeLoading(with: makeModels())
+        
+        shouldRender(makeModels(), in: controller)
+    }
+    
+    func test_homeScreen_shouldHandleRefreshControl() {
+        let loaderSpy = LoaderSpy()
+        let controller = makeSUT(loader: loaderSpy.loader)
+        
+        XCTAssertTrue(controller.isLoading, "Loading indicator should appear after loading")
+        
+        loaderSpy.completeLoading(with: makeModels())
+        XCTAssertFalse(controller.isLoading, "Loading indicator should disappear after loading completes")
+    }
+    
+    // MARK: - Helpers
+    
+    private func makeSUT(loader: @escaping () -> AnyPublisher<[TVShow], Error>, file: StaticString = #filePath, line: UInt = #line) -> TVShowsViewController {
+        let controller = HomeScreenComposer.composeWith(loader: loader)
+        
+        controller.loadViewIfNeeded()
+        trackMemoryLeaks(controller, file: file, line: line)
+        
+        return controller
+    }
+    
+    private func makeModels() -> [TVShow] {
+        [
             TVShow(
                 id: 0,
                 name: "A Show",
@@ -107,21 +131,6 @@ final class HomeScreenIntegrationTests: XCTestCase {
                 firstAirDate: "2021-02-14",
                 posterPath: anyURL())
         ]
-        
-        loaderSpy.completeLoading(with: models)
-        
-        shouldRender(models, in: controller)
-    }
-    
-    // MARK: - Helpers
-    
-    private func makeSUT(loader: @escaping () -> AnyPublisher<[TVShow], Error>, file: StaticString = #filePath, line: UInt = #line) -> TVShowsViewController {
-        let controller = HomeScreenComposer.composeWith(loader: loader)
-        
-        controller.loadViewIfNeeded()
-        trackMemoryLeaks(controller, file: file, line: line)
-        
-        return controller
     }
     
     private final class LoaderSpy {
@@ -164,6 +173,10 @@ final class HomeScreenIntegrationTests: XCTestCase {
 private extension TVShowsViewController {
     
     private var showsSection: Int { 0 }
+    
+    var isLoading: Bool {
+        loadShowsController?.isLoading == true
+    }
     
     private func cell(at index: Int) -> TVShowHomeCell? {
         guard renderedCells() > index else { return nil }

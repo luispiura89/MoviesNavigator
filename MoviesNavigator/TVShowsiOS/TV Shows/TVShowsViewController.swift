@@ -11,7 +11,7 @@ public final class TVShowsViewController: UICollectionViewController {
     
     private var controllers = [TVShowCellController]()
     private var headers =  [HomeHeaderController]()
-    private var loadShowsController: TVShowsRefreshController?
+    public private(set) var loadShowsController: TVShowsRefreshController?
     
     public convenience init(loadController: TVShowsRefreshController?) {
         self.init(collectionViewLayout: TVShowsViewController.makeLayout())
