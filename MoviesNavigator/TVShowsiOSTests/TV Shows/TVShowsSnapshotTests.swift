@@ -12,7 +12,7 @@ import TVShows
 final class TVShowsSnapshotTests: XCTestCase {
     
     func test_tvShows_withContent() {
-        let sut = TVShowsViewController()
+        let sut = TVShowsViewController(delegate: nil)
         sut.loadViewIfNeeded()
         
         sut.setCellControllers(headers: [HomeHeaderController()], controllers: content())

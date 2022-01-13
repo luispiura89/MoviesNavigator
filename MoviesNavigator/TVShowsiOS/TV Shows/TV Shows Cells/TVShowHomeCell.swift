@@ -7,11 +7,11 @@
 
 import UIKit
 
-final class TVShowHomeCell: UICollectionViewCell {
+public final class TVShowHomeCell: UICollectionViewCell {
     
     static var dequeueIdentifier = "TVShowTableViewCell"
     
-    lazy var nameLabel: UILabel = {
+    public lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .tVShowCellTextColor
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -22,7 +22,7 @@ final class TVShowHomeCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var overviewLabel: UILabel = {
+    public lazy var overviewLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -33,7 +33,7 @@ final class TVShowHomeCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var dateLabel: UILabel = {
+    public lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.textColor = .tVShowCellTextColor
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -45,7 +45,7 @@ final class TVShowHomeCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var voteAverageLabel: UILabel = {
+    public lazy var voteAverageLabel: UILabel = {
         let label = UILabel()
         label.textColor = .tVShowCellTextColor
         label.translatesAutoresizingMaskIntoConstraints = false

@@ -21,6 +21,7 @@
 		CD812124277A722A00277EF1 /* TVShows.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD81211F277A722A00277EF1 /* TVShows.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CD812125277A722A00277EF1 /* TVShowsiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD812120277A722A00277EF1 /* TVShowsiOS.framework */; };
 		CD812126277A722A00277EF1 /* TVShowsiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD812120277A722A00277EF1 /* TVShowsiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CDE1D232278F83190033918A /* HomeScreenIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE1D231278F83190033918A /* HomeScreenIntegrationTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		CD81211F277A722A00277EF1 /* TVShows.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TVShows.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD812120277A722A00277EF1 /* TVShowsiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TVShowsiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD812128277A72EB00277EF1 /* SharedAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDE1D231278F83190033918A /* HomeScreenIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenIntegrationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 		CD812103277A719100277EF1 /* MoviesNavigatorAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				CDE1D230278F82F20033918A /* Home Integration Tests */,
 			);
 			path = MoviesNavigatorAppTests;
 			sourceTree = "<group>";
@@ -165,6 +168,14 @@
 				CD812120277A722A00277EF1 /* TVShowsiOS.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CDE1D230278F82F20033918A /* Home Integration Tests */ = {
+			isa = PBXGroup;
+			children = (
+				CDE1D231278F83190033918A /* HomeScreenIntegrationTests.swift */,
+			);
+			path = "Home Integration Tests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +250,7 @@
 					};
 					CD8120FF277A719100277EF1 = {
 						CreatedOnToolsVersion = 13.1;
+						LastSwiftMigration = 1310;
 						TestTargetID = CD8120E9277A718D00277EF1;
 					};
 					CD812109277A719100277EF1 = {
@@ -309,6 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDE1D232278F83190033918A /* HomeScreenIntegrationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +544,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -544,6 +558,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.MoviesNavigatorAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoviesNavigatorApp.app/MoviesNavigatorApp";
@@ -555,6 +570,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;

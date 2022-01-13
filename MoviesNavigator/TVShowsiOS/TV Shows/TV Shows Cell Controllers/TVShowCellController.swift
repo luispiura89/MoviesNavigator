@@ -16,9 +16,9 @@ public final class TVShowCellController: NSObject, UICollectionViewDataSource {
     
     private let viewModel: TVShowViewModel
     private var cell: TVShowHomeCell?
-    private let delegate: TVShowCellControllerDelegate
+    private let delegate: TVShowCellControllerDelegate?
     
-    public init(viewModel: TVShowViewModel, delegate: TVShowCellControllerDelegate) {
+    public init(viewModel: TVShowViewModel, delegate: TVShowCellControllerDelegate?) {
         self.viewModel = viewModel
         self.delegate = delegate
     }
@@ -34,7 +34,7 @@ public final class TVShowCellController: NSObject, UICollectionViewDataSource {
         cell?.dateLabel.text = viewModel.firstAirDate
         cell?.voteAverageLabel.text = viewModel.voteAverage
         cell?.overviewLabel.text = viewModel.overview
-        delegate.requestImage()
+        delegate?.requestImage()
         
         return cell!
     }
