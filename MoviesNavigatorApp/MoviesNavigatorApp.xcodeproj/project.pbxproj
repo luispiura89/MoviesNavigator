@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CD7C083A277A73DE00E473BD /* SharedAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7C0839277A73DE00E473BD /* SharedAPI.framework */; };
-		CD7C083B277A73DE00E473BD /* SharedAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD7C0839277A73DE00E473BD /* SharedAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CD8120EE277A718D00277EF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8120ED277A718D00277EF1 /* AppDelegate.swift */; };
 		CD8120F0277A718D00277EF1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8120EF277A718D00277EF1 /* SceneDelegate.swift */; };
 		CD8120F2277A718D00277EF1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8120F1277A718D00277EF1 /* ViewController.swift */; };
@@ -17,10 +15,14 @@
 		CD8120FA277A719100277EF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8120F8277A719100277EF1 /* LaunchScreen.storyboard */; };
 		CD81210F277A719100277EF1 /* MoviesNavigatorAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81210E277A719100277EF1 /* MoviesNavigatorAppUITests.swift */; };
 		CD812111277A719100277EF1 /* MoviesNavigatorAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD812110277A719100277EF1 /* MoviesNavigatorAppUITestsLaunchTests.swift */; };
-		CD812123277A722A00277EF1 /* TVShows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD81211F277A722A00277EF1 /* TVShows.framework */; };
-		CD812124277A722A00277EF1 /* TVShows.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD81211F277A722A00277EF1 /* TVShows.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CD812125277A722A00277EF1 /* TVShowsiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD812120277A722A00277EF1 /* TVShowsiOS.framework */; };
-		CD812126277A722A00277EF1 /* TVShowsiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD812120277A722A00277EF1 /* TVShowsiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CDA7FE33279107E900FE8735 /* SharedAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7C0839277A73DE00E473BD /* SharedAPI.framework */; };
+		CDA7FE34279107E900FE8735 /* SharedAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD7C0839277A73DE00E473BD /* SharedAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CDA7FE36279107EB00FE8735 /* SharedPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA7FE252791053B00FE8735 /* SharedPresentation.framework */; };
+		CDA7FE37279107EB00FE8735 /* SharedPresentation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDA7FE252791053B00FE8735 /* SharedPresentation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CDA7FE38279107ED00FE8735 /* TVShows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD81211F277A722A00277EF1 /* TVShows.framework */; };
+		CDA7FE39279107ED00FE8735 /* TVShows.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD81211F277A722A00277EF1 /* TVShows.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CDA7FE3A279107EF00FE8735 /* TVShowsiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD812120277A722A00277EF1 /* TVShowsiOS.framework */; };
+		CDA7FE3B279107EF00FE8735 /* TVShowsiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD812120277A722A00277EF1 /* TVShowsiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CDE1D232278F83190033918A /* HomeScreenIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE1D231278F83190033918A /* HomeScreenIntegrationTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,15 +44,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		CD812127277A722A00277EF1 /* Embed Frameworks */ = {
+		CDA7FE35279107E900FE8735 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CD812124277A722A00277EF1 /* TVShows.framework in Embed Frameworks */,
-				CD7C083B277A73DE00E473BD /* SharedAPI.framework in Embed Frameworks */,
-				CD812126277A722A00277EF1 /* TVShowsiOS.framework in Embed Frameworks */,
+				CDA7FE34279107E900FE8735 /* SharedAPI.framework in Embed Frameworks */,
+				CDA7FE3B279107EF00FE8735 /* TVShowsiOS.framework in Embed Frameworks */,
+				CDA7FE37279107EB00FE8735 /* SharedPresentation.framework in Embed Frameworks */,
+				CDA7FE39279107ED00FE8735 /* TVShows.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,6 +78,7 @@
 		CD81211F277A722A00277EF1 /* TVShows.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TVShows.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD812120277A722A00277EF1 /* TVShowsiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TVShowsiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD812128277A72EB00277EF1 /* SharedAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDA7FE252791053B00FE8735 /* SharedPresentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedPresentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDE1D231278F83190033918A /* HomeScreenIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenIntegrationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,9 +87,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD812123277A722A00277EF1 /* TVShows.framework in Frameworks */,
-				CD7C083A277A73DE00E473BD /* SharedAPI.framework in Frameworks */,
-				CD812125277A722A00277EF1 /* TVShowsiOS.framework in Frameworks */,
+				CDA7FE33279107E900FE8735 /* SharedAPI.framework in Frameworks */,
+				CDA7FE3A279107EF00FE8735 /* TVShowsiOS.framework in Frameworks */,
+				CDA7FE36279107EB00FE8735 /* SharedPresentation.framework in Frameworks */,
+				CDA7FE38279107ED00FE8735 /* TVShows.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +166,7 @@
 		CD81211D277A722A00277EF1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CDA7FE252791053B00FE8735 /* SharedPresentation.framework */,
 				CD7C0839277A73DE00E473BD /* SharedAPI.framework */,
 				CD812128277A72EB00277EF1 /* SharedAPI.framework */,
 				CD81211E277A722A00277EF1 /* SharedAPI.framework */,
@@ -188,7 +194,7 @@
 				CD8120E6277A718D00277EF1 /* Sources */,
 				CD8120E7277A718D00277EF1 /* Frameworks */,
 				CD8120E8277A718D00277EF1 /* Resources */,
-				CD812127277A722A00277EF1 /* Embed Frameworks */,
+				CDA7FE35279107E900FE8735 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
