@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 import SharedPresentation
 
-public protocol TVShowsRefreshControllerDelegate {
+public protocol HomeRefreshControllerDelegate {
     func loadShows()
 }
 
-public final class TVShowsRefreshController: NSObject, LoadingView {
+public final class HomeRefreshController: NSObject, LoadingView {
     
     public var isLoading: Bool {
         set { newValue ? refreshView.beginRefreshing() : refreshView.endRefreshing() }
@@ -27,9 +27,9 @@ public final class TVShowsRefreshController: NSObject, LoadingView {
         return refreshView
     }()
     
-    private var delegate: TVShowsRefreshControllerDelegate?
+    private var delegate: HomeRefreshControllerDelegate?
     
-    public init(delegate: TVShowsRefreshControllerDelegate?) {
+    public init(delegate: HomeRefreshControllerDelegate?) {
         self.delegate = delegate
     }
     
