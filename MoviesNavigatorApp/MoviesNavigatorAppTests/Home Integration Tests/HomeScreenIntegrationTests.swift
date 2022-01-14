@@ -12,10 +12,6 @@ import TVShows
 import SharedPresentation
 import Combine
 
-final class ErrorViewAdapter: ErrorView {
-    func update(_ viewModel: ErrorViewModel) {}
-}
-
 final class LoadResourcePresentationAdapter<Resource, View: ResourceView> {
     var presenter: LoadResourcePresenter<Resource, View>?
     private var cancellable: AnyCancellable?
@@ -63,6 +59,20 @@ final class TVShowViewAdapter: ResourceView {
     }
 }
 
+final class WeakReferenceProxy<T: AnyObject> {
+    private weak var instance: T?
+    
+    init(instance: T) {
+        self.instance = instance
+    }
+}
+
+extension WeakReferenceProxy: ErrorView where T: ErrorView {
+    func update(_ viewModel: ErrorViewModel) {
+        instance?.update(viewModel)
+    }
+}
+
 final class HomeScreenComposer {
     
     typealias LoadShowsPublisher = AnyPublisher<[TVShow], Error>
@@ -75,7 +85,7 @@ final class HomeScreenComposer {
         let viewAdapter = TVShowViewAdapter(controller: controller)
         let presenter = LoadResourcePresenter<[TVShow], TVShowViewAdapter>(
             loadingView: loadShowsController,
-            errorView: ErrorViewAdapter(),
+            errorView: WeakReferenceProxy(instance: controller),
             resourceView: viewAdapter,
             resourceMapper: TVShowPresenter.map
         )
@@ -110,6 +120,18 @@ final class HomeScreenIntegrationTests: XCTestCase {
         
         loaderSpy.completeLoading(with: anyError(), at: 1)
         XCTAssertFalse(controller.isLoading, "Loading indicator should disappear after second request completes")
+    }
+    
+    func test_homeScreen_showsLoadingIndicatorAfterLoadingFail() {
+        let loaderSpy = LoaderSpy()
+        let controller = makeSUT(loader: loaderSpy.loader)
+        
+        XCTAssertFalse(controller.isShowingError, "Should not show error message before failure")
+        
+        loaderSpy.completeLoading(with: anyError())
+        RunLoop.current.run(until: Date())
+        
+        XCTAssertTrue(controller.isShowingError, "Should show error after loading failure")
     }
     
     // MARK: - Helpers
@@ -195,6 +217,10 @@ private extension HomeViewController {
     
     var isLoading: Bool {
         loadShowsController?.isLoading == true
+    }
+    
+    var isShowingError: Bool {
+        errorView.error != nil
     }
     
     private func cell(at index: Int) -> TVShowHomeCell? {
