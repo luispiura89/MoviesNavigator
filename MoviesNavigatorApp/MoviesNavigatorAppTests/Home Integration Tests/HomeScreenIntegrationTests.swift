@@ -99,8 +99,14 @@ final class HomeScreenIntegrationTests: XCTestCase {
         
         XCTAssertTrue(controller.isLoading, "Loading indicator should appear after loading")
         
-        loaderSpy.completeLoading(with: makeModels())
-        XCTAssertFalse(controller.isLoading, "Loading indicator should disappear after loading completes")
+        loaderSpy.completeLoading(with: makeModels(), at: 0)
+        XCTAssertFalse(controller.isLoading, "Loading indicator should disappear after first request completes")
+        
+        controller.simulateUserInitiatedReload()
+        XCTAssertTrue(controller.isLoading, "Loading indicator should appear after user initiated reload")
+        
+        loaderSpy.completeLoading(with: makeModels(), at: 1)
+        XCTAssertFalse(controller.isLoading, "Loading indicator should disappear after second request completes")
     }
     
     // MARK: - Helpers
@@ -144,6 +150,7 @@ final class HomeScreenIntegrationTests: XCTestCase {
         }
         
         func completeLoading(with shows: [TVShow], at index: Int = 0) {
+            guard index < publishers.count else { return }
             publishers[index].send(shows)
         }
     }
@@ -185,6 +192,10 @@ private extension TVShowsViewController {
         return ds?.collectionView(collectionView, cellForItemAt: index) as? TVShowHomeCell
     }
     
+    func simulateUserInitiatedReload() {
+        loadShowsController?.refreshView.send(event: .valueChanged)
+    }
+    
     func renderedCells() -> Int {
         let ds = collectionView.dataSource
         return ds?.collectionView(collectionView, numberOfItemsInSection: showsSection) ?? 0
@@ -204,5 +215,15 @@ private extension TVShowsViewController {
     
     func voteAverage(at index: Int) -> String? {
         cell(at: index)?.voteAverageLabel.text
+    }
+}
+
+extension UIControl {
+    func send(event: UIControl.Event) {
+        allTargets.forEach { target in
+            actions(forTarget: target, forControlEvent: event)?.forEach({ selector in
+                (target as NSObject).perform(Selector(selector))
+            })
+        }
     }
 }

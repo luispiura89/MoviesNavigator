@@ -13,14 +13,14 @@ public protocol TVShowsRefreshControllerDelegate {
     func loadShows()
 }
 
-public final class TVShowsRefreshController: LoadingView {
+public final class TVShowsRefreshController: NSObject, LoadingView {
     
     public var isLoading: Bool {
         set { newValue ? refreshView.beginRefreshing() : refreshView.endRefreshing() }
         get { refreshView.isRefreshing }
     }
     
-    lazy var refreshView: UIRefreshControl = {
+    public private(set) lazy var refreshView: UIRefreshControl = {
         let refreshView = UIRefreshControl(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         refreshView.tintColor = .white
         refreshView.addTarget(self, action: #selector(loadShows), for: .valueChanged)
