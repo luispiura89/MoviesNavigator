@@ -22,7 +22,7 @@ public final class TVShowsRefreshController: LoadingView {
     
     lazy var refreshView: UIRefreshControl = {
         let refreshView = UIRefreshControl(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        refreshView.tintColor = .clear
+        refreshView.tintColor = .white
         refreshView.addTarget(self, action: #selector(loadShows), for: .valueChanged)
         return refreshView
     }()

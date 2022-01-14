@@ -33,6 +33,7 @@
 		CD845A76276BFB46000881E0 /* TVShowHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A75276BFB46000881E0 /* TVShowHomeCell.swift */; };
 		CD8E77A92773B371007F5A7A /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E77A82773B371007F5A7A /* HomeHeader.swift */; };
 		CD8E77AB2773BCF5007F5A7A /* HomeHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E77AA2773BCF5007F5A7A /* HomeHeaderController.swift */; };
+		CDA7FE242790F3E200FE8735 /* TV_SHOWS_LOADING_light.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA7FE232790F3E200FE8735 /* TV_SHOWS_LOADING_light.png */; };
 		CDCED40C278CF32E006998EC /* LoadResourcePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCED40B278CF32E006998EC /* LoadResourcePresenterTests.swift */; };
 		CDCED40F278D02A0006998EC /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCED40E278D02A0006998EC /* ErrorView.swift */; };
 		CDCED411278D0303006998EC /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCED410278D0303006998EC /* LoadingView.swift */; };
@@ -122,6 +123,7 @@
 		CD845A75276BFB46000881E0 /* TVShowHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowHomeCell.swift; sourceTree = "<group>"; };
 		CD8E77A82773B371007F5A7A /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		CD8E77AA2773BCF5007F5A7A /* HomeHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderController.swift; sourceTree = "<group>"; };
+		CDA7FE232790F3E200FE8735 /* TV_SHOWS_LOADING_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TV_SHOWS_LOADING_light.png; sourceTree = "<group>"; };
 		CDCED40B278CF32E006998EC /* LoadResourcePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresenterTests.swift; sourceTree = "<group>"; };
 		CDCED40E278D02A0006998EC /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		CDCED410278D0303006998EC /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 		CD845A69276BF040000881E0 /* snapshots */ = {
 			isa = PBXGroup;
 			children = (
+				CDA7FE232790F3E200FE8735 /* TV_SHOWS_LOADING_light.png */,
 				CD845A6A276BF040000881E0 /* TV_SHOWS_WITH_CONTENT_light.png */,
 			);
 			path = snapshots;
@@ -742,6 +745,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDA7FE242790F3E200FE8735 /* TV_SHOWS_LOADING_light.png in Resources */,
 				CD845A6B276BF040000881E0 /* TV_SHOWS_WITH_CONTENT_light.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
