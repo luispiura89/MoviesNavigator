@@ -8,6 +8,7 @@
 import XCTest
 import TVShowsiOS
 import TVShows
+import SharedPresentation
 
 final class TVShowsSnapshotTests: XCTestCase {
 
@@ -24,6 +25,14 @@ final class TVShowsSnapshotTests: XCTestCase {
         sut.loadShowsController?.isLoading = false
         
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "TV_SHOWS_WITH_CONTENT_light")
+    }
+    
+    func test_tvShows_error() {
+        let sut = makeSUT()
+        
+        sut.renderError()
+        
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "TV_SHOWS_ERROR_light")
     }
     
     private func makeSUT() -> HomeViewController {
@@ -69,6 +78,13 @@ final class TVShowsSnapshotTests: XCTestCase {
             secondCell,
             thirdCell
         ]
+    }
+}
+
+private extension HomeViewController {
+    func renderError() {
+        update(ErrorViewModel(message: "An error occurred\nNext line"))
+        loadShowsController?.isLoading = false
     }
 }
 

@@ -38,6 +38,8 @@
 		CDA7FE40279107FD00FE8735 /* SharedPresentation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDE05A7E277E3C0300CD8859 /* SharedPresentation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CDA7FE41279107FE00FE8735 /* TVShows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A5427445AA600C773C7 /* TVShows.framework */; };
 		CDA7FE42279107FE00FE8735 /* TVShows.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A5427445AA600C773C7 /* TVShows.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CDC35A8F2791F518007D2504 /* HeaderErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC35A8E2791F518007D2504 /* HeaderErrorView.swift */; };
+		CDC35A912792338D007D2504 /* TV_SHOWS_ERROR_light.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC35A902792338C007D2504 /* TV_SHOWS_ERROR_light.png */; };
 		CDCED40C278CF32E006998EC /* LoadResourcePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCED40B278CF32E006998EC /* LoadResourcePresenterTests.swift */; };
 		CDCED40F278D02A0006998EC /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCED40E278D02A0006998EC /* ErrorView.swift */; };
 		CDCED411278D0303006998EC /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCED410278D0303006998EC /* LoadingView.swift */; };
@@ -144,6 +146,8 @@
 		CD8E77A82773B371007F5A7A /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		CD8E77AA2773BCF5007F5A7A /* HomeHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderController.swift; sourceTree = "<group>"; };
 		CDA7FE232790F3E200FE8735 /* TV_SHOWS_LOADING_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TV_SHOWS_LOADING_light.png; sourceTree = "<group>"; };
+		CDC35A8E2791F518007D2504 /* HeaderErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderErrorView.swift; sourceTree = "<group>"; };
+		CDC35A902792338C007D2504 /* TV_SHOWS_ERROR_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TV_SHOWS_ERROR_light.png; sourceTree = "<group>"; };
 		CDCED40B278CF32E006998EC /* LoadResourcePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresenterTests.swift; sourceTree = "<group>"; };
 		CDCED40E278D02A0006998EC /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		CDCED410278D0303006998EC /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -371,6 +375,7 @@
 		CD845A4A276BE89F000881E0 /* TVShowsiOS */ = {
 			isa = PBXGroup;
 			children = (
+				CDC35A8D2791F4CD007D2504 /* Error View */,
 				CD845A63276BEDB6000881E0 /* TV Shows */,
 			);
 			path = TVShowsiOS;
@@ -418,6 +423,7 @@
 		CD845A69276BF040000881E0 /* snapshots */ = {
 			isa = PBXGroup;
 			children = (
+				CDC35A902792338C007D2504 /* TV_SHOWS_ERROR_light.png */,
 				CDA7FE232790F3E200FE8735 /* TV_SHOWS_LOADING_light.png */,
 				CD845A6A276BF040000881E0 /* TV_SHOWS_WITH_CONTENT_light.png */,
 			);
@@ -450,6 +456,14 @@
 				CD8E77A82773B371007F5A7A /* HomeHeader.swift */,
 			);
 			path = "TV Shows Cells";
+			sourceTree = "<group>";
+		};
+		CDC35A8D2791F4CD007D2504 /* Error View */ = {
+			isa = PBXGroup;
+			children = (
+				CDC35A8E2791F518007D2504 /* HeaderErrorView.swift */,
+			);
+			path = "Error View";
 			sourceTree = "<group>";
 		};
 		CDCED40D278D0285006998EC /* Load Resource Presenter */ = {
@@ -769,6 +783,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDC35A912792338D007D2504 /* TV_SHOWS_ERROR_light.png in Resources */,
 				CDA7FE242790F3E200FE8735 /* TV_SHOWS_LOADING_light.png in Resources */,
 				CD845A6B276BF040000881E0 /* TV_SHOWS_WITH_CONTENT_light.png in Resources */,
 			);
@@ -836,6 +851,7 @@
 				CD8E77AB2773BCF5007F5A7A /* HomeHeaderController.swift in Sources */,
 				CD845A73276BF3E8000881E0 /* TVShowCellController.swift in Sources */,
 				CD845A76276BFB46000881E0 /* TVShowHomeCell.swift in Sources */,
+				CDC35A8F2791F518007D2504 /* HeaderErrorView.swift in Sources */,
 				CD8120E0277A6C1A00277EF1 /* UIImage+TVShows.swift in Sources */,
 				CD845A65276BEDD2000881E0 /* HomeViewController.swift in Sources */,
 				CD8E77A92773B371007F5A7A /* HomeHeader.swift in Sources */,

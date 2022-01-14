@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import SharedPresentation
 
 public final class HomeViewController: UICollectionViewController {
     
     private var controllers = [TVShowCellController]()
     private var headers =  [HomeHeaderController]()
     public private(set) var loadShowsController: HomeRefreshController?
+    public private(set) var errorView = HeaderErrorView(frame: .zero)
     
     public convenience init(loadController: HomeRefreshController?) {
         self.init(collectionViewLayout: HomeViewController.makeLayout())
@@ -24,6 +26,10 @@ public final class HomeViewController: UICollectionViewController {
         collectionView.backgroundColor = .clear
         registerCells()
         collectionView.refreshControl = loadShowsController?.refreshView
+        view.addSubview(errorView)
+        errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        errorView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        view.trailingAnchor.constraint(equalTo: errorView.trailingAnchor).isActive = true
         loadShowsController?.loadShows()
     }
     
@@ -40,6 +46,7 @@ public final class HomeViewController: UICollectionViewController {
     
     public func setCellControllers(controllers: [TVShowCellController]) {
         self.controllers = controllers
+        errorView.error = nil
         collectionView.reloadData()
     }
     
@@ -94,5 +101,11 @@ public final class HomeViewController: UICollectionViewController {
             
             return section
         }
+    }
+}
+
+extension HomeViewController: ErrorView {
+    public func update(_ viewModel: ErrorViewModel) {
+        errorView.error = viewModel.message
     }
 }
