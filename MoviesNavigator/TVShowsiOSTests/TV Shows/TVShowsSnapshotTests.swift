@@ -12,23 +12,25 @@ import TVShows
 final class TVShowsSnapshotTests: XCTestCase {
 
     func test_tvShows_loading() {
-        let sut = HomeViewController(loadController: HomeRefreshController(delegate: nil))
-        sut.loadViewIfNeeded()
-        
-        sut.setHeaders(headers: [HomeHeaderController()])
+        let sut = makeSUT()
         
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "TV_SHOWS_LOADING_light")
     }
     
     func test_tvShows_withContent() {
-        let sut = HomeViewController(loadController: HomeRefreshController(delegate: nil))
-        sut.loadViewIfNeeded()
+        let sut = makeSUT()
         
-        sut.setHeaders(headers: [HomeHeaderController()])
         sut.setCellControllers(controllers: content())
         sut.loadShowsController?.isLoading = false
         
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "TV_SHOWS_WITH_CONTENT_light")
+    }
+    
+    private func makeSUT() -> HomeViewController {
+        let sut = HomeViewController(loadController: HomeRefreshController(delegate: nil))
+        sut.loadViewIfNeeded()
+        sut.setHeaders(headers: [HomeHeaderController()])
+        return sut
     }
     
     private func content() -> [TVShowCellController] {
