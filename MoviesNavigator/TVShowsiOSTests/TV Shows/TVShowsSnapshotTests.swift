@@ -12,7 +12,7 @@ import TVShows
 final class TVShowsSnapshotTests: XCTestCase {
 
     func test_tvShows_loading() {
-        let sut = TVShowsViewController(loadController: TVShowsRefreshController(delegate: nil))
+        let sut = HomeViewController(loadController: TVShowsRefreshController(delegate: nil))
         sut.loadViewIfNeeded()
         
         sut.setHeaders(headers: [HomeHeaderController()])
@@ -21,7 +21,7 @@ final class TVShowsSnapshotTests: XCTestCase {
     }
     
     func test_tvShows_withContent() {
-        let sut = TVShowsViewController(loadController: TVShowsRefreshController(delegate: nil))
+        let sut = HomeViewController(loadController: TVShowsRefreshController(delegate: nil))
         sut.loadViewIfNeeded()
         
         sut.setHeaders(headers: [HomeHeaderController()])

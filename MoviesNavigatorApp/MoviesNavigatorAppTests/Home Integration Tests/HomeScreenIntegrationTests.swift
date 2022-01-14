@@ -45,9 +45,9 @@ extension LoadResourcePresentationAdapter: TVShowCellControllerDelegate {
 
 final class TVShowViewAdapter: ResourceView {
     
-    private weak var controller: TVShowsViewController?
+    private weak var controller: HomeViewController?
     
-    init(controller: TVShowsViewController) {
+    init(controller: HomeViewController) {
         self.controller = controller
     }
     
@@ -64,10 +64,10 @@ final class HomeScreenComposer {
     
     typealias LoadShowsPublisher = AnyPublisher<[TVShow], Error>
     
-    static func composeWith(loader: @escaping () -> LoadShowsPublisher) -> TVShowsViewController {
+    static func composeWith(loader: @escaping () -> LoadShowsPublisher) -> HomeViewController {
         let presentationAdapter = LoadResourcePresentationAdapter<[TVShow], TVShowViewAdapter>(loader: loader)
         let loadShowsController = TVShowsRefreshController(delegate: presentationAdapter)
-        let controller = TVShowsViewController(loadController: loadShowsController)
+        let controller = HomeViewController(loadController: loadShowsController)
         controller.setHeaders(headers: [HomeHeaderController()])
         let viewAdapter = TVShowViewAdapter(controller: controller)
         let presenter = LoadResourcePresenter<[TVShow], TVShowViewAdapter>(
@@ -111,7 +111,7 @@ final class HomeScreenIntegrationTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(loader: @escaping () -> AnyPublisher<[TVShow], Error>, file: StaticString = #filePath, line: UInt = #line) -> TVShowsViewController {
+    private func makeSUT(loader: @escaping () -> AnyPublisher<[TVShow], Error>, file: StaticString = #filePath, line: UInt = #line) -> HomeViewController {
         let controller = HomeScreenComposer.composeWith(loader: loader)
         
         controller.loadViewIfNeeded()
@@ -161,7 +161,7 @@ final class HomeScreenIntegrationTests: XCTestCase {
         }
     }
     
-    private func shouldRender(_ models: [TVShow], in controller: TVShowsViewController, file: StaticString = #filePath, line: UInt = #line) {
+    private func shouldRender(_ models: [TVShow], in controller: HomeViewController, file: StaticString = #filePath, line: UInt = #line) {
         XCTAssertEqual(controller.renderedCells(), models.count, "Expected to render \(models.count) cells", file: file, line: line)
         
         TVShowPresenter.map(models).enumerated().forEach {
@@ -177,7 +177,7 @@ final class HomeScreenIntegrationTests: XCTestCase {
     }
 }
 
-private extension TVShowsViewController {
+private extension HomeViewController {
     
     private var showsSection: Int { 0 }
     

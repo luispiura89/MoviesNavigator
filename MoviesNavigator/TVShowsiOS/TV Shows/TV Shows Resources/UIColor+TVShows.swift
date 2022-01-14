@@ -9,15 +9,15 @@ import UIKit
 
 extension UIColor {
     static var blackBackground: UIColor {
-        UIColor(named: "BlackBackground", in: Bundle(for: TVShowsViewController.self), compatibleWith: nil)!
+        UIColor(named: "BlackBackground", in: Bundle(for: HomeViewController.self), compatibleWith: nil)!
     }
     static var tVShowCellBackground: UIColor {
-        UIColor(named: "TVShowCellBackground", in: Bundle(for: TVShowsViewController.self), compatibleWith: nil)!
+        UIColor(named: "TVShowCellBackground", in: Bundle(for: HomeViewController.self), compatibleWith: nil)!
     }
     static var tVShowCellTextColor: UIColor {
-        UIColor(named: "TVShowCellTextColor", in: Bundle(for: TVShowsViewController.self), compatibleWith: nil)!
+        UIColor(named: "TVShowCellTextColor", in: Bundle(for: HomeViewController.self), compatibleWith: nil)!
     }
     static var homeSegmentBackground: UIColor {
-        UIColor(named: "HomeSegmentBackground", in: Bundle(for: TVShowsViewController.self), compatibleWith: nil)!
+        UIColor(named: "HomeSegmentBackground", in: Bundle(for: HomeViewController.self), compatibleWith: nil)!
     }
 }

@@ -7,14 +7,14 @@
 
 import UIKit
 
-public final class TVShowsViewController: UICollectionViewController {
+public final class HomeViewController: UICollectionViewController {
     
     private var controllers = [TVShowCellController]()
     private var headers =  [HomeHeaderController]()
     public private(set) var loadShowsController: TVShowsRefreshController?
     
     public convenience init(loadController: TVShowsRefreshController?) {
-        self.init(collectionViewLayout: TVShowsViewController.makeLayout())
+        self.init(collectionViewLayout: HomeViewController.makeLayout())
         self.loadShowsController = loadController
     }
     
