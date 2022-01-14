@@ -29,7 +29,10 @@ final class LoadResourcePresentationAdapter<Resource, View: ResourceView> {
 extension LoadResourcePresentationAdapter: HomeRefreshControllerDelegate {
     func loadShows() {
         presenter?.didStartLoadingResource()
-        cancellable = loader().sink { _ in
+        cancellable = loader().sink { [weak presenter] completion in
+            if case let .failure(error) = completion {
+                presenter?.didFinishLoading(with: error)
+            }
         } receiveValue: { [weak presenter] resource in
             presenter?.didFinishLoading(with: resource)
         }
@@ -105,7 +108,7 @@ final class HomeScreenIntegrationTests: XCTestCase {
         controller.simulateUserInitiatedReload()
         XCTAssertTrue(controller.isLoading, "Loading indicator should appear after user initiated reload")
         
-        loaderSpy.completeLoading(with: makeModels(), at: 1)
+        loaderSpy.completeLoading(with: anyError(), at: 1)
         XCTAssertFalse(controller.isLoading, "Loading indicator should disappear after second request completes")
     }
     
@@ -153,6 +156,11 @@ final class HomeScreenIntegrationTests: XCTestCase {
             guard index < publishers.count else { return }
             publishers[index].send(shows)
         }
+        
+        func completeLoading(with error: Error, at index: Int = 0) {
+            guard index < publishers.count else { return }
+            publishers[index].send(completion: .failure(error))
+        }
     }
     
     private func trackMemoryLeaks(_ instance: AnyObject, file: StaticString = #filePath, line: UInt = #line) {
@@ -174,6 +182,10 @@ final class HomeScreenIntegrationTests: XCTestCase {
     
     private func anyURL() -> URL {
         URL(string: "https://any-url.com")!
+    }
+    
+    private func anyError() -> NSError {
+        NSError(domain: "Error", code: 0, userInfo: nil)
     }
 }
 
