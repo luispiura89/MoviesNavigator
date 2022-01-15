@@ -24,6 +24,10 @@
 		CDA7FE3A279107EF00FE8735 /* TVShowsiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD812120277A722A00277EF1 /* TVShowsiOS.framework */; };
 		CDA7FE3B279107EF00FE8735 /* TVShowsiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD812120277A722A00277EF1 /* TVShowsiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CDC35A942792427C007D2504 /* HomeScreen+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC35A932792427C007D2504 /* HomeScreen+TestHelpers.swift */; };
+		CDC35A972792488C007D2504 /* LoadResourcePresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC35A962792488C007D2504 /* LoadResourcePresentationAdapter.swift */; };
+		CDC35A9927924923007D2504 /* TVShowsViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC35A9827924923007D2504 /* TVShowsViewAdapter.swift */; };
+		CDC35A9B2792499D007D2504 /* HomeScreenComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC35A9A2792499D007D2504 /* HomeScreenComposer.swift */; };
+		CDC35A9D279249F7007D2504 /* WeakReferenceProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC35A9C279249F7007D2504 /* WeakReferenceProxy.swift */; };
 		CDE1D232278F83190033918A /* HomeScreenIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE1D231278F83190033918A /* HomeScreenIntegrationTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +85,10 @@
 		CD812128277A72EB00277EF1 /* SharedAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDA7FE252791053B00FE8735 /* SharedPresentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedPresentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDC35A932792427C007D2504 /* HomeScreen+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeScreen+TestHelpers.swift"; sourceTree = "<group>"; };
+		CDC35A962792488C007D2504 /* LoadResourcePresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresentationAdapter.swift; sourceTree = "<group>"; };
+		CDC35A9827924923007D2504 /* TVShowsViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsViewAdapter.swift; sourceTree = "<group>"; };
+		CDC35A9A2792499D007D2504 /* HomeScreenComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenComposer.swift; sourceTree = "<group>"; };
+		CDC35A9C279249F7007D2504 /* WeakReferenceProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakReferenceProxy.swift; sourceTree = "<group>"; };
 		CDE1D231278F83190033918A /* HomeScreenIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenIntegrationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,6 +145,7 @@
 		CD8120EC277A718D00277EF1 /* MoviesNavigatorApp */ = {
 			isa = PBXGroup;
 			children = (
+				CDC35A952792481D007D2504 /* Home */,
 				CD8120ED277A718D00277EF1 /* AppDelegate.swift */,
 				CD8120EF277A718D00277EF1 /* SceneDelegate.swift */,
 				CD8120F1277A718D00277EF1 /* ViewController.swift */,
@@ -184,6 +193,17 @@
 				CDC35A932792427C007D2504 /* HomeScreen+TestHelpers.swift */,
 			);
 			path = "\U0010Helpers";
+			sourceTree = "<group>";
+		};
+		CDC35A952792481D007D2504 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CDC35A962792488C007D2504 /* LoadResourcePresentationAdapter.swift */,
+				CDC35A9827924923007D2504 /* TVShowsViewAdapter.swift */,
+				CDC35A9A2792499D007D2504 /* HomeScreenComposer.swift */,
+				CDC35A9C279249F7007D2504 /* WeakReferenceProxy.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		CDE1D230278F82F20033918A /* Home Integration Tests */ = {
@@ -329,8 +349,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD8120F2277A718D00277EF1 /* ViewController.swift in Sources */,
+				CDC35A972792488C007D2504 /* LoadResourcePresentationAdapter.swift in Sources */,
 				CD8120EE277A718D00277EF1 /* AppDelegate.swift in Sources */,
 				CD8120F0277A718D00277EF1 /* SceneDelegate.swift in Sources */,
+				CDC35A9D279249F7007D2504 /* WeakReferenceProxy.swift in Sources */,
+				CDC35A9B2792499D007D2504 /* HomeScreenComposer.swift in Sources */,
+				CDC35A9927924923007D2504 /* TVShowsViewAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
