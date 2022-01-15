@@ -129,9 +129,18 @@ final class HomeScreenIntegrationTests: XCTestCase {
         XCTAssertFalse(controller.isShowingError, "Should not show error message before failure")
         
         loaderSpy.completeLoading(with: anyError())
-        RunLoop.current.run(until: Date())
         
         XCTAssertTrue(controller.isShowingError, "Should show error after loading failure")
+    }
+    
+    func test_homeScreen_dismissesErrorViewOnTap() {
+        let loaderSpy = LoaderSpy()
+        let controller = makeSUT(loader: loaderSpy.loader)
+        
+        loaderSpy.completeLoading(with: anyError())
+        controller.simulateUserDismissedErrorView()
+        
+        XCTAssertFalse(controller.isShowingError, "Should not show error after user dismissal")
     }
     
     // MARK: - Helpers
@@ -208,51 +217,6 @@ final class HomeScreenIntegrationTests: XCTestCase {
     
     private func anyError() -> NSError {
         NSError(domain: "Error", code: 0, userInfo: nil)
-    }
-}
-
-private extension HomeViewController {
-    
-    private var showsSection: Int { 0 }
-    
-    var isLoading: Bool {
-        loadShowsController?.isLoading == true
-    }
-    
-    var isShowingError: Bool {
-        errorView.error != nil
-    }
-    
-    private func cell(at index: Int) -> TVShowHomeCell? {
-        guard renderedCells() > index else { return nil }
-        let ds = collectionView.dataSource
-        let index = IndexPath(row: index, section: showsSection)
-        return ds?.collectionView(collectionView, cellForItemAt: index) as? TVShowHomeCell
-    }
-    
-    func simulateUserInitiatedReload() {
-        loadShowsController?.refreshView.send(event: .valueChanged)
-    }
-    
-    func renderedCells() -> Int {
-        let ds = collectionView.dataSource
-        return ds?.collectionView(collectionView, numberOfItemsInSection: showsSection) ?? 0
-    }
-    
-    func name(at index: Int) -> String? {
-        cell(at: index)?.nameLabel.text
-    }
-    
-    func overview(at index: Int) -> String? {
-        cell(at: index)?.overviewLabel.text
-    }
-    
-    func firstAirDate(at index: Int) -> String? {
-        cell(at: index)?.dateLabel.text
-    }
-    
-    func voteAverage(at index: Int) -> String? {
-        cell(at: index)?.voteAverageLabel.text
     }
 }
 

@@ -21,22 +21,25 @@ public final class HeaderErrorView: UIButton {
         translatesAutoresizingMaskIntoConstraints = false
         titleLabel?.numberOfLines = 0
         titleLabel?.textAlignment = .center
+        addTarget(self, action: #selector(dismiss), for: .touchUpInside)
         updateErrorMessage(error)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    @objc private func dismiss() {
+        updateErrorMessage(nil)
+    }
 
     private func updateErrorMessage(_ message: String?) {
+        setTitle(message, for: .normal)
         if message == nil {
             UIView.animate(withDuration: 0.5) { [weak self] in
                 self?.alpha = 0
-            } completion: { [weak self] _ in
-                self?.error = nil
             }
         } else {
-            setTitle(message, for: .normal)
             UIView.animate(withDuration: 0.5) { [weak self] in
                 self?.alpha = 1
             }
