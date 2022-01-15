@@ -60,6 +60,18 @@ final class HomeScreenIntegrationTests: XCTestCase {
         XCTAssertFalse(controller.isShowingError, "Should not show error after user dismissal")
     }
     
+    func test_homeScreen_shouldRenderPreviouslyLoadedShowsAfterError() {
+        let loaderSpy = LoaderSpy()
+        let controller = makeSUT(loader: loaderSpy.loader)
+        
+        loaderSpy.completeLoading(with: makeModels())
+        shouldRender(makeModels(), in: controller)
+        
+        controller.simulateUserInitiatedReload()
+        loaderSpy.completeLoading(with: anyError(), at: 1)
+        shouldRender(makeModels(), in: controller)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(loader: @escaping () -> AnyPublisher<[TVShow], Error>, file: StaticString = #filePath, line: UInt = #line) -> HomeViewController {
