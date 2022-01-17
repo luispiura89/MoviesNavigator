@@ -15,8 +15,7 @@ import Combine
 final class HomeScreenIntegrationTests: XCTestCase {
     
     func test_homeScreen_rendersTVShows() {
-        let loaderSpy = LoaderSpy()
-        let controller = makeSUT(loader: loaderSpy.loader)
+        let (controller, loaderSpy) = makeSUT()
         
         loaderSpy.completeLoading(with: makeModels())
         
@@ -24,8 +23,7 @@ final class HomeScreenIntegrationTests: XCTestCase {
     }
     
     func test_homeScreen_shouldHandleRefreshControl() {
-        let loaderSpy = LoaderSpy()
-        let controller = makeSUT(loader: loaderSpy.loader)
+        let (controller, loaderSpy) = makeSUT()
         
         XCTAssertTrue(controller.isLoading, "Loading indicator should appear after loading")
         
@@ -40,8 +38,7 @@ final class HomeScreenIntegrationTests: XCTestCase {
     }
     
     func test_homeScreen_showsLoadingIndicatorAfterLoadingFail() {
-        let loaderSpy = LoaderSpy()
-        let controller = makeSUT(loader: loaderSpy.loader)
+        let (controller, loaderSpy) = makeSUT()
         
         XCTAssertFalse(controller.isShowingError, "Should not show error message before failure")
         
@@ -51,8 +48,7 @@ final class HomeScreenIntegrationTests: XCTestCase {
     }
     
     func test_homeScreen_dismissesErrorViewOnTap() {
-        let loaderSpy = LoaderSpy()
-        let controller = makeSUT(loader: loaderSpy.loader)
+        let (controller, loaderSpy) = makeSUT()
         
         loaderSpy.completeLoading(with: anyError())
         controller.simulateUserDismissedErrorView()
@@ -61,8 +57,7 @@ final class HomeScreenIntegrationTests: XCTestCase {
     }
     
     func test_homeScreen_shouldRenderPreviouslyLoadedShowsAfterError() {
-        let loaderSpy = LoaderSpy()
-        let controller = makeSUT(loader: loaderSpy.loader)
+        let (controller, loaderSpy) = makeSUT()
         
         loaderSpy.completeLoading(with: makeModels())
         shouldRender(makeModels(), in: controller)
@@ -73,8 +68,7 @@ final class HomeScreenIntegrationTests: XCTestCase {
     }
     
     func test_homeScreen_removesErrorViewWhenLoadingStarts() {
-        let loaderSpy = LoaderSpy()
-        let controller = makeSUT(loader: loaderSpy.loader)
+        let (controller, loaderSpy) = makeSUT()
         
         loaderSpy.completeLoading(with: anyError())
         XCTAssertTrue(controller.isShowingError, "Should display error when loading fails")
@@ -85,13 +79,15 @@ final class HomeScreenIntegrationTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(loader: @escaping () -> AnyPublisher<[TVShow], Error>, file: StaticString = #filePath, line: UInt = #line) -> HomeViewController {
-        let controller = HomeScreenComposer.composeWith(loader: loader)
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> HomeViewController {
+        let loaderSpy = LoaderSpy()
+        let controller = HomeScreenComposer.composeWith(loader: loaderSpy.loader)
         
         controller.loadViewIfNeeded()
         trackMemoryLeaks(controller, file: file, line: line)
+        trackMemoryLeaks(loaderSpy, file: file, line: line)
         
-        return controller
+        return (controller, loaderSpy)
     }
     
     private func makeModels() -> [TVShow] {
