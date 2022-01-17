@@ -77,6 +77,18 @@ final class HomeScreenIntegrationTests: XCTestCase {
         XCTAssertFalse(controller.isShowingError, "Should not display error when new loading starts")
     }
     
+    func test_homeScreen_reactsToEventsSentFromBackgroundThreads() {
+        let (_, loaderSpy) = makeSUT()
+        let models = makeModels()
+        
+        let exp = expectation(description: "Wait for loading")
+        DispatchQueue.global().async {
+            loaderSpy.completeLoading(with: models)
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (HomeViewController, LoaderSpy) {

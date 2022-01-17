@@ -16,7 +16,7 @@ public final class HomeScreenComposer {
     public typealias LoadShowsPublisher = AnyPublisher<[TVShow], Error>
     
     public static func composeWith(loader: @escaping () -> LoadShowsPublisher) -> HomeViewController {
-        let presentationAdapter = LoadResourcePresentationAdapter<[TVShow], TVShowViewAdapter>(loader: loader)
+        let presentationAdapter = LoadResourcePresentationAdapter<[TVShow], TVShowViewAdapter>(loader: { loader().dispatchOnMainQueue() })
         let loadShowsController = HomeRefreshController(delegate: presentationAdapter)
         let controller = HomeViewController(loadController: loadShowsController)
         controller.setHeaders(headers: [HomeHeaderController()])
