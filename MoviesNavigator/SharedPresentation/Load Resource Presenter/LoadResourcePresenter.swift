@@ -27,6 +27,7 @@ public final class LoadResourcePresenter<InputResource, View: ResourceView> {
     
     public func didStartLoadingResource() {
         loadingView.update(LoadingViewModel(isLoading: true))
+        errorView.update(.emptyError)
     }
     
     public func didFinishLoading(with error: Error) {

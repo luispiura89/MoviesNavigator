@@ -8,9 +8,12 @@
 import Foundation
 
 public struct ErrorViewModel {
-    public let message: String
     
-    public init(message: String) {
+    public static let emptyError = ErrorViewModel(message: nil)
+    
+    public let message: String?
+    
+    public init(message: String?) {
         self.message = message
     }
 }

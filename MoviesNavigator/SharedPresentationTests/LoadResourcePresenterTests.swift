@@ -16,7 +16,7 @@ final class LoadResourcePresenterTests: XCTestCase {
         
         sut.didStartLoadingResource()
         
-        XCTAssertEqual(viewSpy.messages, [.isLoading(true)])
+        XCTAssertEqual(viewSpy.messages, [.isLoading(true), .error(nil)])
     }
     
     func test_completeLoadingWithError_sendsErrorMessageToErrorView() {
@@ -42,7 +42,7 @@ final class LoadResourcePresenterTests: XCTestCase {
         
         enum Message: Equatable {
             case isLoading(Bool)
-            case error(String)
+            case error(String?)
             case resource(String)
         }
         
