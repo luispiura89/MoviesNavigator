@@ -22,7 +22,7 @@ public final class HomeScreenComposer {
         controller.setHeaders(headers: [HomeHeaderController()])
         let viewAdapter = TVShowViewAdapter(controller: controller)
         let presenter = LoadResourcePresenter<[TVShow], TVShowViewAdapter>(
-            loadingView: loadShowsController,
+            loadingView: WeakReferenceProxy(instance: loadShowsController),
             errorView: WeakReferenceProxy(instance: controller),
             resourceView: viewAdapter,
             resourceMapper: TVShowPresenter.map

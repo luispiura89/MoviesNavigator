@@ -79,7 +79,7 @@ final class HomeScreenIntegrationTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> HomeViewController {
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (HomeViewController, LoaderSpy) {
         let loaderSpy = LoaderSpy()
         let controller = HomeScreenComposer.composeWith(loader: loaderSpy.loader)
         

@@ -21,3 +21,9 @@ extension WeakReferenceProxy: ErrorView where T: ErrorView {
         instance?.update(viewModel)
     }
 }
+
+extension WeakReferenceProxy: LoadingView where T: LoadingView {
+    public func update(_ viewModel: LoadingViewModel) {
+        instance?.update(viewModel)
+    }
+}
