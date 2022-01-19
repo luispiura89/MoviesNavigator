@@ -98,6 +98,10 @@ final class HomeScreenIntegrationTests: XCTestCase {
         controller.displayCell(at: 0)
         controller.displayCell(at: 0)
         XCTAssertEqual(loaderSpy.requestedURLs, [anyURL()], "Home Screen should request image download for first cell")
+        
+        controller.displayCell(at: 1)
+        controller.displayCell(at: 1)
+        XCTAssertEqual(loaderSpy.requestedURLs, [anyURL(), anyURL()], "Home Screen should request image download for second cell")
     }
     
     // MARK: - Helpers
