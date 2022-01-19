@@ -18,10 +18,8 @@ public final class LoadResourcePresentationAdapter<Resource, View: ResourceView>
     public init(loader: @escaping () -> AnyPublisher<Resource, Error>) {
         self.loader = loader
     }
-}
-
-extension LoadResourcePresentationAdapter: HomeRefreshControllerDelegate {
-    public func loadShows() {
+    
+    private func load() {
         presenter?.didStartLoadingResource()
         cancellable = loader().sink { [weak presenter] completion in
             if case let .failure(error) = completion {
@@ -30,12 +28,17 @@ extension LoadResourcePresentationAdapter: HomeRefreshControllerDelegate {
         } receiveValue: { [weak presenter] resource in
             presenter?.didFinishLoading(with: resource)
         }
+    }
+}
 
+extension LoadResourcePresentationAdapter: HomeRefreshControllerDelegate {
+    public func loadShows() {
+        load()
     }
 }
 
 extension LoadResourcePresentationAdapter: TVShowCellControllerDelegate {
     public func requestImage() {
-        
+        load()
     }
 }
