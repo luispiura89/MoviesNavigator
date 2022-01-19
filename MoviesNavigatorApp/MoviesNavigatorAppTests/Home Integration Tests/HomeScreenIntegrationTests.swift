@@ -96,6 +96,7 @@ final class HomeScreenIntegrationTests: XCTestCase {
         loaderSpy.completeLoading(with: makeModels(), at: 0)
         
         controller.displayCell(at: 0)
+        controller.displayCell(at: 0)
         XCTAssertEqual(loaderSpy.requestedURLs, [anyURL()], "Home Screen should request image download for first cell")
     }
     

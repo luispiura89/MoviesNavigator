@@ -14,19 +14,24 @@ public final class LoadResourcePresentationAdapter<Resource, View: ResourceView>
     public var presenter: LoadResourcePresenter<Resource, View>?
     private var cancellable: AnyCancellable?
     private let loader: () -> AnyPublisher<Resource, Error>
+    private var isLoading = false
     
     public init(loader: @escaping () -> AnyPublisher<Resource, Error>) {
         self.loader = loader
     }
     
     private func load() {
+        guard !isLoading else { return }
+        isLoading = true
         presenter?.didStartLoadingResource()
-        cancellable = loader().sink { [weak presenter] completion in
+        cancellable = loader().sink { [weak self] completion in
+            self?.isLoading = false
             if case let .failure(error) = completion {
-                presenter?.didFinishLoading(with: error)
+                self?.presenter?.didFinishLoading(with: error)
             }
-        } receiveValue: { [weak presenter] resource in
-            presenter?.didFinishLoading(with: resource)
+        } receiveValue: { [weak self] resource in
+            self?.isLoading = false
+            self?.presenter?.didFinishLoading(with: resource)
         }
     }
 }
