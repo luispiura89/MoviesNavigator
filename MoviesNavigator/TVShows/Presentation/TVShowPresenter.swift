@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct TVShowViewModel: Equatable {
+public struct TVShowViewModel: Equatable, Hashable {
     public let name: String
     public let overview: String
     public let voteAverage: String
