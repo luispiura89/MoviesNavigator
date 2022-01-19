@@ -89,11 +89,21 @@ final class HomeScreenIntegrationTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
+    func test_homeScreen_requestsImageDownloadWhenCellAppears() {
+        let (controller, loaderSpy) = makeSUT()
+        
+        XCTAssertTrue(loaderSpy.requestedURLs.isEmpty, "Requested URLs should be empty until a cell appears")
+        loaderSpy.completeLoading(with: makeModels(), at: 0)
+        
+        controller.displayCell(at: 0)
+        XCTAssertEqual(loaderSpy.requestedURLs, [anyURL()], "Home Screen should request image download for first cell")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (HomeViewController, LoaderSpy) {
         let loaderSpy = LoaderSpy()
-        let controller = HomeScreenComposer.composeWith(loader: loaderSpy.loader)
+        let controller = HomeScreenComposer.composeWith(loader: loaderSpy.loader, posterLoader: loaderSpy.imageLoader)
         
         controller.loadViewIfNeeded()
         trackMemoryLeaks(controller, file: file, line: line)
@@ -123,22 +133,32 @@ final class HomeScreenIntegrationTests: XCTestCase {
     
     private final class LoaderSpy {
         
-        private var publishers = [PassthroughSubject<[TVShow], Error>]()
+        private var showsRequests = [PassthroughSubject<[TVShow], Error>]()
+        private var imageRequests = [PassthroughSubject<Data, Error>]()
+        private(set) var requestedURLs = [URL]()
         
         func loader() -> AnyPublisher<[TVShow], Error> {
             let subject = PassthroughSubject<[TVShow], Error>()
-            publishers.append(subject)
+            showsRequests.append(subject)
             return subject.eraseToAnyPublisher()
         }
         
+        func imageLoader(from url: URL) -> AnyPublisher<Data, Error> {
+            let subject = PassthroughSubject<Data, Error>()
+            imageRequests.append(subject)
+            return subject.handleEvents(receiveRequest:  { [weak self] _ in
+                self?.requestedURLs.append(url)
+            }).eraseToAnyPublisher()
+        }
+        
         func completeLoading(with shows: [TVShow], at index: Int = 0) {
-            guard index < publishers.count else { return }
-            publishers[index].send(shows)
+            guard index < showsRequests.count else { return }
+            showsRequests[index].send(shows)
         }
         
         func completeLoading(with error: Error, at index: Int = 0) {
-            guard index < publishers.count else { return }
-            publishers[index].send(completion: .failure(error))
+            guard index < showsRequests.count else { return }
+            showsRequests[index].send(completion: .failure(error))
         }
     }
     

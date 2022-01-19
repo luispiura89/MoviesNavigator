@@ -20,11 +20,16 @@ extension HomeViewController {
         errorView.error != nil
     }
     
+    @discardableResult
     private func cell(at index: Int) -> TVShowHomeCell? {
         guard renderedCells() > index else { return nil }
         let ds = collectionView.dataSource
         let index = IndexPath(row: index, section: showsSection)
         return ds?.collectionView(collectionView, cellForItemAt: index) as? TVShowHomeCell
+    }
+    
+    func displayCell(at index: Int) {
+        cell(at: index)
     }
     
     func simulateUserInitiatedReload() {

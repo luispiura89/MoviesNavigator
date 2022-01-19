@@ -13,15 +13,31 @@ import TVShows
 public final class TVShowViewAdapter: ResourceView {
     
     private weak var controller: HomeViewController?
+    private let posterLoader: (URL) -> LoadShowPosterPublisher
     
-    public init(controller: HomeViewController) {
+    public init(controller: HomeViewController, posterLoader: @escaping (URL) -> LoadShowPosterPublisher) {
         self.controller = controller
+        self.posterLoader = posterLoader
     }
     
-    public func update(_ viewModel: ResourceViewModel<[TVShowViewModel]>) {
+    public func update(_ viewModel: ResourceViewModel<[TVShow]>) {
+        var loaders = [TVShowViewModel: LoadShowPosterPublisher]()
+        let viewModels: [TVShowViewModel] = viewModel.resource.map { [weak self] model in
+            let viewModel = TVShowPresenter.map([model])
+            viewModel.first.map {
+                if let url = model.posterPath {
+                    loaders[$0] = self?.posterLoader(url)
+                }
+            }
+            return viewModel.first
+        }.compactMap { $0 }
         controller?.setCellControllers(
-            controllers: viewModel.resource.map {
-                TVShowCellController(viewModel: $0, delegate: nil)
+            controllers: viewModels.map { viewModel in
+                let delegate: TVShowCellControllerDelegate? = loaders[viewModel].map { loader in
+                    let newLoader = { loader }
+                    return LoadResourcePresentationAdapter<Data, HomeCellViewAdapter>(loader: newLoader)
+                }
+                return TVShowCellController(viewModel: viewModel, delegate: delegate)
             }
         )
     }
