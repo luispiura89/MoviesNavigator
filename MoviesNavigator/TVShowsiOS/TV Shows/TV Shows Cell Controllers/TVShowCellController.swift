@@ -17,6 +17,7 @@ public final class TVShowCellController: NSObject, UICollectionViewDataSource {
     private let viewModel: TVShowViewModel
     private var cell: TVShowHomeCell?
     private let delegate: TVShowCellControllerDelegate?
+    private var loadedImage: UIImage?
     
     public init(viewModel: TVShowViewModel, delegate: TVShowCellControllerDelegate?) {
         self.viewModel = viewModel
@@ -28,19 +29,24 @@ public final class TVShowCellController: NSObject, UICollectionViewDataSource {
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        cell = (collectionView.dequeueReusableCell(withReuseIdentifier: TVShowHomeCell.dequeueIdentifier, for: indexPath) as? TVShowHomeCell)
+        if cell == nil {
+            cell = (collectionView.dequeueReusableCell(withReuseIdentifier: TVShowHomeCell.dequeueIdentifier, for: indexPath) as? TVShowHomeCell)
+        }
         
         cell?.nameLabel.text = viewModel.name
         cell?.dateLabel.text = viewModel.firstAirDate
         cell?.voteAverageLabel.text = viewModel.voteAverage
         cell?.overviewLabel.text = viewModel.overview
-        cell?.loadingView.startAnimating()
-        delegate?.requestImage()
-        
+        if loadedImage == nil {
+            delegate?.requestImage()
+        } else {
+            cell?.posterImageView.image = loadedImage
+        }
         return cell!
     }
     
     public func setPosterImage(_ image: UIImage?) {
+        loadedImage = image
         cell?.posterImageView.image = image
         cell?.retryLoadingButton.isHidden = true
         cell?.loadingView.stopAnimating()
@@ -50,5 +56,9 @@ public final class TVShowCellController: NSObject, UICollectionViewDataSource {
         cell?.posterImageView.image = nil
         cell?.retryLoadingButton.isHidden = false
         cell?.loadingView.stopAnimating()
+    }
+    
+    public func setLoadingState() {
+        cell?.loadingView.startAnimating()
     }
 }

@@ -56,6 +56,8 @@ final class HomeCellViewAdapter: ResourceView, ErrorView, LoadingView {
     }
     
     func update(_ viewModel: LoadingViewModel) {
-        
+        if viewModel.isLoading {
+            cell?.setLoadingState()
+        }
     }
 }

@@ -38,6 +38,10 @@ extension HomeViewController {
         return cell?.posterImageView.image?.pngData()
     }
     
+    func isLoadingImage(at index: Int) -> Bool {
+        cell(at: index)?.loadingView.isAnimating == true
+    }
+    
     @discardableResult
     func displayCell(at index: Int) -> TVShowHomeCell? {
         cell(at: index)
@@ -71,11 +75,5 @@ extension HomeViewController {
     
     func voteAverage(at index: Int) -> String? {
         cell(at: index)?.voteAverageLabel.text
-    }
-}
-
-extension TVShowHomeCell {
-    var imageData: Data? {
-        posterImageView.image?.pngData()
     }
 }

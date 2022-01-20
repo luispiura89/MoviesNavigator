@@ -112,15 +112,19 @@ final class HomeScreenIntegrationTests: XCTestCase {
         let (controller, loaderSpy) = makeSUT()
         
         loaderSpy.completeLoading(with: makeModels(), at: 0)
-        let cell0 = controller.displayCell(at: 0)
+        controller.displayCell(at: 0)
+        XCTAssertTrue(controller.isLoadingImage(at: 0), "Should display loading indicator on first cell")
         loaderSpy.completeImageLoadingWithError(at: 0)
-        XCTAssertNil(cell0?.imageData, "Should not display image for first cell")
+        XCTAssertNil(controller.imageDataOnCell(at: 0), "Should not display image for first cell")
         XCTAssertTrue(controller.isShowingRetryActionOnCell(at: 0), "Should display retry action for first cell")
+        XCTAssertFalse(controller.isLoadingImage(at: 0), "Should not display loading indicator on first cell")
         
-        let cell1 = controller.displayCell(at: 1)
+        controller.displayCell(at: 1)
+        XCTAssertTrue(controller.isLoadingImage(at: 1), "Should display loading indicator on second cell")
         loaderSpy.completeImageLoading(with: UIImage.make(withColor: .blue).pngData()!, at: 1)
-        XCTAssertEqual(cell1?.imageData, UIImage.make(withColor: .blue).pngData(), "Should display image for second cell")
+        XCTAssertEqual(controller.imageDataOnCell(at: 1), UIImage.make(withColor: .blue).pngData(), "Should display image for second cell")
         XCTAssertFalse(controller.isShowingRetryActionOnCell(at: 1), "Should not display retry action for second cell")
+        XCTAssertFalse(controller.isLoadingImage(at: 1), "Should not display loading indicator on second cell")
     }
     
     // MARK: - Helpers
