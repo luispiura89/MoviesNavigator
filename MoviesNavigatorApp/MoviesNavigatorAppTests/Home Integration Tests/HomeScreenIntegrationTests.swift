@@ -102,6 +102,10 @@ final class HomeScreenIntegrationTests: XCTestCase {
         controller.displayCell(at: 1)
         controller.displayCell(at: 1)
         XCTAssertEqual(loaderSpy.requestedURLs, [anyURL(), anyURL()], "Home Screen should request image download for second cell")
+        
+        loaderSpy.completeImageLoadingWithError(at: 1)
+        controller.displayCell(at: 1)
+        XCTAssertEqual(loaderSpy.requestedURLs, [anyURL(), anyURL(), anyURL()], "Home Screen should request image download for second cell")
     }
     
     func test_homeScreen_handlesPosterStatusForCells() {
