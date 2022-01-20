@@ -104,6 +104,21 @@ final class HomeScreenIntegrationTests: XCTestCase {
         XCTAssertEqual(loaderSpy.requestedURLs, [anyURL(), anyURL()], "Home Screen should request image download for second cell")
     }
     
+    func test_homeScreen_handlesPosterStatusForCells() {
+        let (controller, loaderSpy) = makeSUT()
+        
+        loaderSpy.completeLoading(with: makeModels(), at: 0)
+        let cell0 = controller.displayCell(at: 0)
+        loaderSpy.completeImageLoadingWithError(at: 0)
+        XCTAssertNil(cell0?.imageData, "Should not display image for first cell")
+        XCTAssertTrue(controller.isShowingRetryActionOnCell(at: 0), "Should display retry action for first cell")
+        
+        let cell1 = controller.displayCell(at: 1)
+        loaderSpy.completeImageLoading(with: UIImage.make(withColor: .blue).pngData()!, at: 1)
+        XCTAssertEqual(cell1?.imageData, UIImage.make(withColor: .blue).pngData(), "Should display image for second cell")
+        XCTAssertFalse(controller.isShowingRetryActionOnCell(at: 1), "Should not display retry action for second cell")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (HomeViewController, LoaderSpy) {
@@ -165,6 +180,16 @@ final class HomeScreenIntegrationTests: XCTestCase {
             guard index < showsRequests.count else { return }
             showsRequests[index].send(completion: .failure(error))
         }
+        
+        func completeImageLoadingWithError(at index: Int) {
+            guard imageRequests.count > index else { return }
+            imageRequests[index].send(completion: .failure(NSError(domain: "Error", code: 0, userInfo: nil)))
+        }
+        
+        func completeImageLoading(with data: Data, at index: Int) {
+            guard imageRequests.count > index else { return }
+            imageRequests[index].send(data)
+        }
     }
     
     private func trackMemoryLeaks(_ instance: AnyObject, file: StaticString = #filePath, line: UInt = #line) {
@@ -190,6 +215,19 @@ final class HomeScreenIntegrationTests: XCTestCase {
     
     private func anyError() -> NSError {
         NSError(domain: "Error", code: 0, userInfo: nil)
+    }
+}
+
+private extension UIImage {
+    static func make(withColor color: UIColor) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()!
+        context.setFillColor(color.cgColor)
+        context.fill(rect)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img!
     }
 }
 

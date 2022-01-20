@@ -37,8 +37,25 @@ public final class HomeScreenComposer {
     }
 }
 
-final class HomeCellViewAdapter: ResourceView {
-    func update(_ viewModel: ResourceViewModel<UIImage>) {
+final class HomeCellViewAdapter: ResourceView, ErrorView, LoadingView {
+    
+    private weak var cell: TVShowCellController?
+    
+    init(cell: TVShowCellController) {
+        self.cell = cell
+    }
+    
+    func update(_ viewModel: ErrorViewModel) {
+        if viewModel.message != nil {
+            cell?.setLoadingErrorState()
+        }
+    }
+    
+    func update(_ viewModel: ResourceViewModel<UIImage?>) {
+        cell?.setPosterImage(viewModel.resource)
+    }
+    
+    func update(_ viewModel: LoadingViewModel) {
         
     }
 }

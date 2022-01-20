@@ -28,7 +28,18 @@ extension HomeViewController {
         return ds?.collectionView(collectionView, cellForItemAt: index) as? TVShowHomeCell
     }
     
-    func displayCell(at index: Int) {
+    func isShowingRetryActionOnCell(at index: Int) -> Bool {
+        let cell = cell(at: index)
+        return cell?.retryLoadingButton.isHidden == false
+    }
+    
+    func imageDataOnCell(at index: Int) -> Data? {
+        let cell = cell(at: index)
+        return cell?.posterImageView.image?.pngData()
+    }
+    
+    @discardableResult
+    func displayCell(at index: Int) -> TVShowHomeCell? {
         cell(at: index)
     }
     
@@ -60,5 +71,11 @@ extension HomeViewController {
     
     func voteAverage(at index: Int) -> String? {
         cell(at: index)?.voteAverageLabel.text
+    }
+}
+
+extension TVShowHomeCell {
+    var imageData: Data? {
+        posterImageView.image?.pngData()
     }
 }

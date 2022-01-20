@@ -9,6 +9,7 @@ import Foundation
 import SharedPresentation
 import TVShowsiOS
 import TVShows
+import UIKit
 
 public final class TVShowViewAdapter: ResourceView {
     
@@ -21,8 +22,29 @@ public final class TVShowViewAdapter: ResourceView {
     }
     
     public func update(_ viewModel: ResourceViewModel<[TVShow]>) {
+        let (viewModels, loaders) = makeLoadersAndModels(from: viewModel.resource)
+        controller?.setCellControllers(
+            controllers: viewModels.map { viewModel in
+                guard let loader = loaders[viewModel] else {
+                    return nil
+                }
+                
+                let presentationAdapter = LoadResourcePresentationAdapter<Data, HomeCellViewAdapter>(loader: { loader })
+                let cell = TVShowCellController(viewModel: viewModel, delegate: presentationAdapter)
+                let adapter = HomeCellViewAdapter(cell: cell)
+                presentationAdapter.presenter = LoadResourcePresenter<Data, HomeCellViewAdapter>(
+                    loadingView: adapter,
+                    errorView: adapter,
+                    resourceView: adapter,
+                    resourceMapper: UIImage.init)
+                return cell
+            }.compactMap { $0 }
+        )
+    }
+    
+    private func makeLoadersAndModels(from shows: [TVShow]) -> (viewModels: [TVShowViewModel], loaders: [TVShowViewModel: LoadShowPosterPublisher]) {
         var loaders = [TVShowViewModel: LoadShowPosterPublisher]()
-        let viewModels: [TVShowViewModel] = viewModel.resource.map { [weak self] model in
+        let viewModels: [TVShowViewModel] = shows.map { [weak self] model in
             let viewModel = TVShowPresenter.map([model])
             viewModel.first.map {
                 if let url = model.posterPath {
@@ -31,14 +53,6 @@ public final class TVShowViewAdapter: ResourceView {
             }
             return viewModel.first
         }.compactMap { $0 }
-        controller?.setCellControllers(
-            controllers: viewModels.map { viewModel in
-                let delegate: TVShowCellControllerDelegate? = loaders[viewModel].map { loader in
-                    let newLoader = { loader }
-                    return LoadResourcePresentationAdapter<Data, HomeCellViewAdapter>(loader: newLoader)
-                }
-                return TVShowCellController(viewModel: viewModel, delegate: delegate)
-            }
-        )
+        return (viewModels, loaders)
     }
 }
