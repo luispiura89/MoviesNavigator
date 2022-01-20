@@ -11,7 +11,7 @@ public final class TVShowHomeCell: UICollectionViewCell {
     
     static var dequeueIdentifier = "TVShowTableViewCell"
     
-    public lazy var nameLabel: UILabel = {
+    public private(set) lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .tVShowCellTextColor
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -22,7 +22,7 @@ public final class TVShowHomeCell: UICollectionViewCell {
         return label
     }()
     
-    public lazy var overviewLabel: UILabel = {
+    public private(set) lazy var overviewLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -33,7 +33,7 @@ public final class TVShowHomeCell: UICollectionViewCell {
         return label
     }()
     
-    public lazy var dateLabel: UILabel = {
+    public private(set) lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.textColor = .tVShowCellTextColor
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -45,7 +45,7 @@ public final class TVShowHomeCell: UICollectionViewCell {
         return label
     }()
     
-    public lazy var voteAverageLabel: UILabel = {
+    public private(set) lazy var voteAverageLabel: UILabel = {
         let label = UILabel()
         label.textColor = .tVShowCellTextColor
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -65,7 +65,7 @@ public final class TVShowHomeCell: UICollectionViewCell {
         return stackView
     }()
     
-    lazy var posterImageView: UIImageView = {
+    public private(set) lazy var posterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -78,7 +78,7 @@ public final class TVShowHomeCell: UICollectionViewCell {
         return imageView
     }()
     
-    lazy var retryLoadingButton: UIButton = {
+    public private(set) lazy var retryLoadingButton: UIButton = {
         let button = UIButton()
         button.isHidden = true
         button.setImage(UIImage.retryLoading, for: .normal)
