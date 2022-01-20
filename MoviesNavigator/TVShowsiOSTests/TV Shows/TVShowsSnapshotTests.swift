@@ -53,15 +53,13 @@ final class TVShowsSnapshotTests: XCTestCase {
                                              delegate: firstCellDelegate)
         firstCellDelegate.controller = firstCell
         
-        let secondCellDelegate = ImageStub(color: .green)
         let secondCell = TVShowCellController(viewModel:
                                                 TVShowViewModel(
                                                     name: "Another Show",
                                                     overview: "Another overview with a real long text that should break the line to see if the cell changes, and add more text to see the changes",
                                                     voteAverage: "6.0",
                                                     firstAirDate: "Jan 15, 2021"),
-                                              delegate: secondCellDelegate)
-        secondCellDelegate.controller = secondCell
+                                              delegate: nil)
         
         let thirdCellDelegate = ImageStub(color: .red)
         let thirdCell = TVShowCellController(viewModel:

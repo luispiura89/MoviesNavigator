@@ -57,6 +57,13 @@ public final class TVShowHomeCell: UICollectionViewCell {
         return label
     }()
     
+    public private(set) lazy var loadingView: UIActivityIndicatorView = {
+        let activity = UIActivityIndicatorView(style: .large)
+        activity.color = .white
+        activity.translatesAutoresizingMaskIntoConstraints = false
+        return activity
+    }()
+    
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [posterImageView, bottomStackView])
         stackView.axis = .vertical
@@ -71,10 +78,18 @@ public final class TVShowHomeCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.addSubview(retryLoadingButton)
+        imageView.addSubview(loadingView)
+        
         retryLoadingButton.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 0).isActive = true
         retryLoadingButton.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 0).isActive = true
         imageView.bottomAnchor.constraint(equalTo: retryLoadingButton.bottomAnchor, constant: 0).isActive = true
         imageView.trailingAnchor.constraint(equalTo: retryLoadingButton.trailingAnchor, constant: 0).isActive = true
+        
+        loadingView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
+        loadingView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
+        loadingView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        loadingView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
         return imageView
     }()
     

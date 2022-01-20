@@ -34,6 +34,7 @@ public final class TVShowCellController: NSObject, UICollectionViewDataSource {
         cell?.dateLabel.text = viewModel.firstAirDate
         cell?.voteAverageLabel.text = viewModel.voteAverage
         cell?.overviewLabel.text = viewModel.overview
+        cell?.loadingView.startAnimating()
         delegate?.requestImage()
         
         return cell!
@@ -42,10 +43,12 @@ public final class TVShowCellController: NSObject, UICollectionViewDataSource {
     public func setPosterImage(_ image: UIImage?) {
         cell?.posterImageView.image = image
         cell?.retryLoadingButton.isHidden = true
+        cell?.loadingView.stopAnimating()
     }
     
     public func setLoadingErrorState() {
         cell?.posterImageView.image = nil
         cell?.retryLoadingButton.isHidden = false
+        cell?.loadingView.stopAnimating()
     }
 }
