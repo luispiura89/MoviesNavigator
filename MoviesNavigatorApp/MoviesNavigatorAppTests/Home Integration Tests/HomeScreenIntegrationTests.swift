@@ -67,6 +67,16 @@ final class HomeScreenIntegrationTests: XCTestCase {
         shouldRender(makeModels(), in: controller)
     }
     
+    func test_homeScreen_shouldRenderTVShowsAfterError() {
+        let (controller, loaderSpy) = makeSUT()
+        
+        loaderSpy.completeLoading(with: anyError(), at: 0)
+        controller.simulateUserInitiatedReload()
+        
+        loaderSpy.completeLoading(with: makeModels(), at: 1)
+        shouldRender(makeModels(), in: controller)
+    }
+    
     func test_homeScreen_removesErrorViewWhenLoadingStarts() {
         let (controller, loaderSpy) = makeSUT()
         
@@ -104,7 +114,8 @@ final class HomeScreenIntegrationTests: XCTestCase {
         XCTAssertEqual(loaderSpy.requestedURLs, [anyURL(), anyURL()], "Home Screen should request image download for second cell")
         
         loaderSpy.completeImageLoadingWithError(at: 1)
-        controller.displayCell(at: 1)
+        controller.retryImageDownloadOnCell(at: 1)
+        controller.retryImageDownloadOnCell(at: 1)
         XCTAssertEqual(loaderSpy.requestedURLs, [anyURL(), anyURL(), anyURL()], "Home Screen should request image download for second cell")
     }
     
@@ -125,6 +136,19 @@ final class HomeScreenIntegrationTests: XCTestCase {
         XCTAssertEqual(controller.imageDataOnCell(at: 1), UIImage.make(withColor: .blue).pngData(), "Should display image for second cell")
         XCTAssertFalse(controller.isShowingRetryActionOnCell(at: 1), "Should not display retry action for second cell")
         XCTAssertFalse(controller.isLoadingImage(at: 1), "Should not display loading indicator on second cell")
+    }
+    
+    func test_homeScreen_retriesFailedDownload() {
+        let (controller, loaderSpy) = makeSUT()
+        loaderSpy.completeLoading(with: makeModels(), at: 0)
+        controller.displayCell(at: 0)
+        loaderSpy.completeImageLoadingWithError(at: 0)
+
+        controller.retryImageDownloadOnCell(at: 0)
+        
+        XCTAssertTrue(controller.isLoadingImage(at: 0), "Should show load spinner on retry action")
+        XCTAssertFalse(controller.isShowingRetryActionOnCell(at: 0), "Should not show retry action after retry is executed")
+        XCTAssertEqual(loaderSpy.requestedURLs, [anyURL(), anyURL()], "Should send retry request")
     }
     
     // MARK: - Helpers

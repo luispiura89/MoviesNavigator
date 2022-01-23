@@ -42,6 +42,10 @@ extension HomeViewController {
         cell(at: index)?.loadingView.isAnimating == true
     }
     
+    func retryImageDownloadOnCell(at index: Int) {
+        cell(at: index)?.retryLoadingButton.send(event: .touchUpInside)
+    }
+    
     @discardableResult
     func displayCell(at index: Int) -> TVShowHomeCell? {
         cell(at: index)
