@@ -24,12 +24,12 @@ public final class TVShowViewAdapter: ResourceView {
     public func update(_ viewModel: ResourceViewModel<[TVShow]>) {
         let (viewModels, loaders) = makeLoadersAndModels(from: viewModel.resource)
         controller?.setCellControllers(
-            controllers: viewModels.map { viewModel in
-                guard let loader = loaders[viewModel] else {
+            controllers: viewModels.map { [weak self] viewModel in
+                guard let self = self, let url = loaders[viewModel] else {
                     return nil
                 }
                 
-                let presentationAdapter = LoadResourcePresentationAdapter<Data, HomeCellViewAdapter>(loader: { loader })
+                let presentationAdapter = LoadResourcePresentationAdapter<Data, HomeCellViewAdapter>(loader: { self.posterLoader(url).dispatchOnMainQueue() })
                 let cell = TVShowCellController(viewModel: viewModel, delegate: presentationAdapter)
                 let adapter = HomeCellViewAdapter(cell: cell)
                 presentationAdapter.presenter = LoadResourcePresenter<Data, HomeCellViewAdapter>(
@@ -42,13 +42,13 @@ public final class TVShowViewAdapter: ResourceView {
         )
     }
     
-    private func makeLoadersAndModels(from shows: [TVShow]) -> (viewModels: [TVShowViewModel], loaders: [TVShowViewModel: LoadShowPosterPublisher]) {
-        var loaders = [TVShowViewModel: LoadShowPosterPublisher]()
-        let viewModels: [TVShowViewModel] = shows.map { [weak self] model in
+    private func makeLoadersAndModels(from shows: [TVShow]) -> (viewModels: [TVShowViewModel], loaders: [TVShowViewModel: URL]) {
+        var loaders = [TVShowViewModel: URL]()
+        let viewModels: [TVShowViewModel] = shows.map { model in
             let viewModel = TVShowPresenter.map([model])
             viewModel.first.map {
                 if let url = model.posterPath {
-                    loaders[$0] = self?.posterLoader(url)
+                    loaders[$0] = url
                 }
             }
             return viewModel.first
