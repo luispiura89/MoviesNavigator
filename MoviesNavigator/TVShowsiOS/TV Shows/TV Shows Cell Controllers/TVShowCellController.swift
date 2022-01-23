@@ -44,13 +44,15 @@ public final class TVShowCellController: NSObject, UICollectionViewDataSource {
                 self?.downloadImageIfNeeded()
             }
         }
+        
         cell?.nameLabel.text = viewModel.name
         cell?.dateLabel.text = viewModel.firstAirDate
         cell?.voteAverageLabel.text = viewModel.voteAverage
         cell?.overviewLabel.text = viewModel.overview
-        state == .loading ? cell?.loadingView.startAnimating() : cell?.loadingView.stopAnimating()
-        cell?.retryLoadingButton.isHidden = state != .failed
+        state == .loading ? startLoadingAnimation() : stopLoadingAnimation()
+        state == .failed ? enableRetryAction() : disableRetryAction()
         downloadImageIfNeeded()
+        
         return cell!
     }
     
@@ -63,14 +65,30 @@ public final class TVShowCellController: NSObject, UICollectionViewDataSource {
     
     public func setLoadingErrorState() {
         cell?.posterImageView.image = nil
-        cell?.retryLoadingButton.isHidden = false
+        enableRetryAction()
         cell?.loadingView.stopAnimating()
         state = .failed
     }
     
     public func setLoadingState() {
-        cell?.loadingView.startAnimating()
+        startLoadingAnimation()
         state = .loading
+    }
+    
+    private func startLoadingAnimation() {
+        cell?.loadingView.startAnimating()
+    }
+    
+    private func stopLoadingAnimation() {
+        cell?.loadingView.stopAnimating()
+    }
+    
+    private func enableRetryAction() {
+        cell?.retryLoadingButton.isHidden = false
+    }
+    
+    private func disableRetryAction() {
+        cell?.retryLoadingButton.isHidden = true
     }
     
     private func downloadImageIfNeeded() {
