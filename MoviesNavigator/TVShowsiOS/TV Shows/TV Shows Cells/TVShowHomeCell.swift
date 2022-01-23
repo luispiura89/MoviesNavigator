@@ -11,6 +11,8 @@ public final class TVShowHomeCell: UICollectionViewCell {
     
     static var dequeueIdentifier = "TVShowTableViewCell"
     
+    var retryActionHandler: (() -> Void)?
+    
     public private(set) lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .tVShowCellTextColor
@@ -98,6 +100,7 @@ public final class TVShowHomeCell: UICollectionViewCell {
         button.isHidden = true
         button.setImage(UIImage.retryLoading, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(retryDownload), for: .touchUpInside)
         return button
     }()
     
@@ -147,5 +150,9 @@ public final class TVShowHomeCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc private func retryDownload() {
+        retryActionHandler?()
     }
 }
