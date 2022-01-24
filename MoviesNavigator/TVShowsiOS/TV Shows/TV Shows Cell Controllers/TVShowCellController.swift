@@ -10,6 +10,7 @@ import TVShows
 
 public protocol TVShowCellControllerDelegate {
     func requestImage()
+    func cancelDownload()
 }
 
 public final class TVShowCellController: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
@@ -58,6 +59,7 @@ public final class TVShowCellController: NSObject, UICollectionViewDataSource, U
     
     public func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         self.cell = nil
+        delegate?.cancelDownload()
     }
     
     public func setPosterImage(_ image: UIImage?) {

@@ -153,13 +153,25 @@ final class HomeScreenIntegrationTests: XCTestCase {
     
     func test_homeScreen_shouldNotUpdateImageAfterCellHasBenReused() {
         let (controller, loaderSpy) = makeSUT()
-        let model = makeModel(with: anyURL())
+        let model = makeModel(name: "", url: anyURL())
         loaderSpy.completeLoading(with: [model])
         
         controller.prepareForReuseCell(at: 0)
         loaderSpy.completeImageLoading(with: UIImage.make(withColor: .red).pngData()!, at: 0)
         
         XCTAssertNil(controller.imageDataOnCell(at: 0), "Should not render downloaded image for already deallocated cell")
+    }
+    
+    func test_homeScreen_shouldCancelLoadWhenCellIsNotOnScreenAnymore() {
+        let (controller, loaderSpy) = makeSUT()
+        let model0 = makeModel(name: "Show 1", url: anyURL())
+        let model1 = makeModel(name: "Show 2", url: URL(string: "https://another-url.com")!)
+        loaderSpy.completeLoading(with: [model0, model1])
+        
+        controller.prepareForReuseCell(at: 0)
+        controller.prepareForReuseCell(at: 1)
+        
+        XCTAssertEqual(loaderSpy.cancelledURLs, [model0.posterPath, model1.posterPath])
     }
     
     // MARK: - Helpers
@@ -194,10 +206,10 @@ final class HomeScreenIntegrationTests: XCTestCase {
         ]
     }
     
-    private func makeModel(with url: URL) -> TVShow {
+    private func makeModel(name: String, url: URL) -> TVShow {
         TVShow(
             id: 0,
-            name: "Another Show",
+            name: name,
             overview: "Another Overview",
             voteAverage: 6.1,
             firstAirDate: "2021-02-14",
@@ -209,6 +221,7 @@ final class HomeScreenIntegrationTests: XCTestCase {
         private var showsRequests = [PassthroughSubject<[TVShow], Error>]()
         private var imageRequests = [PassthroughSubject<Data, Error>]()
         private(set) var requestedURLs = [URL]()
+        private(set) var cancelledURLs = [URL]()
         
         func loader() -> AnyPublisher<[TVShow], Error> {
             let subject = PassthroughSubject<[TVShow], Error>()
@@ -219,7 +232,9 @@ final class HomeScreenIntegrationTests: XCTestCase {
         func imageLoader(from url: URL) -> AnyPublisher<Data, Error> {
             let subject = PassthroughSubject<Data, Error>()
             imageRequests.append(subject)
-            return subject.handleEvents(receiveRequest:  { [weak self] _ in
+            return subject.handleEvents(receiveCancel: { [weak self] in
+                self?.cancelledURLs.append(url)
+            }, receiveRequest:  { [weak self] _ in
                 self?.requestedURLs.append(url)
             }).eraseToAnyPublisher()
         }

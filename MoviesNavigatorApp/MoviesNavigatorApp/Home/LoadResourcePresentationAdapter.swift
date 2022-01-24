@@ -34,6 +34,11 @@ public final class LoadResourcePresentationAdapter<Resource, View: ResourceView>
             self?.presenter?.didFinishLoading(with: resource)
         }
     }
+    
+    private func cancel() {
+        cancellable?.cancel()
+        cancellable = nil
+    }
 }
 
 extension LoadResourcePresentationAdapter: HomeRefreshControllerDelegate {
@@ -45,5 +50,9 @@ extension LoadResourcePresentationAdapter: HomeRefreshControllerDelegate {
 extension LoadResourcePresentationAdapter: TVShowCellControllerDelegate {
     public func requestImage() {
         load()
+    }
+    
+    public func cancelDownload() {
+        cancel()
     }
 }
