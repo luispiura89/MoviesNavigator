@@ -46,6 +46,13 @@ extension HomeViewController {
         cell(at: index)?.retryLoadingButton.send(event: .touchUpInside)
     }
     
+    func prepareForReuseCell(at index: Int) {
+        guard let cell = cell(at: index) else { return }
+        let delegate = collectionView.delegate
+        let index = IndexPath(row: index, section: showsSection)
+        delegate?.collectionView?(collectionView, didEndDisplaying: cell, forItemAt: index)
+    }
+    
     @discardableResult
     func displayCell(at index: Int) -> TVShowHomeCell? {
         cell(at: index)

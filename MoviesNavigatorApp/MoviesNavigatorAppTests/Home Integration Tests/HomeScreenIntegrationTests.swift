@@ -151,6 +151,17 @@ final class HomeScreenIntegrationTests: XCTestCase {
         XCTAssertEqual(loaderSpy.requestedURLs, [anyURL(), anyURL()], "Should send retry request")
     }
     
+    func test_homeScreen_shouldNotUpdateImageAfterCellHasBenReused() {
+        let (controller, loaderSpy) = makeSUT()
+        let model = makeModel(with: anyURL())
+        loaderSpy.completeLoading(with: [model])
+        
+        controller.prepareForReuseCell(at: 0)
+        loaderSpy.completeImageLoading(with: UIImage.make(withColor: .red).pngData()!, at: 0)
+        
+        XCTAssertNil(controller.imageDataOnCell(at: 0), "Should not render downloaded image for already deallocated cell")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (HomeViewController, LoaderSpy) {
@@ -181,6 +192,16 @@ final class HomeScreenIntegrationTests: XCTestCase {
                 firstAirDate: "2021-02-14",
                 posterPath: anyURL())
         ]
+    }
+    
+    private func makeModel(with url: URL) -> TVShow {
+        TVShow(
+            id: 0,
+            name: "Another Show",
+            overview: "Another Overview",
+            voteAverage: 6.1,
+            firstAirDate: "2021-02-14",
+            posterPath: url)
     }
     
     private final class LoaderSpy {

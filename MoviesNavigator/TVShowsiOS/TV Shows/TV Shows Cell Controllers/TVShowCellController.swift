@@ -12,7 +12,7 @@ public protocol TVShowCellControllerDelegate {
     func requestImage()
 }
 
-public final class TVShowCellController: NSObject, UICollectionViewDataSource {
+public final class TVShowCellController: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
     private let viewModel: TVShowViewModel
     private var cell: TVShowHomeCell?
@@ -38,10 +38,10 @@ public final class TVShowCellController: NSObject, UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if cell == nil {
+            state = .none
             cell = (collectionView.dequeueReusableCell(withReuseIdentifier: TVShowHomeCell.dequeueIdentifier, for: indexPath) as? TVShowHomeCell)
             cell?.retryActionHandler = { [weak self] in
-                self?.state = .none
-                self?.downloadImageIfNeeded()
+                self?.retryDownload()
             }
         }
         
@@ -54,6 +54,10 @@ public final class TVShowCellController: NSObject, UICollectionViewDataSource {
         downloadImageIfNeeded()
         
         return cell!
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        self.cell = nil
     }
     
     public func setPosterImage(_ image: UIImage?) {
@@ -89,6 +93,11 @@ public final class TVShowCellController: NSObject, UICollectionViewDataSource {
     
     private func disableRetryAction() {
         cell?.retryLoadingButton.isHidden = true
+    }
+    
+    private func retryDownload() {
+        state = .none
+        delegate?.requestImage()
     }
     
     private func downloadImageIfNeeded() {
