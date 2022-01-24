@@ -95,10 +95,9 @@ public final class TVShowCellController: NSObject, UICollectionViewDataSource {
         switch state {
         case .completed(let loadedImage):
             cell?.posterImageView.image = loadedImage
-        case .none:
-            delegate?.requestImage()
+        case .failed: break
         default:
-            break
+            delegate?.requestImage()
         }
     }
 }
