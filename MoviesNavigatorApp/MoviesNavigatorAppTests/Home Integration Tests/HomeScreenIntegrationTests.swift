@@ -101,22 +101,25 @@ final class HomeScreenIntegrationTests: XCTestCase {
     
     func test_homeScreen_requestsImageDownloadWhenCellAppears() {
         let (controller, loaderSpy) = makeSUT()
+        let model0 = makeModel(name: "Show 1", url: anyURL())
+        let model1 = makeModel(name: "Show 2", url: URL(string: "https://another-url.com")!)
+        let models = [model0, model1]
         
         XCTAssertTrue(loaderSpy.requestedURLs.isEmpty, "Requested URLs should be empty until a cell appears")
-        loaderSpy.completeLoading(with: makeModels(), at: 0)
+        loaderSpy.completeLoading(with: models, at: 0)
         
         controller.displayCell(at: 0)
         controller.displayCell(at: 0)
-        XCTAssertEqual(loaderSpy.requestedURLs, [anyURL()], "Home Screen should request image download for first cell")
+        XCTAssertEqual(loaderSpy.requestedURLs, [model0.posterPath], "Home Screen should request image download for first cell")
         
         controller.displayCell(at: 1)
         controller.displayCell(at: 1)
-        XCTAssertEqual(loaderSpy.requestedURLs, [anyURL(), anyURL()], "Home Screen should request image download for second cell")
+        XCTAssertEqual(loaderSpy.requestedURLs, [model0.posterPath, model1.posterPath], "Home Screen should request image download for second cell")
         
         loaderSpy.completeImageLoadingWithError(at: 1)
         controller.retryImageDownloadOnCell(at: 1)
         controller.retryImageDownloadOnCell(at: 1)
-        XCTAssertEqual(loaderSpy.requestedURLs, [anyURL(), anyURL(), anyURL()], "Home Screen should request image download for second cell")
+        XCTAssertEqual(loaderSpy.requestedURLs, [model0.posterPath, model1.posterPath, model1.posterPath], "Home Screen should request image download for second cell")
     }
     
     func test_homeScreen_handlesPosterStatusForCells() {
@@ -140,7 +143,10 @@ final class HomeScreenIntegrationTests: XCTestCase {
     
     func test_homeScreen_retriesFailedDownload() {
         let (controller, loaderSpy) = makeSUT()
-        loaderSpy.completeLoading(with: makeModels(), at: 0)
+        let model0 = makeModel(name: "Show 1", url: anyURL())
+        let model1 = makeModel(name: "Show 2", url: URL(string: "https://another-url.com")!)
+        let models = [model0, model1]
+        loaderSpy.completeLoading(with: models, at: 0)
         controller.displayCell(at: 0)
         loaderSpy.completeImageLoadingWithError(at: 0)
 
@@ -148,7 +154,7 @@ final class HomeScreenIntegrationTests: XCTestCase {
         
         XCTAssertTrue(controller.isLoadingImage(at: 0), "Should show load spinner on retry action")
         XCTAssertFalse(controller.isShowingRetryActionOnCell(at: 0), "Should not show retry action after retry is executed")
-        XCTAssertEqual(loaderSpy.requestedURLs, [anyURL(), anyURL()], "Should send retry request")
+        XCTAssertEqual(loaderSpy.requestedURLs, [model0.posterPath, model0.posterPath], "Should send retry request")
     }
     
     func test_homeScreen_shouldNotUpdateImageAfterCellHasBenReused() {
