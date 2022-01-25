@@ -43,7 +43,7 @@ final class TVShowsSnapshotTests: XCTestCase {
     }
     
     private func content() -> [TVShowCellController] {
-        let firstCellDelegate = ImageStub(color: .blue)
+        let firstCellDelegate = ImageStub(color: .blue, expectedResult: .complete)
         let firstCell = TVShowCellController(viewModel:
                                                 TVShowViewModel(
                                                     name: "A Show",
@@ -53,15 +53,18 @@ final class TVShowsSnapshotTests: XCTestCase {
                                              delegate: firstCellDelegate)
         firstCellDelegate.controller = firstCell
         
+        
+        let secondCellDelegate = ImageStub(color: .yellow, expectedResult: .none)
         let secondCell = TVShowCellController(viewModel:
                                                 TVShowViewModel(
                                                     name: "Another Show",
                                                     overview: "Another overview with a real long text that should break the line to see if the cell changes, and add more text to see the changes",
                                                     voteAverage: "6.0",
                                                     firstAirDate: "Jan 15, 2021"),
-                                              delegate: nil)
+                                              delegate: secondCellDelegate)
+        secondCellDelegate.controller = secondCell
         
-        let thirdCellDelegate = ImageStub(color: .red)
+        let thirdCellDelegate = ImageStub(color: .red, expectedResult: .fail)
         let thirdCell = TVShowCellController(viewModel:
                                                 TVShowViewModel(
                                                     name: "Another Show with a very long title that should break the title line",
@@ -90,18 +93,32 @@ private final class ImageStub: TVShowCellControllerDelegate {
     
     var controller: TVShowCellController?
     private let color: UIColor
+    private let expectedResult: ExpectedResult
     
-    init(color: UIColor) {
+    enum ExpectedResult: Equatable {
+        case fail
+        case complete
+        case none
+    }
+    
+    init(color: UIColor, expectedResult: ExpectedResult) {
         self.color = color
+        self.expectedResult = expectedResult
     }
     
     func requestImage() {
-        if color == UIColor.red {
+        controller?.setLoadingState()
+        switch expectedResult {
+        case .fail:
             controller?.setLoadingErrorState()
-        } else {
+        case .complete:
             controller?.setPosterImage(UIImage.make(withColor: color))
+        case .none:
+            break
         }
     }
+    
+    func cancelDownload() {}
 }
 
 private extension UIImage {
