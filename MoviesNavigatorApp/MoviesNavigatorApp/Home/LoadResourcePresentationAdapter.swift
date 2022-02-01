@@ -8,16 +8,22 @@
 import Foundation
 import SharedPresentation
 import TVShowsiOS
+import TVShows
 import Combine
 
-public final class LoadResourcePresentationAdapter<Resource, View: ResourceView> {
+public final class LoadResourcePresentationAdapter<Resource, View: ResourceView, RequestMaker: LoaderMaker> {
     public var presenter: LoadResourcePresenter<Resource, View>?
     private var cancellable: AnyCancellable?
     private let loader: () -> AnyPublisher<Resource, Error>
+    private var loaderMaker: RequestMaker
     private var isLoading = false
     
-    public init(loader: @escaping () -> AnyPublisher<Resource, Error>) {
+    public init(
+        loader: @escaping () -> AnyPublisher<Resource, Error>,
+        loaderMaker: RequestMaker
+    ) {
         self.loader = loader
+        self.loaderMaker = loaderMaker
     }
     
     private func load() {
@@ -41,18 +47,41 @@ public final class LoadResourcePresentationAdapter<Resource, View: ResourceView>
     }
 }
 
-extension LoadResourcePresentationAdapter: HomeRefreshControllerDelegate {
+extension LoadResourcePresentationAdapter: HomeRefreshControllerDelegate where Resource == [TVShow] {
     public func loadShows() {
         load()
     }
 }
 
-extension LoadResourcePresentationAdapter: TVShowCellControllerDelegate {
+extension LoadResourcePresentationAdapter: TVShowCellControllerDelegate where Resource == Data {
     public func requestImage() {
         load()
     }
     
     public func cancelDownload() {
         cancel()
+    }
+}
+
+extension LoadResourcePresentationAdapter: HomeHeaderControllerDelegate
+    where Resource == [TVShow], RequestMaker.RequestType == ShowsRequest {
+    public func requestOnTVShows() {
+        loaderMaker.requestType = .onTV
+        load()
+    }
+    
+    public func requestAiringTodayShows() {
+        loaderMaker.requestType = .airingToday
+        load()
+    }
+    
+    public func requestPopularShows() {
+        loaderMaker.requestType = .popular
+        load()
+    }
+    
+    public func requestTopRatedShows() {
+        loaderMaker.requestType = .topRated
+        load()
     }
 }

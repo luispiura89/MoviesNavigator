@@ -7,16 +7,22 @@
 
 import UIKit
 
-final class HomeHeader: UICollectionReusableView {
+public final class HomeHeader: UICollectionReusableView {
     
     static var reuseIdentifier = "HomeHeader"
-    static var viewKind = "Header"
+    public static var viewKind = "Header"
     
-    lazy var selectionSegment: UISegmentedControl = {
+    var loadPopularHandler: (() -> Void)?
+    var loadTopRatedHandler: (() -> Void)?
+    var loadOnTVHandler: (() -> Void)?
+    var loadAiringTodayHandler: (() -> Void)?
+    
+    public private(set) lazy var selectionSegment: UISegmentedControl = {
         let segment = UISegmentedControl(items: ["Popular", "Top Rated", "On TV", "Airing Today"])
         segment.translatesAutoresizingMaskIntoConstraints = false
         segment.selectedSegmentTintColor = .homeSegmentBackground
         segment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .normal)
+        segment.addTarget(self, action: #selector(performSelection), for: .valueChanged)
         return segment
     }()
     
@@ -30,6 +36,19 @@ final class HomeHeader: UICollectionReusableView {
         bottomAnchor.constraint(equalTo: selectionSegment.bottomAnchor, constant: 8).isActive = true
         trailingAnchor.constraint(equalTo: selectionSegment.trailingAnchor, constant: 8).isActive = true
         backgroundColor = .clear
+    }
+    
+    @objc private func performSelection() {
+        switch selectionSegment.selectedSegmentIndex {
+        case 0:
+            loadPopularHandler?()
+        case 1:
+            loadTopRatedHandler?()
+        case 2:
+            loadOnTVHandler?()
+        default:
+            loadAiringTodayHandler?()
+        }
     }
     
     required init?(coder: NSCoder) {

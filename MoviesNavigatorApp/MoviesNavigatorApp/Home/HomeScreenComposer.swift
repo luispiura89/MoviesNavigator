@@ -15,16 +15,26 @@ import UIKit
 public typealias LoadShowsPublisher = AnyPublisher<[TVShow], Error>
 public typealias LoadShowPosterPublisher = AnyPublisher<Data, Error>
 
+public enum ShowsRequest {
+    case popular
+    case topRated
+    case onTV
+    case airingToday
+}
+
 public final class HomeScreenComposer {
 
+    typealias LoadShowsPresentationAdapter = LoadResourcePresentationAdapter<[TVShow], TVShowViewAdapter, ShowsLoaderMaker>
+    
     public static func composeWith(
-        loader: @escaping () -> LoadShowsPublisher,
+        loader: @escaping (ShowsRequest) -> LoadShowsPublisher,
         posterLoader: @escaping (URL) -> LoadShowPosterPublisher
     ) -> HomeViewController {
-        let presentationAdapter = LoadResourcePresentationAdapter<[TVShow], TVShowViewAdapter>(loader: { loader().dispatchOnMainQueue() })
+        let loaderMaker = ShowsLoaderMaker(loader: loader)
+        let presentationAdapter = LoadShowsPresentationAdapter(loader: loaderMaker.makeRequest, loaderMaker: loaderMaker)
         let loadShowsController = HomeRefreshController(delegate: presentationAdapter)
         let controller = HomeViewController(loadController: loadShowsController)
-        controller.setHeaders(headers: [HomeHeaderController()])
+        controller.setHeaders(headers: [HomeHeaderController(delegate: presentationAdapter)])
         let viewAdapter = TVShowViewAdapter(controller: controller, posterLoader: posterLoader)
         let presenter = LoadResourcePresenter<[TVShow], TVShowViewAdapter>(
             loadingView: WeakReferenceProxy(instance: loadShowsController),
@@ -35,4 +45,20 @@ public final class HomeScreenComposer {
         presentationAdapter.presenter = presenter
         return controller
     }
+}
+
+public final class ShowsLoaderMaker: LoaderMaker {
+    
+    private let loader: (ShowsRequest) -> LoadShowsPublisher
+    
+    init(loader: @escaping (ShowsRequest) -> LoadShowsPublisher) {
+        self.loader = loader
+    }
+    
+    public var requestType: ShowsRequest = .popular
+    
+    public func makeRequest() -> LoadShowsPublisher {
+        loader(requestType).dispatchOnMainQueue()
+    }
+    
 }

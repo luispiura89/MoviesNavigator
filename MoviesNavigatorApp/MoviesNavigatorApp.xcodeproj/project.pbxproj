@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD7A341527A9F3C70058D0B1 /* LoaderMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7A341427A9F3C70058D0B1 /* LoaderMaker.swift */; };
 		CD8120EE277A718D00277EF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8120ED277A718D00277EF1 /* AppDelegate.swift */; };
 		CD8120F0277A718D00277EF1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8120EF277A718D00277EF1 /* SceneDelegate.swift */; };
 		CD8120F2277A718D00277EF1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8120F1277A718D00277EF1 /* ViewController.swift */; };
@@ -68,6 +69,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CD7A341427A9F3C70058D0B1 /* LoaderMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderMaker.swift; sourceTree = "<group>"; };
 		CD7C0839277A73DE00E473BD /* SharedAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD8120EA277A718D00277EF1 /* MoviesNavigatorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesNavigatorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD8120ED277A718D00277EF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +127,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD7A341327A9F39C0058D0B1 /* RequestMaker */ = {
+			isa = PBXGroup;
+			children = (
+				CD7A341427A9F3C70058D0B1 /* LoaderMaker.swift */,
+			);
+			path = RequestMaker;
+			sourceTree = "<group>";
+		};
 		CD8120E1277A718D00277EF1 = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +159,7 @@
 		CD8120EC277A718D00277EF1 /* MoviesNavigatorApp */ = {
 			isa = PBXGroup;
 			children = (
+				CD7A341327A9F39C0058D0B1 /* RequestMaker */,
 				CDC35A952792481D007D2504 /* Home */,
 				CD8120ED277A718D00277EF1 /* AppDelegate.swift */,
 				CD8120EF277A718D00277EF1 /* SceneDelegate.swift */,
@@ -361,6 +372,7 @@
 				CD8120F0277A718D00277EF1 /* SceneDelegate.swift in Sources */,
 				CDC35A9D279249F7007D2504 /* WeakReferenceProxy.swift in Sources */,
 				CDC35A9B2792499D007D2504 /* HomeScreenComposer.swift in Sources */,
+				CD7A341527A9F3C70058D0B1 /* LoaderMaker.swift in Sources */,
 				CDC35A9927924923007D2504 /* TVShowsViewAdapter.swift in Sources */,
 				CDBBD71127A0A4DE00E9C652 /* HomeCellViewAdapter.swift in Sources */,
 			);

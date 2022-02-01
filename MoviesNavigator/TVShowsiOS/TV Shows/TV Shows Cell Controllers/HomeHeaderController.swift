@@ -7,9 +7,21 @@
 
 import UIKit
 
+public protocol HomeHeaderControllerDelegate {
+    func requestPopularShows()
+    func requestTopRatedShows()
+    func requestOnTVShows()
+    func requestAiringTodayShows()
+}
+
 public final class HomeHeaderController: NSObject, UICollectionViewDataSource {
     
     private var header: HomeHeader?
+    private var delegate: HomeHeaderControllerDelegate?
+    
+    public init(delegate: HomeHeaderControllerDelegate?) {
+        self.delegate = delegate
+    }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
@@ -22,6 +34,10 @@ public final class HomeHeaderController: NSObject, UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HomeHeader.reuseIdentifier, for: indexPath) as? HomeHeader
         header?.selectionSegment.selectedSegmentIndex = 0
+        header?.loadPopularHandler = { [weak self] in self?.delegate?.requestPopularShows() }
+        header?.loadTopRatedHandler = { [weak self] in self?.delegate?.requestTopRatedShows() }
+        header?.loadOnTVHandler = { [weak self] in self?.delegate?.requestOnTVShows() }
+        header?.loadAiringTodayHandler = { [weak self] in self?.delegate?.requestAiringTodayShows() }
         return header!
     }
 }

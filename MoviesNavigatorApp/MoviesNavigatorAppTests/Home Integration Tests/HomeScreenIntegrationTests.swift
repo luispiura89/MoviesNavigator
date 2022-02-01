@@ -18,7 +18,30 @@ final class HomeScreenIntegrationTests: XCTestCase {
         let (controller, loaderSpy) = makeSUT()
         
         loaderSpy.completeLoading(with: makeModels())
+        shouldRender(makeModels(), in: controller)
+        XCTAssertEqual(loaderSpy.requestedShowType, [.popular])
         
+        controller.selectTapOption(at: 1)
+        XCTAssertEqual(loaderSpy.requestedShowType, [.popular, .topRated])
+        let topRatedModel = makeModel(name: "Show 2", url: URL(string: "https://another-url.com")!)
+        loaderSpy.completeLoading(with: [topRatedModel], at: 1)
+        shouldRender([topRatedModel], in: controller)
+        
+        controller.selectTapOption(at: 2)
+        XCTAssertEqual(loaderSpy.requestedShowType, [.popular, .topRated, .onTV])
+        let onTVModel = makeModel(name: "Show 3", url: URL(string: "https://another-url.com")!)
+        loaderSpy.completeLoading(with: [onTVModel], at: 2)
+        shouldRender([onTVModel], in: controller)
+        
+        controller.selectTapOption(at: 3)
+        XCTAssertEqual(loaderSpy.requestedShowType, [.popular, .topRated, .onTV, .airingToday])
+        let newModel = makeModel(name: "Show 4", url: URL(string: "https://another-url.com")!)
+        loaderSpy.completeLoading(with: [newModel], at: 3)
+        shouldRender([newModel], in: controller)
+        
+        controller.selectTapOption(at: 0)
+        XCTAssertEqual(loaderSpy.requestedShowType, [.popular, .topRated, .onTV, .airingToday, .popular])
+        loaderSpy.completeLoading(with: makeModels(), at: 4)
         shouldRender(makeModels(), in: controller)
     }
     
@@ -228,9 +251,11 @@ final class HomeScreenIntegrationTests: XCTestCase {
         private var imageRequests = [PassthroughSubject<Data, Error>]()
         private(set) var requestedURLs = [URL]()
         private(set) var cancelledURLs = [URL]()
+        private(set) var requestedShowType = [ShowsRequest]()
         
-        func loader() -> AnyPublisher<[TVShow], Error> {
+        func loader(_ type: ShowsRequest) -> AnyPublisher<[TVShow], Error> {
             let subject = PassthroughSubject<[TVShow], Error>()
+            requestedShowType.append(type)
             showsRequests.append(subject)
             return subject.eraseToAnyPublisher()
         }

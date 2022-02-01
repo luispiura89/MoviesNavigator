@@ -15,6 +15,7 @@ public final class TVShowViewAdapter: ResourceView {
     
     private weak var controller: HomeViewController?
     private let posterLoader: (URL) -> LoadShowPosterPublisher
+    typealias LoadPosterPresentationAdapter = LoadResourcePresentationAdapter<Data, HomeCellViewAdapter, PosterLoaderMaker>
     
     public init(controller: HomeViewController, posterLoader: @escaping (URL) -> LoadShowPosterPublisher) {
         self.controller = controller
@@ -28,8 +29,8 @@ public final class TVShowViewAdapter: ResourceView {
                 guard let self = self, let url = loaders[viewModel] else {
                     return nil
                 }
-                
-                let presentationAdapter = LoadResourcePresentationAdapter<Data, HomeCellViewAdapter>(loader: { self.posterLoader(url).dispatchOnMainQueue() })
+                let posterLoaderMaker = PosterLoaderMaker(loader: { self.posterLoader(url).dispatchOnMainQueue() })
+                let presentationAdapter = LoadPosterPresentationAdapter(loader: posterLoaderMaker.makeRequest, loaderMaker: posterLoaderMaker)
                 let cell = TVShowCellController(viewModel: viewModel, delegate: presentationAdapter)
                 let adapter = HomeCellViewAdapter(cell: cell)
                 presentationAdapter.presenter = LoadResourcePresenter<Data, HomeCellViewAdapter>(
@@ -54,5 +55,20 @@ public final class TVShowViewAdapter: ResourceView {
             return viewModel.first
         }.compactMap { $0 }
         return (viewModels, loaders)
+    }
+}
+
+final class PosterLoaderMaker: LoaderMaker {
+    
+    var requestType: Any? = nil
+    
+    private let loader: () -> LoadShowPosterPublisher
+    
+    init(loader: @escaping () -> LoadShowPosterPublisher) {
+        self.loader = loader
+    }
+    
+    func makeRequest() -> LoadShowPosterPublisher {
+        loader().dispatchOnMainQueue()
     }
 }

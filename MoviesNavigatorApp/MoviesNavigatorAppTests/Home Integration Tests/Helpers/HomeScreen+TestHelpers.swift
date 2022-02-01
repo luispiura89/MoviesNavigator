@@ -67,6 +67,14 @@ extension HomeViewController {
         RunLoop.main.run(until: Date())
     }
     
+    func selectTapOption(at index: Int) {
+        let ds = collectionView.dataSource
+        let headerIndex = IndexPath(row: 0, section: showsSection)
+        let header = ds?.collectionView?(collectionView, viewForSupplementaryElementOfKind: HomeHeader.viewKind, at: headerIndex) as? HomeHeader
+        header?.selectionSegment.selectedSegmentIndex = index
+        header?.selectionSegment.send(event: .valueChanged)
+    }
+    
     func renderedCells() -> Int {
         let ds = collectionView.dataSource
         return ds?.collectionView(collectionView, numberOfItemsInSection: showsSection) ?? 0

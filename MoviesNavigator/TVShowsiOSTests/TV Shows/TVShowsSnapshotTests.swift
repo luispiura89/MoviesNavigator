@@ -38,7 +38,7 @@ final class TVShowsSnapshotTests: XCTestCase {
     private func makeSUT() -> HomeViewController {
         let sut = HomeViewController(loadController: HomeRefreshController(delegate: nil))
         sut.loadViewIfNeeded()
-        sut.setHeaders(headers: [HomeHeaderController()])
+        sut.setHeaders(headers: [HomeHeaderController(delegate: nil)])
         return sut
     }
     
