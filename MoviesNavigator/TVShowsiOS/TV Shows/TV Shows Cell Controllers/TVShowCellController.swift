@@ -38,14 +38,10 @@ public final class TVShowCellController: NSObject, UICollectionViewDataSource, U
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if cell == nil {
-            state = .none
-            cell = (collectionView.dequeueReusableCell(withReuseIdentifier: TVShowHomeCell.dequeueIdentifier, for: indexPath) as? TVShowHomeCell)
-            cell?.retryActionHandler = { [weak self] in
-                self?.retryDownload()
-            }
+        cell = (collectionView.dequeueReusableCell(withReuseIdentifier: TVShowHomeCell.dequeueIdentifier, for: indexPath) as? TVShowHomeCell)
+        cell?.retryActionHandler = { [weak self] in
+            self?.retryDownload()
         }
-        
         cell?.nameLabel.text = viewModel.name
         cell?.dateLabel.text = viewModel.firstAirDate
         cell?.voteAverageLabel.text = viewModel.voteAverage
