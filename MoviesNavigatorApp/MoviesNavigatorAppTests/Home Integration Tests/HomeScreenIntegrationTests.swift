@@ -51,6 +51,7 @@ final class HomeScreenIntegrationTests: XCTestCase {
         XCTAssertTrue(controller.isLoading, "Loading indicator should appear after loading")
         
         loaderSpy.completeLoading(with: makeModels(), at: 0)
+        shouldRender(makeModels(), in: controller)
         XCTAssertFalse(controller.isLoading, "Loading indicator should disappear after first request completes")
         
         controller.simulateUserInitiatedReload()
@@ -58,6 +59,16 @@ final class HomeScreenIntegrationTests: XCTestCase {
         
         loaderSpy.completeLoading(with: anyError(), at: 1)
         XCTAssertFalse(controller.isLoading, "Loading indicator should disappear after second request completes")
+        
+        controller.selectTapOption(at: 1)
+        XCTAssertTrue(controller.isLoading, "Should show loading indicator when user selects an option in the tab")
+        loaderSpy.completeLoading(with: anyError(), at: 2)
+        XCTAssertFalse(controller.isLoading, "Should not show loading after the tab action completes")
+        
+        controller.selectTapOption(at: 0)
+        XCTAssertTrue(controller.isLoading, "Should show loading indicator when user selects another option in the tab")
+        loaderSpy.completeLoading(with: anyError(), at: 3)
+        XCTAssertFalse(controller.isLoading, "Should not show loading after the second tab action completes")
     }
     
     func test_homeScreen_showsLoadingIndicatorAfterLoadingFail() {

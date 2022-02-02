@@ -55,7 +55,7 @@ public final class HomeViewController: UICollectionViewController {
     }
     
     public override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return headers.count
+        headers.count
     }
     
     public override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
