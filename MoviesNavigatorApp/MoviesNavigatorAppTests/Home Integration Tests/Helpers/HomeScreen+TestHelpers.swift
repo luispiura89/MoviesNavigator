@@ -68,6 +68,8 @@ extension HomeViewController {
     }
     
     func selectTapOption(at index: Int) {
+        _ = renderedCells()
+        cell(at: 0)
         let ds = collectionView.dataSource
         let headerIndex = IndexPath(row: 0, section: showsSection)
         let header = ds?.collectionView?(collectionView, viewForSupplementaryElementOfKind: HomeHeader.viewKind, at: headerIndex) as? HomeHeader
