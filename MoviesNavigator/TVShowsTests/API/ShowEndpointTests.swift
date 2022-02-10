@@ -22,6 +22,10 @@ final class ShowEndpointTests: XCTestCase {
         assert(endpointType: .topRated, expectedPath: ShowsEndpoint.constants.topRatedShowsPath)
     }
     
+    func test_endpoint_generatesOnTVShowsURL() {
+        assert(endpointType: .onTV, expectedPath: ShowsEndpoint.constants.onTVPath)
+    }
+    
     // MARK: - Helpers
     
     private func assert(endpointType: ShowsEndpoint, expectedPath: String) {
