@@ -13,17 +13,22 @@ public enum ShowsEndpoint {
     
     public struct Constants {
         public let apiKey = "api_key"
+        public let popularShowsPath = "popular"
+        public let topRatedShowsPath = "top_rated"
     }
     
     case popular
+    case topRated
     
     public func getURL(from baseURL: URL, withKey key: String) -> URL {
         var components = URLComponents(string: baseURL.absoluteString)
         switch self {
         case .popular:
-            components?.path.append("popular")
-            components?.queryItems = [URLQueryItem(name: Self.constants.apiKey, value: key)]
+            components?.path.append(Self.constants.popularShowsPath)
+        case .topRated:
+            components?.path.append(Self.constants.topRatedShowsPath)
         }
+        components?.queryItems = [URLQueryItem(name: Self.constants.apiKey, value: key)]
         return components?.url ?? baseURL
     }
 }

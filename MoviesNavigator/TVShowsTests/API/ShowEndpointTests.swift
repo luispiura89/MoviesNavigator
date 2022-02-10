@@ -20,7 +20,18 @@ final class ShowEndpointTests: XCTestCase {
         let url = sut.getURL(from: baseURL, withKey: apiKey)
         
         let components = URLComponents(string: url.absoluteString)
-        XCTAssertEqual(components?.path, "/3/tv/popular")
+        XCTAssertEqual(components?.path, "/3/tv/\(ShowsEndpoint.constants.popularShowsPath)")
+        XCTAssertEqual(components?.queryItems?.first?.value, apiKey)
+        XCTAssertEqual(components?.queryItems?.first?.name, ShowsEndpoint.constants.apiKey)
+    }
+    
+    func test_endpoint_generatesTopRatedShowsURL() {
+        let sut: ShowsEndpoint = .topRated
+        
+        let url = sut.getURL(from: baseURL, withKey: apiKey)
+        
+        let components = URLComponents(string: url.absoluteString)
+        XCTAssertEqual(components?.path, "/3/tv/\(ShowsEndpoint.constants.topRatedShowsPath)")
         XCTAssertEqual(components?.queryItems?.first?.value, apiKey)
         XCTAssertEqual(components?.queryItems?.first?.name, ShowsEndpoint.constants.apiKey)
     }
