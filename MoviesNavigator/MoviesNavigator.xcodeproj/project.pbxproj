@@ -29,6 +29,8 @@
 		CD845A70276BF239000881E0 /* UIColor+TVShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A6F276BF239000881E0 /* UIColor+TVShows.swift */; };
 		CD845A73276BF3E8000881E0 /* TVShowCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A72276BF3E8000881E0 /* TVShowCellController.swift */; };
 		CD845A76276BFB46000881E0 /* TVShowHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A75276BFB46000881E0 /* TVShowHomeCell.swift */; };
+		CD8C807127B5A07E005E05A2 /* ShowsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8C807027B5A07E005E05A2 /* ShowsEndpoint.swift */; };
+		CD8C807327B5A15E005E05A2 /* ShowEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8C807227B5A15E005E05A2 /* ShowEndpointTests.swift */; };
 		CD8E77A92773B371007F5A7A /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E77A82773B371007F5A7A /* HomeHeader.swift */; };
 		CD8E77AB2773BCF5007F5A7A /* HomeHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E77AA2773BCF5007F5A7A /* HomeHeaderController.swift */; };
 		CDA7FE242790F3E200FE8735 /* TV_SHOWS_LOADING_light.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA7FE232790F3E200FE8735 /* TV_SHOWS_LOADING_light.png */; };
@@ -143,6 +145,8 @@
 		CD845A6F276BF239000881E0 /* UIColor+TVShows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+TVShows.swift"; sourceTree = "<group>"; };
 		CD845A72276BF3E8000881E0 /* TVShowCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowCellController.swift; sourceTree = "<group>"; };
 		CD845A75276BFB46000881E0 /* TVShowHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowHomeCell.swift; sourceTree = "<group>"; };
+		CD8C807027B5A07E005E05A2 /* ShowsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsEndpoint.swift; sourceTree = "<group>"; };
+		CD8C807227B5A15E005E05A2 /* ShowEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEndpointTests.swift; sourceTree = "<group>"; };
 		CD8E77A82773B371007F5A7A /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		CD8E77AA2773BCF5007F5A7A /* HomeHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderController.swift; sourceTree = "<group>"; };
 		CDA7FE232790F3E200FE8735 /* TV_SHOWS_LOADING_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TV_SHOWS_LOADING_light.png; sourceTree = "<group>"; };
@@ -288,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				CD280A6D2745867B00C773C7 /* TVShowsMapperTests.swift */,
+				CD8C807227B5A15E005E05A2 /* ShowEndpointTests.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -296,6 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				CD280A702745872D00C773C7 /* TVShowsMapper.swift */,
+				CD8C807027B5A07E005E05A2 /* ShowsEndpoint.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -813,6 +819,7 @@
 				CD280A6B27445ECF00C773C7 /* TVShow.swift in Sources */,
 				CD280A712745872D00C773C7 /* TVShowsMapper.swift in Sources */,
 				CD845A3D276BC302000881E0 /* TVShowPresenter.swift in Sources */,
+				CD8C807127B5A07E005E05A2 /* ShowsEndpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -823,6 +830,7 @@
 				CD280A6E2745867B00C773C7 /* TVShowsMapperTests.swift in Sources */,
 				CD845A40276BC38F000881E0 /* TVShowPresenterTests.swift in Sources */,
 				CD845A43276BC5FE000881E0 /* TestHelpers.swift in Sources */,
+				CD8C807327B5A15E005E05A2 /* ShowEndpointTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
