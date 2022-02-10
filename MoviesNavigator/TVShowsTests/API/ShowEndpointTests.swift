@@ -26,6 +26,10 @@ final class ShowEndpointTests: XCTestCase {
         assert(endpointType: .onTV, expectedPath: ShowsEndpoint.constants.onTVPath)
     }
     
+    func test_endpoint_generatesAiringTodayShowsURL() {
+        assert(endpointType: .airingToday, expectedPath: ShowsEndpoint.constants.airingTodayPath)
+    }
+    
     // MARK: - Helpers
     
     private func assert(endpointType: ShowsEndpoint, expectedPath: String) {
