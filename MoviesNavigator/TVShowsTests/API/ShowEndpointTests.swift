@@ -15,23 +15,21 @@ final class ShowEndpointTests: XCTestCase {
     private let apiKey = "123456789"
     
     func test_endpoint_generatesPopularShowsURL() {
-        let sut: ShowsEndpoint = .popular
-        
-        let url = sut.getURL(from: baseURL, withKey: apiKey)
-        
-        let components = URLComponents(string: url.absoluteString)
-        XCTAssertEqual(components?.path, "/3/tv/\(ShowsEndpoint.constants.popularShowsPath)")
-        XCTAssertEqual(components?.queryItems?.first?.value, apiKey)
-        XCTAssertEqual(components?.queryItems?.first?.name, ShowsEndpoint.constants.apiKey)
+        assert(endpointType: .popular, expectedPath: ShowsEndpoint.constants.popularShowsPath)
     }
     
     func test_endpoint_generatesTopRatedShowsURL() {
-        let sut: ShowsEndpoint = .topRated
+        assert(endpointType: .topRated, expectedPath: ShowsEndpoint.constants.topRatedShowsPath)
+    }
+    
+    // MARK: - Helpers
+    
+    private func assert(endpointType: ShowsEndpoint, expectedPath: String) {
         
-        let url = sut.getURL(from: baseURL, withKey: apiKey)
+        let url = endpointType.getURL(from: baseURL, withKey: apiKey)
         
         let components = URLComponents(string: url.absoluteString)
-        XCTAssertEqual(components?.path, "/3/tv/\(ShowsEndpoint.constants.topRatedShowsPath)")
+        XCTAssertEqual(components?.path, "/3/tv/\(expectedPath)")
         XCTAssertEqual(components?.queryItems?.first?.value, apiKey)
         XCTAssertEqual(components?.queryItems?.first?.name, ShowsEndpoint.constants.apiKey)
     }
