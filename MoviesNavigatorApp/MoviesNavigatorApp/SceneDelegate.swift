@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import Combine
+import TVShows
+import TVShowsiOS
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -22,7 +25,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func configure() {
+        window?.rootViewController = makeRootViewController()
         window?.makeKeyAndVisible()
+    }
+    
+    private func makeRootViewController() -> HomeViewController {
+        HomeScreenComposer.composeWith(loader: makeLoadShowsRequest(), posterLoader: makeLoadPosterRequest())
+    }
+    
+    private func makeLoadShowsRequest() -> ((ShowsRequest) -> LoadShowsPublisher) {
+        { request in
+            Empty<[TVShow], Error>().eraseToAnyPublisher()
+        }
+    }
+    
+    private func makeLoadPosterRequest() -> (URL) -> LoadShowPosterPublisher {
+        { url in
+            Empty<Data, Error>().eraseToAnyPublisher()
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

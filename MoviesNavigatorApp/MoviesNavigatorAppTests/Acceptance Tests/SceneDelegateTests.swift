@@ -7,6 +7,7 @@
 
 import Foundation
 @testable import MoviesNavigatorApp
+import TVShowsiOS
 import XCTest
 
 final class SceneDelegateTests: XCTestCase {
@@ -19,6 +20,7 @@ final class SceneDelegateTests: XCTestCase {
         scene.configure()
         
         XCTAssertEqual(window.makeKeyAndVisibleCallCount, 1)
+        XCTAssertTrue(window.rootViewController is HomeViewController)
     }
     
 }
