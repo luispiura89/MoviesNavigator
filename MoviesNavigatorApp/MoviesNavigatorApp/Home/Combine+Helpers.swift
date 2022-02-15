@@ -7,6 +7,20 @@
 
 import Foundation
 import Combine
+import SharedAPI
+
+extension HTTPClient {
+    
+    typealias Publisher = AnyPublisher<(Data, HTTPURLResponse), Error>
+    
+    func getPublisher(from url: URL) -> Publisher {
+        Deferred {
+            Future { completion in
+                get(from: url, completion: completion)
+            }
+        }.eraseToAnyPublisher()
+    }
+}
 
 extension AnyPublisher {
     public func dispatchOnMainQueue() -> AnyPublisher<Output, Failure> {

@@ -25,6 +25,7 @@
 		CDBBD71127A0A4DE00E9C652 /* HomeCellViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBBD71027A0A4DE00E9C652 /* HomeCellViewAdapter.swift */; };
 		CDBE54E327BB0917000C475F /* MockWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBE54E227BB0917000C475F /* MockWindow.swift */; };
 		CDBE54E527BB09A4000C475F /* SceneDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBE54E427BB09A4000C475F /* SceneDelegateTests.swift */; };
+		CDBE54E727BB0F32000C475F /* HomeScreenAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBE54E627BB0F32000C475F /* HomeScreenAcceptanceTests.swift */; };
 		CDC35A942792427C007D2504 /* HomeScreen+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC35A932792427C007D2504 /* HomeScreen+TestHelpers.swift */; };
 		CDC35A972792488C007D2504 /* LoadResourcePresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC35A962792488C007D2504 /* LoadResourcePresentationAdapter.swift */; };
 		CDC35A9927924923007D2504 /* TVShowsViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC35A9827924923007D2504 /* TVShowsViewAdapter.swift */; };
@@ -89,6 +90,7 @@
 		CDBBD71027A0A4DE00E9C652 /* HomeCellViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCellViewAdapter.swift; sourceTree = "<group>"; };
 		CDBE54E227BB0917000C475F /* MockWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWindow.swift; sourceTree = "<group>"; };
 		CDBE54E427BB09A4000C475F /* SceneDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegateTests.swift; sourceTree = "<group>"; };
+		CDBE54E627BB0F32000C475F /* HomeScreenAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenAcceptanceTests.swift; sourceTree = "<group>"; };
 		CDC35A932792427C007D2504 /* HomeScreen+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeScreen+TestHelpers.swift"; sourceTree = "<group>"; };
 		CDC35A962792488C007D2504 /* LoadResourcePresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresentationAdapter.swift; sourceTree = "<group>"; };
 		CDC35A9827924923007D2504 /* TVShowsViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsViewAdapter.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 			children = (
 				CDBE54E127BB0879000C475F /* Helpers */,
 				CDBE54E427BB09A4000C475F /* SceneDelegateTests.swift */,
+				CDBE54E627BB0F32000C475F /* HomeScreenAcceptanceTests.swift */,
 			);
 			path = "Acceptance Tests";
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDC35A942792427C007D2504 /* HomeScreen+TestHelpers.swift in Sources */,
+				CDBE54E727BB0F32000C475F /* HomeScreenAcceptanceTests.swift in Sources */,
 				CDE1D232278F83190033918A /* HomeScreenIntegrationTests.swift in Sources */,
 				CDBE54E527BB09A4000C475F /* SceneDelegateTests.swift in Sources */,
 				CDBE54E327BB0917000C475F /* MockWindow.swift in Sources */,

@@ -9,11 +9,27 @@ import UIKit
 import Combine
 import TVShows
 import TVShowsiOS
+import SharedAPI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+    private lazy var httpClient: HTTPClient = {
+        URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
+    }()
+    
+    private lazy var rootViewController: HomeViewController = {
+        HomeScreenComposer.composeWith(loader: makeLoadShowsRequest(), posterLoader: makeLoadPosterRequest())
+    }()
+    
+    private let baseURL = URL(string: "https://api.themoviedb.org/3/tv/")!
+    private let apiKey = "5c43afd0842f0fd15d2aba1eaaf17ec7"
+    
+    convenience init(httpClient: HTTPClient) {
+        self.init()
+        self.httpClient = httpClient
+    }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -25,17 +41,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func configure() {
-        window?.rootViewController = makeRootViewController()
+        window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
     }
     
-    private func makeRootViewController() -> HomeViewController {
-        HomeScreenComposer.composeWith(loader: makeLoadShowsRequest(), posterLoader: makeLoadPosterRequest())
-    }
-    
     private func makeLoadShowsRequest() -> ((ShowsRequest) -> LoadShowsPublisher) {
-        { request in
-            Empty<[TVShow], Error>().eraseToAnyPublisher()
+        let baseURL = self.baseURL
+        let apiKey = self.apiKey
+        return { [httpClient] request in
+            let endpoint: ShowsEndpoint
+            switch request {
+            case .popular:
+                endpoint = .popular
+            case .airingToday:
+                endpoint = .airingToday
+            case .onTV:
+                endpoint = .onTV
+            case .topRated:
+                endpoint = .topRated
+            }
+            let url = endpoint.getURL(from: baseURL, withKey: apiKey)
+            return httpClient
+                .getPublisher(from: url)
+                .tryMap(TVShowsMapper.map)
+                .eraseToAnyPublisher()
         }
     }
     
