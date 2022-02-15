@@ -8,6 +8,8 @@
 import UIKit
 
 public protocol HomeHeaderControllerDelegate {
+    var selectedIndex: Int { get }
+    
     func requestPopularShows()
     func requestTopRatedShows()
     func requestOnTVShows()
@@ -33,7 +35,7 @@ public final class HomeHeaderController: NSObject, UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         header = collectionView.dequeueReusableSupplementaryView(ofKind: HomeHeader.viewKind, withReuseIdentifier: HomeHeader.reuseIdentifier, for: indexPath) as? HomeHeader
-        header?.selectionSegment.selectedSegmentIndex = 0
+        header?.selectionSegment.selectedSegmentIndex = delegate?.selectedIndex ?? 0
         header?.loadPopularHandler = { [weak self] in self?.delegate?.requestPopularShows() }
         header?.loadTopRatedHandler = { [weak self] in self?.delegate?.requestTopRatedShows() }
         header?.loadOnTVHandler = { [weak self] in self?.delegate?.requestOnTVShows() }

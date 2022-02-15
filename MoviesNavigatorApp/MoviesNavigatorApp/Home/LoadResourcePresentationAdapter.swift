@@ -64,7 +64,21 @@ extension LoadResourcePresentationAdapter: TVShowCellControllerDelegate where Re
 }
 
 extension LoadResourcePresentationAdapter: HomeHeaderControllerDelegate
-    where Resource == [TVShow], RequestMaker.RequestType == ShowsRequest {
+where Resource == [TVShow], RequestMaker.RequestType == ShowsRequest {
+    
+    public var selectedIndex: Int {
+        switch loaderMaker.requestType {
+        case .popular:
+            return 0
+        case .topRated:
+            return 1
+        case .onTV:
+            return 2
+        case .airingToday:
+            return 3
+        }
+    }
+    
     public func requestOnTVShows() {
         loaderMaker.requestType = .onTV
         load()
