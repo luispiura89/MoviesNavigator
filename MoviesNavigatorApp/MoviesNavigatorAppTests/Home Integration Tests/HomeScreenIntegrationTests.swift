@@ -20,27 +20,32 @@ final class HomeScreenIntegrationTests: XCTestCase {
         loaderSpy.completeLoading(with: makeModels())
         shouldRender(makeModels(), in: controller)
         XCTAssertEqual(loaderSpy.requestedShowType, [.popular])
+        XCTAssertEqual(controller.selectedTabOption, 0, "Should select Popular tab")
         
         controller.selectTapOption(at: 1)
         XCTAssertEqual(loaderSpy.requestedShowType, [.popular, .topRated])
+        XCTAssertEqual(controller.selectedTabOption, 1, "Should select Top Rated tab")
         let topRatedModel = makeModel(name: "Show 2", url: URL(string: "https://another-url.com")!)
         loaderSpy.completeLoading(with: [topRatedModel], at: 1)
         shouldRender([topRatedModel], in: controller)
         
         controller.selectTapOption(at: 2)
         XCTAssertEqual(loaderSpy.requestedShowType, [.popular, .topRated, .onTV])
+        XCTAssertEqual(controller.selectedTabOption, 2, "Should select OnTV tab")
         let onTVModel = makeModel(name: "Show 3", url: URL(string: "https://another-url.com")!)
         loaderSpy.completeLoading(with: [onTVModel], at: 2)
         shouldRender([onTVModel], in: controller)
         
         controller.selectTapOption(at: 3)
         XCTAssertEqual(loaderSpy.requestedShowType, [.popular, .topRated, .onTV, .airingToday])
+        XCTAssertEqual(controller.selectedTabOption, 3, "Should select Airing Today tab")
         let newModel = makeModel(name: "Show 4", url: URL(string: "https://another-url.com")!)
         loaderSpy.completeLoading(with: [newModel], at: 3)
         shouldRender([newModel], in: controller)
         
         controller.selectTapOption(at: 0)
         XCTAssertEqual(loaderSpy.requestedShowType, [.popular, .topRated, .onTV, .airingToday, .popular])
+        XCTAssertEqual(controller.selectedTabOption, 0, "Should select Popular tab")
         loaderSpy.completeLoading(with: makeModels(), at: 4)
         shouldRender(makeModels(), in: controller)
     }

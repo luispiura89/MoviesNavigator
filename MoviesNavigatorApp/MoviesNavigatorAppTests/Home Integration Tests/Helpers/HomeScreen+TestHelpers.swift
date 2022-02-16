@@ -20,6 +20,10 @@ extension HomeViewController {
         errorView.error != nil
     }
     
+    var selectedTabOption: Int? {
+        header()?.selectionSegment.selectedSegmentIndex
+    }
+    
     @discardableResult
     private func cell(at index: Int) -> TVShowHomeCell? {
         guard renderedCells() > index else { return nil }
@@ -67,12 +71,16 @@ extension HomeViewController {
         RunLoop.main.run(until: Date())
     }
     
+    private func header() -> HomeHeader? {
+        let ds = collectionView.dataSource
+        let headerIndex = IndexPath(row: 0, section: showsSection)
+        return ds?.collectionView?(collectionView, viewForSupplementaryElementOfKind: HomeHeader.viewKind, at: headerIndex) as? HomeHeader
+    }
+    
     func selectTapOption(at index: Int) {
         _ = renderedCells()
         cell(at: 0)
-        let ds = collectionView.dataSource
-        let headerIndex = IndexPath(row: 0, section: showsSection)
-        let header = ds?.collectionView?(collectionView, viewForSupplementaryElementOfKind: HomeHeader.viewKind, at: headerIndex) as? HomeHeader
+        let header = header()
         header?.selectionSegment.selectedSegmentIndex = index
         header?.selectionSegment.send(event: .valueChanged)
     }
