@@ -11,5 +11,10 @@ public protocol HTTPClient {
     typealias GetResult = Result<(Data, HTTPURLResponse), Error>
     typealias GetCompletion = (GetResult) -> Void
     
-    func get(from url: URL, completion: @escaping GetCompletion)
+    @discardableResult
+    func get(from url: URL, completion: @escaping GetCompletion) -> HTTPClientTask
+}
+
+public protocol HTTPClientTask {
+    func cancel()
 }

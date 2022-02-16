@@ -42,6 +42,10 @@ final class HomeScreenAcceptanceTests: XCTestCase {
     
     private final class StubHTTPClient: HTTPClient {
         
+        private struct StubHTTPClientTask: HTTPClientTask {
+            func cancel() {}
+        }
+        
         private var stub: (URL) -> GetResult
         
         static var online: StubHTTPClient { StubHTTPClient(stub: Self.makeSuccessfulResponse) }
@@ -50,8 +54,9 @@ final class HomeScreenAcceptanceTests: XCTestCase {
             self.stub = stub
         }
         
-        func get(from url: URL, completion: @escaping GetCompletion) {
+        func get(from url: URL, completion: @escaping GetCompletion) -> HTTPClientTask {
             completion(stub(url))
+            return StubHTTPClientTask()
         }
         
         private static func makeSuccessfulResponse(for url: URL) -> HTTPClient.GetResult {
