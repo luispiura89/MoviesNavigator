@@ -69,9 +69,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func makeLoadPosterRequest() -> ((URL) -> LoadShowPosterPublisher) {
         { [httpClient, imageBaseURL] posterPath in
-            let posterPathComponents = URLComponents(string: posterPath.absoluteString)
             var baseURLComponents = URLComponents(string: imageBaseURL.absoluteString)
-            baseURLComponents?.path.append(posterPathComponents?.path ?? "")
+            baseURLComponents?.path.append(posterPath.lastPathComponent)
             return httpClient
                 .getPublisher(from: baseURLComponents?.url ?? imageBaseURL)
                 .map { (data, response) in data }
