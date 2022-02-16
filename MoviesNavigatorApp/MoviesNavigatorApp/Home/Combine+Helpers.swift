@@ -14,11 +14,16 @@ extension HTTPClient {
     typealias Publisher = AnyPublisher<(Data, HTTPURLResponse), Error>
     
     func getPublisher(from url: URL) -> Publisher {
-        Deferred {
+        var task: HTTPClientTask?
+        return Deferred {
             Future { completion in
-                get(from: url, completion: completion)
+                task = get(from: url, completion: completion)
             }
-        }.eraseToAnyPublisher()
+        }
+        .handleEvents(receiveCancel: {
+            task?.cancel()
+        })
+        .eraseToAnyPublisher()
     }
 }
 
