@@ -48,6 +48,7 @@ public final class TVShowCellController: NSObject, UICollectionViewDataSource, U
         cell?.overviewLabel.text = viewModel.overview
         state == .loading ? startLoadingAnimation() : stopLoadingAnimation()
         state == .failed ? enableRetryAction() : disableRetryAction()
+        cell?.posterImageView.image = nil
         downloadImageIfNeeded()
         
         return cell!
