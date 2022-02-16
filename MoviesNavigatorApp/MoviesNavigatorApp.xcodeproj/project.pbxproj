@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD08165327BD62B700691C51 /* UIImage+Make.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08165227BD62B700691C51 /* UIImage+Make.swift */; };
 		CD7A341527A9F3C70058D0B1 /* LoaderMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7A341427A9F3C70058D0B1 /* LoaderMaker.swift */; };
 		CD8120EE277A718D00277EF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8120ED277A718D00277EF1 /* AppDelegate.swift */; };
 		CD8120F0277A718D00277EF1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8120EF277A718D00277EF1 /* SceneDelegate.swift */; };
@@ -70,6 +71,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CD08165227BD62B700691C51 /* UIImage+Make.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Make.swift"; sourceTree = "<group>"; };
 		CD7A341427A9F3C70058D0B1 /* LoaderMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderMaker.swift; sourceTree = "<group>"; };
 		CD7C0839277A73DE00E473BD /* SharedAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD8120EA277A718D00277EF1 /* MoviesNavigatorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesNavigatorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +131,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD08165127BD628E00691C51 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CD08165227BD62B700691C51 /* UIImage+Make.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		CD7A341327A9F39C0058D0B1 /* RequestMaker */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +185,7 @@
 		CD812103277A719100277EF1 /* MoviesNavigatorAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				CD08165127BD628E00691C51 /* Helpers */,
 				CDBE54E027BB0843000C475F /* Acceptance Tests */,
 				CDE1D230278F82F20033918A /* Home Integration Tests */,
 			);
@@ -402,6 +413,7 @@
 				CDC35A942792427C007D2504 /* HomeScreen+TestHelpers.swift in Sources */,
 				CDBE54E727BB0F32000C475F /* HomeScreenAcceptanceTests.swift in Sources */,
 				CDE1D232278F83190033918A /* HomeScreenIntegrationTests.swift in Sources */,
+				CD08165327BD62B700691C51 /* UIImage+Make.swift in Sources */,
 				CDBE54E527BB09A4000C475F /* SceneDelegateTests.swift in Sources */,
 				CDBE54E327BB0917000C475F /* MockWindow.swift in Sources */,
 			);
