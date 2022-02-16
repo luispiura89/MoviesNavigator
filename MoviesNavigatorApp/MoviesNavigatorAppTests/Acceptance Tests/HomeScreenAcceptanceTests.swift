@@ -23,11 +23,13 @@ final class HomeScreenAcceptanceTests: XCTestCase {
         XCTAssertEqual(sut.overview(at: 0), "First overview")
         XCTAssertEqual(sut.voteAverage(at: 0), "5.0")
         XCTAssertEqual(sut.firstAirDate(at: 0), "Jan 15, 2022")
+        XCTAssertEqual(sut.imageDataOnCell(at: 0), UIImage.make(withColor: .blue).pngData()!)
         
         XCTAssertEqual(sut.name(at: 1), "Second show")
         XCTAssertEqual(sut.overview(at: 1), "Second overview")
         XCTAssertEqual(sut.voteAverage(at: 1), "6.0")
         XCTAssertEqual(sut.firstAirDate(at: 1), "Jan 16, 2022")
+        XCTAssertEqual(sut.imageDataOnCell(at: 1), UIImage.make(withColor: .blue).pngData()!)
     }
     
     // MARK: - Helpers
@@ -91,7 +93,7 @@ final class HomeScreenAcceptanceTests: XCTestCase {
                 ))
             default:
                 return .success((
-                    Data(),
+                    UIImage.make(withColor: .blue).pngData()!,
                     HTTPURLResponse(
                         url: URL(string: "https://any-url.com")!,
                         statusCode: 200,

@@ -24,6 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }()
     
     private let baseURL = URL(string: "https://api.themoviedb.org/3/tv/")!
+    private let imageBaseURL = URL(string: "https://image.tmdb.org/t/p/w1280/")!
     private let apiKey = "5c43afd0842f0fd15d2aba1eaaf17ec7"
     
     convenience init(httpClient: HTTPClient) {
@@ -46,9 +47,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func makeLoadShowsRequest() -> ((ShowsRequest) -> LoadShowsPublisher) {
-        let baseURL = self.baseURL
-        let apiKey = self.apiKey
-        return { [httpClient] request in
+        return { [httpClient, baseURL, apiKey] request in
             let endpoint: ShowsEndpoint
             switch request {
             case .popular:
@@ -68,9 +67,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
     
-    private func makeLoadPosterRequest() -> (URL) -> LoadShowPosterPublisher {
-        { url in
-            Empty<Data, Error>().eraseToAnyPublisher()
+    private func makeLoadPosterRequest() -> ((URL) -> LoadShowPosterPublisher) {
+        { [httpClient, imageBaseURL] posterPath in
+            let posterPathComponents = URLComponents(string: posterPath.absoluteString)
+            var baseURLComponents = URLComponents(string: imageBaseURL.absoluteString)
+            baseURLComponents?.path.append(posterPathComponents?.path ?? "")
+            return httpClient
+                .getPublisher(from: baseURLComponents?.url ?? imageBaseURL)
+                .map { (data, response) in data }
+                .eraseToAnyPublisher()
         }
     }
 
