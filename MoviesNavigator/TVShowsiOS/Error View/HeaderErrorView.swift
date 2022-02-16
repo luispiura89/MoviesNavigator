@@ -22,7 +22,7 @@ public final class HeaderErrorView: UIButton {
         titleLabel?.numberOfLines = 0
         titleLabel?.textAlignment = .center
         addTarget(self, action: #selector(dismiss), for: .touchUpInside)
-        updateErrorMessage(error)
+        alpha = 0
     }
     
     required init?(coder: NSCoder) {
