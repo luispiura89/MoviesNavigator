@@ -15,6 +15,7 @@
 		CD8120FA277A719100277EF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8120F8277A719100277EF1 /* LaunchScreen.storyboard */; };
 		CD81210F277A719100277EF1 /* MoviesNavigatorAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81210E277A719100277EF1 /* MoviesNavigatorAppUITests.swift */; };
 		CD812111277A719100277EF1 /* MoviesNavigatorAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD812110277A719100277EF1 /* MoviesNavigatorAppUITestsLaunchTests.swift */; };
+		CD9753A227BEADCF00C69919 /* DispatchQueue+DispatchOnMainQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9753A127BEADCF00C69919 /* DispatchQueue+DispatchOnMainQueue.swift */; };
 		CDA7FE33279107E900FE8735 /* SharedAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7C0839277A73DE00E473BD /* SharedAPI.framework */; };
 		CDA7FE34279107E900FE8735 /* SharedAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD7C0839277A73DE00E473BD /* SharedAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CDA7FE36279107EB00FE8735 /* SharedPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA7FE252791053B00FE8735 /* SharedPresentation.framework */; };
@@ -88,6 +89,7 @@
 		CD81211F277A722A00277EF1 /* TVShows.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TVShows.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD812120277A722A00277EF1 /* TVShowsiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TVShowsiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD812128277A72EB00277EF1 /* SharedAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD9753A127BEADCF00C69919 /* DispatchQueue+DispatchOnMainQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+DispatchOnMainQueue.swift"; sourceTree = "<group>"; };
 		CDA7FE252791053B00FE8735 /* SharedPresentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedPresentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBBD71027A0A4DE00E9C652 /* HomeCellViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCellViewAdapter.swift; sourceTree = "<group>"; };
 		CDBE54E227BB0917000C475F /* MockWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWindow.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 		CD8120EC277A718D00277EF1 /* MoviesNavigatorApp */ = {
 			isa = PBXGroup;
 			children = (
+				CD9753A027BEADA000C69919 /* Helpers */,
 				CD7A341327A9F39C0058D0B1 /* RequestMaker */,
 				CDC35A952792481D007D2504 /* Home */,
 				CD8120ED277A718D00277EF1 /* AppDelegate.swift */,
@@ -212,6 +215,14 @@
 				CD812120277A722A00277EF1 /* TVShowsiOS.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CD9753A027BEADA000C69919 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CD9753A127BEADCF00C69919 /* DispatchQueue+DispatchOnMainQueue.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		CDBE54E027BB0843000C475F /* Acceptance Tests */ = {
@@ -395,6 +406,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDC35A972792488C007D2504 /* LoadResourcePresentationAdapter.swift in Sources */,
+				CD9753A227BEADCF00C69919 /* DispatchQueue+DispatchOnMainQueue.swift in Sources */,
 				CD8120EE277A718D00277EF1 /* AppDelegate.swift in Sources */,
 				CDD992152795F0A8004D8317 /* Combine+Helpers.swift in Sources */,
 				CD8120F0277A718D00277EF1 /* SceneDelegate.swift in Sources */,
