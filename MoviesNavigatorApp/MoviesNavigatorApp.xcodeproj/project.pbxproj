@@ -16,6 +16,8 @@
 		CD81210F277A719100277EF1 /* MoviesNavigatorAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81210E277A719100277EF1 /* MoviesNavigatorAppUITests.swift */; };
 		CD812111277A719100277EF1 /* MoviesNavigatorAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD812110277A719100277EF1 /* MoviesNavigatorAppUITestsLaunchTests.swift */; };
 		CD9753A227BEADCF00C69919 /* DispatchQueue+DispatchOnMainQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9753A127BEADCF00C69919 /* DispatchQueue+DispatchOnMainQueue.swift */; };
+		CD9753A427BEAF1F00C69919 /* PosterLoaderMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9753A327BEAF1F00C69919 /* PosterLoaderMaker.swift */; };
+		CD9753A627BEAF4300C69919 /* ShowsLoaderMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9753A527BEAF4300C69919 /* ShowsLoaderMaker.swift */; };
 		CDA7FE33279107E900FE8735 /* SharedAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7C0839277A73DE00E473BD /* SharedAPI.framework */; };
 		CDA7FE34279107E900FE8735 /* SharedAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD7C0839277A73DE00E473BD /* SharedAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CDA7FE36279107EB00FE8735 /* SharedPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA7FE252791053B00FE8735 /* SharedPresentation.framework */; };
@@ -90,6 +92,8 @@
 		CD812120277A722A00277EF1 /* TVShowsiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TVShowsiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD812128277A72EB00277EF1 /* SharedAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD9753A127BEADCF00C69919 /* DispatchQueue+DispatchOnMainQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+DispatchOnMainQueue.swift"; sourceTree = "<group>"; };
+		CD9753A327BEAF1F00C69919 /* PosterLoaderMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterLoaderMaker.swift; sourceTree = "<group>"; };
+		CD9753A527BEAF4300C69919 /* ShowsLoaderMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsLoaderMaker.swift; sourceTree = "<group>"; };
 		CDA7FE252791053B00FE8735 /* SharedPresentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedPresentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBBD71027A0A4DE00E9C652 /* HomeCellViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCellViewAdapter.swift; sourceTree = "<group>"; };
 		CDBE54E227BB0917000C475F /* MockWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWindow.swift; sourceTree = "<group>"; };
@@ -252,6 +256,8 @@
 				CDC35A9A2792499D007D2504 /* HomeScreenComposer.swift */,
 				CDC35A9C279249F7007D2504 /* WeakReferenceProxy.swift */,
 				CDBBD71027A0A4DE00E9C652 /* HomeCellViewAdapter.swift */,
+				CD9753A327BEAF1F00C69919 /* PosterLoaderMaker.swift */,
+				CD9753A527BEAF4300C69919 /* ShowsLoaderMaker.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -397,6 +403,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD9753A627BEAF4300C69919 /* ShowsLoaderMaker.swift in Sources */,
 				CDC35A972792488C007D2504 /* LoadResourcePresentationAdapter.swift in Sources */,
 				CD9753A227BEADCF00C69919 /* DispatchQueue+DispatchOnMainQueue.swift in Sources */,
 				CD8120EE277A718D00277EF1 /* AppDelegate.swift in Sources */,
@@ -406,6 +413,7 @@
 				CDC35A9B2792499D007D2504 /* HomeScreenComposer.swift in Sources */,
 				CD7A341527A9F3C70058D0B1 /* LoaderMaker.swift in Sources */,
 				CDC35A9927924923007D2504 /* TVShowsViewAdapter.swift in Sources */,
+				CD9753A427BEAF1F00C69919 /* PosterLoaderMaker.swift in Sources */,
 				CDBBD71127A0A4DE00E9C652 /* HomeCellViewAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

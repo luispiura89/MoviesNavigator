@@ -46,19 +46,3 @@ public final class HomeScreenComposer {
         return controller
     }
 }
-
-public final class ShowsLoaderMaker: LoaderMaker {
-    
-    private let loader: (ShowsRequest) -> LoadShowsPublisher
-    
-    init(loader: @escaping (ShowsRequest) -> LoadShowsPublisher) {
-        self.loader = loader
-    }
-    
-    public var requestType: ShowsRequest = .popular
-    
-    public func makeRequest() -> LoadShowsPublisher {
-        loader(requestType).dispatchOnMainQueue()
-    }
-    
-}

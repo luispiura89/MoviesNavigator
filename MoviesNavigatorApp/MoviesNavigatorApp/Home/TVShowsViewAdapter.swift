@@ -57,18 +57,3 @@ public final class TVShowViewAdapter: ResourceView {
         return (viewModels, loaders)
     }
 }
-
-final class PosterLoaderMaker: LoaderMaker {
-    
-    var requestType: Any? = nil
-    
-    private let loader: () -> LoadShowPosterPublisher
-    
-    init(loader: @escaping () -> LoadShowPosterPublisher) {
-        self.loader = loader
-    }
-    
-    func makeRequest() -> LoadShowPosterPublisher {
-        loader().dispatchOnMainQueue()
-    }
-}
