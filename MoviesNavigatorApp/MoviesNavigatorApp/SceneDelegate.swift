@@ -73,7 +73,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             baseURLComponents?.path.append(posterPath.lastPathComponent)
             return httpClient
                 .getPublisher(from: baseURLComponents?.url ?? imageBaseURL)
-                .map { (data, response) in data }
+                .tryMap(ImageDataMapper.map)
                 .eraseToAnyPublisher()
         }
     }
