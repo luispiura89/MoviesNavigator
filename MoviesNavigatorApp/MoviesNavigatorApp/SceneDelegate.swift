@@ -47,35 +47,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func makeLoadShowsRequest() -> ((ShowsRequest) -> LoadShowsPublisher) {
-        return { [httpClient, baseURL, apiKey] request in
-            let endpoint: ShowsEndpoint
-            switch request {
-            case .popular:
-                endpoint = .popular
-            case .airingToday:
-                endpoint = .airingToday
-            case .onTV:
-                endpoint = .onTV
-            case .topRated:
-                endpoint = .topRated
-            }
-            let url = endpoint.getURL(from: baseURL, withKey: apiKey)
-            return httpClient
-                .getPublisher(from: url)
-                .tryMap(TVShowsMapper.map)
-                .eraseToAnyPublisher()
-        }
+        RequestMaker.makeLoadShowsRequest(httpClient: httpClient, baseURL: baseURL, apiKey: apiKey)
     }
     
     private func makeLoadPosterRequest() -> ((URL) -> LoadShowPosterPublisher) {
-        { [httpClient, imageBaseURL] posterPath in
-            var baseURLComponents = URLComponents(string: imageBaseURL.absoluteString)
-            baseURLComponents?.path.append(posterPath.lastPathComponent)
-            return httpClient
-                .getPublisher(from: baseURLComponents?.url ?? imageBaseURL)
-                .tryMap(ImageDataMapper.map)
-                .eraseToAnyPublisher()
-        }
+        RequestMaker.makeLoadPosterRequest(httpClient: httpClient, imageBaseURL: imageBaseURL)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -21,6 +21,7 @@
 		CD9753A927BEB04400C69919 /* LoadResourcePresentatioAdapter+HomeRefreshControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9753A827BEB04400C69919 /* LoadResourcePresentatioAdapter+HomeRefreshControllerDelegate.swift */; };
 		CD9753AB27BEB08000C69919 /* LoadResourcePresentationAdapter+TVShowCellControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9753AA27BEB08000C69919 /* LoadResourcePresentationAdapter+TVShowCellControllerDelegate.swift */; };
 		CD9753AD27BEB0DB00C69919 /* LoadResourcePresentationAdapter+HomeHeaderControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9753AC27BEB0DB00C69919 /* LoadResourcePresentationAdapter+HomeHeaderControllerDelegate.swift */; };
+		CD9753AF27BEB23F00C69919 /* RequestMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9753AE27BEB23F00C69919 /* RequestMaker.swift */; };
 		CDA7FE33279107E900FE8735 /* SharedAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7C0839277A73DE00E473BD /* SharedAPI.framework */; };
 		CDA7FE34279107E900FE8735 /* SharedAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD7C0839277A73DE00E473BD /* SharedAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CDA7FE36279107EB00FE8735 /* SharedPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA7FE252791053B00FE8735 /* SharedPresentation.framework */; };
@@ -100,6 +101,7 @@
 		CD9753A827BEB04400C69919 /* LoadResourcePresentatioAdapter+HomeRefreshControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoadResourcePresentatioAdapter+HomeRefreshControllerDelegate.swift"; sourceTree = "<group>"; };
 		CD9753AA27BEB08000C69919 /* LoadResourcePresentationAdapter+TVShowCellControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoadResourcePresentationAdapter+TVShowCellControllerDelegate.swift"; sourceTree = "<group>"; };
 		CD9753AC27BEB0DB00C69919 /* LoadResourcePresentationAdapter+HomeHeaderControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoadResourcePresentationAdapter+HomeHeaderControllerDelegate.swift"; sourceTree = "<group>"; };
+		CD9753AE27BEB23F00C69919 /* RequestMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMaker.swift; sourceTree = "<group>"; };
 		CDA7FE252791053B00FE8735 /* SharedPresentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedPresentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBBD71027A0A4DE00E9C652 /* HomeCellViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCellViewAdapter.swift; sourceTree = "<group>"; };
 		CDBE54E227BB0917000C475F /* MockWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWindow.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				CD7A341427A9F3C70058D0B1 /* LoaderMaker.swift */,
 				CDD992142795F0A8004D8317 /* Combine+Helpers.swift */,
 				CD9753A127BEADCF00C69919 /* DispatchQueue+DispatchOnMainQueue.swift */,
+				CD9753AE27BEB23F00C69919 /* RequestMaker.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				CD8120EE277A718D00277EF1 /* AppDelegate.swift in Sources */,
 				CDD992152795F0A8004D8317 /* Combine+Helpers.swift in Sources */,
 				CD9753AD27BEB0DB00C69919 /* LoadResourcePresentationAdapter+HomeHeaderControllerDelegate.swift in Sources */,
+				CD9753AF27BEB23F00C69919 /* RequestMaker.swift in Sources */,
 				CD8120F0277A718D00277EF1 /* SceneDelegate.swift in Sources */,
 				CDC35A9D279249F7007D2504 /* WeakReferenceProxy.swift in Sources */,
 				CD9753AB27BEB08000C69919 /* LoadResourcePresentationAdapter+TVShowCellControllerDelegate.swift in Sources */,
