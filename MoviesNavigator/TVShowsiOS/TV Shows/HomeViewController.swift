@@ -28,7 +28,7 @@ public final class HomeViewController: UICollectionViewController {
         collectionView.refreshControl = loadShowsController?.refreshView
         view.addSubview(errorView)
         errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        errorView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        errorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         view.trailingAnchor.constraint(equalTo: errorView.trailingAnchor).isActive = true
         loadShowsController?.loadShows()
     }
