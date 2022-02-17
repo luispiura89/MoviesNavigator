@@ -17,7 +17,7 @@ public final class HeaderErrorView: UIButton {
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .red.withAlphaComponent(0.4)
+        backgroundColor = .red.withAlphaComponent(0.6)
         translatesAutoresizingMaskIntoConstraints = false
         titleLabel?.numberOfLines = 0
         titleLabel?.textAlignment = .center
