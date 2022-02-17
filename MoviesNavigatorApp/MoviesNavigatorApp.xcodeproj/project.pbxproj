@@ -141,14 +141,6 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		CD7A341327A9F39C0058D0B1 /* RequestMaker */ = {
-			isa = PBXGroup;
-			children = (
-				CD7A341427A9F3C70058D0B1 /* LoaderMaker.swift */,
-			);
-			path = RequestMaker;
-			sourceTree = "<group>";
-		};
 		CD8120E1277A718D00277EF1 = {
 			isa = PBXGroup;
 			children = (
@@ -174,7 +166,6 @@
 			isa = PBXGroup;
 			children = (
 				CD9753A027BEADA000C69919 /* Helpers */,
-				CD7A341327A9F39C0058D0B1 /* RequestMaker */,
 				CDC35A952792481D007D2504 /* Home */,
 				CD8120ED277A718D00277EF1 /* AppDelegate.swift */,
 				CD8120EF277A718D00277EF1 /* SceneDelegate.swift */,
@@ -220,6 +211,8 @@
 		CD9753A027BEADA000C69919 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				CD7A341427A9F3C70058D0B1 /* LoaderMaker.swift */,
+				CDD992142795F0A8004D8317 /* Combine+Helpers.swift */,
 				CD9753A127BEADCF00C69919 /* DispatchQueue+DispatchOnMainQueue.swift */,
 			);
 			path = Helpers;
@@ -258,7 +251,6 @@
 				CDC35A9827924923007D2504 /* TVShowsViewAdapter.swift */,
 				CDC35A9A2792499D007D2504 /* HomeScreenComposer.swift */,
 				CDC35A9C279249F7007D2504 /* WeakReferenceProxy.swift */,
-				CDD992142795F0A8004D8317 /* Combine+Helpers.swift */,
 				CDBBD71027A0A4DE00E9C652 /* HomeCellViewAdapter.swift */,
 			);
 			path = Home;
