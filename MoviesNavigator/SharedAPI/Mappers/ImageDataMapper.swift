@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 public final class ImageDataMapper {
     
@@ -13,8 +14,12 @@ public final class ImageDataMapper {
         case invalidData
     }
     
-    public static func map(_ data: Data, for response: HTTPURLResponse) throws {
-        throw Error.invalidData
+    public static func map(_ data: Data, for response: HTTPURLResponse) throws -> Data {
+        guard response.statusCode == 200, let _ = UIImage(data: data) else {
+            throw Error.invalidData
+        }
+        
+        return data
     }
     
 }

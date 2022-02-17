@@ -26,10 +26,27 @@ final class ImageDataMapperTests: XCTestCase {
         XCTAssertThrowsError(try ImageDataMapper.map(invalidImageData, for: HTTPURLResponse(code: 200)!))
     }
     
+    func test_map_shouldReturnImageDataFor200HTTPResponseAndValidImageData() {
+        let validImageData = validImageData()
+        
+        XCTAssertEqual(try ImageDataMapper.map(validImageData, for: HTTPURLResponse(code: 200)!), validImageData)
+    }
+    
     // MARK: - helpers
     
     private func anyURL() -> URL {
         URL(string: "https://any-url.com")!
+    }
+    
+    private func validImageData() -> Data {
+        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()!
+        context.setFillColor(UIColor.blue.cgColor)
+        context.fill(rect)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img!.pngData()!
     }
 }
         
