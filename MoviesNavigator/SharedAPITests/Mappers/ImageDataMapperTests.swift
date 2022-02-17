@@ -20,6 +20,12 @@ final class ImageDataMapperTests: XCTestCase {
         }
     }
     
+    func test_map_shouldThrowFor200HTTPResponseAndInvalidImageData() throws {
+        let invalidImageData = Data("any image data".utf8)
+        
+        XCTAssertThrowsError(try ImageDataMapper.map(invalidImageData, for: HTTPURLResponse(code: 200)!))
+    }
+    
     // MARK: - helpers
     
     private func anyURL() -> URL {
