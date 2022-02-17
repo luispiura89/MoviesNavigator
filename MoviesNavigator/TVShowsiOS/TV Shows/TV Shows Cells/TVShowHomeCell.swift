@@ -82,10 +82,10 @@ public final class TVShowHomeCell: UICollectionViewCell {
         imageView.addSubview(retryLoadingButton)
         imageView.addSubview(loadingView)
         
-        retryLoadingButton.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 0).isActive = true
-        retryLoadingButton.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 0).isActive = true
-        imageView.bottomAnchor.constraint(equalTo: retryLoadingButton.bottomAnchor, constant: 0).isActive = true
-        imageView.trailingAnchor.constraint(equalTo: retryLoadingButton.trailingAnchor, constant: 0).isActive = true
+        retryLoadingButton.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
+        retryLoadingButton.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
+        retryLoadingButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        retryLoadingButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
         
         loadingView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
         loadingView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
