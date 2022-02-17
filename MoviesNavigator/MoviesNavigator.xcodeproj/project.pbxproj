@@ -36,8 +36,6 @@
 		CD8E77A92773B371007F5A7A /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E77A82773B371007F5A7A /* HomeHeader.swift */; };
 		CD8E77AB2773BCF5007F5A7A /* HomeHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E77AA2773BCF5007F5A7A /* HomeHeaderController.swift */; };
 		CD9753BD27BF026100C69919 /* AuthenticationiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9753B527BF026100C69919 /* AuthenticationiOS.framework */; };
-		CD9753C227BF026100C69919 /* AuthenticationiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9753C127BF026100C69919 /* AuthenticationiOSTests.swift */; };
-		CD9753C327BF026100C69919 /* AuthenticationiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9753B727BF026100C69919 /* AuthenticationiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDA7FE242790F3E200FE8735 /* TV_SHOWS_LOADING_light.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA7FE232790F3E200FE8735 /* TV_SHOWS_LOADING_light.png */; };
 		CDA7FE3C279107FB00FE8735 /* SharedAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A772745D3C900C773C7 /* SharedAPI.framework */; };
 		CDA7FE3D279107FB00FE8735 /* SharedAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A772745D3C900C773C7 /* SharedAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -164,9 +162,7 @@
 		CD8E77A82773B371007F5A7A /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		CD8E77AA2773BCF5007F5A7A /* HomeHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderController.swift; sourceTree = "<group>"; };
 		CD9753B527BF026100C69919 /* AuthenticationiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AuthenticationiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD9753B727BF026100C69919 /* AuthenticationiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthenticationiOS.h; sourceTree = "<group>"; };
 		CD9753BC27BF026100C69919 /* AuthenticationiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticationiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD9753C127BF026100C69919 /* AuthenticationiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationiOSTests.swift; sourceTree = "<group>"; };
 		CDA7FE232790F3E200FE8735 /* TV_SHOWS_LOADING_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TV_SHOWS_LOADING_light.png; sourceTree = "<group>"; };
 		CDC35A8E2791F518007D2504 /* HeaderErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderErrorView.swift; sourceTree = "<group>"; };
 		CDC35A902792338C007D2504 /* TV_SHOWS_ERROR_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TV_SHOWS_ERROR_light.png; sourceTree = "<group>"; };
@@ -522,7 +518,6 @@
 		CD9753B627BF026100C69919 /* AuthenticationiOS */ = {
 			isa = PBXGroup;
 			children = (
-				CD9753B727BF026100C69919 /* AuthenticationiOS.h */,
 			);
 			path = AuthenticationiOS;
 			sourceTree = "<group>";
@@ -530,7 +525,6 @@
 		CD9753C027BF026100C69919 /* AuthenticationiOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				CD9753C127BF026100C69919 /* AuthenticationiOSTests.swift */,
 			);
 			path = AuthenticationiOSTests;
 			sourceTree = "<group>";
@@ -598,7 +592,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD9753C327BF026100C69919 /* AuthenticationiOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1027,7 +1020,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD9753C227BF026100C69919 /* AuthenticationiOSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
