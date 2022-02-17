@@ -35,6 +35,9 @@
 		CD8C807327B5A15E005E05A2 /* ShowEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8C807227B5A15E005E05A2 /* ShowEndpointTests.swift */; };
 		CD8E77A92773B371007F5A7A /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E77A82773B371007F5A7A /* HomeHeader.swift */; };
 		CD8E77AB2773BCF5007F5A7A /* HomeHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E77AA2773BCF5007F5A7A /* HomeHeaderController.swift */; };
+		CD9753BD27BF026100C69919 /* AuthenticationiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9753B527BF026100C69919 /* AuthenticationiOS.framework */; };
+		CD9753C227BF026100C69919 /* AuthenticationiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9753C127BF026100C69919 /* AuthenticationiOSTests.swift */; };
+		CD9753C327BF026100C69919 /* AuthenticationiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9753B727BF026100C69919 /* AuthenticationiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDA7FE242790F3E200FE8735 /* TV_SHOWS_LOADING_light.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA7FE232790F3E200FE8735 /* TV_SHOWS_LOADING_light.png */; };
 		CDA7FE3C279107FB00FE8735 /* SharedAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A772745D3C900C773C7 /* SharedAPI.framework */; };
 		CDA7FE3D279107FB00FE8735 /* SharedAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A772745D3C900C773C7 /* SharedAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -81,6 +84,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = CD845A48276BE89F000881E0;
 			remoteInfo = TVShowsiOS;
+		};
+		CD9753BE27BF026100C69919 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD280A0F27444E4A00C773C7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD9753B427BF026100C69919;
+			remoteInfo = AuthenticationiOS;
 		};
 		CDA7FE2B2791055E00FE8735 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -153,6 +163,10 @@
 		CD8C807227B5A15E005E05A2 /* ShowEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEndpointTests.swift; sourceTree = "<group>"; };
 		CD8E77A82773B371007F5A7A /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		CD8E77AA2773BCF5007F5A7A /* HomeHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderController.swift; sourceTree = "<group>"; };
+		CD9753B527BF026100C69919 /* AuthenticationiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AuthenticationiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD9753B727BF026100C69919 /* AuthenticationiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthenticationiOS.h; sourceTree = "<group>"; };
+		CD9753BC27BF026100C69919 /* AuthenticationiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticationiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD9753C127BF026100C69919 /* AuthenticationiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationiOSTests.swift; sourceTree = "<group>"; };
 		CDA7FE232790F3E200FE8735 /* TV_SHOWS_LOADING_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TV_SHOWS_LOADING_light.png; sourceTree = "<group>"; };
 		CDC35A8E2791F518007D2504 /* HeaderErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderErrorView.swift; sourceTree = "<group>"; };
 		CDC35A902792338C007D2504 /* TV_SHOWS_ERROR_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TV_SHOWS_ERROR_light.png; sourceTree = "<group>"; };
@@ -215,6 +229,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CD9753B227BF026100C69919 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD9753B927BF026100C69919 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD9753BD27BF026100C69919 /* AuthenticationiOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CDE05A7B277E3C0300CD8859 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -260,6 +289,8 @@
 				CD845A54276BE89F000881E0 /* TVShowsiOSTests */,
 				CDE05A7F277E3C0300CD8859 /* SharedPresentation */,
 				CDE05A89277E3C0300CD8859 /* SharedPresentationTests */,
+				CD9753B627BF026100C69919 /* AuthenticationiOS */,
+				CD9753C027BF026100C69919 /* AuthenticationiOSTests */,
 				CD280A1927444E4A00C773C7 /* Products */,
 				CD747801276BFCBF00043EC9 /* Frameworks */,
 			);
@@ -276,6 +307,8 @@
 				CD845A50276BE89F000881E0 /* TVShowsiOSTests.xctest */,
 				CDE05A7E277E3C0300CD8859 /* SharedPresentation.framework */,
 				CDE05A85277E3C0300CD8859 /* SharedPresentationTests.xctest */,
+				CD9753B527BF026100C69919 /* AuthenticationiOS.framework */,
+				CD9753BC27BF026100C69919 /* AuthenticationiOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -486,6 +519,22 @@
 			path = "TV Shows Cells";
 			sourceTree = "<group>";
 		};
+		CD9753B627BF026100C69919 /* AuthenticationiOS */ = {
+			isa = PBXGroup;
+			children = (
+				CD9753B727BF026100C69919 /* AuthenticationiOS.h */,
+			);
+			path = AuthenticationiOS;
+			sourceTree = "<group>";
+		};
+		CD9753C027BF026100C69919 /* AuthenticationiOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				CD9753C127BF026100C69919 /* AuthenticationiOSTests.swift */,
+			);
+			path = AuthenticationiOSTests;
+			sourceTree = "<group>";
+		};
 		CDC35A8D2791F4CD007D2504 /* Error View */ = {
 			isa = PBXGroup;
 			children = (
@@ -542,6 +591,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD9753B027BF026100C69919 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD9753C327BF026100C69919 /* AuthenticationiOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,6 +724,42 @@
 			productReference = CD845A50276BE89F000881E0 /* TVShowsiOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		CD9753B427BF026100C69919 /* AuthenticationiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD9753C827BF026100C69919 /* Build configuration list for PBXNativeTarget "AuthenticationiOS" */;
+			buildPhases = (
+				CD9753B027BF026100C69919 /* Headers */,
+				CD9753B127BF026100C69919 /* Sources */,
+				CD9753B227BF026100C69919 /* Frameworks */,
+				CD9753B327BF026100C69919 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AuthenticationiOS;
+			productName = AuthenticationiOS;
+			productReference = CD9753B527BF026100C69919 /* AuthenticationiOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CD9753BB27BF026100C69919 /* AuthenticationiOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD9753C927BF026100C69919 /* Build configuration list for PBXNativeTarget "AuthenticationiOSTests" */;
+			buildPhases = (
+				CD9753B827BF026100C69919 /* Sources */,
+				CD9753B927BF026100C69919 /* Frameworks */,
+				CD9753BA27BF026100C69919 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CD9753BF27BF026100C69919 /* PBXTargetDependency */,
+			);
+			name = AuthenticationiOSTests;
+			productName = AuthenticationiOSTests;
+			productReference = CD9753BC27BF026100C69919 /* AuthenticationiOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		CDE05A7D277E3C0300CD8859 /* SharedPresentation */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CDE05A91277E3C0300CD8859 /* Build configuration list for PBXNativeTarget "SharedPresentation" */;
@@ -735,6 +828,12 @@
 					CD845A4F276BE89F000881E0 = {
 						CreatedOnToolsVersion = 13.1;
 					};
+					CD9753B427BF026100C69919 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					CD9753BB27BF026100C69919 = {
+						CreatedOnToolsVersion = 13.1;
+					};
 					CDE05A7D277E3C0300CD8859 = {
 						CreatedOnToolsVersion = 13.1;
 						LastSwiftMigration = 1310;
@@ -766,6 +865,8 @@
 				CD845A4F276BE89F000881E0 /* TVShowsiOSTests */,
 				CDE05A7D277E3C0300CD8859 /* SharedPresentation */,
 				CDE05A84277E3C0300CD8859 /* SharedPresentationTests */,
+				CD9753B427BF026100C69919 /* AuthenticationiOS */,
+				CD9753BB27BF026100C69919 /* AuthenticationiOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -814,6 +915,20 @@
 				CDC35A912792338D007D2504 /* TV_SHOWS_ERROR_light.png in Resources */,
 				CDA7FE242790F3E200FE8735 /* TV_SHOWS_LOADING_light.png in Resources */,
 				CD845A6B276BF040000881E0 /* TV_SHOWS_WITH_CONTENT_light.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD9753B327BF026100C69919 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD9753BA27BF026100C69919 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -901,6 +1016,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CD9753B127BF026100C69919 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD9753B827BF026100C69919 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD9753C227BF026100C69919 /* AuthenticationiOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CDE05A7A277E3C0300CD8859 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -942,6 +1072,11 @@
 			isa = PBXTargetDependency;
 			target = CD845A48276BE89F000881E0 /* TVShowsiOS */;
 			targetProxy = CD845A52276BE89F000881E0 /* PBXContainerItemProxy */;
+		};
+		CD9753BF27BF026100C69919 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD9753B427BF026100C69919 /* AuthenticationiOS */;
+			targetProxy = CD9753BE27BF026100C69919 /* PBXContainerItemProxy */;
 		};
 		CDA7FE2C2791055E00FE8735 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1394,6 +1529,110 @@
 			};
 			name = Release;
 		};
+		CD9753C427BF026100C69919 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.AuthenticationiOS;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CD9753C527BF026100C69919 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.AuthenticationiOS;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CD9753C627BF026100C69919 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.AuthenticationiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CD9753C727BF026100C69919 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luispiura.AuthenticationiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		CDE05A8D277E3C0300CD8859 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1572,6 +1811,24 @@
 			buildConfigurations = (
 				CD845A5C276BE89F000881E0 /* Debug */,
 				CD845A5D276BE89F000881E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CD9753C827BF026100C69919 /* Build configuration list for PBXNativeTarget "AuthenticationiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD9753C427BF026100C69919 /* Debug */,
+				CD9753C527BF026100C69919 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CD9753C927BF026100C69919 /* Build configuration list for PBXNativeTarget "AuthenticationiOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD9753C627BF026100C69919 /* Debug */,
+				CD9753C727BF026100C69919 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
