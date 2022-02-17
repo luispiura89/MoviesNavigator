@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD08165627BDCA2400691C51 /* ImageDataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08165527BDCA2400691C51 /* ImageDataMapper.swift */; };
+		CD08165927BDCA8300691C51 /* ImageDataMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08165827BDCA8300691C51 /* ImageDataMapperTests.swift */; };
 		CD280A5C27445AA600C773C7 /* TVShows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A5427445AA600C773C7 /* TVShows.framework */; };
 		CD280A6B27445ECF00C773C7 /* TVShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD280A6A27445ECF00C773C7 /* TVShow.swift */; };
 		CD280A6E2745867B00C773C7 /* TVShowsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD280A6D2745867B00C773C7 /* TVShowsMapperTests.swift */; };
@@ -120,6 +122,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CD08165527BDCA2400691C51 /* ImageDataMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataMapper.swift; sourceTree = "<group>"; };
+		CD08165827BDCA8300691C51 /* ImageDataMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataMapperTests.swift; sourceTree = "<group>"; };
 		CD280A5427445AA600C773C7 /* TVShows.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TVShows.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD280A5B27445AA600C773C7 /* TVShowsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVShowsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD280A6A27445ECF00C773C7 /* TVShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShow.swift; sourceTree = "<group>"; };
@@ -229,6 +233,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD08165427BDCA0200691C51 /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+				CD08165527BDCA2400691C51 /* ImageDataMapper.swift */,
+			);
+			path = Mappers;
+			sourceTree = "<group>";
+		};
+		CD08165727BDCA6E00691C51 /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+				CD08165827BDCA8300691C51 /* ImageDataMapperTests.swift */,
+			);
+			path = Mappers;
+			sourceTree = "<group>";
+		};
 		CD280A0E27444E4A00C773C7 = {
 			isa = PBXGroup;
 			children = (
@@ -309,6 +329,7 @@
 		CD280A782745D3C900C773C7 /* SharedAPI */ = {
 			isa = PBXGroup;
 			children = (
+				CD08165427BDCA0200691C51 /* Mappers */,
 				CD5AE0492746B08E00CED0DE /* Infra */,
 				CD5AE0462746AEB700CED0DE /* HTTP Client */,
 			);
@@ -318,6 +339,7 @@
 		CD280A822745D3C900C773C7 /* SharedAPITests */ = {
 			isa = PBXGroup;
 			children = (
+				CD08165727BDCA6E00691C51 /* Mappers */,
 				CD5AE04A2746B0A600CED0DE /* Infra */,
 			);
 			path = SharedAPITests;
@@ -838,6 +860,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD08165627BDCA2400691C51 /* ImageDataMapper.swift in Sources */,
 				CD5AE0482746AED900CED0DE /* HTTPClient.swift in Sources */,
 				CD5AE04C2746B0C800CED0DE /* URLSessionHTTPClient.swift in Sources */,
 			);
@@ -847,6 +870,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD08165927BDCA8300691C51 /* ImageDataMapperTests.swift in Sources */,
 				CD5AE04E2746B11C00CED0DE /* URLSessionHTTPClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
