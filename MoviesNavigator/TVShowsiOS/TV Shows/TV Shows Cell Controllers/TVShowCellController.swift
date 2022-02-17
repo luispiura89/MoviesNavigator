@@ -74,6 +74,7 @@ public final class TVShowCellController: NSObject, UICollectionViewDataSource, U
     }
     
     public func setLoadingState() {
+        cell?.retryLoadingButton.isHidden = true
         startLoadingAnimation()
         state = .loading
     }

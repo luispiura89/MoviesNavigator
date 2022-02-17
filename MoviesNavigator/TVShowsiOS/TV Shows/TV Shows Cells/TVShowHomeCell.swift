@@ -91,6 +91,7 @@ public final class TVShowHomeCell: UICollectionViewCell {
         loadingView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
         loadingView.widthAnchor.constraint(equalToConstant: 50).isActive = true
         loadingView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        imageView.isUserInteractionEnabled = true
         
         return imageView
     }()
