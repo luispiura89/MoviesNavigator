@@ -21,7 +21,7 @@ extension HomeViewController {
     }
     
     var selectedTabOption: Int? {
-        header()?.selectionSegment.selectedSegmentIndex
+        header()?.headerSelectionSegment.selectedSegmentIndex
     }
     
     @discardableResult
@@ -81,8 +81,8 @@ extension HomeViewController {
         _ = renderedCells()
         cell(at: 0)
         let header = header()
-        header?.selectionSegment.selectedSegmentIndex = index
-        header?.selectionSegment.send(event: .valueChanged)
+        header?.headerSelectionSegment.selectedSegmentIndex = index
+        header?.headerSelectionSegment.send(event: .valueChanged)
     }
     
     func renderedCells() -> Int {

@@ -17,7 +17,7 @@ public final class HomeHeader: UICollectionReusableView {
     var loadOnTVHandler: (() -> Void)?
     var loadAiringTodayHandler: (() -> Void)?
     
-    public private(set) lazy var selectionSegment: UISegmentedControl = {
+    public private(set) lazy var headerSelectionSegment: UISegmentedControl = {
         let segment = UISegmentedControl(items: ["Popular", "Top Rated", "On TV", "Airing Today"])
         segment.translatesAutoresizingMaskIntoConstraints = false
         segment.selectedSegmentTintColor = .homeSegmentBackground
@@ -29,17 +29,17 @@ public final class HomeHeader: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubview(selectionSegment)
+        addSubview(headerSelectionSegment)
         
-        selectionSegment.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
-        selectionSegment.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
-        bottomAnchor.constraint(equalTo: selectionSegment.bottomAnchor, constant: 8).isActive = true
-        trailingAnchor.constraint(equalTo: selectionSegment.trailingAnchor, constant: 8).isActive = true
+        headerSelectionSegment.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
+        headerSelectionSegment.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
+        bottomAnchor.constraint(equalTo: headerSelectionSegment.bottomAnchor, constant: 8).isActive = true
+        trailingAnchor.constraint(equalTo: headerSelectionSegment.trailingAnchor, constant: 8).isActive = true
         backgroundColor = .clear
     }
     
     @objc private func performSelection() {
-        switch selectionSegment.selectedSegmentIndex {
+        switch headerSelectionSegment.selectedSegmentIndex {
         case 0:
             loadPopularHandler?()
         case 1:
