@@ -15,7 +15,7 @@ final class TVShowPresenterTests: XCTestCase {
             TVShow(
                 id: 0,
                 name: "A Show",
-                overview: "An Overview",
+                overview: "",
                 voteAverage: 5.0,
                 firstAirDate: "2021-01-13",
                 posterPath: anyURL()),
@@ -33,7 +33,7 @@ final class TVShowPresenterTests: XCTestCase {
         XCTAssertEqual(TVShowPresenter.map(models), [
             TVShowViewModel(
                 name: "A Show",
-                overview: "An Overview",
+                overview: "No provided overview",
                 voteAverage: "5.0",
                 firstAirDate: "Jan 13, 2021"),
             TVShowViewModel(
@@ -47,7 +47,7 @@ final class TVShowPresenterTests: XCTestCase {
         XCTAssertEqual(TVShowPresenter.map(models), [
             TVShowViewModel(
                 name: "A Show",
-                overview: "An Overview",
+                overview: "No provided overview",
                 voteAverage: "5.0",
                 firstAirDate: "ene 13, 2021"),
             TVShowViewModel(
