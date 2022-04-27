@@ -31,6 +31,8 @@
 		CD845A70276BF239000881E0 /* UIColor+TVShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A6F276BF239000881E0 /* UIColor+TVShows.swift */; };
 		CD845A73276BF3E8000881E0 /* TVShowCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A72276BF3E8000881E0 /* TVShowCellController.swift */; };
 		CD845A76276BFB46000881E0 /* TVShowHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A75276BFB46000881E0 /* TVShowHomeCell.swift */; };
+		CD8BE6C12819FE8200ACBA57 /* UIViewController+Snapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8BE6C02819FE8200ACBA57 /* UIViewController+Snapshots.swift */; };
+		CD8BE6C32819FEA700ACBA57 /* XCTestCase+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8BE6C22819FEA700ACBA57 /* XCTestCase+Snapshot.swift */; };
 		CD8C807127B5A07E005E05A2 /* ShowsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8C807027B5A07E005E05A2 /* ShowsEndpoint.swift */; };
 		CD8C807327B5A15E005E05A2 /* ShowEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8C807227B5A15E005E05A2 /* ShowEndpointTests.swift */; };
 		CD8E77A92773B371007F5A7A /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E77A82773B371007F5A7A /* HomeHeader.swift */; };
@@ -157,6 +159,8 @@
 		CD845A6F276BF239000881E0 /* UIColor+TVShows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+TVShows.swift"; sourceTree = "<group>"; };
 		CD845A72276BF3E8000881E0 /* TVShowCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowCellController.swift; sourceTree = "<group>"; };
 		CD845A75276BFB46000881E0 /* TVShowHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowHomeCell.swift; sourceTree = "<group>"; };
+		CD8BE6C02819FE8200ACBA57 /* UIViewController+Snapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Snapshots.swift"; sourceTree = "<group>"; };
+		CD8BE6C22819FEA700ACBA57 /* XCTestCase+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Snapshot.swift"; sourceTree = "<group>"; };
 		CD8C807027B5A07E005E05A2 /* ShowsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsEndpoint.swift; sourceTree = "<group>"; };
 		CD8C807227B5A15E005E05A2 /* ShowEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEndpointTests.swift; sourceTree = "<group>"; };
 		CD8E77A82773B371007F5A7A /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
@@ -515,6 +519,15 @@
 			path = "TV Shows Cells";
 			sourceTree = "<group>";
 		};
+		CD8BE6BF2819FE5500ACBA57 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CD8BE6C02819FE8200ACBA57 /* UIViewController+Snapshots.swift */,
+				CD8BE6C22819FEA700ACBA57 /* XCTestCase+Snapshot.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		CD9753B627BF026100C69919 /* AuthenticationiOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -525,6 +538,7 @@
 		CD9753C027BF026100C69919 /* AuthenticationiOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				CD8BE6BF2819FE5500ACBA57 /* Helpers */,
 			);
 			path = AuthenticationiOSTests;
 			sourceTree = "<group>";
@@ -826,6 +840,7 @@
 					};
 					CD9753BB27BF026100C69919 = {
 						CreatedOnToolsVersion = 13.1;
+						LastSwiftMigration = 1310;
 					};
 					CDE05A7D277E3C0300CD8859 = {
 						CreatedOnToolsVersion = 13.1;
@@ -1020,6 +1035,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD8BE6C32819FEA700ACBA57 /* XCTestCase+Snapshot.swift in Sources */,
+				CD8BE6C12819FE8200ACBA57 /* UIViewController+Snapshots.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1583,6 +1600,7 @@
 		CD9753C627BF026100C69919 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1597,6 +1615,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1605,6 +1624,7 @@
 		CD9753C727BF026100C69919 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
