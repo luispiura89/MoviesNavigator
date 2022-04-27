@@ -30,12 +30,13 @@ public final class TVShowPresenter {
             let formatter = DateFormatter()
             formatter.locale = locale
             formatter.dateFormat = "YYYY-MM-dd"
+            let overview = $0.overview.isEmpty ? "No provided overview" : $0.overview
             guard let firstAirDate = formatter.date(from: $0.firstAirDate) else {
-                return TVShowViewModel(name: $0.name, overview: $0.overview, voteAverage: "\($0.voteAverage)", firstAirDate: "")
+                return TVShowViewModel(name: $0.name, overview: overview, voteAverage: "\($0.voteAverage)", firstAirDate: "")
             }
             formatter.dateFormat = "MMM d, yyyy"
             let formattedDate = formatter.string(from: firstAirDate)
-            return TVShowViewModel(name: $0.name, overview: $0.overview, voteAverage: "\($0.voteAverage)", firstAirDate: formattedDate)
+            return TVShowViewModel(name: $0.name, overview: overview, voteAverage: "\($0.voteAverage)", firstAirDate: formattedDate)
         }
     }
     

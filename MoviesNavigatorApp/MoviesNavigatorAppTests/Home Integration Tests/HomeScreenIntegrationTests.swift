@@ -25,7 +25,7 @@ final class HomeScreenIntegrationTests: XCTestCase {
         controller.selectTapOption(at: 1)
         XCTAssertEqual(loaderSpy.requestedShowType, [.popular, .topRated])
         XCTAssertEqual(controller.selectedTabOption, 1, "Should select Top Rated tab")
-        let topRatedModel = makeModel(name: "Show 2", url: URL(string: "https://another-url.com")!)
+        let topRatedModel = makeModel(name: "Show 2", overview: "", url: URL(string: "https://another-url.com")!)
         loaderSpy.completeLoading(with: [topRatedModel], at: 1)
         shouldRender([topRatedModel], in: controller)
         
@@ -250,11 +250,11 @@ final class HomeScreenIntegrationTests: XCTestCase {
         ]
     }
     
-    private func makeModel(name: String, url: URL) -> TVShow {
+    private func makeModel(name: String, overview: String = "Another Overview", url: URL) -> TVShow {
         TVShow(
             id: 0,
             name: name,
-            overview: "Another Overview",
+            overview: overview,
             voteAverage: 6.1,
             firstAirDate: "2021-02-14",
             posterPath: url)
