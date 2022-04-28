@@ -11,8 +11,8 @@ import XCTest
 final class LoginSnapshotTests: XCTestCase {
     
     func test_login_shouldRender() {
-        record(snapshot: LoginViewController().snapshot(for: .iPhone13(style: .light)), named: "LOGIN_light")
-        record(snapshot: LoginViewController().snapshot(for: .iPhone13(style: .dark)), named: "LOGIN_dark")
+        assert(snapshot: LoginViewController().snapshot(for: .iPhone13(style: .light)), named: "LOGIN_light")
+        assert(snapshot: LoginViewController().snapshot(for: .iPhone13(style: .dark)), named: "LOGIN_dark")
     }
     
 }
