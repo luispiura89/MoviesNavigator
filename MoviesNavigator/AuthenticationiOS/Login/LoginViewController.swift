@@ -9,8 +9,12 @@ import UIKit
 
 public final class LoginViewController: UIViewController {
     
+    public private(set) var loginLoadingViewController = LoginLoadingViewController()
+    private var ui = LoginView(frame: .zero)
+    
     public override func loadView() {
-        view = LoginView(frame: .zero)
+        view = ui
+        ui.addLoadingButton(loginLoadingViewController.view)
     }
     
 }

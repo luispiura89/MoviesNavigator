@@ -9,6 +9,7 @@ import UIKit
 import Combine
 import TVShows
 import TVShowsiOS
+import AuthenticationiOS
 import SharedAPI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -19,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
     }()
     
-    private lazy var rootViewController: HomeViewController = {
+    private lazy var rootViewController: UIViewController = {
         HomeScreenComposer.composeWith(loader: makeLoadShowsRequest(), posterLoader: makeLoadPosterRequest())
     }()
     

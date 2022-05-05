@@ -17,19 +17,6 @@ final class LoginView: UIView {
         return scrollView
     }()
     
-    private lazy var loginButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.titleLabel?.font = .preferredFont(forTextStyle: .headline)
-        button.adjustsImageSizeForAccessibilityContentSizeCategory = true
-        button.setTitle("Log in", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .primaryGreen
-        button.tintColor = .white
-        button.clipsToBounds = true
-        button.layer.cornerRadius = 5
-        return button
-    }()
-    
     private lazy var userTextField: UITextField = {
         let textfield = UITextField()
         textfield.borderStyle = .roundedRect
@@ -49,7 +36,7 @@ final class LoginView: UIView {
     }()
     
     private lazy var mainStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [userTextField, passwordTextField, loginButton])
+        let stackView = UIStackView(arrangedSubviews: [userTextField, passwordTextField])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 20
@@ -77,6 +64,10 @@ final class LoginView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func addLoadingButton(_ loadingButton: UIButton) {
+        mainStackView.addArrangedSubview(loadingButton)
     }
     
 }

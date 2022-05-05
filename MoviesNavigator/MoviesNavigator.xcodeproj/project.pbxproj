@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		CD08165627BDCA2400691C51 /* ImageDataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08165527BDCA2400691C51 /* ImageDataMapper.swift */; };
 		CD08165927BDCA8300691C51 /* ImageDataMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08165827BDCA8300691C51 /* ImageDataMapperTests.swift */; };
+		CD1EE7A0282491D0009AB251 /* LoginLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1EE79F282491D0009AB251 /* LoginLoadingViewController.swift */; };
+		CD1EE7A328249984009AB251 /* LOGIN_LOADING_light.png in Resources */ = {isa = PBXBuildFile; fileRef = CD1EE7A128249983009AB251 /* LOGIN_LOADING_light.png */; };
+		CD1EE7A428249984009AB251 /* LOGIN_LOADING_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = CD1EE7A228249983009AB251 /* LOGIN_LOADING_dark.png */; };
 		CD280A5C27445AA600C773C7 /* TVShows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A5427445AA600C773C7 /* TVShows.framework */; };
 		CD280A6B27445ECF00C773C7 /* TVShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD280A6A27445ECF00C773C7 /* TVShow.swift */; };
 		CD280A6E2745867B00C773C7 /* TVShowsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD280A6D2745867B00C773C7 /* TVShowsMapperTests.swift */; };
@@ -141,6 +144,9 @@
 /* Begin PBXFileReference section */
 		CD08165527BDCA2400691C51 /* ImageDataMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataMapper.swift; sourceTree = "<group>"; };
 		CD08165827BDCA8300691C51 /* ImageDataMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataMapperTests.swift; sourceTree = "<group>"; };
+		CD1EE79F282491D0009AB251 /* LoginLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLoadingViewController.swift; sourceTree = "<group>"; };
+		CD1EE7A128249983009AB251 /* LOGIN_LOADING_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOGIN_LOADING_light.png; sourceTree = "<group>"; };
+		CD1EE7A228249983009AB251 /* LOGIN_LOADING_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOGIN_LOADING_dark.png; sourceTree = "<group>"; };
 		CD280A5427445AA600C773C7 /* TVShows.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TVShows.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD280A5B27445AA600C773C7 /* TVShowsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVShowsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD280A6A27445ECF00C773C7 /* TVShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShow.swift; sourceTree = "<group>"; };
@@ -536,6 +542,8 @@
 		CD8B7BDF281B174900B5D7AF /* snapshots */ = {
 			isa = PBXGroup;
 			children = (
+				CD1EE7A228249983009AB251 /* LOGIN_LOADING_dark.png */,
+				CD1EE7A128249983009AB251 /* LOGIN_LOADING_light.png */,
 				CD8B7BE0281B174900B5D7AF /* LOGIN_light.png */,
 				CD8B7BE1281B174900B5D7AF /* LOGIN_dark.png */,
 			);
@@ -565,6 +573,7 @@
 			children = (
 				CD8BE6C8281A04DA00ACBA57 /* LoginViewController.swift */,
 				CD8BE6CA281A071F00ACBA57 /* LoginView.swift */,
+				CD1EE79F282491D0009AB251 /* LoginLoadingViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -993,8 +1002,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD1EE7A428249984009AB251 /* LOGIN_LOADING_dark.png in Resources */,
 				CD8B7BE2281B174900B5D7AF /* LOGIN_light.png in Resources */,
 				CD8B7BE3281B174900B5D7AF /* LOGIN_dark.png in Resources */,
+				CD1EE7A328249984009AB251 /* LOGIN_LOADING_light.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1088,6 +1099,7 @@
 			files = (
 				CD8BE6D0281A0DDE00ACBA57 /* UIColor+Authentication.swift in Sources */,
 				CD8BE6CB281A071F00ACBA57 /* LoginView.swift in Sources */,
+				CD1EE7A0282491D0009AB251 /* LoginLoadingViewController.swift in Sources */,
 				CD8BE6C9281A04DA00ACBA57 /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
