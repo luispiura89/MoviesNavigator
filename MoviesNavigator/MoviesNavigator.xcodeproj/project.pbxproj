@@ -61,6 +61,7 @@
 		CDCA602B28259A01006C2871 /* HeaderErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC35A8E2791F518007D2504 /* HeaderErrorView.swift */; };
 		CDCA602C28259AD0006C2871 /* SharediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCA60152825907C006C2871 /* SharediOS.framework */; };
 		CDCA602D28259AD0006C2871 /* SharediOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDCA60152825907C006C2871 /* SharediOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CDCA60342825AF30006C2871 /* HeaderErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCA60332825AF30006C2871 /* HeaderErrorViewController.swift */; };
 		CDCED40C278CF32E006998EC /* LoadResourcePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCED40B278CF32E006998EC /* LoadResourcePresenterTests.swift */; };
 		CDCED40F278D02A0006998EC /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCED40E278D02A0006998EC /* ErrorView.swift */; };
 		CDCED411278D0303006998EC /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCED410278D0303006998EC /* LoadingView.swift */; };
@@ -212,6 +213,7 @@
 		CDCA60152825907C006C2871 /* SharediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SharediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDCA601C2825907D006C2871 /* SharediOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharediOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDCA60212825907D006C2871 /* SharediOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharediOSTests.swift; sourceTree = "<group>"; };
+		CDCA60332825AF30006C2871 /* HeaderErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderErrorViewController.swift; sourceTree = "<group>"; };
 		CDCED40B278CF32E006998EC /* LoadResourcePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresenterTests.swift; sourceTree = "<group>"; };
 		CDCED40E278D02A0006998EC /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		CDCED410278D0303006998EC /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -651,6 +653,7 @@
 			isa = PBXGroup;
 			children = (
 				CDC35A8E2791F518007D2504 /* HeaderErrorView.swift */,
+				CDCA60332825AF30006C2871 /* HeaderErrorViewController.swift */,
 			);
 			path = "Error View";
 			sourceTree = "<group>";
@@ -1248,6 +1251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDCA60342825AF30006C2871 /* HeaderErrorViewController.swift in Sources */,
 				CDCA602B28259A01006C2871 /* HeaderErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

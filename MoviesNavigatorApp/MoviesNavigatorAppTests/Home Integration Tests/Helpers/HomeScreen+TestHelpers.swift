@@ -17,7 +17,7 @@ extension HomeViewController {
     }
     
     var isShowingError: Bool {
-        errorView.error != nil
+        errorViewController.error != nil
     }
     
     var selectedTabOption: Int? {
@@ -67,7 +67,7 @@ extension HomeViewController {
     }
     
     func simulateUserDismissedErrorView() {
-        errorView.send(event: .touchUpInside)
+        errorViewController.errorView.send(event: .touchUpInside)
         RunLoop.main.run(until: Date())
     }
     
