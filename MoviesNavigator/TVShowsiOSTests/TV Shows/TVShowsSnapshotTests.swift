@@ -7,6 +7,7 @@
 
 import XCTest
 import TVShowsiOS
+import SharediOS
 import TVShows
 import SharedPresentation
 
@@ -36,7 +37,10 @@ final class TVShowsSnapshotTests: XCTestCase {
     }
     
     private func makeSUT() -> HomeViewController {
-        let sut = HomeViewController(loadController: HomeRefreshController(delegate: nil))
+        let sut = HomeViewController(
+            loadController: HomeRefreshController(delegate: nil),
+            errorViewController: HeaderErrorViewController()
+        )
         sut.loadViewIfNeeded()
         sut.setHeaders(headers: [HomeHeaderController(delegate: nil)])
         return sut
@@ -84,7 +88,7 @@ final class TVShowsSnapshotTests: XCTestCase {
 
 private extension HomeViewController {
     func renderError() {
-        update(ErrorViewModel(message: "An error occurred\nNext line"))
+        errorViewController?.update(ErrorViewModel(message: "An error occurred\nNext line"))
         loadShowsController?.isLoading = false
     }
 }

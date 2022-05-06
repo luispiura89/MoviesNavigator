@@ -14,11 +14,15 @@ public final class HomeViewController: UICollectionViewController {
     private var controllers = [TVShowCellController]()
     private var headers =  [HomeHeaderController]()
     public private(set) var loadShowsController: HomeRefreshController?
-    public private(set) var errorViewController = HeaderErrorViewController()
+    public private(set) var errorViewController: HeaderErrorViewController?
     
-    public convenience init(loadController: HomeRefreshController?) {
+    public convenience init(
+        loadController: HomeRefreshController?,
+        errorViewController: HeaderErrorViewController?
+    ) {
         self.init(collectionViewLayout: HomeViewController.makeLayout())
         self.loadShowsController = loadController
+        self.errorViewController = errorViewController
     }
     
     public override func viewDidLoad() {
@@ -27,7 +31,7 @@ public final class HomeViewController: UICollectionViewController {
         collectionView.backgroundColor = .clear
         registerCells()
         collectionView.refreshControl = loadShowsController?.refreshView
-        errorViewController.pinErrorViewOnTop(ofView: view)
+        errorViewController?.pinErrorViewOnTop(ofView: view)
         loadShowsController?.loadShows()
     }
     
@@ -44,7 +48,7 @@ public final class HomeViewController: UICollectionViewController {
     
     public func setCellControllers(controllers: [TVShowCellController]) {
         self.controllers = controllers
-        errorViewController.error = nil
+        errorViewController?.error = nil
         collectionView.reloadData()
     }
     
@@ -103,11 +107,5 @@ public final class HomeViewController: UICollectionViewController {
             
             return section
         }
-    }
-}
-
-extension HomeViewController: ErrorView {
-    public func update(_ viewModel: ErrorViewModel) {
-        errorViewController.error = viewModel.message
     }
 }

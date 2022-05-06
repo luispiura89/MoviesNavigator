@@ -9,7 +9,7 @@ import Foundation
 import SharedPresentation
 import UIKit
 
-public final class HeaderErrorViewController: NSObject {
+public final class HeaderErrorViewController: NSObject, ErrorView {
 
     public private(set) var errorView = HeaderErrorView(frame: .zero)
     
@@ -23,5 +23,9 @@ public final class HeaderErrorViewController: NSObject {
         errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         errorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         view.trailingAnchor.constraint(equalTo: errorView.trailingAnchor).isActive = true
+    }
+    
+    public func update(_ viewModel: ErrorViewModel) {
+        error = viewModel.message
     }
 }

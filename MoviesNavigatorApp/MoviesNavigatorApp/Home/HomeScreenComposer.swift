@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import TVShowsiOS
+import SharediOS
 import TVShows
 import SharedPresentation
 import UIKit
@@ -33,12 +34,13 @@ public final class HomeScreenComposer {
         let loaderMaker = ShowsLoaderMaker(loader: loader)
         let presentationAdapter = LoadShowsPresentationAdapter(loader: loaderMaker.makeRequest, loaderMaker: loaderMaker)
         let loadShowsController = HomeRefreshController(delegate: presentationAdapter)
-        let controller = HomeViewController(loadController: loadShowsController)
+        let errorViewController = HeaderErrorViewController()
+        let controller = HomeViewController(loadController: loadShowsController, errorViewController: errorViewController)
         controller.setHeaders(headers: [HomeHeaderController(delegate: presentationAdapter)])
         let viewAdapter = TVShowViewAdapter(controller: controller, posterLoader: posterLoader)
         let presenter = LoadResourcePresenter<[TVShow], TVShowViewAdapter>(
             loadingView: WeakReferenceProxy(instance: loadShowsController),
-            errorView: WeakReferenceProxy(instance: controller),
+            errorView: WeakReferenceProxy(instance: errorViewController),
             resourceView: viewAdapter,
             resourceMapper: { shows in shows }
         )
