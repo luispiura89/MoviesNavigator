@@ -62,6 +62,8 @@
 		CDCA602C28259AD0006C2871 /* SharediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCA60152825907C006C2871 /* SharediOS.framework */; };
 		CDCA602D28259AD0006C2871 /* SharediOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDCA60152825907C006C2871 /* SharediOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CDCA60342825AF30006C2871 /* HeaderErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCA60332825AF30006C2871 /* HeaderErrorViewController.swift */; };
+		CDCA60372825B4F9006C2871 /* LOGIN_ERROR_light.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCA60352825B4F8006C2871 /* LOGIN_ERROR_light.png */; };
+		CDCA60382825B4F9006C2871 /* LOGIN_ERROR_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCA60362825B4F9006C2871 /* LOGIN_ERROR_dark.png */; };
 		CDCED40C278CF32E006998EC /* LoadResourcePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCED40B278CF32E006998EC /* LoadResourcePresenterTests.swift */; };
 		CDCED40F278D02A0006998EC /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCED40E278D02A0006998EC /* ErrorView.swift */; };
 		CDCED411278D0303006998EC /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCED410278D0303006998EC /* LoadingView.swift */; };
@@ -214,6 +216,8 @@
 		CDCA601C2825907D006C2871 /* SharediOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharediOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDCA60212825907D006C2871 /* SharediOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharediOSTests.swift; sourceTree = "<group>"; };
 		CDCA60332825AF30006C2871 /* HeaderErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderErrorViewController.swift; sourceTree = "<group>"; };
+		CDCA60352825B4F8006C2871 /* LOGIN_ERROR_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOGIN_ERROR_light.png; sourceTree = "<group>"; };
+		CDCA60362825B4F9006C2871 /* LOGIN_ERROR_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOGIN_ERROR_dark.png; sourceTree = "<group>"; };
 		CDCED40B278CF32E006998EC /* LoadResourcePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresenterTests.swift; sourceTree = "<group>"; };
 		CDCED40E278D02A0006998EC /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		CDCED410278D0303006998EC /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -585,6 +589,8 @@
 		CD8B7BDF281B174900B5D7AF /* snapshots */ = {
 			isa = PBXGroup;
 			children = (
+				CDCA60362825B4F9006C2871 /* LOGIN_ERROR_dark.png */,
+				CDCA60352825B4F8006C2871 /* LOGIN_ERROR_light.png */,
 				CD1EE7A228249983009AB251 /* LOGIN_LOADING_dark.png */,
 				CD1EE7A128249983009AB251 /* LOGIN_LOADING_light.png */,
 				CD8B7BE0281B174900B5D7AF /* LOGIN_light.png */,
@@ -1122,8 +1128,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDCA60382825B4F9006C2871 /* LOGIN_ERROR_dark.png in Resources */,
 				CD1EE7A428249984009AB251 /* LOGIN_LOADING_dark.png in Resources */,
 				CD8B7BE2281B174900B5D7AF /* LOGIN_light.png in Resources */,
+				CDCA60372825B4F9006C2871 /* LOGIN_ERROR_light.png in Resources */,
 				CD8B7BE3281B174900B5D7AF /* LOGIN_dark.png in Resources */,
 				CD1EE7A328249984009AB251 /* LOGIN_LOADING_light.png in Resources */,
 			);

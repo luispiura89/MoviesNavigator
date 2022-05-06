@@ -6,6 +6,7 @@
 //
 
 import AuthenticationiOS
+import SharedPresentation
 import XCTest
 
 final class LoginSnapshotTests: XCTestCase {
@@ -26,6 +27,15 @@ final class LoginSnapshotTests: XCTestCase {
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "LOGIN_LOADING_dark")
     }
     
+    func test_login_shouldRenderError() {
+        let sut = makeSUT()
+
+        sut.renderError()
+        
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "LOGIN_ERROR_light")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "LOGIN_ERROR_dark")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> LoginViewController {
@@ -39,6 +49,10 @@ private extension LoginViewController {
     
     func startLoading() {
         loginLoadingViewController.isLoading = true
+    }
+    
+    func renderError() {
+        update(ErrorViewModel(message: "This is a\nlong error"))
     }
     
 }
