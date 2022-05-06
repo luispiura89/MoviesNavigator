@@ -55,11 +55,12 @@
 		CDA7FE40279107FD00FE8735 /* SharedPresentation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDE05A7E277E3C0300CD8859 /* SharedPresentation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CDA7FE41279107FE00FE8735 /* TVShows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A5427445AA600C773C7 /* TVShows.framework */; };
 		CDA7FE42279107FE00FE8735 /* TVShows.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A5427445AA600C773C7 /* TVShows.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CDC35A8F2791F518007D2504 /* HeaderErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC35A8E2791F518007D2504 /* HeaderErrorView.swift */; };
 		CDC35A912792338D007D2504 /* TV_SHOWS_ERROR_light.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC35A902792338C007D2504 /* TV_SHOWS_ERROR_light.png */; };
 		CDCA601D2825907D006C2871 /* SharediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCA60152825907C006C2871 /* SharediOS.framework */; };
 		CDCA60222825907D006C2871 /* SharediOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCA60212825907D006C2871 /* SharediOSTests.swift */; };
-		CDCA60232825907D006C2871 /* SharediOS.h in Headers */ = {isa = PBXBuildFile; fileRef = CDCA60172825907D006C2871 /* SharediOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CDCA602B28259A01006C2871 /* HeaderErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC35A8E2791F518007D2504 /* HeaderErrorView.swift */; };
+		CDCA602C28259AD0006C2871 /* SharediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCA60152825907C006C2871 /* SharediOS.framework */; };
+		CDCA602D28259AD0006C2871 /* SharediOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDCA60152825907C006C2871 /* SharediOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CDCED40C278CF32E006998EC /* LoadResourcePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCED40B278CF32E006998EC /* LoadResourcePresenterTests.swift */; };
 		CDCED40F278D02A0006998EC /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCED40E278D02A0006998EC /* ErrorView.swift */; };
 		CDCED411278D0303006998EC /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCED410278D0303006998EC /* LoadingView.swift */; };
@@ -126,6 +127,13 @@
 			remoteGlobalIDString = CDCA60142825907C006C2871;
 			remoteInfo = SharediOS;
 		};
+		CDCA602E28259AD0006C2871 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD280A0F27444E4A00C773C7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CDCA60142825907C006C2871;
+			remoteInfo = SharediOS;
+		};
 		CDE05A87277E3C0300CD8859 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CD280A0F27444E4A00C773C7 /* Project object */;
@@ -143,6 +151,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				CDA7FE3D279107FB00FE8735 /* SharedAPI.framework in Embed Frameworks */,
+				CDCA602D28259AD0006C2871 /* SharediOS.framework in Embed Frameworks */,
 				CDA7FE40279107FD00FE8735 /* SharedPresentation.framework in Embed Frameworks */,
 				CDA7FE42279107FE00FE8735 /* TVShows.framework in Embed Frameworks */,
 			);
@@ -201,7 +210,6 @@
 		CDC35A8E2791F518007D2504 /* HeaderErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderErrorView.swift; sourceTree = "<group>"; };
 		CDC35A902792338C007D2504 /* TV_SHOWS_ERROR_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TV_SHOWS_ERROR_light.png; sourceTree = "<group>"; };
 		CDCA60152825907C006C2871 /* SharediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SharediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CDCA60172825907D006C2871 /* SharediOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharediOS.h; sourceTree = "<group>"; };
 		CDCA601C2825907D006C2871 /* SharediOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharediOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDCA60212825907D006C2871 /* SharediOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharediOSTests.swift; sourceTree = "<group>"; };
 		CDCED40B278CF32E006998EC /* LoadResourcePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresenterTests.swift; sourceTree = "<group>"; };
@@ -250,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDA7FE3C279107FB00FE8735 /* SharedAPI.framework in Frameworks */,
+				CDCA602C28259AD0006C2871 /* SharediOS.framework in Frameworks */,
 				CDA7FE3F279107FD00FE8735 /* SharedPresentation.framework in Frameworks */,
 				CDA7FE41279107FE00FE8735 /* TVShows.framework in Frameworks */,
 			);
@@ -489,7 +498,6 @@
 		CD845A4A276BE89F000881E0 /* TVShowsiOS */ = {
 			isa = PBXGroup;
 			children = (
-				CDC35A8D2791F4CD007D2504 /* Error View */,
 				CD845A63276BEDB6000881E0 /* TV Shows */,
 			);
 			path = TVShowsiOS;
@@ -650,7 +658,7 @@
 		CDCA60162825907D006C2871 /* SharediOS */ = {
 			isa = PBXGroup;
 			children = (
-				CDCA60172825907D006C2871 /* SharediOS.h */,
+				CDCA602A28259995006C2871 /* Views */,
 			);
 			path = SharediOS;
 			sourceTree = "<group>";
@@ -661,6 +669,14 @@
 				CDCA60212825907D006C2871 /* SharediOSTests.swift */,
 			);
 			path = SharediOSTests;
+			sourceTree = "<group>";
+		};
+		CDCA602A28259995006C2871 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CDC35A8D2791F4CD007D2504 /* Error View */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		CDCED40D278D0285006998EC /* Load Resource Presenter */ = {
@@ -725,7 +741,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDCA60232825907D006C2871 /* SharediOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -827,6 +842,7 @@
 				CD747805276BFCBF00043EC9 /* PBXTargetDependency */,
 				CDA7FE2C2791055E00FE8735 /* PBXTargetDependency */,
 				CDA7FE312791059900FE8735 /* PBXTargetDependency */,
+				CDCA602F28259AD0006C2871 /* PBXTargetDependency */,
 			);
 			name = TVShowsiOS;
 			productName = TVShowsiOS;
@@ -1190,7 +1206,6 @@
 				CD8E77AB2773BCF5007F5A7A /* HomeHeaderController.swift in Sources */,
 				CD845A73276BF3E8000881E0 /* TVShowCellController.swift in Sources */,
 				CD845A76276BFB46000881E0 /* TVShowHomeCell.swift in Sources */,
-				CDC35A8F2791F518007D2504 /* HeaderErrorView.swift in Sources */,
 				CD8120E0277A6C1A00277EF1 /* UIImage+TVShows.swift in Sources */,
 				CD845A65276BEDD2000881E0 /* HomeViewController.swift in Sources */,
 				CD8E77A92773B371007F5A7A /* HomeHeader.swift in Sources */,
@@ -1233,6 +1248,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDCA602B28259A01006C2871 /* HeaderErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1305,6 +1321,11 @@
 			isa = PBXTargetDependency;
 			target = CDCA60142825907C006C2871 /* SharediOS */;
 			targetProxy = CDCA601E2825907D006C2871 /* PBXContainerItemProxy */;
+		};
+		CDCA602F28259AD0006C2871 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CDCA60142825907C006C2871 /* SharediOS */;
+			targetProxy = CDCA602E28259AD0006C2871 /* PBXContainerItemProxy */;
 		};
 		CDE05A88277E3C0300CD8859 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1923,6 +1944,7 @@
 		CDCA60262825907D006C2871 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1946,6 +1968,7 @@
 		CDCA60272825907D006C2871 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;

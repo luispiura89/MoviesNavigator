@@ -7,6 +7,7 @@
 
 import UIKit
 import SharedPresentation
+import SharediOS
 
 public final class HomeViewController: UICollectionViewController {
     

@@ -39,6 +39,8 @@
 		CDC35A9927924923007D2504 /* TVShowsViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC35A9827924923007D2504 /* TVShowsViewAdapter.swift */; };
 		CDC35A9B2792499D007D2504 /* HomeScreenComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC35A9A2792499D007D2504 /* HomeScreenComposer.swift */; };
 		CDC35A9D279249F7007D2504 /* WeakReferenceProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC35A9C279249F7007D2504 /* WeakReferenceProxy.swift */; };
+		CDCA603128259AE8006C2871 /* SharediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCA603028259AE8006C2871 /* SharediOS.framework */; };
+		CDCA603228259AE8006C2871 /* SharediOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDCA603028259AE8006C2871 /* SharediOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CDD992152795F0A8004D8317 /* Combine+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD992142795F0A8004D8317 /* Combine+Helpers.swift */; };
 		CDE1D232278F83190033918A /* HomeScreenIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE1D231278F83190033918A /* HomeScreenIntegrationTests.swift */; };
 /* End PBXBuildFile section */
@@ -69,6 +71,7 @@
 			files = (
 				CDA7FE34279107E900FE8735 /* SharedAPI.framework in Embed Frameworks */,
 				CDA7FE3B279107EF00FE8735 /* TVShowsiOS.framework in Embed Frameworks */,
+				CDCA603228259AE8006C2871 /* SharediOS.framework in Embed Frameworks */,
 				CDA7FE37279107EB00FE8735 /* SharedPresentation.framework in Embed Frameworks */,
 				CDA7FE39279107ED00FE8735 /* TVShows.framework in Embed Frameworks */,
 			);
@@ -112,6 +115,7 @@
 		CDC35A9827924923007D2504 /* TVShowsViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsViewAdapter.swift; sourceTree = "<group>"; };
 		CDC35A9A2792499D007D2504 /* HomeScreenComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenComposer.swift; sourceTree = "<group>"; };
 		CDC35A9C279249F7007D2504 /* WeakReferenceProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakReferenceProxy.swift; sourceTree = "<group>"; };
+		CDCA603028259AE8006C2871 /* SharediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDD992142795F0A8004D8317 /* Combine+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+Helpers.swift"; sourceTree = "<group>"; };
 		CDE1D231278F83190033918A /* HomeScreenIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenIntegrationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,6 +127,7 @@
 			files = (
 				CDA7FE33279107E900FE8735 /* SharedAPI.framework in Frameworks */,
 				CDA7FE3A279107EF00FE8735 /* TVShowsiOS.framework in Frameworks */,
+				CDCA603128259AE8006C2871 /* SharediOS.framework in Frameworks */,
 				CDA7FE36279107EB00FE8735 /* SharedPresentation.framework in Frameworks */,
 				CDA7FE38279107ED00FE8735 /* TVShows.framework in Frameworks */,
 			);
@@ -211,6 +216,7 @@
 		CD81211D277A722A00277EF1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CDCA603028259AE8006C2871 /* SharediOS.framework */,
 				CDA7FE252791053B00FE8735 /* SharedPresentation.framework */,
 				CD7C0839277A73DE00E473BD /* SharedAPI.framework */,
 				CD812128277A72EB00277EF1 /* SharedAPI.framework */,
