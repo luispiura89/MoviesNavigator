@@ -50,6 +50,16 @@
                ReferencedContainer = "container:MoviesNavigatorApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CD812109277A719100277EF1"
+               BuildableName = "MoviesNavigatorAppUITests.xctest"
+               BlueprintName = "MoviesNavigatorAppUITests"
+               ReferencedContainer = "container:MoviesNavigatorApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
