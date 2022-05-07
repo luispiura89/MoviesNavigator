@@ -60,6 +60,10 @@ final class HomeScreenAcceptanceTests: XCTestCase {
             completion(stub(url))
             return StubHTTPClientTask()
         }
+
+        func post(from url: URL, params: BodyParams, completion: @escaping PostCompletion) -> HTTPClientTask {
+            StubHTTPClientTask()
+        }
         
         private static func makeSuccessfulResponse(for url: URL) -> HTTPClient.GetResult {
             let urlComponents = URLComponents(string: url.absoluteString)

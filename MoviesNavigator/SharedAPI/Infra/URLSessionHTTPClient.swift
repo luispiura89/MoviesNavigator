@@ -10,6 +10,7 @@ import Foundation
 final public class URLSessionHTTPClient: HTTPClient {
     
     private let session: URLSession
+    private typealias DataTaskCompletion = (Data?, URLResponse?, Error?) -> Void
     
     public init(session: URLSession) {
         self.session = session
@@ -18,19 +19,9 @@ final public class URLSessionHTTPClient: HTTPClient {
     private struct UnexpectedValuesError: Error {}
     
     public func get(from url: URL, completion: @escaping GetCompletion) -> HTTPClientTask {
-        let task = session.dataTask(with: url) { data, response, error in
-            completion(Result {
-                if let error = error {
-                    throw error
-                } else if let data = data, let urlResponse = response as? HTTPURLResponse  {
-                    return (data, urlResponse)
-                } else {
-                    throw UnexpectedValuesError()
-                }
-            })
+        return taskFor(request: URLRequest(url: url)) {
+            completion(Self.resultFor(data: $0, response: $1, error: $2))
         }
-        task.resume()
-        return URLSessionTaskWrapper(task: task)
     }
     
     public func post(from url: URL, params: BodyParams, completion: @escaping PostCompletion) -> HTTPClientTask {
@@ -39,19 +30,29 @@ final public class URLSessionHTTPClient: HTTPClient {
         request.httpBody = try? JSONSerialization.data(withJSONObject: params)
         request.addValue(.applicationJSON, forHTTPHeaderField: .contentType)
         
+        return taskFor(request: request) {
+            completion(Self.resultFor(data: $0, response: $1, error: $2))
+        }
+    }
+    
+    private func taskFor(request: URLRequest, completion: @escaping DataTaskCompletion) -> URLSessionTaskWrapper {
         let task = session.dataTask(with: request) { data, response, error in
-            completion(Result {
-                if let error = error {
-                    throw error
-                } else if let data = data, let urlResponse = response as? HTTPURLResponse  {
-                    return (data, urlResponse)
-                } else {
-                    throw UnexpectedValuesError()
-                }
-            })
+            completion(data, response, error)
         }
         task.resume()
         return URLSessionTaskWrapper(task: task)
+    }
+    
+    private static func resultFor(data: Data?, response: URLResponse?, error: Error?) -> GetResult {
+        Result {
+            if let error = error {
+                throw error
+            } else if let data = data, let urlResponse = response as? HTTPURLResponse  {
+                return (data, urlResponse)
+            } else {
+                throw UnexpectedValuesError()
+            }
+        }
     }
 }
 
