@@ -53,15 +53,36 @@ final class URLSessionHTTPClientTests: XCTestCase {
             method = request?.httpMethod
         }
         
-        let exp = expectation(description: "Wait for load")
-        sut.get(from: anyURL()) { _ in
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 1.0)
+        _ = resultFor(sut)
         
         XCTAssertEqual(url, anyURL())
         XCTAssertEqual(method, "GET")
+    }
+    
+    func test_post_sendsRequestToProvidedURL() {
+        let sut = makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: nil, response: nil))
+        var url: URL?
+        var method: String?
+        var contentHeader: String?
+        var bodyParams: [String: Any]?
+        URLProtocolStub.observeRequest = { request in
+            url = request?.url
+            method = request?.httpMethod
+            contentHeader = request?.value(forHTTPHeaderField: .contentType)
+            if let httpBody = request?.httpBodyStream?.toData(),
+               let json = try? JSONSerialization.jsonObject(with: httpBody, options: .fragmentsAllowed),
+               let dict = json as? [String: Any] {
+                bodyParams = dict
+            }
+        }
+        
+        _ = resultFor(sut, request: .post)
+        
+        XCTAssertEqual(url, anyURL())
+        XCTAssertEqual(method, "POST")
+        XCTAssertEqual(contentHeader, .applicationJSON)
+        XCTAssertEqual(bodyParams?["key1"] as? String, "val1")
+        XCTAssertEqual(bodyParams?["key2"] as? String, "val2")
     }
     
     // MARK: - Helpers
@@ -88,7 +109,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
     }
     
     @discardableResult
-    func errorResult(for sut: HTTPClient, file: StaticString = #filePath, line: UInt = #line) -> Error? {
+    func errorResult(for sut: HTTPClient, request: Request = .get, file: StaticString = #filePath, line: UInt = #line) -> Error? {
         let receivedResult = resultFor(sut)
         
         switch receivedResult {
@@ -100,17 +121,30 @@ final class URLSessionHTTPClientTests: XCTestCase {
         }
     }
     
-    private func resultFor(_ sut: HTTPClient) -> HTTPClient.GetResult {
+    private func resultFor(_ sut: HTTPClient, request: Request = .get) -> HTTPClient.GetResult {
         var receivedResult: HTTPClient.GetResult!
-        let exp = expectation(description: "Wait for get request")
+        let exp = expectation(description: "Wait for request")
         
-        sut.get(from: anyURL()) { result in
-            receivedResult = result
-            exp.fulfill()
+        switch request {
+        case .get:
+            sut.get(from: anyURL()) { result in
+                receivedResult = result
+                exp.fulfill()
+            }
+        case .post:
+            sut.post(from: anyURL(), params: ["key1": "val1", "key2": "val2"]) { result in
+                receivedResult = result
+                exp.fulfill()
+            }
         }
         
         wait(for: [exp], timeout: 1.0)
         return receivedResult
+    }
+    
+    enum Request {
+        case get
+        case post
     }
     
     private func anyNSError() -> NSError {
@@ -187,5 +221,26 @@ final class URLSessionHTTPClientTests: XCTestCase {
         }
         
         override func stopLoading() {}
+    }
+}
+
+private extension String {
+    static let contentType = "Content-Type"
+    static let applicationJSON = "application/json"
+}
+
+extension InputStream {
+    func toData() -> Data {
+        var data = Data()
+        open()
+        let bufferSize = 1024
+        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: bufferSize)
+        while hasBytesAvailable {
+            let read = read(buffer, maxLength: bufferSize)
+            data.append(buffer, count: read)
+        }
+        buffer.deallocate()
+        close()
+        return data
     }
 }

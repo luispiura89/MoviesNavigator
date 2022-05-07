@@ -32,6 +32,27 @@ final public class URLSessionHTTPClient: HTTPClient {
         task.resume()
         return URLSessionTaskWrapper(task: task)
     }
+    
+    public func post(from url: URL, params: BodyParams, completion: @escaping PostCompletion) -> HTTPClientTask {
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params)
+        request.addValue(.applicationJSON, forHTTPHeaderField: .contentType)
+        
+        let task = session.dataTask(with: request) { data, response, error in
+            completion(Result {
+                if let error = error {
+                    throw error
+                } else if let data = data, let urlResponse = response as? HTTPURLResponse  {
+                    return (data, urlResponse)
+                } else {
+                    throw UnexpectedValuesError()
+                }
+            })
+        }
+        task.resume()
+        return URLSessionTaskWrapper(task: task)
+    }
 }
 
 final public class URLSessionTaskWrapper: HTTPClientTask {
@@ -45,5 +66,9 @@ final public class URLSessionTaskWrapper: HTTPClientTask {
     public func cancel() {
         task.cancel()
     }
-    
+}
+
+private extension String {
+    static let contentType = "Content-Type"
+    static let applicationJSON = "application/json"
 }
