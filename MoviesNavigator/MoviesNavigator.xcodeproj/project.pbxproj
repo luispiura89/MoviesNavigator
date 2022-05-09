@@ -72,8 +72,8 @@
 		CDE05A86277E3C0300CD8859 /* SharedPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE05A7E277E3C0300CD8859 /* SharedPresentation.framework */; };
 		CDE1D234278FAC750033918A /* HomeRefreshController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE1D233278FAC750033918A /* HomeRefreshController.swift */; };
 		CDEBD2F22829C4CE0096733D /* Authentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDEBD2EA2829C4CD0096733D /* Authentication.framework */; };
-		CDEBD2F72829C4CE0096733D /* AuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEBD2F62829C4CE0096733D /* AuthenticationTests.swift */; };
 		CDEBD2F82829C4CE0096733D /* Authentication.h in Headers */ = {isa = PBXBuildFile; fileRef = CDEBD2EC2829C4CD0096733D /* Authentication.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CDEBD3002829CCB40096733D /* GetNewTokenMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEBD2FF2829CCB40096733D /* GetNewTokenMapperTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -239,7 +239,7 @@
 		CDEBD2EA2829C4CD0096733D /* Authentication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Authentication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDEBD2EC2829C4CD0096733D /* Authentication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Authentication.h; sourceTree = "<group>"; };
 		CDEBD2F12829C4CE0096733D /* AuthenticationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CDEBD2F62829C4CE0096733D /* AuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTests.swift; sourceTree = "<group>"; };
+		CDEBD2FF2829CCB40096733D /* GetNewTokenMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNewTokenMapperTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -759,9 +759,17 @@
 		CDEBD2F52829C4CE0096733D /* AuthenticationTests */ = {
 			isa = PBXGroup;
 			children = (
-				CDEBD2F62829C4CE0096733D /* AuthenticationTests.swift */,
+				CDEBD3012829CCBB0096733D /* API */,
 			);
 			path = AuthenticationTests;
+			sourceTree = "<group>";
+		};
+		CDEBD3012829CCBB0096733D /* API */ = {
+			isa = PBXGroup;
+			children = (
+				CDEBD2FF2829CCB40096733D /* GetNewTokenMapperTests.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1136,6 +1144,7 @@
 					};
 					CDEBD2F02829C4CE0096733D = {
 						CreatedOnToolsVersion = 13.1;
+						LastSwiftMigration = 1310;
 					};
 				};
 			};
@@ -1417,7 +1426,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDEBD2F72829C4CE0096733D /* AuthenticationTests.swift in Sources */,
+				CDEBD3002829CCB40096733D /* GetNewTokenMapperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2315,6 +2324,7 @@
 		CDEBD2FB2829C4CE0096733D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2329,6 +2339,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2337,6 +2348,7 @@
 		CDEBD2FC2829C4CE0096733D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
