@@ -77,6 +77,114 @@ final class URLSessionHTTPClientTests: XCTestCase {
         XCTAssertEqual(result?.response.url, anyHTTPURLResponse().url)
     }
     
+    func test_post_shouldDeliverErrorForAllInvalidCases() {
+        XCTAssertNotNil(
+            errorResult(
+                for: makeSUT(
+                    with: URLProtocolStub.Stub(
+                        error: nil,
+                        data: nil,
+                        response: nil)
+                ),
+                request: .post
+            )
+        )
+        XCTAssertNotNil(
+            errorResult(
+                for: makeSUT(
+                    with: URLProtocolStub.Stub(
+                        error: nil,
+                        data: anyData(),
+                        response: nil)
+                ),
+                request: .post
+            )
+        )
+        XCTAssertNotNil(
+            errorResult(
+                for: makeSUT(
+                    with: URLProtocolStub.Stub(
+                        error: nil,
+                        data: nil,
+                        response: anyNonHTTPURLResponse()
+                    )
+                ),
+                request: .post
+            )
+        )
+        XCTAssertNotNil(
+            errorResult(
+                for: makeSUT(
+                    with: URLProtocolStub.Stub(
+                        error: nil,
+                        data: anyData(),
+                        response: anyNonHTTPURLResponse()
+                    )
+                ),
+                request: .post
+            )
+        )
+        XCTAssertNotNil(
+            errorResult(
+                for: makeSUT(
+                    with: URLProtocolStub.Stub(
+                        error: anyNSError(),
+                        data: anyData(),
+                        response: nil)
+                ),
+                request: .post
+            )
+        )
+        XCTAssertNotNil(
+            errorResult(
+                for: makeSUT(
+                    with: URLProtocolStub.Stub(
+                        error: anyNSError(),
+                        data: nil,
+                        response: anyHTTPURLResponse()
+                    )
+                ),
+                request: .post
+            )
+        )
+        XCTAssertNotNil(
+            errorResult(
+                for: makeSUT(
+                    with: URLProtocolStub.Stub(
+                        error: anyNSError(),
+                        data: nil,
+                        response: anyNonHTTPURLResponse()
+                    )
+                ),
+                request: .post
+            )
+        )
+        XCTAssertNotNil(
+            errorResult(
+                for: makeSUT(
+                    with: URLProtocolStub.Stub(
+                        error: anyNSError(),
+                        data: anyData(),
+                        response: anyNonHTTPURLResponse()
+                    )
+                ),
+                request: .post)
+        )
+        XCTAssertNotNil(
+            errorResult(
+                for: makeSUT(
+                    with:
+                        URLProtocolStub.Stub(
+                            error: anyNSError(),
+                            data: anyData(),
+                            response: anyHTTPURLResponse()
+                        )
+                ),
+                request: .post
+            )
+        )
+    }
+    
     func test_post_sendsRequestToProvidedURL() {
         let sut = makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: nil, response: nil))
         var url: URL?
