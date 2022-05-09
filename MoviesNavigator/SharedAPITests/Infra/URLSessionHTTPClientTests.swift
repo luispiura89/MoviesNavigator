@@ -270,8 +270,8 @@ final class URLSessionHTTPClientTests: XCTestCase {
         }
     }
     
-    private func resultFor(_ sut: HTTPClient, request: Request = .get) -> HTTPClient.GetResult {
-        var receivedResult: HTTPClient.GetResult!
+    private func resultFor(_ sut: HTTPClient, request: Request = .get) -> HTTPClient.HTTPRequestResult {
+        var receivedResult: HTTPClient.HTTPRequestResult!
         let exp = expectation(description: "Wait for request")
         
         switch request {

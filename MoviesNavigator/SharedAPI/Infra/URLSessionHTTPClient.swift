@@ -18,13 +18,13 @@ final public class URLSessionHTTPClient: HTTPClient {
     
     private struct UnexpectedValuesError: Error {}
     
-    public func get(from url: URL, completion: @escaping GetCompletion) -> HTTPClientTask {
+    public func get(from url: URL, completion: @escaping HTTPRequestCompletion) -> HTTPClientTask {
         return taskFor(request: URLRequest(url: url)) {
             completion(Self.resultFor(data: $0, response: $1, error: $2))
         }
     }
     
-    public func post(from url: URL, params: BodyParams, completion: @escaping PostCompletion) -> HTTPClientTask {
+    public func post(from url: URL, params: BodyParams, completion: @escaping HTTPRequestCompletion) -> HTTPClientTask {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = try? JSONSerialization.data(withJSONObject: params)
@@ -43,7 +43,7 @@ final public class URLSessionHTTPClient: HTTPClient {
         return URLSessionTaskWrapper(task: task)
     }
     
-    private static func resultFor(data: Data?, response: URLResponse?, error: Error?) -> GetResult {
+    private static func resultFor(data: Data?, response: URLResponse?, error: Error?) -> HTTPRequestResult {
         Result {
             if let error = error {
                 throw error

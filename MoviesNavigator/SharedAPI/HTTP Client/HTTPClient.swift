@@ -8,16 +8,14 @@
 import Foundation
 
 public protocol HTTPClient {
-    typealias GetResult = Result<(Data, HTTPURLResponse), Error>
-    typealias PostResult = Result<(Data, HTTPURLResponse), Error>
-    typealias GetCompletion = (GetResult) -> Void
-    typealias PostCompletion = (PostResult) -> Void
+    typealias HTTPRequestResult = Result<(Data, HTTPURLResponse), Error>
+    typealias HTTPRequestCompletion = (HTTPRequestResult) -> Void
     typealias BodyParams = [String: Any]
     
     @discardableResult
-    func get(from url: URL, completion: @escaping GetCompletion) -> HTTPClientTask
+    func get(from url: URL, completion: @escaping HTTPRequestCompletion) -> HTTPClientTask
     @discardableResult
-    func post(from url: URL, params: BodyParams, completion: @escaping PostCompletion) -> HTTPClientTask
+    func post(from url: URL, params: BodyParams, completion: @escaping HTTPRequestCompletion) -> HTTPClientTask
 }
 
 public protocol HTTPClientTask {

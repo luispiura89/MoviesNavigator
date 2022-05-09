@@ -48,24 +48,24 @@ final class HomeScreenAcceptanceTests: XCTestCase {
             func cancel() {}
         }
         
-        private var stub: (URL) -> GetResult
+        private var stub: (URL) -> HTTPRequestResult
         
         static var online: StubHTTPClient { StubHTTPClient(stub: Self.makeSuccessfulResponse) }
         
-        init(stub: @escaping (URL) -> GetResult) {
+        init(stub: @escaping (URL) -> HTTPRequestResult) {
             self.stub = stub
         }
         
-        func get(from url: URL, completion: @escaping GetCompletion) -> HTTPClientTask {
+        func get(from url: URL, completion: @escaping HTTPRequestCompletion) -> HTTPClientTask {
             completion(stub(url))
             return StubHTTPClientTask()
         }
 
-        func post(from url: URL, params: BodyParams, completion: @escaping PostCompletion) -> HTTPClientTask {
+        func post(from url: URL, params: BodyParams, completion: @escaping HTTPRequestCompletion) -> HTTPClientTask {
             StubHTTPClientTask()
         }
         
-        private static func makeSuccessfulResponse(for url: URL) -> HTTPClient.GetResult {
+        private static func makeSuccessfulResponse(for url: URL) -> HTTPClient.HTTPRequestResult {
             let urlComponents = URLComponents(string: url.absoluteString)
             let host = urlComponents?.host ?? ""
             let path = urlComponents?.path ?? ""
