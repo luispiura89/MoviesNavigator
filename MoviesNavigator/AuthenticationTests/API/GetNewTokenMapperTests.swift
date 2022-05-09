@@ -22,7 +22,7 @@ public final class NewTokenRequestMapper {
 
 final class GetNewTokenMapperTests: XCTestCase {
     
-    func test_map_shouldThrowInvalidDataErrorForNon200() throws {
+    func test_map_shouldThrowInvalidDataErrorForNon200HTTPResponse() throws {
         let errorCodes = [199, 300, 400, 500]
         
         try errorCodes.forEach {
@@ -32,10 +32,28 @@ final class GetNewTokenMapperTests: XCTestCase {
         }
     }
     
+    func test_map_shouldThrowInvalidDataErrorFor200HTTPResponseAndInvalidData() throws {
+        XCTAssertThrowsError(try NewTokenRequestMapper.map(anyData(), for: HTTPURLResponse(code: 200)), "") { error in
+            XCTAssertEqual(error as? AuthenticationError, AuthenticationError.invalidData)
+        }
+        XCTAssertThrowsError(try NewTokenRequestMapper.map(non200HTTPResponseData(), for: HTTPURLResponse(code: 200)), "") { error in
+            XCTAssertEqual(error as? AuthenticationError, AuthenticationError.invalidData)
+        }
+    }
+    
     // MARK: - Helpers
     
     private func anyData() -> Data {
         Data("Any data".utf8)
+    }
+    
+    private func non200HTTPResponseData() throws -> Data {
+        let json: [String: Any] = [
+            "status_code": 7,
+            "status_message": "Any error message",
+            "success": false
+        ]
+        return try JSONSerialization.data(withJSONObject: json)
     }
     
 }
