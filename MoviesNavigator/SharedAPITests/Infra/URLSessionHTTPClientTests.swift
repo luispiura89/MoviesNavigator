@@ -67,6 +67,16 @@ final class URLSessionHTTPClientTests: XCTestCase {
         XCTAssertEqual(error?.code, anyNSError().code)
     }
     
+    func test_post_shouldDeliverRequestDataOnSuccessfulRequestAndValidHTTPURLResponse() {
+        let sut = makeSUT(with: URLProtocolStub.Stub(error: nil, data: anyData(), response: anyHTTPURLResponse()))
+        
+        let result = successfulResult(for: sut, request: .post)
+        
+        XCTAssertEqual(result?.data, anyData())
+        XCTAssertEqual(result?.response.statusCode, anyHTTPURLResponse().statusCode)
+        XCTAssertEqual(result?.response.url, anyHTTPURLResponse().url)
+    }
+    
     func test_post_sendsRequestToProvidedURL() {
         let sut = makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: nil, response: nil))
         var url: URL?
@@ -104,8 +114,13 @@ final class URLSessionHTTPClientTests: XCTestCase {
     }
     
     @discardableResult
-    func successfulResult(for sut: HTTPClient, file: StaticString = #filePath, line: UInt = #line) -> (data: Data, response: HTTPURLResponse)? {
-        let receivedResult = resultFor(sut)
+    func successfulResult(
+        for sut: HTTPClient,
+        request: Request = .get,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> (data: Data, response: HTTPURLResponse)? {
+        let receivedResult = resultFor(sut, request: request)
         
         switch receivedResult {
         case let .success((receivedData, receivedResponse)):
