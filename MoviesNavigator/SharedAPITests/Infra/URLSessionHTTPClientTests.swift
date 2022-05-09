@@ -59,6 +59,14 @@ final class URLSessionHTTPClientTests: XCTestCase {
         XCTAssertEqual(method, "GET")
     }
     
+    func test_post_shouldDeliverErrorOnHTTPRequestError() {
+        let sut = makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: nil, response: nil))
+        
+        let error = errorResult(for: sut, request: .post) as NSError?
+        
+        XCTAssertEqual(error?.code, anyNSError().code)
+    }
+    
     func test_post_sendsRequestToProvidedURL() {
         let sut = makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: nil, response: nil))
         var url: URL?
