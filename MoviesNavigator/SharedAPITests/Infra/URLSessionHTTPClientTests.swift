@@ -27,18 +27,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
     }
     
     func test_get_sendsRequestToProvidedURL() {
-        let sut = makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: nil, response: nil))
-        var url: URL?
-        var method: String?
-        URLProtocolStub.observeRequest = { request in
-            url = request?.url
-            method = request?.httpMethod
-        }
-        
-        _ = resultFor(sut)
-        
-        XCTAssertEqual(url, anyURL())
-        XCTAssertEqual(method, "GET")
+        assertRequest(request: .get, content: nil, params: nil)
     }
     
     func test_post_shouldDeliverErrorOnHTTPRequestError() {
@@ -54,6 +43,18 @@ final class URLSessionHTTPClientTests: XCTestCase {
     }
     
     func test_post_sendsRequestToProvidedURL() {
+        assertRequest(request: .post, content: .applicationJSON, params: ["key1": "val1", "key2": "val2"])
+    }
+    
+    // MARK: - Helpers
+    
+    private func assertRequest(
+        request: Request,
+        content: String?,
+        params: [String: Any]?,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
         let sut = makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: nil, response: nil))
         var url: URL?
         var method: String?
@@ -70,17 +71,17 @@ final class URLSessionHTTPClientTests: XCTestCase {
             }
         }
         
-        _ = resultFor(sut, request: .post)
+        _ = resultFor(sut, request: request)
         
-        XCTAssertEqual(url, anyURL())
-        XCTAssertEqual(method, "POST")
-        XCTAssertEqual(contentHeader, .applicationJSON)
-        XCTAssertEqual(bodyParams?["key1"] as? String, "val1")
-        XCTAssertEqual(bodyParams?["key2"] as? String, "val2")
+        XCTAssertEqual(url, anyURL(), file: file, line: line)
+        XCTAssertEqual(method, request.rawValue, file: file, line: line)
+        XCTAssertEqual(contentHeader, content, file: file, line: line)
+        params?.forEach { entry in
+            XCTAssertNotNil(bodyParams?[entry.key], "No provided param for \(entry.key)", file: file, line: line)
+            XCTAssertEqual(bodyParams?[entry.key] as? String, entry.value as? String, file: file, line: line)
+        }
     }
-    
-    // MARK: - Helpers
-    
+
     private func assertError(for request: Request, file: StaticString = #filePath, line: UInt = #line) {
         let sut = makeSUT(with: URLProtocolStub.Stub(error: anyNSError(), data: nil, response: nil))
         
@@ -291,9 +292,9 @@ final class URLSessionHTTPClientTests: XCTestCase {
         return receivedResult
     }
     
-    enum Request {
-        case get
-        case post
+    enum Request: String {
+        case get = "GET"
+        case post = "POST"
     }
     
     private func anyNSError() -> NSError {
