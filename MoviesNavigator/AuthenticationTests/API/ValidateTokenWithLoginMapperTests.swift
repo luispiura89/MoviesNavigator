@@ -24,8 +24,22 @@ final class ValidateTokenWithLoginMapperTests: XCTestCase {
             XCTAssertThrowsError(
                 try ValidateTokenWithLoginMapper.map(anyData(), for: HTTPURLResponse(code: $0))
             ) { error in
-                
+                XCTAssertEqual(error as? AuthenticationError, AuthenticationError.invalidData)
             }
+        }
+    }
+    
+    func test_map_deliversErrorOn200HTTPResponseAndInvalidResponse() throws {
+        XCTAssertThrowsError(
+            try ValidateTokenWithLoginMapper.map(anyData(), for: HTTPURLResponse(code: 200))
+        ) { error in
+            XCTAssertEqual(error as? AuthenticationError, AuthenticationError.invalidData)
+        }
+
+        XCTAssertThrowsError(
+            try ValidateTokenWithLoginMapper.map(non200HTTPResponseData(), for: HTTPURLResponse(code: 200))
+        ) { error in
+            XCTAssertEqual(error as? AuthenticationError, AuthenticationError.invalidData)
         }
     }
     

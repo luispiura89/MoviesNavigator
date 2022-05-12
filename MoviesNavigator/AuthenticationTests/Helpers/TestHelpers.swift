@@ -10,3 +10,12 @@ import Foundation
 func anyData() -> Data {
     Data("Any data".utf8)
 }
+
+func non200HTTPResponseData() throws -> Data {
+    let json: [String: Any] = [
+        "status_code": 7,
+        "status_message": "Any error message",
+        "success": false
+    ]
+    return try JSONSerialization.data(withJSONObject: json)
+}

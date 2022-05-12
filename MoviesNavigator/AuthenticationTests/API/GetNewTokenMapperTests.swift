@@ -50,15 +50,6 @@ final class GetNewTokenMapperTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func non200HTTPResponseData() throws -> Data {
-        let json: [String: Any] = [
-            "status_code": 7,
-            "status_message": "Any error message",
-            "success": false
-        ]
-        return try JSONSerialization.data(withJSONObject: json)
-    }
-    
     private func successfulHTTPResponseData(withToken token: String, expirationDate: String) throws -> Data {
         let json: [String: Any] = [
             "expires_at": expirationDate,
