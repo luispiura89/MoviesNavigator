@@ -50,10 +50,6 @@ final class GetNewTokenMapperTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func anyData() -> Data {
-        Data("Any data".utf8)
-    }
-    
     private func non200HTTPResponseData() throws -> Data {
         let json: [String: Any] = [
             "status_code": 7,
@@ -70,14 +66,6 @@ final class GetNewTokenMapperTests: XCTestCase {
             "success": true
         ]
         return try JSONSerialization.data(withJSONObject: json)
-    }
-    
-}
-
-private extension HTTPURLResponse {
-    
-    convenience init(code: Int) {
-        self.init(url: URL(string: "https://any-url.com")!, statusCode: code, httpVersion: nil, headerFields: nil)!
     }
     
 }
