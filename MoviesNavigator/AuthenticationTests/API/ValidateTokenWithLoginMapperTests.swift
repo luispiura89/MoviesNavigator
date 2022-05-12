@@ -18,28 +18,36 @@ final class ValidateTokenWithLoginMapper {
 
 final class ValidateTokenWithLoginMapperTests: XCTestCase {
     
-    func test_map_deliversErrorOnNon200HTTPResponse() throws {
+    func test_map_deliversErrorOnNon200HTTPResponse() {
         let response = [199, 300, 400, 404, 500]
-        try response.forEach {
-            XCTAssertThrowsError(
-                try ValidateTokenWithLoginMapper.map(anyData(), for: HTTPURLResponse(code: $0))
-            ) { error in
-                XCTAssertEqual(error as? AuthenticationError, AuthenticationError.invalidData)
-            }
+        response.forEach {
+            assertFailure(forResponseCode: $0, withData: anyData())
         }
     }
     
     func test_map_deliversErrorOn200HTTPResponseAndInvalidResponse() throws {
+        assertFailure(forResponseCode: 200, withData: anyData())
+        assertFailure(forResponseCode: 200, withData: try non200HTTPResponseData())
+    }
+    
+    // MARK: - Helpers
+    
+    private func assertFailure(
+        forResponseCode code: Int,
+        withData data: Data,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
         XCTAssertThrowsError(
-            try ValidateTokenWithLoginMapper.map(anyData(), for: HTTPURLResponse(code: 200))
+            try ValidateTokenWithLoginMapper.map(data, for: HTTPURLResponse(code: code)),
+            file: file,
+            line: line
         ) { error in
-            XCTAssertEqual(error as? AuthenticationError, AuthenticationError.invalidData)
-        }
-
-        XCTAssertThrowsError(
-            try ValidateTokenWithLoginMapper.map(non200HTTPResponseData(), for: HTTPURLResponse(code: 200))
-        ) { error in
-            XCTAssertEqual(error as? AuthenticationError, AuthenticationError.invalidData)
+            XCTAssertEqual(
+                error as? AuthenticationError, AuthenticationError.invalidData,
+                file: file,
+                line: line
+            )
         }
     }
     
