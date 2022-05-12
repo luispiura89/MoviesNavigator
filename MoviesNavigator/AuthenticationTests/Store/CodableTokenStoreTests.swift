@@ -38,38 +38,44 @@ public final class CodableTokenStore {
 final class CodableTokenStoreTests: XCTestCase {
     
     func test_store_deliversEmptyTokenErrorWhenThereIsNoStoredToken() {
-        let instanceToRead = CodableTokenStore()
+        let sut = CodableTokenStore()
         
-        let exp = expectation(description: "Wait for token fetch")
-        var fetchedToken: String?
-        instanceToRead.fetch { result in
-            fetchedToken = try? result.get()
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 1.0)
-        XCTAssertEqual(fetchedToken, nil)
+        expectStoredToken(in: sut, toBeEqualsTo: nil)
     }
     
     func test_store_deliversEmptyTokenErrorWhenTokenStoreOperationFailed() {
         let instanceToRead = CodableTokenStore()
         let instanceToWrite = CodableTokenStore()
         
-        let exp1 = expectation(description: "Wait for token store")
-        let token = StoredToken(token: "any-token", date: Date())
-        instanceToWrite.store(token) { result in
-            exp1.fulfill()
-        }
-        wait(for: [exp1], timeout: 1.0)
+        store(token: StoredToken(token: "any-token", date: Date()), in: instanceToWrite)
         
-        let exp2 = expectation(description: "Wait for token fetch")
+        expectStoredToken(in: instanceToRead, toBeEqualsTo: nil)
+    }
+    
+    // MARK: - Helpers
+    
+    private func expectStoredToken(
+        in store: CodableTokenStore,
+        toBeEqualsTo token: String?,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        let exp = expectation(description: "Wait for token fetch")
         var fetchedToken: String?
-        instanceToRead.fetch { result in
+        store.fetch { result in
             fetchedToken = try? result.get()
-            exp2.fulfill()
+            exp.fulfill()
         }
-        wait(for: [exp2], timeout: 1.0)
-        XCTAssertEqual(fetchedToken, nil)
+        wait(for: [exp], timeout: 1.0)
+        XCTAssertEqual(fetchedToken, token, file: file, line: line)
+    }
+    
+    private func store(token: StoredToken, in instanceToWrite: CodableTokenStore) {
+        let exp = expectation(description: "Wait for token store")
+        instanceToWrite.store(token) { result in
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
     }
     
 }
