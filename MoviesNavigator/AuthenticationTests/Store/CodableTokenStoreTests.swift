@@ -66,6 +66,16 @@ public final class CodableTokenStore {
         )
     }
     
+    public func deleteToken(completion: @escaping StoreTokenCompletion) {
+        completion(
+            Result{
+                try FileManager.default.removeItem(at: storeURL)
+            }.mapError { _ in
+                TokenStoreError.writeOperationFailed
+            }
+        )
+    }
+    
 }
 
 final class CodableTokenStoreTests: XCTestCase {
@@ -80,13 +90,13 @@ final class CodableTokenStoreTests: XCTestCase {
         clearSideEffects()
     }
     
-    func test_store_deliversEmptyTokenErrorWhenThereIsNoStoredToken() {
+    func test_fetch_deliversEmptyTokenErrorWhenThereIsNoStoredToken() {
         let sut = makeSUT(withURL: storeURL())
         
         expectStoredToken(in: sut, toBeEqualsTo: nil)
     }
     
-    func test_store_deliversEmptyTokenErrorWhenTokenStoreOperationFailed() {
+    func test_fetch_deliversEmptyTokenErrorWhenTokenStoreOperationFailed() {
         let instanceToRead = makeSUT(withURL: storeURL())
         let instanceToWrite = makeSUT(withURL: cachesDirectory())
         
@@ -95,7 +105,7 @@ final class CodableTokenStoreTests: XCTestCase {
         expectStoredToken(in: instanceToRead, toBeEqualsTo: nil)
     }
     
-    func test_store_deliversStoredTokenWhenThereIsAStoredToken() {
+    func test_fetch_deliversStoredTokenWhenThereIsAStoredToken() {
         let instanceToRead = makeSUT(withURL: storeURL())
         let instanceToWrite = makeSUT(withURL: storeURL())
         let token = StoredToken(token: "any-token", expirationDate: Date())
@@ -103,6 +113,19 @@ final class CodableTokenStoreTests: XCTestCase {
         store(token: token, in: instanceToWrite)
         
         expectStoredToken(in: instanceToRead, toBeEqualsTo: token.token)
+    }
+    
+    func test_fetch_deliversEmptyTokenErrorAfterTokenDeletion() {
+        let instanceToRead = makeSUT(withURL: storeURL())
+        let instanceToWrite = makeSUT(withURL: storeURL())
+        let instanceToDelete = makeSUT(withURL: storeURL())
+        let token = StoredToken(token: "any-token", expirationDate: Date())
+        
+        store(token: token, in: instanceToWrite)
+        expectStoredToken(in: instanceToRead, toBeEqualsTo: token.token)
+        delete(from: instanceToDelete)
+        expectStoredToken(in: instanceToRead, toBeEqualsTo: nil)
+        
     }
     
     // MARK: - Helpers
@@ -145,6 +168,14 @@ final class CodableTokenStoreTests: XCTestCase {
     private func store(token: StoredToken, in instanceToWrite: CodableTokenStore) {
         let exp = expectation(description: "Wait for token store")
         instanceToWrite.store(token) { result in
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    private func delete(from instanceToDelete: CodableTokenStore) {
+        let exp = expectation(description: "Wait for token deletion")
+        instanceToDelete.deleteToken { result in
             exp.fulfill()
         }
         wait(for: [exp], timeout: 1.0)
