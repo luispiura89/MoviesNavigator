@@ -17,7 +17,6 @@
 		CD280A6E2745867B00C773C7 /* TVShowsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD280A6D2745867B00C773C7 /* TVShowsMapperTests.swift */; };
 		CD280A712745872D00C773C7 /* TVShowsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD280A702745872D00C773C7 /* TVShowsMapper.swift */; };
 		CD280A7F2745D3C900C773C7 /* SharedAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A772745D3C900C773C7 /* SharedAPI.framework */; };
-		CD4BE14E282D73ED00E1404D /* ValidateTokenWithLoginMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4BE14D282D73ED00E1404D /* ValidateTokenWithLoginMapperTests.swift */; };
 		CD4BE151282D75A300E1404D /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4BE150282D75A300E1404D /* TestHelpers.swift */; };
 		CD4BE153282D75C600E1404D /* HTTPURLResponse+Make.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4BE152282D75C600E1404D /* HTTPURLResponse+Make.swift */; };
 		CD5AE0482746AED900CED0DE /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE0472746AED900CED0DE /* HTTPClient.swift */; };
@@ -191,7 +190,6 @@
 		CD280A702745872D00C773C7 /* TVShowsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsMapper.swift; sourceTree = "<group>"; };
 		CD280A772745D3C900C773C7 /* SharedAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SharedAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD280A7E2745D3C900C773C7 /* SharedAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharedAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD4BE14D282D73ED00E1404D /* ValidateTokenWithLoginMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateTokenWithLoginMapperTests.swift; sourceTree = "<group>"; };
 		CD4BE150282D75A300E1404D /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		CD4BE152282D75C600E1404D /* HTTPURLResponse+Make.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Make.swift"; sourceTree = "<group>"; };
 		CD5AE0472746AED900CED0DE /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
@@ -790,7 +788,6 @@
 			isa = PBXGroup;
 			children = (
 				CDEBD2FF2829CCB40096733D /* GetNewTokenMapperTests.swift */,
-				CD4BE14D282D73ED00E1404D /* ValidateTokenWithLoginMapperTests.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1477,7 +1474,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD4BE153282D75C600E1404D /* HTTPURLResponse+Make.swift in Sources */,
-				CD4BE14E282D73ED00E1404D /* ValidateTokenWithLoginMapperTests.swift in Sources */,
 				CDEBD3002829CCB40096733D /* GetNewTokenMapperTests.swift in Sources */,
 				CD4BE151282D75A300E1404D /* TestHelpers.swift in Sources */,
 			);

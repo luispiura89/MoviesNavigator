@@ -11,29 +11,17 @@ import Authentication
 
 final class GetNewTokenMapperTests: XCTestCase {
     
-    func test_map_shouldThrowInvalidDataErrorForNon200HTTPResponse() throws {
+    func test_map_shouldThrowInvalidDataErrorForNon200HTTPResponse() {
         let errorCodes = [199, 300, 400, 500]
         
-        try errorCodes.forEach {
-            XCTAssertThrowsError(try NewTokenRequestMapper.map(anyData(), for: HTTPURLResponse(code: $0)), "") { error in
-                XCTAssertEqual(error as? AuthenticationError, AuthenticationError.invalidData)
-            }
+        errorCodes.forEach {
+            assertFailure(forResponseCode: $0, withData: anyData())
         }
     }
     
     func test_map_shouldThrowInvalidDataErrorFor200HTTPResponseAndInvalidData() throws {
-        XCTAssertThrowsError(try NewTokenRequestMapper.map(anyData(), for: HTTPURLResponse(code: 200)), "") { error in
-            XCTAssertEqual(error as? AuthenticationError, AuthenticationError.invalidData)
-        }
-        XCTAssertThrowsError(
-            try NewTokenRequestMapper.map(
-                non200HTTPResponseData(),
-                for: HTTPURLResponse(code: 200)
-            ),
-            ""
-        ) { error in
-            XCTAssertEqual(error as? AuthenticationError, AuthenticationError.invalidData)
-        }
+        assertFailure(forResponseCode: 200, withData: anyData())
+        assertFailure(forResponseCode: 200, withData: try non200HTTPResponseData())
     }
     
     func test_map_shouldDeliverNewTokenOn200HTTPResponseAndValidData() throws {
@@ -57,6 +45,25 @@ final class GetNewTokenMapperTests: XCTestCase {
             "success": true
         ]
         return try JSONSerialization.data(withJSONObject: json)
+    }
+
+    private func assertFailure(
+        forResponseCode code: Int,
+        withData data: Data,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        XCTAssertThrowsError(
+            try NewTokenRequestMapper.map(data, for: HTTPURLResponse(code: code)),
+            file: file,
+            line: line
+        ) { error in
+            XCTAssertEqual(
+                error as? AuthenticationError, AuthenticationError.invalidData,
+                file: file,
+                line: line
+            )
+        }
     }
     
 }
