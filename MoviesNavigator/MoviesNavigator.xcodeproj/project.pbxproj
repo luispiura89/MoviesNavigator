@@ -19,6 +19,7 @@
 		CD280A7F2745D3C900C773C7 /* SharedAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A772745D3C900C773C7 /* SharedAPI.framework */; };
 		CD4BE151282D75A300E1404D /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4BE150282D75A300E1404D /* TestHelpers.swift */; };
 		CD4BE153282D75C600E1404D /* HTTPURLResponse+Make.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4BE152282D75C600E1404D /* HTTPURLResponse+Make.swift */; };
+		CD4BE156282D904B00E1404D /* CodableTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4BE155282D904B00E1404D /* CodableTokenStoreTests.swift */; };
 		CD5AE0482746AED900CED0DE /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE0472746AED900CED0DE /* HTTPClient.swift */; };
 		CD5AE04C2746B0C800CED0DE /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE04B2746B0C800CED0DE /* URLSessionHTTPClient.swift */; };
 		CD5AE04E2746B11C00CED0DE /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE04D2746B11C00CED0DE /* URLSessionHTTPClientTests.swift */; };
@@ -192,6 +193,7 @@
 		CD280A7E2745D3C900C773C7 /* SharedAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharedAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD4BE150282D75A300E1404D /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		CD4BE152282D75C600E1404D /* HTTPURLResponse+Make.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Make.swift"; sourceTree = "<group>"; };
+		CD4BE155282D904B00E1404D /* CodableTokenStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableTokenStoreTests.swift; sourceTree = "<group>"; };
 		CD5AE0472746AED900CED0DE /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		CD5AE04B2746B0C800CED0DE /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
 		CD5AE04D2746B11C00CED0DE /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
@@ -496,6 +498,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		CD4BE154282D902500E1404D /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				CD4BE155282D904B00E1404D /* CodableTokenStoreTests.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
 		CD5AE0462746AEB700CED0DE /* HTTP Client */ = {
 			isa = PBXGroup;
 			children = (
@@ -778,6 +788,7 @@
 		CDEBD2F52829C4CE0096733D /* AuthenticationTests */ = {
 			isa = PBXGroup;
 			children = (
+				CD4BE154282D902500E1404D /* Store */,
 				CD4BE14F282D756700E1404D /* Helpers */,
 				CDEBD3012829CCBB0096733D /* API */,
 			);
@@ -1475,6 +1486,7 @@
 			files = (
 				CD4BE153282D75C600E1404D /* HTTPURLResponse+Make.swift in Sources */,
 				CDEBD3002829CCB40096733D /* GetNewTokenMapperTests.swift in Sources */,
+				CD4BE156282D904B00E1404D /* CodableTokenStoreTests.swift in Sources */,
 				CD4BE151282D75A300E1404D /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
