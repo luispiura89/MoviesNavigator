@@ -30,7 +30,7 @@ public final class CodableTokenStore {
         let expirationDate: Date
     }
     
-    public typealias FetchTokenResult = Result<String, Error>
+    public typealias FetchTokenResult = Result<StoredToken, Error>
     public typealias FetchTokenCompletion = (FetchTokenResult) -> Void
     
     public typealias StoreTokenResult = Result<Void, Error>
@@ -42,8 +42,11 @@ public final class CodableTokenStore {
         }
         completion(
             Result {
-                let storedToken = try JSONDecoder().decode(CodableStoredToken.self, from: storedTokenData)
-                return storedToken.token
+                let codableStoredToken = try JSONDecoder().decode(CodableStoredToken.self, from: storedTokenData)
+                return StoredToken(
+                    token: codableStoredToken.token,
+                    expirationDate: codableStoredToken.expirationDate
+                )
             }.mapError { _ in
                 TokenStoreError.writeOperationFailed
             }
@@ -158,7 +161,7 @@ final class CodableTokenStoreTests: XCTestCase {
         let exp = expectation(description: "Wait for token fetch")
         var fetchedToken: String?
         store.fetch { result in
-            fetchedToken = try? result.get()
+            fetchedToken = try? result.get().token
             exp.fulfill()
         }
         wait(for: [exp], timeout: 1.0)
