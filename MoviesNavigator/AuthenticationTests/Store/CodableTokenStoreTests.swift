@@ -128,7 +128,18 @@ final class CodableTokenStoreTests: XCTestCase {
         expectStoredToken(in: instanceToRead, toBeEqualsTo: token.token)
         delete(from: instanceToDelete)
         expectStoredToken(in: instanceToRead, toBeEqualsTo: nil)
-        
+    }
+    
+    func test_fetch_deliversPreviouslyStoredTokenAfterTokenDeletionError() {
+        let instanceToRead = makeSUT(withURL: storeURL())
+        let instanceToWrite = makeSUT(withURL: storeURL())
+        let instanceToDelete = makeSUT(withURL: invalidURL())
+        let token = StoredToken(token: "any-token", expirationDate: Date())
+
+        store(token: token, in: instanceToWrite)
+        expectStoredToken(in: instanceToRead, toBeEqualsTo: token.token)
+        delete(from: instanceToDelete)
+        expectStoredToken(in: instanceToRead, toBeEqualsTo: token.token)
     }
     
     // MARK: - Helpers
@@ -146,6 +157,10 @@ final class CodableTokenStoreTests: XCTestCase {
             .default
             .urls(for: .documentDirectory, in: .userDomainMask)
             .first!
+    }
+    
+    private func invalidURL() -> URL {
+        URL(fileURLWithPath: "\(cachesDirectory().path)_invalidURL")
     }
     
     private func storeURL() -> URL {
