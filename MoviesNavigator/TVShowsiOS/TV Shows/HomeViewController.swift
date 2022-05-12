@@ -48,7 +48,6 @@ public final class HomeViewController: UICollectionViewController {
     
     public func setCellControllers(controllers: [TVShowCellController]) {
         self.controllers = controllers
-        errorViewController?.error = nil
         collectionView.reloadData()
     }
     

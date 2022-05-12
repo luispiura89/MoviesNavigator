@@ -38,5 +38,6 @@ public final class LoadResourcePresenter<InputResource, View: ResourceView> {
     public func didFinishLoading(with resource: InputResource) {
         loadingView.update(LoadingViewModel(isLoading: false))
         resourceView.update(ResourceViewModel(resource: resourceMapper(resource)))
+        errorView.update(.emptyError)
     }
 }

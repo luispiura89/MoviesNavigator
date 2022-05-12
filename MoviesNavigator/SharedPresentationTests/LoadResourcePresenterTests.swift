@@ -33,7 +33,10 @@ final class LoadResourcePresenterTests: XCTestCase {
         
         sut.didFinishLoading(with: "Any string")
         
-        XCTAssertEqual(viewSpy.messages, [.isLoading(false), .resource("Any string view model")])
+        XCTAssertEqual(
+            viewSpy.messages,
+            [.isLoading(false), .resource("Any string view model"), .error(nil)]
+        )
     }
     
     // MARK: - Helpers
