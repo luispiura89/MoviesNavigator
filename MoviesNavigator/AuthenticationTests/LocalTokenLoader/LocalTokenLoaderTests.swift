@@ -24,15 +24,22 @@ final class LocalTokenLoader {
     }
     
     func fetchToken(currentDate: Date, completion: @escaping FetchTokenCompletion) {
-        store.fetch { [store] result in
+        store.fetch { [weak self] result in
             guard
                 let storedToken = try? result.get(),
                 storedToken.expirationDate > currentDate else {
-                    return store.deleteToken { _ in
+                    self?.deleteToken { _ in
                         completion(.failure(Error.expiredToken))
                     }
+                    return
                 }
             completion(.success(storedToken.token))
+        }
+    }
+    
+    func deleteToken(completion: @escaping TokenStore.TokenOperationCompletion) {
+        store.deleteToken { result in
+            completion(result)
         }
     }
 }
@@ -40,8 +47,7 @@ final class LocalTokenLoader {
 final class LocalTokenLoaderTests: XCTestCase {
     
     func test_fetchToken_retrievesTokenWhenTokenIsNotExpired() {
-        let store = TokenStoreSpy()
-        let sut = LocalTokenLoader(store: store)
+        let (sut, store) = makeSUT()
         
         let fetchedToken = successfulFetchFor(sut, currentDate: Date().decreasing(minutes: 1)) {
             store.completeFetchSuccessfully()
@@ -53,8 +59,7 @@ final class LocalTokenLoaderTests: XCTestCase {
     }
     
     func test_fetchToken_deliversErrorOnExpiredTokenAndDeletesStoredToken() {
-        let store = TokenStoreSpy()
-        let sut = LocalTokenLoader(store: store)
+        let (sut, store) = makeSUT()
         
         let error = errorFetchFor(sut, currentDate: Date()) {
             store.completeFetchWithExpiredToken()
@@ -67,6 +72,34 @@ final class LocalTokenLoaderTests: XCTestCase {
     }
     
     // MARK: - Helpers
+    
+    private func makeSUT(
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> (sut: LocalTokenLoader, store: TokenStoreSpy) {
+        let store = TokenStoreSpy()
+        let sut = LocalTokenLoader(store: store)
+        
+        trackMemoryLeaks(store, file: file, line: line)
+        trackMemoryLeaks(sut, file: file, line: line)
+        
+        return (sut, store)
+    }
+    
+    private func trackMemoryLeaks(
+        _ instance: AnyObject,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        addTeardownBlock { [weak instance] in
+            XCTAssertNil(
+                instance,
+                "Potential memory leak for instance \(String(describing: instance))",
+                file: file,
+                line: line
+            )
+        }
+    }
     
     private func errorFetchFor(
         _ sut: LocalTokenLoader, currentDate: Date,
