@@ -17,7 +17,20 @@ public struct StoredToken {
     public let expirationDate: Date
 }
 
-public final class CodableTokenStore {
+public protocol TokenStore {
+    
+    typealias FetchTokenResult = Result<StoredToken, Error>
+    typealias FetchTokenCompletion = (FetchTokenResult) -> Void
+    
+    typealias TokenOperationResult = Result<Void, Error>
+    typealias TokenOperationCompletion = (TokenOperationResult) -> Void
+    
+    func fetch(completion: @escaping FetchTokenCompletion)
+    func store(_ token: StoredToken, completion: @escaping TokenOperationCompletion)
+    func deleteToken(completion: @escaping TokenOperationCompletion)
+}
+
+public final class CodableTokenStore: TokenStore {
     
     private let storeURL: URL
     private let queue = DispatchQueue(label: "\(CodableTokenStore.self).queue", attributes: .concurrent)
@@ -30,12 +43,6 @@ public final class CodableTokenStore {
         let token: String
         let expirationDate: Date
     }
-    
-    public typealias FetchTokenResult = Result<StoredToken, Error>
-    public typealias FetchTokenCompletion = (FetchTokenResult) -> Void
-    
-    public typealias TokenOperationResult = Result<Void, Error>
-    public typealias TokenOperationCompletion = (TokenOperationResult) -> Void
     
     public func fetch(completion: @escaping FetchTokenCompletion) {
         queueOperation { [storeURL] in
@@ -179,7 +186,7 @@ final class CodableTokenStoreTests: XCTestCase {
         try? FileManager.default.removeItem(at: storeURL())
     }
     
-    private func makeSUT(withURL url: URL) -> CodableTokenStore {
+    private func makeSUT(withURL url: URL) -> TokenStore {
         return CodableTokenStore(storeURL: url)
     }
     
@@ -199,7 +206,7 @@ final class CodableTokenStoreTests: XCTestCase {
     }
     
     private func expectStoredToken(
-        in store: CodableTokenStore,
+        in store: TokenStore,
         toBeEqualsTo token: String?,
         file: StaticString = #filePath,
         line: UInt = #line
@@ -214,7 +221,7 @@ final class CodableTokenStoreTests: XCTestCase {
         XCTAssertEqual(fetchedToken, token, file: file, line: line)
     }
     
-    private func store(token: StoredToken, in instanceToWrite: CodableTokenStore) {
+    private func store(token: StoredToken, in instanceToWrite: TokenStore) {
         let exp = expectation(description: "Wait for token store")
         instanceToWrite.store(token) { result in
             exp.fulfill()
@@ -222,7 +229,7 @@ final class CodableTokenStoreTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    private func delete(from instanceToDelete: CodableTokenStore) {
+    private func delete(from instanceToDelete: TokenStore) {
         let exp = expectation(description: "Wait for token deletion")
         instanceToDelete.deleteToken { result in
             exp.fulfill()
