@@ -26,6 +26,14 @@ final class CodableTokenStoreTests: XCTestCase {
         expectStoredToken(in: sut, toBeEqualsTo: nil)
     }
     
+    func test_fetch_deliversOperationErrorWhenFetchingInvalidData() {
+        let sut = makeSUT(withURL: storeURL())
+        
+        try! Data("Any data".utf8).write(to: storeURL())
+        
+        expectStoredToken(in: sut, toBeEqualsTo: nil)
+    }
+    
     func test_fetch_deliversEmptyTokenErrorWhenTokenStoreOperationFailed() {
         let instanceToRead = makeSUT(withURL: storeURL())
         let instanceToWrite = makeSUT(withURL: cachesDirectory())
