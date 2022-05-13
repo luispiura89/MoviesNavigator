@@ -506,6 +506,13 @@
 			path = Store;
 			sourceTree = "<group>";
 		};
+		CD4BE157282DE41900E1404D /* TokenStore */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TokenStore;
+			sourceTree = "<group>";
+		};
 		CD5AE0462746AEB700CED0DE /* HTTP Client */ = {
 			isa = PBXGroup;
 			children = (
@@ -778,6 +785,7 @@
 		CDEBD2EB2829C4CD0096733D /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				CD4BE157282DE41900E1404D /* TokenStore */,
 				CDEBD3082829DD2F0096733D /* Error */,
 				CDEBD3052829DD0F0096733D /* NewToken */,
 				CDEBD3022829DCC90096733D /* API */,

@@ -34,8 +34,8 @@ public final class CodableTokenStore {
     public typealias FetchTokenResult = Result<StoredToken, Error>
     public typealias FetchTokenCompletion = (FetchTokenResult) -> Void
     
-    public typealias StoreTokenResult = Result<Void, Error>
-    public typealias StoreTokenCompletion = (StoreTokenResult) -> Void
+    public typealias TokenOperationResult = Result<Void, Error>
+    public typealias TokenOperationCompletion = (TokenOperationResult) -> Void
     
     public func fetch(completion: @escaping FetchTokenCompletion) {
         queueOperation { [storeURL] in
@@ -56,7 +56,7 @@ public final class CodableTokenStore {
         }
     }
     
-    public func store(_ token: StoredToken, completion: @escaping StoreTokenCompletion) {
+    public func store(_ token: StoredToken, completion: @escaping TokenOperationCompletion) {
         queueOperation { [storeURL] in
             completion(
                 Result{
@@ -74,7 +74,7 @@ public final class CodableTokenStore {
         }
     }
     
-    public func deleteToken(completion: @escaping StoreTokenCompletion) {
+    public func deleteToken(completion: @escaping TokenOperationCompletion) {
         queueOperation { [storeURL] in
             completion(
                 Result{
