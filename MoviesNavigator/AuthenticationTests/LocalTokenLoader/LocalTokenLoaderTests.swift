@@ -43,15 +43,10 @@ final class LocalTokenLoaderTests: XCTestCase {
         let store = TokenStoreSpy()
         let sut = LocalTokenLoader(store: store)
         
-        let exp = expectation(description: "Wait for token fetch")
-        var fetchedToken: String?
-        sut.fetchToken(currentDate: Date().decreasing(minutes: 1)) { result in
-            fetchedToken = try? result.get()
-            exp.fulfill()
+        let fetchedToken = successfulFetchFor(sut, currentDate: Date().decreasing(minutes: 1)) {
+            store.completeFetchSuccessfully()
         }
-        store.completeFetchSuccessfully()
         
-        wait(for: [exp], timeout: 1.0)
         XCTAssertEqual(fetchedToken, "any-token")
         XCTAssertEqual(store.fetchRequests.count, 1)
         XCTAssertEqual(store.deleteRequests.count, 0)
@@ -61,22 +56,59 @@ final class LocalTokenLoaderTests: XCTestCase {
         let store = TokenStoreSpy()
         let sut = LocalTokenLoader(store: store)
         
-        let exp = expectation(description: "Wait for token fetch")
-        var fetchedToken: String?
-        sut.fetchToken(currentDate: Date()) { result in
-            fetchedToken = try? result.get()
-            exp.fulfill()
+        let error = errorFetchFor(sut, currentDate: Date()) {
+            store.completeFetchWithExpiredToken()
+            store.completeTokenDeletionSuccessfully()
         }
-        store.completeFetchWithExpiredToken()
-        store.completeTokenDeletionSuccessfully()
         
-        wait(for: [exp], timeout: 1.0)
-        XCTAssertEqual(fetchedToken, nil)
+        XCTAssertEqual(error, LocalTokenLoader.Error.expiredToken)
         XCTAssertEqual(store.fetchRequests.count, 1)
         XCTAssertEqual(store.deleteRequests.count, 1)
     }
     
     // MARK: - Helpers
+    
+    private func errorFetchFor(
+        _ sut: LocalTokenLoader, currentDate: Date,
+        on action: @escaping () -> Void
+    ) -> LocalTokenLoader.Error {
+        let result = resultFor(sut, currentDate: currentDate, on: action)
+        var receivedError: LocalTokenLoader.Error?
+        if case let .failure(error as LocalTokenLoader.Error) = result {
+            receivedError = error
+        }
+        return receivedError!
+    }
+    
+    private func successfulFetchFor(
+        _ sut: LocalTokenLoader, currentDate: Date,
+        on action: @escaping () -> Void
+    ) -> String {
+        let result = resultFor(sut, currentDate: currentDate, on: action)
+        var receivedToken: String?
+        if case let .success(token) = result {
+            receivedToken = token
+        }
+        return receivedToken!
+    }
+    
+    private func resultFor(
+        _ sut: LocalTokenLoader,
+        currentDate: Date,
+        on action: @escaping () -> Void
+    ) -> LocalTokenLoader.FetchTokenResult {
+        let exp = expectation(description: "Wait for token fetch")
+        var receivedResult: LocalTokenLoader.FetchTokenResult?
+        sut.fetchToken(currentDate: currentDate) { result in
+            receivedResult = result
+            exp.fulfill()
+        }
+        
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
+        return receivedResult!
+    }
     
     private final class TokenStoreSpy: TokenStore {
         
