@@ -9,7 +9,7 @@ import XCTest
 
 public enum TokenStoreError: Error {
     case emptyStore
-    case writeOperationFailed
+    case operationFailed
 }
 
 public struct StoredToken {
@@ -50,7 +50,7 @@ public final class CodableTokenStore {
                         expirationDate: codableStoredToken.expirationDate
                     )
                 }.mapError { _ in
-                    TokenStoreError.writeOperationFailed
+                    TokenStoreError.operationFailed
                 }
             )
         }
@@ -68,7 +68,7 @@ public final class CodableTokenStore {
                     let data = try encoder.encode(codableStoredToken)
                     try data.write(to: storeURL)
                 }.mapError { _ in
-                    TokenStoreError.writeOperationFailed
+                    TokenStoreError.operationFailed
                 }
             )
         }
@@ -80,7 +80,7 @@ public final class CodableTokenStore {
                 Result{
                     try FileManager.default.removeItem(at: storeURL)
                 }.mapError { _ in
-                    TokenStoreError.writeOperationFailed
+                    TokenStoreError.operationFailed
                 }
             )
         }
