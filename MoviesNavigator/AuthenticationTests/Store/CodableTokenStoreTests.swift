@@ -20,6 +20,7 @@ public struct StoredToken {
 public final class CodableTokenStore {
     
     private let storeURL: URL
+    private let queue = DispatchQueue(label: "\(CodableTokenStore.self).queue", attributes: .concurrent)
     
     init(storeURL: URL) {
         self.storeURL = storeURL
@@ -37,48 +38,59 @@ public final class CodableTokenStore {
     public typealias StoreTokenCompletion = (StoreTokenResult) -> Void
     
     public func fetch(completion: @escaping FetchTokenCompletion) {
-        guard let storedTokenData = try? Data(contentsOf: storeURL) else {
-            return completion(.failure(TokenStoreError.emptyStore))
-        }
-        completion(
-            Result {
-                let codableStoredToken = try JSONDecoder().decode(CodableStoredToken.self, from: storedTokenData)
-                return StoredToken(
-                    token: codableStoredToken.token,
-                    expirationDate: codableStoredToken.expirationDate
-                )
-            }.mapError { _ in
-                TokenStoreError.writeOperationFailed
+        queueOperation { [storeURL] in
+            guard let storedTokenData = try? Data(contentsOf: storeURL) else {
+                return completion(.failure(TokenStoreError.emptyStore))
             }
-        )
+            completion(
+                Result {
+                    let codableStoredToken = try JSONDecoder().decode(CodableStoredToken.self, from: storedTokenData)
+                    return StoredToken(
+                        token: codableStoredToken.token,
+                        expirationDate: codableStoredToken.expirationDate
+                    )
+                }.mapError { _ in
+                    TokenStoreError.writeOperationFailed
+                }
+            )
+        }
     }
     
     public func store(_ token: StoredToken, completion: @escaping StoreTokenCompletion) {
-        completion(
-            Result{
-                let codableStoredToken = CodableStoredToken(
-                    token: token.token,
-                    expirationDate: token.expirationDate
-                )
-                let encoder = JSONEncoder()
-                let data = try encoder.encode(codableStoredToken)
-                try data.write(to: storeURL)
-            }.mapError { _ in
-                TokenStoreError.writeOperationFailed
-            }
-        )
+        queueOperation { [storeURL] in
+            completion(
+                Result{
+                    let codableStoredToken = CodableStoredToken(
+                        token: token.token,
+                        expirationDate: token.expirationDate
+                    )
+                    let encoder = JSONEncoder()
+                    let data = try encoder.encode(codableStoredToken)
+                    try data.write(to: storeURL)
+                }.mapError { _ in
+                    TokenStoreError.writeOperationFailed
+                }
+            )
+        }
     }
     
     public func deleteToken(completion: @escaping StoreTokenCompletion) {
-        completion(
-            Result{
-                try FileManager.default.removeItem(at: storeURL)
-            }.mapError { _ in
-                TokenStoreError.writeOperationFailed
-            }
-        )
+        queueOperation { [storeURL] in
+            completion(
+                Result{
+                    try FileManager.default.removeItem(at: storeURL)
+                }.mapError { _ in
+                    TokenStoreError.writeOperationFailed
+                }
+            )
+        }
     }
     
+    private func queueOperation(_ task: @escaping () -> Void) {
+        queue.async(flags: .barrier) {
+            task()
+        }
+    }
 }
 
 final class CodableTokenStoreTests: XCTestCase {
@@ -140,6 +152,25 @@ final class CodableTokenStoreTests: XCTestCase {
         expectStoredToken(in: instanceToRead, toBeEqualsTo: token.token)
         delete(from: instanceToDelete)
         expectStoredToken(in: instanceToRead, toBeEqualsTo: token.token)
+    }
+    
+    func test_store_sideEffectsRunSerially() {
+        let sut = makeSUT(withURL: storeURL())
+        let exp1 = expectation(description: "Read expectation")
+        let exp2 = expectation(description: "Store expectation")
+        let exp3 = expectation(description: "Delete expectation")
+        
+        sut.fetch { _ in
+            exp1.fulfill()
+        }
+        sut.store(StoredToken(token: "any-token", expirationDate: Date())) { _ in
+            exp2.fulfill()
+        }
+        sut.deleteToken { _ in
+            exp3.fulfill()
+        }
+        
+        wait(for: [exp1, exp2, exp3], timeout: 8.0, enforceOrder: true)
     }
     
     // MARK: - Helpers
