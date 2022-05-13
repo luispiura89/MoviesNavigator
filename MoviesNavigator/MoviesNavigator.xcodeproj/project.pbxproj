@@ -83,6 +83,7 @@
 		CDEBD3042829DCF00096733D /* NewRequestTokenMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEBD3032829DCF00096733D /* NewRequestTokenMapper.swift */; };
 		CDEBD3072829DD210096733D /* SessionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEBD3062829DD210096733D /* SessionToken.swift */; };
 		CDEBD30A2829DD4A0096733D /* AuthenticationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEBD3092829DD4A0096733D /* AuthenticationError.swift */; };
+		CDECE211282EE556006E74C5 /* LocalTokenLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDECE210282EE556006E74C5 /* LocalTokenLoaderTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -258,6 +259,7 @@
 		CDEBD3032829DCF00096733D /* NewRequestTokenMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRequestTokenMapper.swift; sourceTree = "<group>"; };
 		CDEBD3062829DD210096733D /* SessionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionToken.swift; sourceTree = "<group>"; };
 		CDEBD3092829DD4A0096733D /* AuthenticationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationError.swift; sourceTree = "<group>"; };
+		CDECE210282EE556006E74C5 /* LocalTokenLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalTokenLoaderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -816,6 +818,7 @@
 		CDEBD2F52829C4CE0096733D /* AuthenticationTests */ = {
 			isa = PBXGroup;
 			children = (
+				CDECE20F282EE4B5006E74C5 /* LocalTokenLoader */,
 				CD4BE154282D902500E1404D /* Store */,
 				CD4BE14F282D756700E1404D /* Helpers */,
 				CDEBD3012829CCBB0096733D /* API */,
@@ -853,6 +856,14 @@
 				CDEBD3092829DD4A0096733D /* AuthenticationError.swift */,
 			);
 			path = Error;
+			sourceTree = "<group>";
+		};
+		CDECE20F282EE4B5006E74C5 /* LocalTokenLoader */ = {
+			isa = PBXGroup;
+			children = (
+				CDECE210282EE556006E74C5 /* LocalTokenLoaderTests.swift */,
+			);
+			path = LocalTokenLoader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1519,6 +1530,7 @@
 				CD4BE153282D75C600E1404D /* HTTPURLResponse+Make.swift in Sources */,
 				CDEBD3002829CCB40096733D /* GetNewTokenMapperTests.swift in Sources */,
 				CD4BE156282D904B00E1404D /* CodableTokenStoreTests.swift in Sources */,
+				CDECE211282EE556006E74C5 /* LocalTokenLoaderTests.swift in Sources */,
 				CD4BE151282D75A300E1404D /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
