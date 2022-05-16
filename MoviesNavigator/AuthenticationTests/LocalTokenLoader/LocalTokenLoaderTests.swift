@@ -25,22 +25,25 @@ final class LocalTokenLoader {
     
     func fetchToken(currentDate: Date, completion: @escaping FetchTokenCompletion) {
         store.fetch { [weak self] result in
-            guard
-                let storedToken = try? result.get(),
-                storedToken.expirationDate > currentDate else {
-                    self?.deleteToken { _ in
-                        completion(.failure(Error.expiredToken))
+            completion(
+                Result {
+                    let storedToken = try result.get()
+                    guard storedToken.expirationDate > currentDate else {
+                        throw Error.expiredToken
                     }
-                    return
+                    return storedToken.token
+                }.mapError { _ in
+                    self?.store.deleteIgnoringCompletion()
+                    return Error.expiredToken
                 }
-            completion(.success(storedToken.token))
+            )
         }
     }
-    
-    func deleteToken(completion: @escaping TokenStore.TokenOperationCompletion) {
-        store.deleteToken { result in
-            completion(result)
-        }
+}
+
+private extension TokenStore {
+    func deleteIgnoringCompletion() {
+        deleteToken { _ in }
     }
 }
 
@@ -58,12 +61,37 @@ final class LocalTokenLoaderTests: XCTestCase {
         XCTAssertEqual(store.deleteRequests.count, 0)
     }
     
+    func test_fetchToken_deliversExpiredTokenErrorOnFetchErrorAndNonExpiredToken() {
+        let (sut, store) = makeSUT()
+        
+        let error = errorFetchFor(sut, currentDate: Date().decreasing(minutes: 1)) {
+            store.completeFetchWithError()
+        }
+        
+        XCTAssertEqual(error, LocalTokenLoader.Error.expiredToken)
+        XCTAssertEqual(store.fetchRequests.count, 1)
+        XCTAssertEqual(store.deleteRequests.count, 1)
+    }
+    
     func test_fetchToken_deliversErrorOnExpiredTokenAndDeletesStoredToken() {
         let (sut, store) = makeSUT()
         
         let error = errorFetchFor(sut, currentDate: Date()) {
             store.completeFetchWithExpiredToken()
             store.completeTokenDeletionSuccessfully()
+        }
+        
+        XCTAssertEqual(error, LocalTokenLoader.Error.expiredToken)
+        XCTAssertEqual(store.fetchRequests.count, 1)
+        XCTAssertEqual(store.deleteRequests.count, 1)
+    }
+    
+    func test_fetchToken_deliversErrorOnExpiredTokenAndDeletionError() {
+        let (sut, store) = makeSUT()
+        
+        let error = errorFetchFor(sut, currentDate: Date()) {
+            store.completeFetchWithExpiredToken()
+            store.completeTokenDeletionWithError()
         }
         
         XCTAssertEqual(error, LocalTokenLoader.Error.expiredToken)
@@ -164,6 +192,10 @@ final class LocalTokenLoaderTests: XCTestCase {
             fetchRequests[index](.success(StoredToken(token: "any-token", expirationDate: Date())))
         }
         
+        func completeFetchWithError(at index: Int = 0) {
+            fetchRequests[index](.failure(NSError(domain: "Any error", code: 0, userInfo: nil)))
+        }
+        
         func completeFetchWithExpiredToken(at index: Int = 0) {
             fetchRequests[index](
                 .success(
@@ -178,6 +210,11 @@ final class LocalTokenLoaderTests: XCTestCase {
         func completeTokenDeletionSuccessfully(at index: Int = 0) {
             deleteRequests[index](.success(()))
         }
+        
+        func completeTokenDeletionWithError(at index: Int = 0) {
+            deleteRequests[index](.failure(NSError(domain: "Any error", code: 0, userInfo: nil)))
+        }
+        
     }
     
 }
