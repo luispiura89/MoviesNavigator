@@ -62,6 +62,7 @@
 		CDA7FE40279107FD00FE8735 /* SharedPresentation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDE05A7E277E3C0300CD8859 /* SharedPresentation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CDA7FE41279107FE00FE8735 /* TVShows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A5427445AA600C773C7 /* TVShows.framework */; };
 		CDA7FE42279107FE00FE8735 /* TVShows.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A5427445AA600C773C7 /* TVShows.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CDAA5E532833137E00FE51D8 /* LocalTokenLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAA5E522833137E00FE51D8 /* LocalTokenLoader.swift */; };
 		CDC35A912792338D007D2504 /* TV_SHOWS_ERROR_light.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC35A902792338C007D2504 /* TV_SHOWS_ERROR_light.png */; };
 		CDCA601D2825907D006C2871 /* SharediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCA60152825907C006C2871 /* SharediOS.framework */; };
 		CDCA60222825907D006C2871 /* SharediOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCA60212825907D006C2871 /* SharediOSTests.swift */; };
@@ -237,6 +238,7 @@
 		CD9753B527BF026100C69919 /* AuthenticationiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AuthenticationiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD9753BC27BF026100C69919 /* AuthenticationiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticationiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDA7FE232790F3E200FE8735 /* TV_SHOWS_LOADING_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TV_SHOWS_LOADING_light.png; sourceTree = "<group>"; };
+		CDAA5E522833137E00FE51D8 /* LocalTokenLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalTokenLoader.swift; sourceTree = "<group>"; };
 		CDC35A8E2791F518007D2504 /* HeaderErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderErrorView.swift; sourceTree = "<group>"; };
 		CDC35A902792338C007D2504 /* TV_SHOWS_ERROR_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TV_SHOWS_ERROR_light.png; sourceTree = "<group>"; };
 		CDCA60152825907C006C2871 /* SharediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SharediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -523,6 +525,7 @@
 				CD4BE158282DE58600E1404D /* TokenStore.swift */,
 				CD4BE15A282DE59B00E1404D /* StoredToken.swift */,
 				CD4BE15C282DE5C000E1404D /* TokenStoreError.swift */,
+				CDAA5E522833137E00FE51D8 /* LocalTokenLoader.swift */,
 			);
 			path = TokenStore;
 			sourceTree = "<group>";
@@ -1517,6 +1520,7 @@
 				CD4BE15B282DE59B00E1404D /* StoredToken.swift in Sources */,
 				CDEBD3072829DD210096733D /* SessionToken.swift in Sources */,
 				CD4BE15D282DE5C000E1404D /* TokenStoreError.swift in Sources */,
+				CDAA5E532833137E00FE51D8 /* LocalTokenLoader.swift in Sources */,
 				CD4BE159282DE58600E1404D /* TokenStore.swift in Sources */,
 				CDEBD30A2829DD4A0096733D /* AuthenticationError.swift in Sources */,
 				CDEBD3042829DCF00096733D /* NewRequestTokenMapper.swift in Sources */,

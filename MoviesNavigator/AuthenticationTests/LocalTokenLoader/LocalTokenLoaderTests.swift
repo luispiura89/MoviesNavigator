@@ -8,45 +8,6 @@
 import XCTest
 import Authentication
 
-final class LocalTokenLoader {
-    
-    typealias FetchTokenResult = Result<String, Swift.Error>
-    typealias FetchTokenCompletion = (FetchTokenResult) -> Void
-    
-    enum Error: Swift.Error {
-        case expiredToken
-    }
-    
-    private let store: TokenStore
-    
-    init(store: TokenStore) {
-        self.store = store
-    }
-    
-    func fetchToken(currentDate: Date, completion: @escaping FetchTokenCompletion) {
-        store.fetch { [weak self] result in
-            completion(
-                Result {
-                    let storedToken = try result.get()
-                    guard storedToken.expirationDate > currentDate else {
-                        throw Error.expiredToken
-                    }
-                    return storedToken.token
-                }.mapError { _ in
-                    self?.store.deleteIgnoringCompletion()
-                    return Error.expiredToken
-                }
-            )
-        }
-    }
-}
-
-private extension TokenStore {
-    func deleteIgnoringCompletion() {
-        deleteToken { _ in }
-    }
-}
-
 final class LocalTokenLoaderTests: XCTestCase {
     
     func test_fetchToken_retrievesTokenWhenTokenIsNotExpired() {
