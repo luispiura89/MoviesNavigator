@@ -19,3 +19,12 @@ func non200HTTPResponseData() throws -> Data {
     ]
     return try JSONSerialization.data(withJSONObject: json)
 }
+
+func loginFailedResponse() throws -> Data {
+    let json: [String: Any] = [
+        "status_code": 30,
+        "status_message": "Any error message",
+        "success": false
+    ]
+    return try JSONSerialization.data(withJSONObject: json)
+}

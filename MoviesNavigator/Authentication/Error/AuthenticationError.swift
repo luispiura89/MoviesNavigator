@@ -9,4 +9,5 @@ import Foundation
 
 public enum AuthenticationError: Error {
     case invalidData
+    case incorrectUserOrPassword
 }

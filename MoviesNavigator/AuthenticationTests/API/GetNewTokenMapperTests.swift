@@ -24,6 +24,14 @@ final class GetNewTokenMapperTests: XCTestCase {
         assertFailure(forResponseCode: 200, withData: try non200HTTPResponseData())
     }
     
+    func test_map_shouldThrowUserErrorForNon200HTTPResponseOnLoginFailure() throws {
+        assertFailure(
+            forResponseCode: 401,
+            withData: try loginFailedResponse(),
+            expectedError: .incorrectUserOrPassword
+        )
+    }
+    
     func test_map_shouldDeliverNewTokenOn200HTTPResponseAndValidData() throws {
         let token = "any-token"
         let expirationDate = "2022-05-10 00:07:44 UTC"
@@ -50,6 +58,7 @@ final class GetNewTokenMapperTests: XCTestCase {
     private func assertFailure(
         forResponseCode code: Int,
         withData data: Data,
+        expectedError: AuthenticationError = AuthenticationError.invalidData,
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
@@ -59,7 +68,7 @@ final class GetNewTokenMapperTests: XCTestCase {
             line: line
         ) { error in
             XCTAssertEqual(
-                error as? AuthenticationError, AuthenticationError.invalidData,
+                error as? AuthenticationError, expectedError,
                 file: file,
                 line: line
             )
