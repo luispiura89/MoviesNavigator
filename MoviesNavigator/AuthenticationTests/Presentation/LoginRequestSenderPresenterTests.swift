@@ -21,6 +21,10 @@ public final class LoginRequestSenderPresenter {
         view.update(LoginRequestSenderViewModel(isEnabled: true))
     }
     
+    public func disable() {
+        view.update(LoginRequestSenderViewModel(isEnabled: false))
+    }
+    
 }
 
 final class LoginRequestSenderPresenterTests: XCTestCase {
@@ -32,6 +36,15 @@ final class LoginRequestSenderPresenterTests: XCTestCase {
         sut.enable()
         
         XCTAssertEqual(view.messages, [.enabled])
+    }
+    
+    func test_disable_disablesLoginview() {
+        let view = LoginRequestSenderViewSpy()
+        let sut = LoginRequestSenderPresenter(view: view)
+        
+        sut.disable()
+        
+        XCTAssertEqual(view.messages, [.disabled])
     }
 
     final private class LoginRequestSenderViewSpy: LoginRequestSenderView {
