@@ -6,6 +6,7 @@
 //
 
 import AuthenticationiOS
+import SharediOS
 import SharedPresentation
 import XCTest
 
@@ -39,7 +40,10 @@ final class LoginSnapshotTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT() -> LoginViewController {
-        let sut = LoginViewController()
+        let sut = LoginViewController(
+            loginLoadingViewController: LoginLoadingViewController(),
+            errorViewController: HeaderErrorViewController()
+        )
         sut.loadViewIfNeeded()
         return sut
     }
@@ -48,7 +52,7 @@ final class LoginSnapshotTests: XCTestCase {
 private extension LoginViewController {
     
     func startLoading() {
-        loginLoadingViewController.isLoading = true
+        loginLoadingViewController?.isLoading = true
     }
     
     func renderError() {

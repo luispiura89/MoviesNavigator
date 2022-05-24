@@ -11,17 +11,26 @@ import SharedPresentation
 
 public final class LoginViewController: UIViewController, ErrorView {
     
-    public private(set) var loginLoadingViewController = LoginLoadingViewController()
+    public private(set) var loginLoadingViewController: LoginLoadingViewController?
     private var ui = LoginView(frame: .zero)
-    private var errorViewController = HeaderErrorViewController()
+    public private(set) var errorViewController: HeaderErrorViewController?
+    
+    public convenience init(
+        loginLoadingViewController: LoginLoadingViewController,
+        errorViewController: HeaderErrorViewController
+    ) {
+        self.init()
+        self.loginLoadingViewController = loginLoadingViewController
+        self.errorViewController = errorViewController
+    }
     
     public override func loadView() {
         view = ui
-        ui.addLoadingButton(loginLoadingViewController.view)
-        errorViewController.pinErrorViewOnTop(ofView: ui)
+        ui.addLoadingButton(loginLoadingViewController?.view ?? UIButton())
+        errorViewController?.pinErrorViewOnTop(ofView: ui)
     }
 
     public func update(_ viewModel: ErrorViewModel) {
-        errorViewController.error = viewModel.message
+        errorViewController?.error = viewModel.message
     }
 }
