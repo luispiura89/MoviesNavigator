@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CD08165327BD62B700691C51 /* UIImage+Make.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08165227BD62B700691C51 /* UIImage+Make.swift */; };
+		CD20D70F283C5AA2008A5E58 /* LoginIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD20D70E283C5AA2008A5E58 /* LoginIntegrationTests.swift */; };
 		CD7A341527A9F3C70058D0B1 /* LoaderMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7A341427A9F3C70058D0B1 /* LoaderMaker.swift */; };
 		CD8120EE277A718D00277EF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8120ED277A718D00277EF1 /* AppDelegate.swift */; };
 		CD8120F0277A718D00277EF1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8120EF277A718D00277EF1 /* SceneDelegate.swift */; };
@@ -82,6 +83,7 @@
 
 /* Begin PBXFileReference section */
 		CD08165227BD62B700691C51 /* UIImage+Make.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Make.swift"; sourceTree = "<group>"; };
+		CD20D70E283C5AA2008A5E58 /* LoginIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginIntegrationTests.swift; sourceTree = "<group>"; };
 		CD7A341427A9F3C70058D0B1 /* LoaderMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderMaker.swift; sourceTree = "<group>"; };
 		CD7C0839277A73DE00E473BD /* SharedAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD8120EA277A718D00277EF1 /* MoviesNavigatorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesNavigatorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +160,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		CD20D70D283C5A77008A5E58 /* Login Integration Tests */ = {
+			isa = PBXGroup;
+			children = (
+				CD20D70E283C5AA2008A5E58 /* LoginIntegrationTests.swift */,
+			);
+			path = "Login Integration Tests";
+			sourceTree = "<group>";
+		};
 		CD8120E1277A718D00277EF1 = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +207,7 @@
 		CD812103277A719100277EF1 /* MoviesNavigatorAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				CD20D70D283C5A77008A5E58 /* Login Integration Tests */,
 				CD08165127BD628E00691C51 /* Helpers */,
 				CDBE54E027BB0843000C475F /* Acceptance Tests */,
 				CDE1D230278F82F20033918A /* Home Integration Tests */,
@@ -458,6 +469,7 @@
 				CD08165327BD62B700691C51 /* UIImage+Make.swift in Sources */,
 				CDBE54E527BB09A4000C475F /* SceneDelegateTests.swift in Sources */,
 				CDBE54E327BB0917000C475F /* MockWindow.swift in Sources */,
+				CD20D70F283C5AA2008A5E58 /* LoginIntegrationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
