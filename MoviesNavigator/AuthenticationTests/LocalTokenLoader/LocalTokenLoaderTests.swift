@@ -75,21 +75,6 @@ final class LocalTokenLoaderTests: XCTestCase {
         return (sut, store)
     }
     
-    private func trackMemoryLeaks(
-        _ instance: AnyObject,
-        file: StaticString = #filePath,
-        line: UInt = #line
-    ) {
-        addTeardownBlock { [weak instance] in
-            XCTAssertNil(
-                instance,
-                "Potential memory leak for instance \(String(describing: instance))",
-                file: file,
-                line: line
-            )
-        }
-    }
-    
     private func errorFetchFor(
         _ sut: LocalTokenLoader, currentDate: Date,
         on action: @escaping () -> Void

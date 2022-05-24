@@ -30,8 +30,7 @@ public final class LoginRequestSenderPresenter {
 final class LoginRequestSenderPresenterTests: XCTestCase {
     
     func test_enable_enablesLoginview() {
-        let view = LoginRequestSenderViewSpy()
-        let sut = LoginRequestSenderPresenter(view: view)
+        let (sut, view) = makeSUT()
         
         sut.enable()
         
@@ -39,12 +38,26 @@ final class LoginRequestSenderPresenterTests: XCTestCase {
     }
     
     func test_disable_disablesLoginview() {
-        let view = LoginRequestSenderViewSpy()
-        let sut = LoginRequestSenderPresenter(view: view)
+        let (sut, view) = makeSUT()
         
         sut.disable()
         
         XCTAssertEqual(view.messages, [.disabled])
+    }
+    
+    // MARK: - Helpers
+    
+    private func makeSUT(
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> (LoginRequestSenderPresenter, LoginRequestSenderViewSpy) {
+        let view = LoginRequestSenderViewSpy()
+        let sut = LoginRequestSenderPresenter(view: view)
+        
+        trackMemoryLeaks(sut, file: file, line: line)
+        trackMemoryLeaks(view, file: file, line: line)
+        
+        return (sut, view)
     }
 
     final private class LoginRequestSenderViewSpy: LoginRequestSenderView {
