@@ -6,6 +6,7 @@
 //
 
 import AuthenticationiOS
+import Authentication
 import SharediOS
 import SharedPresentation
 import XCTest
@@ -52,10 +53,11 @@ final class LoginSnapshotTests: XCTestCase {
 private extension LoginViewController {
     
     func startLoading() {
-        loginLoadingViewController?.isLoading = true
+        loginLoadingViewController?.update(LoadingViewModel(isLoading: true))
     }
     
     func renderError() {
+        loginLoadingViewController?.update(LoginRequestSenderViewModel(isEnabled: true))
         update(ErrorViewModel(message: "This is a\nlong error"))
     }
     

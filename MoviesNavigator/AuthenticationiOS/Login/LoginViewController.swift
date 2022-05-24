@@ -12,7 +12,7 @@ import SharedPresentation
 public final class LoginViewController: UIViewController, ErrorView {
     
     public private(set) var loginLoadingViewController: LoginLoadingViewController?
-    private var ui = LoginView(frame: .zero)
+    private let ui = LoginView(frame: .zero)
     public private(set) var errorViewController: HeaderErrorViewController?
     
     public convenience init(

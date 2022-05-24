@@ -6,20 +6,27 @@
 //
 
 import Foundation
+import Authentication
+import SharedPresentation
 import UIKit
 
-public final class LoginLoadingViewController: NSObject {
+public final class LoginLoadingViewController: NSObject, LoadingView, LoginRequestSenderView {
     
     var view: UIButton {
         loginButton
     }
 
-    public var isLoading = false {
+    public private(set) var isLoading = false {
         didSet {
-            loginButton.alpha = isLoading ? 0.5 : 1
-            loginButton.isUserInteractionEnabled = !isLoading
+            isEnabled = !isLoading
             loginButton.setTitle(isLoading ? nil : "Log in", for: .normal)
             isLoading ? loadingIndicator.startAnimating() : loadingIndicator.stopAnimating()
+        }
+    }
+
+    public private(set) var isEnabled = false {
+        didSet {
+            changeStatus(isEnabled: isEnabled)
         }
     }
     
@@ -47,4 +54,23 @@ public final class LoginLoadingViewController: NSObject {
         
         return button
     }()
+    
+    public override init() {
+        super.init()
+        isEnabled = false
+        changeStatus(isEnabled: isEnabled)
+    }
+    
+    public func update(_ viewModel: LoginRequestSenderViewModel) {
+        isEnabled = viewModel.isEnabled
+    }
+    
+    public func update(_ viewModel: LoadingViewModel) {
+        isLoading = viewModel.isLoading
+    }
+    
+    private func changeStatus(isEnabled: Bool) {
+        loginButton.alpha = !isEnabled ? 0.5 : 1
+        loginButton.isUserInteractionEnabled = isEnabled
+    }
 }
