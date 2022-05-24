@@ -58,7 +58,7 @@ private extension LoginViewController {
     
     func renderError() {
         loginLoadingViewController?.update(LoginRequestSenderViewModel(isEnabled: true))
-        update(ErrorViewModel(message: "This is a\nlong error"))
+        errorViewController?.update(ErrorViewModel(message: "This is a\nlong error"))
     }
     
 }

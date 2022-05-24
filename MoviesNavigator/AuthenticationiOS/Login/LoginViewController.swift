@@ -9,7 +9,12 @@ import UIKit
 import SharediOS
 import SharedPresentation
 
-public final class LoginViewController: UIViewController, ErrorView {
+protocol LoginViewControllerDelegate {
+    func update(user: String)
+    func update(password: String)
+}
+
+public final class LoginViewController: UIViewController {
     
     public private(set) var loginLoadingViewController: LoginLoadingViewController?
     private let ui = LoginView(frame: .zero)
@@ -28,9 +33,5 @@ public final class LoginViewController: UIViewController, ErrorView {
         view = ui
         ui.addLoadingButton(loginLoadingViewController?.view ?? UIButton())
         errorViewController?.pinErrorViewOnTop(ofView: ui)
-    }
-
-    public func update(_ viewModel: ErrorViewModel) {
-        errorViewController?.error = viewModel.message
     }
 }
