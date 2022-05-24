@@ -63,6 +63,8 @@
 		CDA7FE41279107FE00FE8735 /* TVShows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A5427445AA600C773C7 /* TVShows.framework */; };
 		CDA7FE42279107FE00FE8735 /* TVShows.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A5427445AA600C773C7 /* TVShows.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CDAA5E532833137E00FE51D8 /* LocalTokenLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAA5E522833137E00FE51D8 /* LocalTokenLoader.swift */; };
+		CDBC2BE2283D9592005F833D /* LoginRequestSenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC2BE1283D9592005F833D /* LoginRequestSenderView.swift */; };
+		CDBC2BE5283D96F2005F833D /* LoginRequestSenderPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC2BE4283D96F2005F833D /* LoginRequestSenderPresenterTests.swift */; };
 		CDC35A912792338D007D2504 /* TV_SHOWS_ERROR_light.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC35A902792338C007D2504 /* TV_SHOWS_ERROR_light.png */; };
 		CDCA601D2825907D006C2871 /* SharediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCA60152825907C006C2871 /* SharediOS.framework */; };
 		CDCA60222825907D006C2871 /* SharediOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCA60212825907D006C2871 /* SharediOSTests.swift */; };
@@ -239,6 +241,8 @@
 		CD9753BC27BF026100C69919 /* AuthenticationiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticationiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDA7FE232790F3E200FE8735 /* TV_SHOWS_LOADING_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TV_SHOWS_LOADING_light.png; sourceTree = "<group>"; };
 		CDAA5E522833137E00FE51D8 /* LocalTokenLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalTokenLoader.swift; sourceTree = "<group>"; };
+		CDBC2BE1283D9592005F833D /* LoginRequestSenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestSenderView.swift; sourceTree = "<group>"; };
+		CDBC2BE4283D96F2005F833D /* LoginRequestSenderPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestSenderPresenterTests.swift; sourceTree = "<group>"; };
 		CDC35A8E2791F518007D2504 /* HeaderErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderErrorView.swift; sourceTree = "<group>"; };
 		CDC35A902792338C007D2504 /* TV_SHOWS_ERROR_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TV_SHOWS_ERROR_light.png; sourceTree = "<group>"; };
 		CDCA60152825907C006C2871 /* SharediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SharediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -747,6 +751,22 @@
 			path = AuthenticationiOSTests;
 			sourceTree = "<group>";
 		};
+		CDBC2BE0283D951A005F833D /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				CDBC2BE1283D9592005F833D /* LoginRequestSenderView.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		CDBC2BE3283D96C7005F833D /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				CDBC2BE4283D96F2005F833D /* LoginRequestSenderPresenterTests.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
 		CDC35A8D2791F4CD007D2504 /* Error View */ = {
 			isa = PBXGroup;
 			children = (
@@ -810,6 +830,7 @@
 		CDEBD2EB2829C4CD0096733D /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				CDBC2BE0283D951A005F833D /* Presentation */,
 				CD4BE157282DE41900E1404D /* TokenStore */,
 				CDEBD3082829DD2F0096733D /* Error */,
 				CDEBD3052829DD0F0096733D /* NewToken */,
@@ -821,6 +842,7 @@
 		CDEBD2F52829C4CE0096733D /* AuthenticationTests */ = {
 			isa = PBXGroup;
 			children = (
+				CDBC2BE3283D96C7005F833D /* Presentation */,
 				CDECE20F282EE4B5006E74C5 /* LocalTokenLoader */,
 				CD4BE154282D902500E1404D /* Store */,
 				CD4BE14F282D756700E1404D /* Helpers */,
@@ -1518,6 +1540,7 @@
 			files = (
 				CD4BE160282DE5F800E1404D /* CodableTokenStore.swift in Sources */,
 				CD4BE15B282DE59B00E1404D /* StoredToken.swift in Sources */,
+				CDBC2BE2283D9592005F833D /* LoginRequestSenderView.swift in Sources */,
 				CDEBD3072829DD210096733D /* SessionToken.swift in Sources */,
 				CD4BE15D282DE5C000E1404D /* TokenStoreError.swift in Sources */,
 				CDAA5E532833137E00FE51D8 /* LocalTokenLoader.swift in Sources */,
@@ -1532,6 +1555,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD4BE153282D75C600E1404D /* HTTPURLResponse+Make.swift in Sources */,
+				CDBC2BE5283D96F2005F833D /* LoginRequestSenderPresenterTests.swift in Sources */,
 				CDEBD3002829CCB40096733D /* GetNewTokenMapperTests.swift in Sources */,
 				CD4BE156282D904B00E1404D /* CodableTokenStoreTests.swift in Sources */,
 				CDECE211282EE556006E74C5 /* LocalTokenLoaderTests.swift in Sources */,
