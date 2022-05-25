@@ -9,7 +9,7 @@ import UIKit
 import SharediOS
 import SharedPresentation
 
-protocol LoginViewControllerDelegate {
+public protocol LoginViewControllerDelegate {
     func update(user: String)
     func update(password: String)
 }
@@ -17,21 +17,30 @@ protocol LoginViewControllerDelegate {
 public final class LoginViewController: UIViewController {
     
     public private(set) var loginLoadingViewController: LoginLoadingViewController?
-    private let ui = LoginView(frame: .zero)
+    public private(set) var ui = LoginView(frame: .zero)
     public private(set) var errorViewController: HeaderErrorViewController?
+    private var delegate: LoginViewControllerDelegate?
     
     public convenience init(
         loginLoadingViewController: LoginLoadingViewController,
-        errorViewController: HeaderErrorViewController
+        errorViewController: HeaderErrorViewController,
+        delegate: LoginViewControllerDelegate? = nil
     ) {
         self.init()
         self.loginLoadingViewController = loginLoadingViewController
         self.errorViewController = errorViewController
+        self.delegate = delegate
     }
     
     public override func loadView() {
         view = ui
         ui.addLoadingButton(loginLoadingViewController?.view ?? UIButton())
         errorViewController?.pinErrorViewOnTop(ofView: ui)
+        ui.userTextDidChange = { [weak self] user in
+            self?.delegate?.update(user: user)
+        }
+        ui.passwordTextDidChange = { [weak self] password in
+            self?.delegate?.update(password: password)
+        }
     }
 }

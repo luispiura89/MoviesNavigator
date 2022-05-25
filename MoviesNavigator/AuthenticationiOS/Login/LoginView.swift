@@ -7,7 +7,10 @@
 
 import UIKit
 
-final class LoginView: UIView {
+public final class LoginView: UIView {
+    
+    var userTextDidChange: ((String) -> Void)?
+    var passwordTextDidChange: ((String) -> Void)?
     
     private lazy var scrollView: UIScrollView  = {
         let scrollView = UIScrollView()
@@ -17,21 +20,23 @@ final class LoginView: UIView {
         return scrollView
     }()
     
-    private lazy var userTextField: UITextField = {
+    public private(set) lazy var userTextField: UITextField = {
         let textfield = UITextField()
         textfield.borderStyle = .roundedRect
         textfield.backgroundColor = .white
         textfield.placeholder = "Username"
         textfield.heightAnchor.constraint(equalToConstant: 52).isActive = true
+        textfield.addTarget(self, action: #selector(updateUser), for: .editingChanged)
         return textfield
     }()
     
-    private lazy var passwordTextField: UITextField = {
+    public private(set) lazy var passwordTextField: UITextField = {
         let textfield = UITextField()
         textfield.borderStyle = .roundedRect
         textfield.backgroundColor = .white
         textfield.placeholder = "Password"
         textfield.heightAnchor.constraint(equalToConstant: 52).isActive = true
+        textfield.addTarget(self, action: #selector(updatePassword), for: .editingChanged)
         return textfield
     }()
     
@@ -70,4 +75,11 @@ final class LoginView: UIView {
         mainStackView.addArrangedSubview(loadingButton)
     }
     
+    @objc private func updateUser() {
+        userTextDidChange?(userTextField.text ?? "")
+    }
+    
+    @objc private func updatePassword() {
+        passwordTextDidChange?(passwordTextField.text ?? "")
+    }
 }

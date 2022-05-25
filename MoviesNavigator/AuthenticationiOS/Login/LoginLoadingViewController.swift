@@ -18,15 +18,15 @@ public final class LoginLoadingViewController: NSObject, LoadingView, LoginReque
 
     public private(set) var isLoading = false {
         didSet {
-            isEnabled = !isLoading
+            canSendRequest = !isLoading
             loginButton.setTitle(isLoading ? nil : "Log in", for: .normal)
             isLoading ? loadingIndicator.startAnimating() : loadingIndicator.stopAnimating()
         }
     }
 
-    public private(set) var isEnabled = false {
+    public private(set) var canSendRequest = false {
         didSet {
-            changeStatus(isEnabled: isEnabled)
+            changeStatus(isEnabled: canSendRequest)
         }
     }
     
@@ -37,7 +37,7 @@ public final class LoginLoadingViewController: NSObject, LoadingView, LoginReque
         return loadingIndicator
     }()
 
-    private lazy var loginButton: UIButton = {
+    public private(set) lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.font = .preferredFont(forTextStyle: .headline)
         button.adjustsImageSizeForAccessibilityContentSizeCategory = true
@@ -57,12 +57,12 @@ public final class LoginLoadingViewController: NSObject, LoadingView, LoginReque
     
     public override init() {
         super.init()
-        isEnabled = false
-        changeStatus(isEnabled: isEnabled)
+        canSendRequest = false
+        changeStatus(isEnabled: canSendRequest)
     }
     
     public func update(_ viewModel: LoginRequestSenderViewModel) {
-        isEnabled = viewModel.isEnabled
+        canSendRequest = viewModel.isEnabled
     }
     
     public func update(_ viewModel: LoadingViewModel) {
