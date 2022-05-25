@@ -306,12 +306,6 @@ final class HomeScreenIntegrationTests: XCTestCase {
         }
     }
     
-    private func trackMemoryLeaks(_ instance: AnyObject, file: StaticString = #filePath, line: UInt = #line) {
-        addTeardownBlock { [weak instance] in
-            XCTAssertNil(instance, "\(String(describing: instance)) stills in memory", file: file, line: line)
-        }
-    }
-    
     private func shouldRender(_ models: [TVShow], in controller: HomeViewController, file: StaticString = #filePath, line: UInt = #line) {
         XCTAssertEqual(controller.renderedCells(), models.count, "Expected to render \(models.count) cells", file: file, line: line)
         
@@ -329,15 +323,5 @@ final class HomeScreenIntegrationTests: XCTestCase {
     
     private func anyError() -> NSError {
         NSError(domain: "Error", code: 0, userInfo: nil)
-    }
-}
-
-extension UIControl {
-    func send(event: UIControl.Event) {
-        allTargets.forEach { target in
-            actions(forTarget: target, forControlEvent: event)?.forEach({ selector in
-                (target as NSObject).perform(Selector(selector))
-            })
-        }
     }
 }

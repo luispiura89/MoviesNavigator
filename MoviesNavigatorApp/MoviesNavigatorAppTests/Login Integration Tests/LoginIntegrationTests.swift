@@ -67,9 +67,12 @@ final class LoginIntegrationTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> LoginViewController {
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> LoginViewController {
         let controller = LoginUIComposer.compose()
         controller.loadViewIfNeeded()
+        
+        trackMemoryLeaks(controller, file: file, line: line)
+        
         return controller
     }
     
