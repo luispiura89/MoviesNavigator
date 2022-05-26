@@ -34,6 +34,12 @@ final class LoginIntegrationTests: XCTestCase {
         
         client.completeLoginWithError()
         XCTAssertEqual(sut.isLoading, false, "Login should not be loading after failure")
+        
+        sut.simulateUserSentLoginRequest()
+        XCTAssertEqual(sut.isLoading, true, "Login should be loading after user sent second request")
+        
+        client.completeLoginSuccessfully(at: 1)
+        XCTAssertEqual(sut.isLoading, false, "Login should not be loading after successful request")
     }
     
     // MARK: - Helpers
@@ -65,6 +71,12 @@ final class LoginIntegrationTests: XCTestCase {
                         userInfo: nil
                     )
                 )
+            )
+        }
+        
+        func completeLoginSuccessfully(at index: Int = 0) {
+            requests[index].send(
+                SessionToken(requestToken: "any-token", expiresAt: "")
             )
         }
         

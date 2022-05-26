@@ -61,8 +61,8 @@ final class LoginPresentationAdapter: LoginLoadingViewControllerDelegate {
                 if case let .failure(error) = completion {
                     presenter?.didFinishLoading(with: error)
                 }
-            } receiveValue: { token in
-                
+            } receiveValue: { [weak presenter] token in
+                presenter?.didFinishLoading(with: token)
             }
     }
     
