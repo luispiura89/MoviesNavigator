@@ -8,17 +8,33 @@
 import XCTest
 import AuthenticationiOS
 import Authentication
+import SharedPresentation
 import SharediOS
+import MoviesNavigatorApp
+import Combine
+
+typealias LoginPresentationAdapter = LoadResourcePresentationAdapter<SessionToken, LoginViewAdapter, LoginMaker>
 
 final class LoginUIComposer {
     
     static func compose() -> LoginViewController {
-        let loadingView = LoginLoadingViewController()
+        let loginMaker = LoginMaker()
+        let loginPresentationAdapter = LoginPresentationAdapter(loader: loginMaker.makeRequest, loaderMaker: loginMaker)
+        let loadingView = LoginLoadingViewController(delegate: loginPresentationAdapter)
+        let errorView = HeaderErrorViewController()
+        let loginView = LoginViewAdapter()
+        let loginPresenter = LoadResourcePresenter<SessionToken, LoginViewAdapter>(
+            loadingView: loadingView,
+            errorView: errorView,
+            resourceView: loginView,
+            resourceMapper: { session in session }
+        )
+        loginPresentationAdapter.presenter = loginPresenter
         let loginRequestSenderPresenter = LoginRequestSenderPresenter(view: loadingView)
         return LoginViewController(
             loginLoadingViewController: loadingView,
-            errorViewController: HeaderErrorViewController(),
-            delegate: LoginPresentationAdapter(
+            errorViewController: errorView,
+            delegate: LoginRequestSenderPresentationAdapter(
                 loginRequestSenderPresenter: loginRequestSenderPresenter
             )
         )
@@ -26,7 +42,29 @@ final class LoginUIComposer {
     
 }
 
-class LoginPresentationAdapter: LoginViewControllerDelegate {
+extension LoadResourcePresentationAdapter: LoginLoadingViewControllerDelegate where Resource == SessionToken {
+    
+    public func sendLoginRequest() {
+        load()
+    }
+    
+}
+
+final class LoginViewAdapter: ResourceView {
+    
+    func update(_ viewModel: ResourceViewModel<SessionToken>) {}
+    
+}
+
+final class LoginMaker: LoaderMaker {
+    var requestType: Any? = nil
+    
+    func makeRequest() -> AnyPublisher<SessionToken, Error> {
+        PassthroughSubject<SessionToken, Error>().eraseToAnyPublisher()
+    }
+}
+
+final class LoginRequestSenderPresentationAdapter: LoginViewControllerDelegate {
     
     private let loginRequestSenderPresenter: LoginRequestSenderPresenter
     private var isUserEmpty = true
@@ -64,6 +102,16 @@ final class LoginIntegrationTests: XCTestCase {
         XCTAssertEqual(sut.canSendRequest, true, "Login should be able to send a request after user filled data")
         sut.simulateUserClearedLoginData()
         XCTAssertEqual(sut.canSendRequest, false, "Login should not be able to send a request before after user erased data")
+    }
+    
+    func test_login_shouldHandleLoadingStatus() {
+        let sut = makeSUT()
+        
+        sut.simulateUserFilledLoginData()
+        XCTAssertEqual(sut.isLoading, false, "Login should not send request on fill operations")
+        sut.simulateUserSentLoginRequest()
+        XCTAssertEqual(sut.isLoading, true, "Login should be able to send a request after user filled data")
+        
     }
     
     // MARK: - Helpers

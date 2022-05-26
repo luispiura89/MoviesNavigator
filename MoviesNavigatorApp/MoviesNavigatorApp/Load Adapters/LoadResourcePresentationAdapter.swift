@@ -26,7 +26,7 @@ public final class LoadResourcePresentationAdapter<Resource, View: ResourceView,
         self.loaderMaker = loaderMaker
     }
     
-    func load() {
+    public func load() {
         guard !isLoading else { return }
         isLoading = true
         presenter?.didStartLoadingResource()
