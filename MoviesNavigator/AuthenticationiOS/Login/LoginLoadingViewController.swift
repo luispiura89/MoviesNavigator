@@ -10,7 +10,13 @@ import Authentication
 import SharedPresentation
 import UIKit
 
+public protocol LoginLoadingViewControllerDelegate {
+    func sendLoginRequest()
+}
+
 public final class LoginLoadingViewController: NSObject, LoadingView, LoginRequestSenderView {
+    
+    private var delegate: LoginLoadingViewControllerDelegate?
     
     var view: UIButton {
         loginButton
@@ -36,6 +42,11 @@ public final class LoginLoadingViewController: NSObject, LoadingView, LoginReque
         loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
         return loadingIndicator
     }()
+    
+    public convenience init(delegate: LoginLoadingViewControllerDelegate? = nil) {
+        self.init()
+        self.delegate = delegate
+    }
 
     public private(set) lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
@@ -47,6 +58,7 @@ public final class LoginLoadingViewController: NSObject, LoadingView, LoginReque
         button.tintColor = .white
         button.clipsToBounds = true
         button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(sendLoginRequest), for: .touchUpInside)
         
         button.addSubview(loadingIndicator)
         loadingIndicator.centerXAnchor.constraint(equalTo: button.centerXAnchor).isActive = true
@@ -66,5 +78,9 @@ public final class LoginLoadingViewController: NSObject, LoadingView, LoginReque
     private func changeStatus(isEnabled: Bool) {
         loginButton.alpha = !isEnabled ? 0.5 : 1
         loginButton.isUserInteractionEnabled = isEnabled
+    }
+    
+    @objc private func sendLoginRequest() {
+        delegate?.sendLoginRequest()
     }
 }
