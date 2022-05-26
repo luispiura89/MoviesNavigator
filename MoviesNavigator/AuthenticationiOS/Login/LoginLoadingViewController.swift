@@ -24,7 +24,7 @@ public final class LoginLoadingViewController: NSObject, LoadingView, LoginReque
         }
     }
 
-    public private(set) var canSendRequest = false {
+    public private(set) var canSendRequest = true {
         didSet {
             changeStatus(isEnabled: canSendRequest)
         }
@@ -54,12 +54,6 @@ public final class LoginLoadingViewController: NSObject, LoadingView, LoginReque
         
         return button
     }()
-    
-    public override init() {
-        super.init()
-        canSendRequest = false
-        changeStatus(isEnabled: canSendRequest)
-    }
     
     public func update(_ viewModel: LoginRequestSenderViewModel) {
         canSendRequest = viewModel.isEnabled

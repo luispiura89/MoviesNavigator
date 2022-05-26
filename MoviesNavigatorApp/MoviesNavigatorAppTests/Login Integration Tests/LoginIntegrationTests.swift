@@ -29,25 +29,26 @@ final class LoginUIComposer {
 class LoginPresentationAdapter: LoginViewControllerDelegate {
     
     private let loginRequestSenderPresenter: LoginRequestSenderPresenter
-    private var user = ""
-    private var password = ""
+    private var isUserEmpty = true
+    private var isPasswordEmpty = true
     
     init(loginRequestSenderPresenter: LoginRequestSenderPresenter) {
         self.loginRequestSenderPresenter = loginRequestSenderPresenter
+        updateLoginSenderViewState()
     }
     
     func update(user: String) {
-        self.user = user
+        isUserEmpty = user.isEmpty
         updateLoginSenderViewState()
     }
     
     func update(password: String) {
-        self.password = password
+        isPasswordEmpty = password.isEmpty
         updateLoginSenderViewState()
     }
     
     private func updateLoginSenderViewState() {
-        !user.isEmpty && !password.isEmpty ?
+        !isUserEmpty && !isPasswordEmpty ? 
         loginRequestSenderPresenter.enable() :
         loginRequestSenderPresenter.disable()
     }
@@ -99,7 +100,8 @@ private extension LoginViewController {
     }
     
     var canSendRequest: Bool {
-        loginLoadingViewController?.canSendRequest == true
+        loginLoadingViewController?.canSendRequest == true &&
+        loginLoadingViewController?.loginButton.isUserInteractionEnabled == true
     }
 }
 

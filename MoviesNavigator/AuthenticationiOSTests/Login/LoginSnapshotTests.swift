@@ -46,6 +46,7 @@ final class LoginSnapshotTests: XCTestCase {
             errorViewController: HeaderErrorViewController()
         )
         sut.loadViewIfNeeded()
+        sut.disableLoginButton()
         return sut
     }
 }
@@ -59,6 +60,10 @@ private extension LoginViewController {
     func renderError() {
         loginLoadingViewController?.update(LoginRequestSenderViewModel(isEnabled: true))
         errorViewController?.update(ErrorViewModel(message: "This is a\nlong error"))
+    }
+    
+    func disableLoginButton() {
+        loginLoadingViewController?.update(LoginRequestSenderViewModel(isEnabled: false))
     }
     
 }
