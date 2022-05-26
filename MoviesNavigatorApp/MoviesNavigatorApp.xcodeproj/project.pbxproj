@@ -46,6 +46,11 @@
 		CDCA603228259AE8006C2871 /* SharediOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDCA603028259AE8006C2871 /* SharediOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CDD992152795F0A8004D8317 /* Combine+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD992142795F0A8004D8317 /* Combine+Helpers.swift */; };
 		CDE1D232278F83190033918A /* HomeScreenIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE1D231278F83190033918A /* HomeScreenIntegrationTests.swift */; };
+		CDED7757284006FD00B9E440 /* LoadResourcePresentationAdapter+SendLoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED7756284006FD00B9E440 /* LoadResourcePresentationAdapter+SendLoginRequest.swift */; };
+		CDED775A2840108600B9E440 /* LoginUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED77592840108600B9E440 /* LoginUIComposer.swift */; };
+		CDED775C284010D900B9E440 /* LoginRequestPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED775B284010D900B9E440 /* LoginRequestPresentationAdapter.swift */; };
+		CDED775E2840112600B9E440 /* LoginViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED775D2840112600B9E440 /* LoginViewAdapter.swift */; };
+		CDED77602840117000B9E440 /* LoginMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED775F2840117000B9E440 /* LoginMaker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +129,11 @@
 		CDCA603028259AE8006C2871 /* SharediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDD992142795F0A8004D8317 /* Combine+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+Helpers.swift"; sourceTree = "<group>"; };
 		CDE1D231278F83190033918A /* HomeScreenIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenIntegrationTests.swift; sourceTree = "<group>"; };
+		CDED7756284006FD00B9E440 /* LoadResourcePresentationAdapter+SendLoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoadResourcePresentationAdapter+SendLoginRequest.swift"; sourceTree = "<group>"; };
+		CDED77592840108600B9E440 /* LoginUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIComposer.swift; sourceTree = "<group>"; };
+		CDED775B284010D900B9E440 /* LoginRequestPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestPresentationAdapter.swift; sourceTree = "<group>"; };
+		CDED775D2840112600B9E440 /* LoginViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewAdapter.swift; sourceTree = "<group>"; };
+		CDED775F2840117000B9E440 /* LoginMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMaker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +208,7 @@
 		CD8120EC277A718D00277EF1 /* MoviesNavigatorApp */ = {
 			isa = PBXGroup;
 			children = (
+				CDED77582840104E00B9E440 /* Login */,
 				CD9753A727BEAFE400C69919 /* Load Adapters */,
 				CD9753A027BEADA000C69919 /* Helpers */,
 				CDC35A952792481D007D2504 /* Home */,
@@ -262,6 +273,7 @@
 				CD9753A827BEB04400C69919 /* LoadResourcePresentatioAdapter+HomeRefreshControllerDelegate.swift */,
 				CD9753AA27BEB08000C69919 /* LoadResourcePresentationAdapter+TVShowCellControllerDelegate.swift */,
 				CD9753AC27BEB0DB00C69919 /* LoadResourcePresentationAdapter+HomeHeaderControllerDelegate.swift */,
+				CDED7756284006FD00B9E440 /* LoadResourcePresentationAdapter+SendLoginRequest.swift */,
 			);
 			path = "Load Adapters";
 			sourceTree = "<group>";
@@ -312,6 +324,17 @@
 				CDE1D231278F83190033918A /* HomeScreenIntegrationTests.swift */,
 			);
 			path = "Home Integration Tests";
+			sourceTree = "<group>";
+		};
+		CDED77582840104E00B9E440 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				CDED77592840108600B9E440 /* LoginUIComposer.swift */,
+				CDED775B284010D900B9E440 /* LoginRequestPresentationAdapter.swift */,
+				CDED775D2840112600B9E440 /* LoginViewAdapter.swift */,
+				CDED775F2840117000B9E440 /* LoginMaker.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -447,6 +470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD9753A627BEAF4300C69919 /* ShowsLoaderMaker.swift in Sources */,
+				CDED7757284006FD00B9E440 /* LoadResourcePresentationAdapter+SendLoginRequest.swift in Sources */,
 				CDC35A972792488C007D2504 /* LoadResourcePresentationAdapter.swift in Sources */,
 				CD9753A227BEADCF00C69919 /* DispatchQueue+DispatchOnMainQueue.swift in Sources */,
 				CD8120EE277A718D00277EF1 /* AppDelegate.swift in Sources */,
@@ -456,12 +480,16 @@
 				CD8120F0277A718D00277EF1 /* SceneDelegate.swift in Sources */,
 				CDC35A9D279249F7007D2504 /* WeakReferenceProxy.swift in Sources */,
 				CD9753AB27BEB08000C69919 /* LoadResourcePresentationAdapter+TVShowCellControllerDelegate.swift in Sources */,
+				CDED775C284010D900B9E440 /* LoginRequestPresentationAdapter.swift in Sources */,
 				CD9753A927BEB04400C69919 /* LoadResourcePresentatioAdapter+HomeRefreshControllerDelegate.swift in Sources */,
 				CDC35A9B2792499D007D2504 /* HomeScreenComposer.swift in Sources */,
 				CD7A341527A9F3C70058D0B1 /* LoaderMaker.swift in Sources */,
 				CDC35A9927924923007D2504 /* TVShowsViewAdapter.swift in Sources */,
+				CDED77602840117000B9E440 /* LoginMaker.swift in Sources */,
 				CD9753A427BEAF1F00C69919 /* PosterLoaderMaker.swift in Sources */,
 				CDBBD71127A0A4DE00E9C652 /* HomeCellViewAdapter.swift in Sources */,
+				CDED775E2840112600B9E440 /* LoginViewAdapter.swift in Sources */,
+				CDED775A2840108600B9E440 /* LoginUIComposer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
