@@ -7,12 +7,14 @@
 
 import XCTest
 import AuthenticationiOS
+import Authentication
 import MoviesNavigatorApp
+import Combine
 
 final class LoginIntegrationTests: XCTestCase {
     
     func test_login_shouldHandleLoginButtonStatus() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         XCTAssertEqual(sut.canSendRequest, false, "Login should not be able to send a request before user filled data")
         sut.simulateUserFilledLoginData()
@@ -22,26 +24,59 @@ final class LoginIntegrationTests: XCTestCase {
     }
     
     func test_login_shouldHandleLoadingStatus() {
-        let sut = makeSUT()
+        let (sut, client) = makeSUT()
         
         sut.simulateUserFilledLoginData()
-        XCTAssertEqual(sut.isLoading, false, "Login should not send request on fill operations")
-        sut.simulateUserSentLoginRequest()
-        XCTAssertEqual(sut.isLoading, true, "Login should be able to send a request after user filled data")
+        XCTAssertEqual(sut.isLoading, false, "Login should not be loading before the user sent a request")
         
+        sut.simulateUserSentLoginRequest()
+        XCTAssertEqual(sut.isLoading, true, "Login should be loading after user sent request")
+        
+        client.completeLoginWithError()
+        XCTAssertEqual(sut.isLoading, false, "Login should not be loading after failure")
     }
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> LoginViewController {
-        let controller = LoginUIComposer.compose()
+    private func makeSUT(
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> (LoginViewController, LoaderSpy) {
+        let loaderSpy = LoaderSpy()
+        let controller = LoginUIComposer.compose(loginPublisher: loaderSpy.loginPublisher(user:password:))
         controller.loadViewIfNeeded()
         
         trackMemoryLeaks(controller, file: file, line: line)
+//        trackMemoryLeaks(loaderSpy, file: file, line: line)
         
-        return controller
+        return (controller, loaderSpy)
     }
     
+    private final class LoaderSpy {
+        
+        private var requests = [PassthroughSubject<SessionToken, Error>]()
+        
+        func completeLoginWithError(at index: Int = 0) {
+            requests[index].send(
+                completion: .failure(
+                    NSError(
+                        domain: "any error",
+                        code: 0,
+                        userInfo: nil
+                    )
+                )
+            )
+        }
+        
+        func loginPublisher(
+            user: String,
+            password: String
+        ) -> AnyPublisher<SessionToken, Error> {
+            let publisher = PassthroughSubject<SessionToken, Error>()
+            requests.append(publisher)
+            return publisher.eraseToAnyPublisher()
+        }
+    }
 }
 
 private extension LoginViewController {

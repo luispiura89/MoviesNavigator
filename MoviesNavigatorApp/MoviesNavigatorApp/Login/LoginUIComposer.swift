@@ -9,14 +9,14 @@ import SharedPresentation
 import Authentication
 import AuthenticationiOS
 import SharediOS
-
-typealias LoginPresentationAdapter = LoadResourcePresentationAdapter<SessionToken, LoginViewAdapter, LoginMaker>
+import Combine
 
 public final class LoginUIComposer {
     
-    public static func compose() -> LoginViewController {
-        let loginMaker = LoginMaker()
-        let loginPresentationAdapter = LoginPresentationAdapter(loader: loginMaker.makeRequest, loaderMaker: loginMaker)
+    public static func compose(loginPublisher: @escaping LoginPublisherHandler) -> LoginViewController {
+        let loginPresentationAdapter = LoginPresentationAdapter(
+            loginPublisher: loginPublisher
+        )
         let loadingView = LoginLoadingViewController(delegate: loginPresentationAdapter)
         let errorView = HeaderErrorViewController()
         let loginView = LoginViewAdapter()
@@ -35,6 +35,35 @@ public final class LoginUIComposer {
                 loginRequestSenderPresenter: loginRequestSenderPresenter
             )
         )
+    }
+}
+
+typealias LoginPresenter = LoadResourcePresenter<SessionToken, LoginViewAdapter>
+public typealias LoginPublisherHandler = (String, String) -> AnyPublisher<SessionToken, Error>
+
+final class LoginPresentationAdapter: LoginLoadingViewControllerDelegate {
+    
+    var presenter: LoginPresenter?
+    private let loginPublisher: LoginPublisherHandler
+    private var user = ""
+    private var password = ""
+    private var cancellable: AnyCancellable?
+    
+    init(loginPublisher: @escaping LoginPublisherHandler) {
+        self.loginPublisher = loginPublisher
+    }
+    
+    func sendLoginRequest() {
+        presenter?.didStartLoadingResource()
+        cancellable = loginPublisher(user, password)
+            .dispatchOnMainQueue()
+            .sink { [weak presenter] completion in
+                if case let .failure(error) = completion {
+                    presenter?.didFinishLoading(with: error)
+                }
+            } receiveValue: { token in
+                
+            }
     }
     
 }
