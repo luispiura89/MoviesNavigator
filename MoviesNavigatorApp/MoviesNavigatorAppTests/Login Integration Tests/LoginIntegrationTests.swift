@@ -17,10 +17,15 @@ final class LoginIntegrationTests: XCTestCase {
         let (sut, _) = makeSUT()
         
         XCTAssertEqual(sut.canSendRequest, false, "Login should not be able to send a request before user filled data")
+        
         sut.simulateUserFilledLoginData()
         XCTAssertEqual(sut.canSendRequest, true, "Login should be able to send a request after user filled data")
+        
         sut.simulateUserClearedLoginData()
-        XCTAssertEqual(sut.canSendRequest, false, "Login should not be able to send a request before after user erased data")
+        XCTAssertEqual(sut.canSendRequest, false, "Login should not be able to send a request after user erased data")
+        
+        sut.simulateUserFilledLoginData()
+        XCTAssertEqual(sut.canSendRequest, true, "Login should not be able to send a request after user erased data for the second time")
     }
     
     func test_login_shouldHandleLoadingStatus() {
