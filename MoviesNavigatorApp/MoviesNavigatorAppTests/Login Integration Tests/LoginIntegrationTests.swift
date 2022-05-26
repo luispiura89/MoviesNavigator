@@ -53,7 +53,7 @@ final class LoginIntegrationTests: XCTestCase {
         controller.loadViewIfNeeded()
         
         trackMemoryLeaks(controller, file: file, line: line)
-//        trackMemoryLeaks(loaderSpy, file: file, line: line)
+        trackMemoryLeaks(loaderSpy, file: file, line: line)
         
         return (controller, loaderSpy)
     }

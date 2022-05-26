@@ -17,19 +17,25 @@ public final class LoginUIComposer {
         let loginPresentationAdapter = LoginPresentationAdapter(
             loginPublisher: loginPublisher
         )
-        let loadingView = LoginLoadingViewController(delegate: loginPresentationAdapter)
+        let loginLoadingViewController = LoginLoadingViewController(
+            delegate: loginPresentationAdapter
+        )
         let errorView = HeaderErrorViewController()
         let loginView = LoginViewAdapter()
         let loginPresenter = LoadResourcePresenter<SessionToken, LoginViewAdapter>(
-            loadingView: loadingView,
-            errorView: errorView,
+            loadingView: WeakReferenceProxy<LoginLoadingViewController>(
+                instance: loginLoadingViewController
+            ),
+            errorView: WeakReferenceProxy<HeaderErrorViewController>(
+                instance: errorView
+            ),
             resourceView: loginView,
             resourceMapper: { session in session }
         )
         loginPresentationAdapter.presenter = loginPresenter
-        let loginRequestSenderPresenter = LoginRequestSenderPresenter(view: loadingView)
+        let loginRequestSenderPresenter = LoginRequestSenderPresenter(view: loginLoadingViewController)
         return LoginViewController(
-            loginLoadingViewController: loadingView,
+            loginLoadingViewController: loginLoadingViewController,
             errorViewController: errorView,
             delegate: LoginRequestSenderPresentationAdapter(
                 loginRequestSenderPresenter: loginRequestSenderPresenter
