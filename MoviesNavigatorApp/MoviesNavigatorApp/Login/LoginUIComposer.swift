@@ -54,21 +54,26 @@ final class LoginPresentationAdapter: LoginLoadingViewControllerDelegate {
     private var user = ""
     private var password = ""
     private var cancellable: AnyCancellable?
+    private var inProgress = false
     
     init(loginPublisher: @escaping LoginPublisherHandler) {
         self.loginPublisher = loginPublisher
     }
     
     func sendLoginRequest() {
+        guard !inProgress else { return }
+        inProgress.toggle()
         presenter?.didStartLoadingResource()
         cancellable = loginPublisher(user, password)
             .dispatchOnMainQueue()
-            .sink { [weak presenter] completion in
+            .sink { [weak self] completion in
                 if case let .failure(error) = completion {
-                    presenter?.didFinishLoading(with: error)
+                    self?.presenter?.didFinishLoading(with: error)
                 }
-            } receiveValue: { [weak presenter] token in
-                presenter?.didFinishLoading(with: token)
+                self?.inProgress.toggle()
+            } receiveValue: { [weak self] token in
+                self?.presenter?.didFinishLoading(with: token)
+                self?.inProgress.toggle()
             }
     }
     

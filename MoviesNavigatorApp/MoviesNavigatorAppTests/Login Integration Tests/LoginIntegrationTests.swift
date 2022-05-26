@@ -47,6 +47,21 @@ final class LoginIntegrationTests: XCTestCase {
         XCTAssertEqual(sut.isLoading, false, "Login should not be loading after successful request")
     }
     
+    func test_login_shouldNotSendAnotherRequestUntilLoadingEnds() {
+        let (sut, client) = makeSUT()
+        
+        sut.simulateUserFilledLoginData()
+        sut.simulateUserSentLoginRequest()
+        XCTAssertEqual(client.requests.count, 1, "Login sent request when there is no in progress loading")
+        
+        sut.simulateUserSentLoginRequest()
+        XCTAssertEqual(client.requests.count, 1, "Login should not send another request before previous one completed")
+        
+        client.completeLoginWithError()
+        sut.simulateUserSentLoginRequest()
+        XCTAssertEqual(client.requests.count, 2, "Login should send another request after previous one completed")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -65,7 +80,7 @@ final class LoginIntegrationTests: XCTestCase {
     
     private final class LoaderSpy {
         
-        private var requests = [PassthroughSubject<SessionToken, Error>]()
+        private(set) var requests = [PassthroughSubject<SessionToken, Error>]()
         
         func completeLoginWithError(at index: Int = 0) {
             requests[index].send(
