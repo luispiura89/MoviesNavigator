@@ -50,7 +50,6 @@
 		CDED775A2840108600B9E440 /* LoginUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED77592840108600B9E440 /* LoginUIComposer.swift */; };
 		CDED775C284010D900B9E440 /* LoginRequestPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED775B284010D900B9E440 /* LoginRequestPresentationAdapter.swift */; };
 		CDED775E2840112600B9E440 /* LoginViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED775D2840112600B9E440 /* LoginViewAdapter.swift */; };
-		CDED77602840117000B9E440 /* LoginMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED775F2840117000B9E440 /* LoginMaker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,7 +132,6 @@
 		CDED77592840108600B9E440 /* LoginUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIComposer.swift; sourceTree = "<group>"; };
 		CDED775B284010D900B9E440 /* LoginRequestPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestPresentationAdapter.swift; sourceTree = "<group>"; };
 		CDED775D2840112600B9E440 /* LoginViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewAdapter.swift; sourceTree = "<group>"; };
-		CDED775F2840117000B9E440 /* LoginMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMaker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,7 +330,6 @@
 				CDED77592840108600B9E440 /* LoginUIComposer.swift */,
 				CDED775B284010D900B9E440 /* LoginRequestPresentationAdapter.swift */,
 				CDED775D2840112600B9E440 /* LoginViewAdapter.swift */,
-				CDED775F2840117000B9E440 /* LoginMaker.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -485,7 +482,6 @@
 				CDC35A9B2792499D007D2504 /* HomeScreenComposer.swift in Sources */,
 				CD7A341527A9F3C70058D0B1 /* LoaderMaker.swift in Sources */,
 				CDC35A9927924923007D2504 /* TVShowsViewAdapter.swift in Sources */,
-				CDED77602840117000B9E440 /* LoginMaker.swift in Sources */,
 				CD9753A427BEAF1F00C69919 /* PosterLoaderMaker.swift in Sources */,
 				CDBBD71127A0A4DE00E9C652 /* HomeCellViewAdapter.swift in Sources */,
 				CDED775E2840112600B9E440 /* LoginViewAdapter.swift in Sources */,

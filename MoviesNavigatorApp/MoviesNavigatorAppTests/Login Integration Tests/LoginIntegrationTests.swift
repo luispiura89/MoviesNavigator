@@ -76,7 +76,7 @@ final class LoginIntegrationTests: XCTestCase {
         XCTAssertNil(sut.loginError, "Login should remove error view after sending a second request")
     }
     
-    func test_login_sendsLoginRequestwithProvidedData() {
+    func test_login_sendsLoginRequestWithProvidedData() {
         let (sut, client) = makeSUT()
         
         let firstTypedPassword = UUID().uuidString
