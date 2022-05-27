@@ -38,7 +38,8 @@ public final class LoginUIComposer {
             loginLoadingViewController: loginLoadingViewController,
             errorViewController: errorView,
             delegate: LoginRequestSenderPresentationAdapter(
-                loginRequestSenderPresenter: loginRequestSenderPresenter
+                loginRequestSenderPresenter: loginRequestSenderPresenter,
+                loginPresentationAdapter: loginPresentationAdapter
             )
         )
     }
@@ -58,6 +59,14 @@ final class LoginPresentationAdapter: LoginLoadingViewControllerDelegate {
     
     init(loginPublisher: @escaping LoginPublisherHandler) {
         self.loginPublisher = loginPublisher
+    }
+    
+    func update(user: String) {
+        self.user = user
+    }
+    
+    func update(password: String) {
+        self.password = password
     }
     
     func sendLoginRequest() {

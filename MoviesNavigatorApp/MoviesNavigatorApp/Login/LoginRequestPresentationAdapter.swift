@@ -11,21 +11,28 @@ import Authentication
 final class LoginRequestSenderPresentationAdapter: LoginViewControllerDelegate {
     
     private let loginRequestSenderPresenter: LoginRequestSenderPresenter
+    private let loginPresentationAdapter: LoginPresentationAdapter
     private var isUserEmpty = true
     private var isPasswordEmpty = true
     
-    init(loginRequestSenderPresenter: LoginRequestSenderPresenter) {
+    init(
+        loginRequestSenderPresenter: LoginRequestSenderPresenter,
+        loginPresentationAdapter: LoginPresentationAdapter
+    ) {
         self.loginRequestSenderPresenter = loginRequestSenderPresenter
+        self.loginPresentationAdapter = loginPresentationAdapter
         updateLoginSenderViewState()
     }
     
     func update(user: String) {
         isUserEmpty = user.isEmpty
+        loginPresentationAdapter.update(user: user)
         updateLoginSenderViewState()
     }
     
     func update(password: String) {
         isPasswordEmpty = password.isEmpty
+        loginPresentationAdapter.update(password: password)
         updateLoginSenderViewState()
     }
     

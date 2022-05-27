@@ -76,6 +76,29 @@ final class LoginIntegrationTests: XCTestCase {
         XCTAssertNil(sut.loginError, "Login should remove error view after sending a second request")
     }
     
+    func test_login_sendsLoginRequestwithProvidedData() {
+        let (sut, client) = makeSUT()
+        
+        let firstTypedPassword = UUID().uuidString
+        let firstTypedUser = UUID().uuidString
+        assertSessionRequestSentWith(
+            firstTypedUser,
+            and: firstTypedPassword,
+            to: client,
+            from: sut
+        )
+        
+        let secondTypedPassword = UUID().uuidString
+        let secondTypedUser = UUID().uuidString
+        assertSessionRequestSentWith(
+            secondTypedUser,
+            and: secondTypedPassword,
+            to: client,
+            from: sut,
+            at: 1
+        )
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -92,12 +115,34 @@ final class LoginIntegrationTests: XCTestCase {
         return (controller, loaderSpy)
     }
     
+    private func assertSessionRequestSentWith(
+        _ user: String,
+        and password: String,
+        to client: LoaderSpy,
+        from sut: LoginViewController,
+        at index: Int = 0,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        sut.simulateUserFilledLoginData(user: user, password: password)
+        sut.simulateUserSentLoginRequest()
+        client.completeLoginSuccessfully()
+        
+        XCTAssertEqual(client.requests[index].session.user, user, file: file, line: line)
+        XCTAssertEqual(client.requests[index].session.password, password, file: file, line: line)
+    }
+    
     private final class LoaderSpy {
         
-        private(set) var requests = [PassthroughSubject<SessionToken, Error>]()
+        private(set) var requests = [
+            (
+                session: (user: String, password: String),
+                subject: PassthroughSubject<SessionToken, Error>
+            )
+        ]()
         
         func completeLoginWithError(at index: Int = 0) {
-            requests[index].send(
+            requests[index].subject.send(
                 completion: .failure(
                     NSError(
                         domain: "any error",
@@ -109,7 +154,7 @@ final class LoginIntegrationTests: XCTestCase {
         }
         
         func completeLoginSuccessfully(at index: Int = 0) {
-            requests[index].send(
+            requests[index].subject.send(
                 SessionToken(requestToken: "any-token", expiresAt: "")
             )
         }
@@ -119,7 +164,8 @@ final class LoginIntegrationTests: XCTestCase {
             password: String
         ) -> AnyPublisher<SessionToken, Error> {
             let publisher = PassthroughSubject<SessionToken, Error>()
-            requests.append(publisher)
+            let session = (user, password)
+            requests.append((session, publisher))
             return publisher.eraseToAnyPublisher()
         }
     }
@@ -131,9 +177,9 @@ private extension LoginViewController {
         loginLoadingViewController?.loginButton.send(event: .touchUpInside)
     }
     
-    func simulateUserFilledLoginData() {
-        ui.userTextField.type("any-user")
-        ui.passwordTextField.type("any-password")
+    func simulateUserFilledLoginData(user: String = "any-user", password: String = "any-password") {
+        ui.userTextField.type(user)
+        ui.passwordTextField.type(password)
     }
     
     func simulateUserClearedLoginData() {
