@@ -62,6 +62,20 @@ final class LoginIntegrationTests: XCTestCase {
         XCTAssertEqual(client.requests.count, 2, "Login should send another request after previous one completed")
     }
     
+    func test_login_rendersErrorViewWhenLoginRequestFails() {
+        let (sut, client) = makeSUT()
+        
+        XCTAssertNil(sut.loginError, "Login should not render error before sending a request")
+        
+        sut.simulateUserFilledLoginData()
+        sut.simulateUserSentLoginRequest()
+        client.completeLoginWithError()
+        XCTAssertNotNil(sut.loginError, "Login should render error message after the request failed")
+        
+        sut.simulateUserSentLoginRequest()
+        XCTAssertNil(sut.loginError, "Login should remove error view after sending a second request")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -134,6 +148,10 @@ private extension LoginViewController {
     var canSendRequest: Bool {
         loginLoadingViewController?.canSendRequest == true &&
         loginLoadingViewController?.loginButton.isUserInteractionEnabled == true
+    }
+    
+    var loginError: String? {
+        errorViewController?.error
     }
 }
 
