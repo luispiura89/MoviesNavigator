@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CD08165327BD62B700691C51 /* UIImage+Make.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08165227BD62B700691C51 /* UIImage+Make.swift */; };
+		CD1BC6F0284171780010E7CB /* LoginPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1BC6EF284171780010E7CB /* LoginPresentationAdapter.swift */; };
 		CD20D70F283C5AA2008A5E58 /* LoginIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD20D70E283C5AA2008A5E58 /* LoginIntegrationTests.swift */; };
 		CD571BC5283EF42C0050DD22 /* UIControl+SendEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD571BC4283EF42C0050DD22 /* UIControl+SendEvent.swift */; };
 		CD571BC7283EF5480050DD22 /* XCTestCase+TrackMemoryLeaks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD571BC6283EF5480050DD22 /* XCTestCase+TrackMemoryLeaks.swift */; };
@@ -88,6 +89,7 @@
 
 /* Begin PBXFileReference section */
 		CD08165227BD62B700691C51 /* UIImage+Make.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Make.swift"; sourceTree = "<group>"; };
+		CD1BC6EF284171780010E7CB /* LoginPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresentationAdapter.swift; sourceTree = "<group>"; };
 		CD20D70E283C5AA2008A5E58 /* LoginIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginIntegrationTests.swift; sourceTree = "<group>"; };
 		CD571BC4283EF42C0050DD22 /* UIControl+SendEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+SendEvent.swift"; sourceTree = "<group>"; };
 		CD571BC6283EF5480050DD22 /* XCTestCase+TrackMemoryLeaks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+TrackMemoryLeaks.swift"; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 				CDED77592840108600B9E440 /* LoginUIComposer.swift */,
 				CDED775B284010D900B9E440 /* LoginRequestPresentationAdapter.swift */,
 				CDED775D2840112600B9E440 /* LoginViewAdapter.swift */,
+				CD1BC6EF284171780010E7CB /* LoginPresentationAdapter.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 				CDC35A9D279249F7007D2504 /* WeakReferenceProxy.swift in Sources */,
 				CD9753AB27BEB08000C69919 /* LoadResourcePresentationAdapter+TVShowCellControllerDelegate.swift in Sources */,
 				CDED775C284010D900B9E440 /* LoginRequestPresentationAdapter.swift in Sources */,
+				CD1BC6F0284171780010E7CB /* LoginPresentationAdapter.swift in Sources */,
 				CD9753A927BEB04400C69919 /* LoadResourcePresentatioAdapter+HomeRefreshControllerDelegate.swift in Sources */,
 				CDC35A9B2792499D007D2504 /* HomeScreenComposer.swift in Sources */,
 				CD7A341527A9F3C70058D0B1 /* LoaderMaker.swift in Sources */,
