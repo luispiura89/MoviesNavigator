@@ -99,14 +99,31 @@ final class LoginIntegrationTests: XCTestCase {
         )
     }
     
+    func test_login_shouldNotifyWhenLoginSucceed() {
+        let exp = expectation(description: "Wait for login")
+        let (sut, client) = makeSUT {
+            exp.fulfill()
+        }
+        
+        sut.simulateUserFilledLoginData()
+        sut.simulateUserSentLoginRequest()
+        client.completeLoginSuccessfully()
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
+        onSuccess: @escaping () -> Void = {},
         file: StaticString = #filePath,
         line: UInt = #line
     ) -> (LoginViewController, LoaderSpy) {
         let loaderSpy = LoaderSpy()
-        let controller = LoginUIComposer.compose(loginPublisher: loaderSpy.loginPublisher(user:password:))
+        let controller = LoginUIComposer.compose(
+            loginPublisher: loaderSpy.loginPublisher,
+            onSuccess: onSuccess
+        )
         controller.loadViewIfNeeded()
         
         trackMemoryLeaks(controller, file: file, line: line)

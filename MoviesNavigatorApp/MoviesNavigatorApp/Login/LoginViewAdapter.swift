@@ -10,6 +10,14 @@ import Authentication
 
 final class LoginViewAdapter: ResourceView {
     
-    func update(_ viewModel: ResourceViewModel<SessionToken>) {}
+    private let onSuccess: () -> Void
+    
+    init(onSuccess: @escaping () -> Void) {
+        self.onSuccess = onSuccess
+    }
+    
+    func update(_ viewModel: ResourceViewModel<SessionToken>) {
+        onSuccess()
+    }
     
 }

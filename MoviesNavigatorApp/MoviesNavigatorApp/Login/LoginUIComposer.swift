@@ -13,7 +13,10 @@ import Combine
 
 public final class LoginUIComposer {
     
-    public static func compose(loginPublisher: @escaping LoginPublisherHandler) -> LoginViewController {
+    public static func compose(
+        loginPublisher: @escaping LoginPublisherHandler,
+        onSuccess: @escaping () -> Void
+    ) -> LoginViewController {
         let loginPresentationAdapter = LoginPresentationAdapter(
             loginPublisher: loginPublisher
         )
@@ -21,7 +24,7 @@ public final class LoginUIComposer {
             delegate: loginPresentationAdapter
         )
         let errorView = HeaderErrorViewController()
-        let loginView = LoginViewAdapter()
+        let loginView = LoginViewAdapter(onSuccess: onSuccess)
         let loginPresenter = LoadResourcePresenter<SessionToken, LoginViewAdapter>(
             loadingView: WeakReferenceProxy<LoginLoadingViewController>(
                 instance: loginLoadingViewController
