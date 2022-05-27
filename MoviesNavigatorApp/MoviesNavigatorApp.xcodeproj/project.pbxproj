@@ -46,7 +46,6 @@
 		CDCA603228259AE8006C2871 /* SharediOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDCA603028259AE8006C2871 /* SharediOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CDD992152795F0A8004D8317 /* Combine+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD992142795F0A8004D8317 /* Combine+Helpers.swift */; };
 		CDE1D232278F83190033918A /* HomeScreenIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE1D231278F83190033918A /* HomeScreenIntegrationTests.swift */; };
-		CDED7757284006FD00B9E440 /* LoadResourcePresentationAdapter+SendLoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED7756284006FD00B9E440 /* LoadResourcePresentationAdapter+SendLoginRequest.swift */; };
 		CDED775A2840108600B9E440 /* LoginUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED77592840108600B9E440 /* LoginUIComposer.swift */; };
 		CDED775C284010D900B9E440 /* LoginRequestPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED775B284010D900B9E440 /* LoginRequestPresentationAdapter.swift */; };
 		CDED775E2840112600B9E440 /* LoginViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED775D2840112600B9E440 /* LoginViewAdapter.swift */; };
@@ -128,7 +127,6 @@
 		CDCA603028259AE8006C2871 /* SharediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDD992142795F0A8004D8317 /* Combine+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+Helpers.swift"; sourceTree = "<group>"; };
 		CDE1D231278F83190033918A /* HomeScreenIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenIntegrationTests.swift; sourceTree = "<group>"; };
-		CDED7756284006FD00B9E440 /* LoadResourcePresentationAdapter+SendLoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoadResourcePresentationAdapter+SendLoginRequest.swift"; sourceTree = "<group>"; };
 		CDED77592840108600B9E440 /* LoginUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIComposer.swift; sourceTree = "<group>"; };
 		CDED775B284010D900B9E440 /* LoginRequestPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestPresentationAdapter.swift; sourceTree = "<group>"; };
 		CDED775D2840112600B9E440 /* LoginViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewAdapter.swift; sourceTree = "<group>"; };
@@ -271,7 +269,6 @@
 				CD9753A827BEB04400C69919 /* LoadResourcePresentatioAdapter+HomeRefreshControllerDelegate.swift */,
 				CD9753AA27BEB08000C69919 /* LoadResourcePresentationAdapter+TVShowCellControllerDelegate.swift */,
 				CD9753AC27BEB0DB00C69919 /* LoadResourcePresentationAdapter+HomeHeaderControllerDelegate.swift */,
-				CDED7756284006FD00B9E440 /* LoadResourcePresentationAdapter+SendLoginRequest.swift */,
 			);
 			path = "Load Adapters";
 			sourceTree = "<group>";
@@ -467,7 +464,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD9753A627BEAF4300C69919 /* ShowsLoaderMaker.swift in Sources */,
-				CDED7757284006FD00B9E440 /* LoadResourcePresentationAdapter+SendLoginRequest.swift in Sources */,
 				CDC35A972792488C007D2504 /* LoadResourcePresentationAdapter.swift in Sources */,
 				CD9753A227BEADCF00C69919 /* DispatchQueue+DispatchOnMainQueue.swift in Sources */,
 				CD8120EE277A718D00277EF1 /* AppDelegate.swift in Sources */,
