@@ -10,10 +10,12 @@ import XCTest
 
 public enum LoginEndpoint {
     case validateTokenWithLogin
+    case getNewToken
     
     public struct Constants {
         static let authentication = "authentication"
         static let token = "/token"
+        static let new = "/new"
         static let validateWithLogin = "/validate_with_login"
         static let apiKey = "api_key"
     }
@@ -23,7 +25,13 @@ public enum LoginEndpoint {
         
         urlComponents?.path.append(Constants.authentication)
         urlComponents?.path.append(Constants.token)
-        urlComponents?.path.append(Constants.validateWithLogin)
+        switch self {
+        case .validateTokenWithLogin:
+            urlComponents?.path.append(Constants.validateWithLogin)
+        case .getNewToken:
+            urlComponents?.path.append(Constants.new)
+        }
+        
         urlComponents?.queryItems = [URLQueryItem(name: Constants.apiKey, value: apiKey)]
         
         return urlComponents?.url ?? baseURL
@@ -32,7 +40,7 @@ public enum LoginEndpoint {
 
 final class LoginEndpointTests: XCTestCase {
     
-    func test_getURL_generatesValidURLForNewToken() {
+    func test_getURL_generatesValidURLForValidateToken() {
         let baseURL = URL(string: "https://api.themoviedb.org/3/")!
         let apiKey = "123456789"
         let endpoint: LoginEndpoint = .validateTokenWithLogin
@@ -43,6 +51,21 @@ final class LoginEndpointTests: XCTestCase {
         XCTAssertEqual(components?.scheme, "https")
         XCTAssertEqual(components?.host, "api.themoviedb.org")
         XCTAssertEqual(components?.path, "/3/authentication/token/validate_with_login")
+        XCTAssertEqual(components?.queryItems?.first?.name, "api_key")
+        XCTAssertEqual(components?.queryItems?.first?.value, "123456789")
+    }
+    
+    func test_getURL_generatesValidURLForNewToken() {
+        let baseURL = URL(string: "https://api.themoviedb.org/3/")!
+        let apiKey = "123456789"
+        let endpoint: LoginEndpoint = .getNewToken
+        
+        let url = endpoint.getURL(from: baseURL, apiKey: apiKey)
+        let components = URLComponents(string: url.absoluteString)
+        
+        XCTAssertEqual(components?.scheme, "https")
+        XCTAssertEqual(components?.host, "api.themoviedb.org")
+        XCTAssertEqual(components?.path, "/3/authentication/token/new")
         XCTAssertEqual(components?.queryItems?.first?.name, "api_key")
         XCTAssertEqual(components?.queryItems?.first?.value, "123456789")
     }
