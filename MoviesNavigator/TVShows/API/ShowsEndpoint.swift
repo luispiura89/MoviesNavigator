@@ -17,6 +17,7 @@ public enum ShowsEndpoint {
         public let topRatedShowsPath = "top_rated"
         public let onTVPath = "on_the_air"
         public let airingTodayPath = "airing_today"
+        public let tv = "tv/"
     }
     
     case popular
@@ -26,6 +27,7 @@ public enum ShowsEndpoint {
     
     public func getURL(from baseURL: URL, withKey key: String) -> URL {
         var components = URLComponents(string: baseURL.absoluteString)
+        components?.path.append(Self.constants.tv)
         switch self {
         case .popular:
             components?.path.append(Self.constants.popularShowsPath)

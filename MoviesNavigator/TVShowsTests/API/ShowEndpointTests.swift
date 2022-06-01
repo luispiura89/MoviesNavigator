@@ -11,7 +11,7 @@ import XCTest
 
 final class ShowEndpointTests: XCTestCase {
     
-    private let baseURL = URL(string: "https://api.themoviedb.org/3/tv/")!
+    private let baseURL = URL(string: "https://api.themoviedb.org/3/")!
     private let apiKey = "123456789"
     
     func test_endpoint_generatesPopularShowsURL() {
