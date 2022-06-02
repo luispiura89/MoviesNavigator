@@ -46,6 +46,21 @@ final class SceneDelegateTests: XCTestCase {
         XCTAssertTrue(window.rootViewController is HomeViewController)
     }
     
+    func test_scene_rendersLoginWhenSessionHasExpired() {
+        let exp = expectation(description: "wait for root")
+        let window = MockWindow()
+        let scene = SceneDelegate(httpClient: StubHTTPClient(), store: TokenStoreStub.expiredToken)
+        scene.window = window
+        window.onRootLoaded = {
+            exp.fulfill()
+        }
+        scene.configure()
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertEqual(window.makeKeyAndVisibleCallCount, 1)
+        XCTAssertTrue(window.rootViewController is LoginViewController)
+    }
+    
     private final class StubHTTPClient: HTTPClient {
         
         private struct Task: HTTPClientTask {

@@ -18,6 +18,10 @@ final class TokenStoreStub: TokenStore {
         TokenStoreStub(fetchStub: .success(StoredToken(token: "any-token", expirationDate: .distantFuture)))
     }
     
+    static var expiredToken: TokenStore {
+        TokenStoreStub(fetchStub: .success(StoredToken(token: "any-token", expirationDate: .distantPast)))
+    }
+    
     private let fetchStub: TokenStore.FetchTokenResult
     
     init(fetchStub: TokenStore.FetchTokenResult) {
