@@ -17,48 +17,54 @@ import TVShowsiOS
 final class SceneDelegateTests: XCTestCase {
     
     func test_scene_rendersLoginWhenThereIsNoSession() {
-        let exp = expectation(description: "wait for root")
-        let window = MockWindow()
-        let scene = SceneDelegate(httpClient: StubHTTPClient(), store: TokenStoreStub.emptyTokenStore)
-        scene.window = window
-        window.onRootLoaded = {
-            exp.fulfill()
-        }
-        scene.configure()
-        wait(for: [exp], timeout: 1.0)
-        
-        XCTAssertEqual(window.makeKeyAndVisibleCallCount, 1)
-        XCTAssertTrue(window.rootViewController is LoginViewController)
+        validateLaunchedViewController(
+            store: TokenStoreStub.emptyTokenStore,
+            validation: { viewController in
+                viewController as? LoginViewController
+            }
+        )
     }
     
     func test_scene_rendersHomeWhenThereIsSession() {
-        let exp = expectation(description: "wait for root")
-        let window = MockWindow()
-        let scene = SceneDelegate(httpClient: StubHTTPClient(), store: TokenStoreStub.nonExpiredToken)
-        scene.window = window
-        window.onRootLoaded = {
-            exp.fulfill()
-        }
-        scene.configure()
-        wait(for: [exp], timeout: 1.0)
-        
-        XCTAssertEqual(window.makeKeyAndVisibleCallCount, 1)
-        XCTAssertTrue(window.rootViewController is HomeViewController)
+        validateLaunchedViewController(
+            store: TokenStoreStub.nonExpiredToken,
+            validation: { viewController in
+                viewController as? HomeViewController
+            }
+        )
     }
     
     func test_scene_rendersLoginWhenSessionHasExpired() {
+        validateLaunchedViewController(
+            store: TokenStoreStub.expiredToken,
+            validation: { viewController in
+                viewController as? LoginViewController
+            }
+        )
+    }
+    
+    private func validateLaunchedViewController<T: UIViewController>(
+        store: TokenStore,
+        validation: @escaping (UIViewController?) -> T?,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
         let exp = expectation(description: "wait for root")
         let window = MockWindow()
-        let scene = SceneDelegate(httpClient: StubHTTPClient(), store: TokenStoreStub.expiredToken)
+        let scene = SceneDelegate(httpClient: StubHTTPClient(), store: store)
         scene.window = window
         window.onRootLoaded = {
             exp.fulfill()
         }
         scene.configure()
         wait(for: [exp], timeout: 1.0)
-        
-        XCTAssertEqual(window.makeKeyAndVisibleCallCount, 1)
-        XCTAssertTrue(window.rootViewController is LoginViewController)
+        XCTAssertEqual(window.makeKeyAndVisibleCallCount, 1, file: file, line: line)
+        XCTAssertNotNil(
+            validation(window.rootViewController),
+            "Unexpected rendered view \(String(describing: window.rootViewController))",
+            file: file,
+            line: line
+        )
     }
     
     private final class StubHTTPClient: HTTPClient {
