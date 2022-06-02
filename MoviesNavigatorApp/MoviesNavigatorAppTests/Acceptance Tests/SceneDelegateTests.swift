@@ -12,38 +12,38 @@ import XCTest
 import Authentication
 import SharedAPI
 import TVShows
+import TVShowsiOS
 
 final class SceneDelegateTests: XCTestCase {
     
-    func test_scene_makeWindowKeyAndVisible() {
+    func test_scene_rendersLoginWhenThereIsNoSession() {
         let exp = expectation(description: "wait for root")
         let window = MockWindow()
-        let scene = SceneDelegate(httpClient: StubHTTPClient(), store: TokenStoreStub())
+        let scene = SceneDelegate(httpClient: StubHTTPClient(), store: TokenStoreStub.emptyTokenStore)
         scene.window = window
         window.onRootLoaded = {
             exp.fulfill()
         }
         scene.configure()
-        wait(for: [exp], timeout: 3.0)
+        wait(for: [exp], timeout: 1.0)
         
         XCTAssertEqual(window.makeKeyAndVisibleCallCount, 1)
         XCTAssertTrue(window.rootViewController is LoginViewController)
     }
     
-    private final class TokenStoreStub: TokenStore {
-        func fetch(completion: @escaping FetchTokenCompletion) {
-            completion(.failure(TokenStoreError.emptyStore))
+    func test_scene_rendersHomeWhenThereIsSession() {
+        let exp = expectation(description: "wait for root")
+        let window = MockWindow()
+        let scene = SceneDelegate(httpClient: StubHTTPClient(), store: TokenStoreStub.nonExpiredToken)
+        scene.window = window
+        window.onRootLoaded = {
+            exp.fulfill()
         }
+        scene.configure()
+        wait(for: [exp], timeout: 1.0)
         
-        func store(_ token: StoredToken, completion: @escaping TokenOperationCompletion) {
-            
-        }
-        
-        func deleteToken(completion: @escaping TokenOperationCompletion) {
-            
-        }
-        
-        
+        XCTAssertEqual(window.makeKeyAndVisibleCallCount, 1)
+        XCTAssertTrue(window.rootViewController is HomeViewController)
     }
     
     private final class StubHTTPClient: HTTPClient {
