@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import SharedAPI
+import Authentication
 
 extension HTTPClient {
     
@@ -25,6 +26,39 @@ extension HTTPClient {
         })
         .eraseToAnyPublisher()
     }
+    
+    func postPublisher(from url: URL, params: [String: Any]) -> Publisher {
+        var task: HTTPClientTask?
+        return Deferred {
+            Future { completion in
+                task = post(
+                    from: url,
+                    params: params,
+                    completion: completion
+                )
+            }
+        }
+        .handleEvents(receiveCancel: {
+            task?.cancel()
+        })
+        .eraseToAnyPublisher()
+    }
+}
+
+extension LocalTokenLoader {
+    
+    typealias Publisher = AnyPublisher<String, Swift.Error>
+    
+    func fetchTokenPublisher() -> Publisher {
+        Deferred {
+            Future { completion in
+                self.fetchToken(currentDate: Date(), completion: completion)
+            }
+        }
+        .eraseToAnyPublisher()
+        .dispatchOnMainQueue()
+    }
+    
 }
 
 extension AnyPublisher {

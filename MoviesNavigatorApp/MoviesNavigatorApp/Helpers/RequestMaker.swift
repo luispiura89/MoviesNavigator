@@ -8,6 +8,8 @@
 import Foundation
 import SharedAPI
 import TVShows
+import Combine
+import Authentication
 
 final class RequestMaker {
     
@@ -52,4 +54,13 @@ final class RequestMaker {
         }
     }
     
+    static func makeLoginRequest(
+        httpClient: HTTPClient,
+        baserURL: URL,
+        apiKey: String
+    ) -> LoginPublisherHandler {
+        { user, password in
+            return PassthroughSubject<SessionToken, Error>().eraseToAnyPublisher()
+        }
+    }
 }

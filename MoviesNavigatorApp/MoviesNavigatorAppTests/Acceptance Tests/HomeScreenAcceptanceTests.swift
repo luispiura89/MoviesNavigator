@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Authentication
 import XCTest
 @testable import MoviesNavigatorApp
 import TVShowsiOS
@@ -35,11 +36,27 @@ final class HomeScreenAcceptanceTests: XCTestCase {
     // MARK: - Helpers
     
     private func launch(client: StubHTTPClient) -> HomeViewController {
-        let scene = SceneDelegate(httpClient: client)
-        scene.window = UIWindow()
+        let scene = SceneDelegate(httpClient: client, store: TokenStoreStub())
+        scene.window = MockWindow()
         scene.configure()
         
         return scene.window?.rootViewController as! HomeViewController
+    }
+    
+    private final class TokenStoreStub: TokenStore {
+        func fetch(completion: @escaping FetchTokenCompletion) {
+            completion(.success(StoredToken(token: "any-token", expirationDate: .distantFuture)))
+        }
+        
+        func store(_ token: StoredToken, completion: @escaping TokenOperationCompletion) {
+            
+        }
+        
+        func deleteToken(completion: @escaping TokenOperationCompletion) {
+            
+        }
+        
+        
     }
     
     private final class StubHTTPClient: HTTPClient {
