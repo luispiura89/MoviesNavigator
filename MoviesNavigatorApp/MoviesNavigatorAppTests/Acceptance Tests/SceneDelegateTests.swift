@@ -51,7 +51,7 @@ final class SceneDelegateTests: XCTestCase {
     ) {
         let exp = expectation(description: "wait for root")
         let window = MockWindow()
-        let scene = SceneDelegate(httpClient: StubHTTPClient(), store: store)
+        let scene = SceneDelegate(httpClient: StubHTTPClient.online, store: store)
         scene.window = window
         window.onRootLoaded = {
             exp.fulfill()
@@ -66,23 +66,4 @@ final class SceneDelegateTests: XCTestCase {
             line: line
         )
     }
-    
-    private final class StubHTTPClient: HTTPClient {
-        
-        private struct Task: HTTPClientTask {
-            func cancel() {
-                
-            }
-        }
-        
-        func get(from url: URL, completion: @escaping HTTPRequestCompletion) -> HTTPClientTask {
-            Task()
-        }
-        
-        func post(from url: URL, params: BodyParams, completion: @escaping HTTPRequestCompletion) -> HTTPClientTask {
-            Task()
-        }
-        
-    }
-    
 }

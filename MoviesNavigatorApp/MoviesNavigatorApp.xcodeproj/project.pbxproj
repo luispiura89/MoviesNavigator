@@ -14,6 +14,7 @@
 		CD571BC7283EF5480050DD22 /* XCTestCase+TrackMemoryLeaks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD571BC6283EF5480050DD22 /* XCTestCase+TrackMemoryLeaks.swift */; };
 		CD7A341527A9F3C70058D0B1 /* LoaderMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7A341427A9F3C70058D0B1 /* LoaderMaker.swift */; };
 		CD7C8C51284952D800729BB8 /* TokenStoreStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C8C50284952D800729BB8 /* TokenStoreStub.swift */; };
+		CD7C8C5328495B5A00729BB8 /* StubHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C8C5228495B5A00729BB8 /* StubHTTPClient.swift */; };
 		CD8120EE277A718D00277EF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8120ED277A718D00277EF1 /* AppDelegate.swift */; };
 		CD8120F0277A718D00277EF1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8120EF277A718D00277EF1 /* SceneDelegate.swift */; };
 		CD8120F7277A719100277EF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD8120F6277A719100277EF1 /* Assets.xcassets */; };
@@ -97,6 +98,7 @@
 		CD7A341427A9F3C70058D0B1 /* LoaderMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderMaker.swift; sourceTree = "<group>"; };
 		CD7C0839277A73DE00E473BD /* SharedAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD7C8C50284952D800729BB8 /* TokenStoreStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStoreStub.swift; sourceTree = "<group>"; };
+		CD7C8C5228495B5A00729BB8 /* StubHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubHTTPClient.swift; sourceTree = "<group>"; };
 		CD8120EA277A718D00277EF1 /* MoviesNavigatorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesNavigatorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD8120ED277A718D00277EF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD8120EF277A718D00277EF1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 			children = (
 				CDBE54E227BB0917000C475F /* MockWindow.swift */,
 				CD7C8C50284952D800729BB8 /* TokenStoreStub.swift */,
+				CD7C8C5228495B5A00729BB8 /* StubHTTPClient.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				CDC35A942792427C007D2504 /* HomeScreen+TestHelpers.swift in Sources */,
 				CDBE54E727BB0F32000C475F /* HomeScreenAcceptanceTests.swift in Sources */,
 				CD571BC7283EF5480050DD22 /* XCTestCase+TrackMemoryLeaks.swift in Sources */,
+				CD7C8C5328495B5A00729BB8 /* StubHTTPClient.swift in Sources */,
 				CD571BC5283EF42C0050DD22 /* UIControl+SendEvent.swift in Sources */,
 				CDE1D232278F83190033918A /* HomeScreenIntegrationTests.swift in Sources */,
 				CD08165327BD62B700691C51 /* UIImage+Make.swift in Sources */,
