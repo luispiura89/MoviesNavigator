@@ -61,6 +61,14 @@ extension LocalTokenLoader {
     
 }
 
+private extension TokenStore {
+    
+    func storeIgnoringResult(_ token: StoredToken) {
+        store(token) { _ in }
+    }
+    
+}
+
 extension AnyPublisher where Output == SessionToken {
     
     func saveToken(store: TokenStore) -> AnyPublisher<Output, Failure> {
@@ -68,25 +76,23 @@ extension AnyPublisher where Output == SessionToken {
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
             guard let date = formatter.date(from: token.expiresAt) else { return }
-            store.store(StoredToken(token: token.requestToken, expirationDate: date)) { _ in}
+            store.storeIgnoringResult(StoredToken(token: token.requestToken, expirationDate: date))
         })
         .eraseToAnyPublisher()
     }
     
     
     func validateToken(
+        from url: URL,
         httpClient: HTTPClient,
-        user: String,
-        password: String,
-        endpoint: LoginEndpoint,
-        baseURL: URL,
-        apiKey: String
+        session: (user: String, password: String),
+        endpoint: LoginEndpoint
     ) -> AnyPublisher<Output, Error> {
         mapError { $0 }
         .flatMap {
             httpClient.postPublisher(
-                from: endpoint.getURL(from: baseURL, apiKey: apiKey),
-                params: endpoint.getParameters(user, password, $0.requestToken)!
+                from: url,
+                params: endpoint.getParameters(session.user, session.password, $0.requestToken)!
             )
         }
         .tryMap(NewTokenRequestMapper.map)
@@ -98,6 +104,11 @@ extension AnyPublisher where Output == SessionToken {
 extension AnyPublisher {
     public func dispatchOnMainQueue() -> AnyPublisher<Output, Failure> {
         receive(on: DispatchQueue.sharedImmediateMainQueueScheduler)
+            .eraseToAnyPublisher()
+    }
+    
+    public func tryMapWithErasure<T>(mapper: @escaping (Output) throws -> T) -> AnyPublisher<T, Error> {
+        tryMap(mapper)
             .eraseToAnyPublisher()
     }
 }

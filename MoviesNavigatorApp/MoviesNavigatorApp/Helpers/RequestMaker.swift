@@ -35,8 +35,7 @@ final class RequestMaker {
             let url = endpoint.getURL(from: baseURL, withKey: apiKey)
             return httpClient
                 .getPublisher(from: url)
-                .tryMap(TVShowsMapper.map)
-                .eraseToAnyPublisher()
+                .tryMapWithErasure(mapper: TVShowsMapper.map)
         }
     }
     
@@ -49,8 +48,7 @@ final class RequestMaker {
             baseURLComponents?.path.append(posterPath.lastPathComponent)
             return httpClient
                 .getPublisher(from: baseURLComponents?.url ?? imageBaseURL)
-                .tryMap(ImageDataMapper.map)
-                .eraseToAnyPublisher()
+                .tryMapWithErasure(mapper: ImageDataMapper.map)
         }
     }
     
@@ -60,20 +58,17 @@ final class RequestMaker {
         apiKey: String,
         store: TokenStore
     ) -> LoginPublisherHandler {
-        { user, password in
+        { [baserURL] user, password in
             let firstEndpoint: LoginEndpoint = .getNewToken
             let secondEndpoint: LoginEndpoint = .validateTokenWithLogin
             return httpClient
                 .getPublisher(from: firstEndpoint.getURL(from: baserURL, apiKey: apiKey))
-                .tryMap(NewTokenRequestMapper.map)
-                .eraseToAnyPublisher()
+                .tryMapWithErasure(mapper: NewTokenRequestMapper.map)
                 .validateToken(
+                    from: secondEndpoint.getURL(from: baserURL, apiKey: apiKey),
                     httpClient: httpClient,
-                    user: user,
-                    password: password,
-                    endpoint: secondEndpoint,
-                    baseURL: baserURL,
-                    apiKey: apiKey
+                    session: (user: user, password: password),
+                    endpoint: secondEndpoint
                 )
                 .saveToken(store: store)
         }
