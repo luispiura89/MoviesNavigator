@@ -10,15 +10,17 @@ import Authentication
 
 final class TokenStoreStub: TokenStore {
     
-    static var emptyTokenStore: TokenStore {
+    private(set) var storedToken = [StoredToken]()
+    
+    static var emptyTokenStore: TokenStoreStub {
         TokenStoreStub(fetchStub: .failure(TokenStoreError.emptyStore))
     }
     
-    static var nonExpiredToken: TokenStore {
+    static var nonExpiredToken: TokenStoreStub {
         TokenStoreStub(fetchStub: .success(StoredToken(token: "any-token", expirationDate: .distantFuture)))
     }
     
-    static var expiredToken: TokenStore {
+    static var expiredToken: TokenStoreStub {
         TokenStoreStub(fetchStub: .success(StoredToken(token: "any-token", expirationDate: .distantPast)))
     }
     
@@ -33,7 +35,7 @@ final class TokenStoreStub: TokenStore {
     }
     
     func store(_ token: StoredToken, completion: @escaping TokenOperationCompletion) {
-        
+        storedToken.append(token)
     }
     
     func deleteToken(completion: @escaping TokenOperationCompletion) {

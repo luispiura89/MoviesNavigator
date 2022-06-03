@@ -14,13 +14,15 @@ import TVShowsiOS
 final class LoginScreenAcceptanceTests: XCTestCase {
     
     func test_login_shouldNavigateToHomeAfterSuccessfulLogin() {
-        let sut = launch()
+        let (sut, store) = launch()
 
         XCTAssertTrue(sut.rootViewController is HomeViewController)
+        XCTAssertEqual(store.storedToken.count, 1)
     }
     
-    private func launch() -> MockWindow {
-        let delegate = SceneDelegate(httpClient: StubHTTPClient.online, store: TokenStoreStub.emptyTokenStore)
+    private func launch() -> (MockWindow, TokenStoreStub) {
+        let store = TokenStoreStub.emptyTokenStore
+        let delegate = SceneDelegate(httpClient: StubHTTPClient.online, store: store)
         let window = MockWindow()
         delegate.window = window
         delegate.configure()
@@ -29,7 +31,7 @@ final class LoginScreenAcceptanceTests: XCTestCase {
         loginView.simulateUserFilledLoginData()
         loginView.simulateUserSentLoginRequest()
         
-        return window
+        return (window, store)
     }
     
 }

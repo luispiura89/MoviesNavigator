@@ -61,6 +61,20 @@ extension LocalTokenLoader {
     
 }
 
+extension AnyPublisher where Output == SessionToken {
+    
+    func saveToken(store: TokenStore) -> AnyPublisher<Output, Failure> {
+        handleEvents(receiveOutput: { token in
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
+            guard let date = formatter.date(from: token.expiresAt) else { return }
+            store.store(StoredToken(token: token.requestToken, expirationDate: date)) { _ in}
+        })
+        .eraseToAnyPublisher()
+    }
+    
+}
+
 extension AnyPublisher {
     public func dispatchOnMainQueue() -> AnyPublisher<Output, Failure> {
         receive(on: DispatchQueue.sharedImmediateMainQueueScheduler)

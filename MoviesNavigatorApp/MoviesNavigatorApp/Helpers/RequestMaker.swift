@@ -66,7 +66,7 @@ final class RequestMaker {
             return httpClient
                 .getPublisher(from: firstEndpoint.getURL(from: baserURL, apiKey: apiKey))
                 .tryMap(NewTokenRequestMapper.map)
-                .flatMap { result in
+                .flatMap(maxPublishers: .max(1)) { result in
                     httpClient
                         .postPublisher(
                             from: secondEndpoint.getURL(from: baserURL, apiKey: apiKey),
@@ -74,13 +74,8 @@ final class RequestMaker {
                         )
                 }
                 .tryMap(NewTokenRequestMapper.map)
-                .handleEvents(receiveOutput: { token in
-                    let formatter = DateFormatter()
-                    formatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
-                    guard let date = formatter.date(from: token.expiresAt) else { return }
-                    store.store(StoredToken(token: token.requestToken, expirationDate: date)) { _ in}
-                })
                 .eraseToAnyPublisher()
+                .saveToken(store: store)
         }
     }
 }
