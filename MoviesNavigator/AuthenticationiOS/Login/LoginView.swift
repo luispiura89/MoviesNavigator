@@ -25,6 +25,9 @@ public final class LoginView: UIView {
         textfield.borderStyle = .roundedRect
         textfield.backgroundColor = .white
         textfield.placeholder = "Username"
+        textfield.autocorrectionType = .no
+        textfield.autocapitalizationType = .none
+        textfield.keyboardType = .default
         textfield.heightAnchor.constraint(equalToConstant: 52).isActive = true
         textfield.addTarget(self, action: #selector(updateUser), for: .editingChanged)
         return textfield
@@ -35,6 +38,10 @@ public final class LoginView: UIView {
         textfield.borderStyle = .roundedRect
         textfield.backgroundColor = .white
         textfield.placeholder = "Password"
+        textfield.isSecureTextEntry = true
+        textfield.autocorrectionType = .no
+        textfield.autocapitalizationType = .none
+        textfield.keyboardType = .default
         textfield.heightAnchor.constraint(equalToConstant: 52).isActive = true
         textfield.addTarget(self, action: #selector(updatePassword), for: .editingChanged)
         return textfield
