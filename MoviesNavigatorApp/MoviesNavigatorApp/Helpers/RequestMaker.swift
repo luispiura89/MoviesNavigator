@@ -66,15 +66,15 @@ final class RequestMaker {
             return httpClient
                 .getPublisher(from: firstEndpoint.getURL(from: baserURL, apiKey: apiKey))
                 .tryMap(NewTokenRequestMapper.map)
-                .flatMap(maxPublishers: .max(1)) { result in
-                    httpClient
-                        .postPublisher(
-                            from: secondEndpoint.getURL(from: baserURL, apiKey: apiKey),
-                            params: secondEndpoint.getParameters(user, password, result.requestToken)!
-                        )
-                }
-                .tryMap(NewTokenRequestMapper.map)
                 .eraseToAnyPublisher()
+                .validateToken(
+                    httpClient: httpClient,
+                    user: user,
+                    password: password,
+                    endpoint: secondEndpoint,
+                    baseURL: baserURL,
+                    apiKey: apiKey
+                )
                 .saveToken(store: store)
         }
     }

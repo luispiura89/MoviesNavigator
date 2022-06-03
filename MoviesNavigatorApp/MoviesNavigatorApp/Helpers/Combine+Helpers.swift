@@ -73,6 +73,26 @@ extension AnyPublisher where Output == SessionToken {
         .eraseToAnyPublisher()
     }
     
+    
+    func validateToken(
+        httpClient: HTTPClient,
+        user: String,
+        password: String,
+        endpoint: LoginEndpoint,
+        baseURL: URL,
+        apiKey: String
+    ) -> AnyPublisher<Output, Error> {
+        mapError { $0 }
+        .flatMap {
+            httpClient.postPublisher(
+                from: endpoint.getURL(from: baseURL, apiKey: apiKey),
+                params: endpoint.getParameters(user, password, $0.requestToken)!
+            )
+        }
+        .tryMap(NewTokenRequestMapper.map)
+        .eraseToAnyPublisher()
+    }
+    
 }
 
 extension AnyPublisher {
