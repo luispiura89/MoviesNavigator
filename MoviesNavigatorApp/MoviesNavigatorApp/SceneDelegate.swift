@@ -34,7 +34,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }()
     
     private lazy var loginViewController: UIViewController = {
-        LoginUIComposer.compose(loginPublisher: makeLoginRequest(), onSuccess:  { })
+        LoginUIComposer.compose(loginPublisher: makeLoginRequest(), onSuccess: { [weak window, homeViewController] in
+            window?.rootViewController = homeViewController
+        })
     }()
     
     private let baseURL = URL(string: "https://api.themoviedb.org/3/")!
@@ -84,7 +86,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func makeLoginRequest() -> LoginPublisherHandler {
-        RequestMaker.makeLoginRequest(httpClient: httpClient, baserURL: baseURL, apiKey: apiKey)
+        RequestMaker.makeLoginRequest(httpClient: httpClient, baserURL: baseURL, apiKey: apiKey, store: store)
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {

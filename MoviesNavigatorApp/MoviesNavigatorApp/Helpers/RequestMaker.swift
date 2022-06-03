@@ -57,10 +57,30 @@ final class RequestMaker {
     static func makeLoginRequest(
         httpClient: HTTPClient,
         baserURL: URL,
-        apiKey: String
+        apiKey: String,
+        store: TokenStore
     ) -> LoginPublisherHandler {
         { user, password in
-            return PassthroughSubject<SessionToken, Error>().eraseToAnyPublisher()
+            let firstEndpoint: LoginEndpoint = .getNewToken
+            let secondEndpoint: LoginEndpoint = .validateTokenWithLogin
+            return httpClient
+                .getPublisher(from: firstEndpoint.getURL(from: baserURL, apiKey: apiKey))
+                .tryMap(NewTokenRequestMapper.map)
+                .flatMap { result in
+                    httpClient
+                        .postPublisher(
+                            from: secondEndpoint.getURL(from: baserURL, apiKey: apiKey),
+                            params: secondEndpoint.getParameters(user, password, result.requestToken)!
+                        )
+                }
+                .tryMap(NewTokenRequestMapper.map)
+                .handleEvents(receiveOutput: { token in
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
+                    guard let date = formatter.date(from: token.expiresAt) else { return }
+                    store.store(StoredToken(token: token.requestToken, expirationDate: date)) { _ in}
+                })
+                .eraseToAnyPublisher()
         }
     }
 }

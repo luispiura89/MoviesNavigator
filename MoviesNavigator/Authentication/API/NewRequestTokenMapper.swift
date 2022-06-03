@@ -11,6 +11,7 @@ public final class NewTokenRequestMapper {
     private struct CodableSessionToken: Codable {
         let expires_at: String
         let request_token: String
+        let success: Bool
         
         var sessionToken: SessionToken {
             SessionToken(requestToken: request_token, expiresAt: expires_at)

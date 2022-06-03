@@ -7,7 +7,6 @@
 
 import Foundation
 import SharedAPI
-import TVShows
 import UIKit
 
 final class StubHTTPClient: HTTPClient {
@@ -30,7 +29,8 @@ final class StubHTTPClient: HTTPClient {
     }
 
     func post(from url: URL, params: BodyParams, completion: @escaping HTTPRequestCompletion) -> HTTPClientTask {
-        StubHTTPClientTask()
+        completion(stub(url))
+        return StubHTTPClientTask()
     }
     
     private static func makeSuccessfulResponse(for url: URL) -> HTTPClient.HTTPRequestResult {
@@ -63,6 +63,15 @@ final class StubHTTPClient: HTTPClient {
                     headerFields: nil
                 )!
             ))
+        case "api.themoviedb.org" where path.contains("authentication/token/new") || path.contains("authentication/token/validate_with_login"):
+            return .success((try! successfulHTTPResponseData(expirationDate: .distantFuture),
+                 HTTPURLResponse(
+                    url: URL(string: "https://any-url.com")!,
+                    statusCode: 200,
+                    httpVersion: nil,
+                    headerFields: nil
+                 )!
+                ))
         default:
             return .success((
                 UIImage.make(withColor: .blue).pngData()!,
@@ -76,6 +85,17 @@ final class StubHTTPClient: HTTPClient {
         }
     }
     
+    private static func successfulHTTPResponseData(expirationDate: Date) throws -> Data {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
+        let json: [String: Any] = [
+            "expires_at": "2022-05-10 00:07:44 UTC",
+            "request_token": "any-token",
+            "success": true
+        ]
+        return try JSONSerialization.data(withJSONObject: json)
+    }
+    
     private static func makeTVShow(
         id: Int,
         name: String,
@@ -85,20 +105,12 @@ final class StubHTTPClient: HTTPClient {
         posterPath: URL?
     ) -> [String: Any] {
         
-        let model = TVShow(
-            id: id,
-            name: name,
-            overview: overview,
-            voteAverage: voteAverage,
-            firstAirDate: firstAirDate,
-            posterPath: posterPath)
-        
         var json: [String: Any] = [:]
-        json["id"] = model.id
-        json["name"] = model.name
-        json["overview"] = model.overview
-        json["vote_average"] = model.voteAverage
-        json["first_air_date"] = model.firstAirDate
+        json["id"] = id
+        json["name"] = name
+        json["overview"] = overview
+        json["vote_average"] = voteAverage
+        json["first_air_date"] = firstAirDate
         json["poster_path"] = posterPath?.absoluteString
         
         return json.compactMapValues { $0 }

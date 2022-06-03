@@ -16,6 +16,7 @@
 		CD7C8C51284952D800729BB8 /* TokenStoreStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C8C50284952D800729BB8 /* TokenStoreStub.swift */; };
 		CD7C8C5328495B5A00729BB8 /* StubHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C8C5228495B5A00729BB8 /* StubHTTPClient.swift */; };
 		CD7C8C562849633A00729BB8 /* LoginScreen+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C8C552849633A00729BB8 /* LoginScreen+TestHelpers.swift */; };
+		CD7C8C582849638A00729BB8 /* LoginScreenAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C8C572849638A00729BB8 /* LoginScreenAcceptanceTests.swift */; };
 		CD8120EE277A718D00277EF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8120ED277A718D00277EF1 /* AppDelegate.swift */; };
 		CD8120F0277A718D00277EF1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8120EF277A718D00277EF1 /* SceneDelegate.swift */; };
 		CD8120F7277A719100277EF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD8120F6277A719100277EF1 /* Assets.xcassets */; };
@@ -101,6 +102,7 @@
 		CD7C8C50284952D800729BB8 /* TokenStoreStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStoreStub.swift; sourceTree = "<group>"; };
 		CD7C8C5228495B5A00729BB8 /* StubHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubHTTPClient.swift; sourceTree = "<group>"; };
 		CD7C8C552849633A00729BB8 /* LoginScreen+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginScreen+TestHelpers.swift"; sourceTree = "<group>"; };
+		CD7C8C572849638A00729BB8 /* LoginScreenAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenAcceptanceTests.swift; sourceTree = "<group>"; };
 		CD8120EA277A718D00277EF1 /* MoviesNavigatorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesNavigatorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD8120ED277A718D00277EF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD8120EF277A718D00277EF1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				CDBE54E127BB0879000C475F /* Helpers */,
 				CDBE54E427BB09A4000C475F /* SceneDelegateTests.swift */,
 				CDBE54E627BB0F32000C475F /* HomeScreenAcceptanceTests.swift */,
+				CD7C8C572849638A00729BB8 /* LoginScreenAcceptanceTests.swift */,
 			);
 			path = "Acceptance Tests";
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				CDE1D232278F83190033918A /* HomeScreenIntegrationTests.swift in Sources */,
 				CD08165327BD62B700691C51 /* UIImage+Make.swift in Sources */,
 				CD7C8C562849633A00729BB8 /* LoginScreen+TestHelpers.swift in Sources */,
+				CD7C8C582849638A00729BB8 /* LoginScreenAcceptanceTests.swift in Sources */,
 				CDBE54E527BB09A4000C475F /* SceneDelegateTests.swift in Sources */,
 				CD7C8C51284952D800729BB8 /* TokenStoreStub.swift in Sources */,
 				CDBE54E327BB0917000C475F /* MockWindow.swift in Sources */,
