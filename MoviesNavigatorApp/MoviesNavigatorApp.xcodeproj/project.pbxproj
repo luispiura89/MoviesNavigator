@@ -17,6 +17,10 @@
 		CD7C8C5328495B5A00729BB8 /* StubHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C8C5228495B5A00729BB8 /* StubHTTPClient.swift */; };
 		CD7C8C562849633A00729BB8 /* LoginScreen+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C8C552849633A00729BB8 /* LoginScreen+TestHelpers.swift */; };
 		CD7C8C582849638A00729BB8 /* LoginScreenAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C8C572849638A00729BB8 /* LoginScreenAcceptanceTests.swift */; };
+		CD7C8C5A2849986000729BB8 /* Authentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7C8C592849986000729BB8 /* Authentication.framework */; };
+		CD7C8C5B2849986000729BB8 /* Authentication.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD7C8C592849986000729BB8 /* Authentication.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CD7C8C5D2849986E00729BB8 /* AuthenticationiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7C8C5C2849986E00729BB8 /* AuthenticationiOS.framework */; };
+		CD7C8C5E2849986E00729BB8 /* AuthenticationiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD7C8C5C2849986E00729BB8 /* AuthenticationiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CD8120EE277A718D00277EF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8120ED277A718D00277EF1 /* AppDelegate.swift */; };
 		CD8120F0277A718D00277EF1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8120EF277A718D00277EF1 /* SceneDelegate.swift */; };
 		CD8120F7277A719100277EF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD8120F6277A719100277EF1 /* Assets.xcassets */; };
@@ -80,6 +84,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				CD7C8C5B2849986000729BB8 /* Authentication.framework in Embed Frameworks */,
+				CD7C8C5E2849986E00729BB8 /* AuthenticationiOS.framework in Embed Frameworks */,
 				CDA7FE34279107E900FE8735 /* SharedAPI.framework in Embed Frameworks */,
 				CDA7FE3B279107EF00FE8735 /* TVShowsiOS.framework in Embed Frameworks */,
 				CDCA603228259AE8006C2871 /* SharediOS.framework in Embed Frameworks */,
@@ -103,6 +109,8 @@
 		CD7C8C5228495B5A00729BB8 /* StubHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubHTTPClient.swift; sourceTree = "<group>"; };
 		CD7C8C552849633A00729BB8 /* LoginScreen+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginScreen+TestHelpers.swift"; sourceTree = "<group>"; };
 		CD7C8C572849638A00729BB8 /* LoginScreenAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenAcceptanceTests.swift; sourceTree = "<group>"; };
+		CD7C8C592849986000729BB8 /* Authentication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authentication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD7C8C5C2849986E00729BB8 /* AuthenticationiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AuthenticationiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD8120EA277A718D00277EF1 /* MoviesNavigatorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesNavigatorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD8120ED277A718D00277EF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD8120EF277A718D00277EF1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +155,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD7C8C5A2849986000729BB8 /* Authentication.framework in Frameworks */,
+				CD7C8C5D2849986E00729BB8 /* AuthenticationiOS.framework in Frameworks */,
 				CDA7FE33279107E900FE8735 /* SharedAPI.framework in Frameworks */,
 				CDA7FE3A279107EF00FE8735 /* TVShowsiOS.framework in Frameworks */,
 				CDCA603128259AE8006C2871 /* SharediOS.framework in Frameworks */,
@@ -259,6 +269,8 @@
 		CD81211D277A722A00277EF1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD7C8C5C2849986E00729BB8 /* AuthenticationiOS.framework */,
+				CD7C8C592849986000729BB8 /* Authentication.framework */,
 				CDCA603028259AE8006C2871 /* SharediOS.framework */,
 				CDA7FE252791053B00FE8735 /* SharedPresentation.framework */,
 				CD7C0839277A73DE00E473BD /* SharedAPI.framework */,
