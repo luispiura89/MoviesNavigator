@@ -58,6 +58,7 @@
 		CDED775A2840108600B9E440 /* LoginUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED77592840108600B9E440 /* LoginUIComposer.swift */; };
 		CDED775C284010D900B9E440 /* LoginRequestPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED775B284010D900B9E440 /* LoginRequestPresentationAdapter.swift */; };
 		CDED775E2840112600B9E440 /* LoginViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED775D2840112600B9E440 /* LoginViewAdapter.swift */; };
+		CDF5BF03284A947600367BFC /* HTTPURLResponse+Make.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF5BF02284A947600367BFC /* HTTPURLResponse+Make.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +149,7 @@
 		CDED77592840108600B9E440 /* LoginUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIComposer.swift; sourceTree = "<group>"; };
 		CDED775B284010D900B9E440 /* LoginRequestPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestPresentationAdapter.swift; sourceTree = "<group>"; };
 		CDED775D2840112600B9E440 /* LoginViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewAdapter.swift; sourceTree = "<group>"; };
+		CDF5BF02284A947600367BFC /* HTTPURLResponse+Make.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Make.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,6 +323,7 @@
 				CDBE54E227BB0917000C475F /* MockWindow.swift */,
 				CD7C8C50284952D800729BB8 /* TokenStoreStub.swift */,
 				CD7C8C5228495B5A00729BB8 /* StubHTTPClient.swift */,
+				CDF5BF02284A947600367BFC /* HTTPURLResponse+Make.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -533,6 +536,7 @@
 				CDE1D232278F83190033918A /* HomeScreenIntegrationTests.swift in Sources */,
 				CD08165327BD62B700691C51 /* UIImage+Make.swift in Sources */,
 				CD7C8C562849633A00729BB8 /* LoginScreen+TestHelpers.swift in Sources */,
+				CDF5BF03284A947600367BFC /* HTTPURLResponse+Make.swift in Sources */,
 				CD7C8C582849638A00729BB8 /* LoginScreenAcceptanceTests.swift in Sources */,
 				CDBE54E527BB09A4000C475F /* SceneDelegateTests.swift in Sources */,
 				CD7C8C51284952D800729BB8 /* TokenStoreStub.swift in Sources */,

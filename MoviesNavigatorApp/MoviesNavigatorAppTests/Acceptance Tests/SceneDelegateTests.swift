@@ -51,7 +51,7 @@ final class SceneDelegateTests: XCTestCase {
     ) {
         let exp = expectation(description: "wait for root")
         let window = MockWindow()
-        let scene = SceneDelegate(httpClient: StubHTTPClient.online, store: store)
+        let scene = SceneDelegate(httpClient: StubHTTPClient.alwaysSucceed, store: store)
         scene.window = window
         window.onRootLoaded = {
             exp.fulfill()
