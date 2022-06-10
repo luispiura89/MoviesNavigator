@@ -12,14 +12,9 @@ import Authentication
 final class ProfileSnapshotTests: XCTestCase {
     
     func test_profile_rendersUserInfoAndAvatar() {
-        let sut = makeSUT()
+        let delegate = DelegateStub.alwaysSucceed
+        let (sut, controller) = makeSUT(withUserInfoDelegate: delegate)
         
-        let delegate: DelegateStub = .alwaysSucceed
-        let controller = UserInfoViewController(
-            delegate: delegate,
-            viewModel: UserInfoViewModel(userName: "Any User Name", userHandle: "@any-user-handle")
-        )
-        delegate.controller = controller
         sut.setControllers([controller])
         
         record(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "PROFILE_LIGHT")
@@ -28,10 +23,21 @@ final class ProfileSnapshotTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> ProfileViewController {
+    private func makeSUT(
+        withUserInfoDelegate userInfoDelegate: DelegateStub
+    ) -> (ProfileViewController, UserInfoViewController) {
         let controller = ProfileViewController()
         controller.loadViewIfNeeded()
-        return controller
+        
+        let userInfoController = UserInfoViewController(
+            delegate: userInfoDelegate,
+            viewModel: UserInfoViewModel(
+                userName: "Any User Name",
+                userHandle: "@any-user-handle"
+            )
+        )
+        userInfoDelegate.controller = userInfoController
+        return (controller, userInfoController)
     }
     
     private final class DelegateStub: UserInfoViewControllerDelegate {
