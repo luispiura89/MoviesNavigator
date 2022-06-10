@@ -17,6 +17,11 @@
 		CD280A6E2745867B00C773C7 /* TVShowsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD280A6D2745867B00C773C7 /* TVShowsMapperTests.swift */; };
 		CD280A712745872D00C773C7 /* TVShowsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD280A702745872D00C773C7 /* TVShowsMapper.swift */; };
 		CD280A7F2745D3C900C773C7 /* SharedAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A772745D3C900C773C7 /* SharedAPI.framework */; };
+		CD347B0E2853B0F000860420 /* UIImage+Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD347B0D2853B0F000860420 /* UIImage+Authentication.swift */; };
+		CD347B102853B5E100860420 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD347B0F2853B5E100860420 /* UserInfoViewController.swift */; };
+		CD347B122853B60F00860420 /* UserInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD347B112853B60F00860420 /* UserInfoHeader.swift */; };
+		CD347B142853B64B00860420 /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD347B132853B64B00860420 /* UserInfoCell.swift */; };
+		CD347B162853B67900860420 /* UserAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD347B152853B67900860420 /* UserAvatarView.swift */; };
 		CD3F173A2852C09C00078D7E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F17392852C09C00078D7E /* ProfileViewController.swift */; };
 		CD3F173D2852C0E600078D7E /* ProfileSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F173C2852C0E600078D7E /* ProfileSnapshotTests.swift */; };
 		CD3F17492852C1E000078D7E /* snapshots in Resources */ = {isa = PBXBuildFile; fileRef = CD3F17482852C1E000078D7E /* snapshots */; };
@@ -206,6 +211,11 @@
 		CD280A702745872D00C773C7 /* TVShowsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsMapper.swift; sourceTree = "<group>"; };
 		CD280A772745D3C900C773C7 /* SharedAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SharedAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD280A7E2745D3C900C773C7 /* SharedAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharedAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD347B0D2853B0F000860420 /* UIImage+Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Authentication.swift"; sourceTree = "<group>"; };
+		CD347B0F2853B5E100860420 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		CD347B112853B60F00860420 /* UserInfoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoHeader.swift; sourceTree = "<group>"; };
+		CD347B132853B64B00860420 /* UserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCell.swift; sourceTree = "<group>"; };
+		CD347B152853B67900860420 /* UserAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatarView.swift; sourceTree = "<group>"; };
 		CD3F17392852C09C00078D7E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CD3F173C2852C0E600078D7E /* ProfileSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSnapshotTests.swift; sourceTree = "<group>"; };
 		CD3F17482852C1E000078D7E /* snapshots */ = {isa = PBXFileReference; lastKnownFileType = folder; path = snapshots; sourceTree = "<group>"; };
@@ -523,6 +533,10 @@
 			isa = PBXGroup;
 			children = (
 				CD3F17392852C09C00078D7E /* ProfileViewController.swift */,
+				CD347B0F2853B5E100860420 /* UserInfoViewController.swift */,
+				CD347B112853B60F00860420 /* UserInfoHeader.swift */,
+				CD347B132853B64B00860420 /* UserInfoCell.swift */,
+				CD347B152853B67900860420 /* UserAvatarView.swift */,
 			);
 			path = UserProfile;
 			sourceTree = "<group>";
@@ -760,6 +774,7 @@
 			children = (
 				CD8BE6CC281A088F00ACBA57 /* Colors.xcassets */,
 				CD8BE6CF281A0DDE00ACBA57 /* UIColor+Authentication.swift */,
+				CD347B0D2853B0F000860420 /* UIImage+Authentication.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1520,10 +1535,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD8BE6D0281A0DDE00ACBA57 /* UIColor+Authentication.swift in Sources */,
+				CD347B102853B5E100860420 /* UserInfoViewController.swift in Sources */,
+				CD347B162853B67900860420 /* UserAvatarView.swift in Sources */,
+				CD347B0E2853B0F000860420 /* UIImage+Authentication.swift in Sources */,
+				CD347B122853B60F00860420 /* UserInfoHeader.swift in Sources */,
 				CD8BE6CB281A071F00ACBA57 /* LoginView.swift in Sources */,
 				CD3F173A2852C09C00078D7E /* ProfileViewController.swift in Sources */,
 				CD1EE7A0282491D0009AB251 /* LoginLoadingViewController.swift in Sources */,
 				CD8BE6C9281A04DA00ACBA57 /* LoginViewController.swift in Sources */,
+				CD347B142853B64B00860420 /* UserInfoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
