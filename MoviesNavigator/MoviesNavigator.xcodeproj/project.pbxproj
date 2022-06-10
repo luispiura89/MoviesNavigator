@@ -17,6 +17,9 @@
 		CD280A6E2745867B00C773C7 /* TVShowsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD280A6D2745867B00C773C7 /* TVShowsMapperTests.swift */; };
 		CD280A712745872D00C773C7 /* TVShowsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD280A702745872D00C773C7 /* TVShowsMapper.swift */; };
 		CD280A7F2745D3C900C773C7 /* SharedAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD280A772745D3C900C773C7 /* SharedAPI.framework */; };
+		CD3F173A2852C09C00078D7E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F17392852C09C00078D7E /* ProfileViewController.swift */; };
+		CD3F173D2852C0E600078D7E /* ProfileSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F173C2852C0E600078D7E /* ProfileSnapshotTests.swift */; };
+		CD3F17492852C1E000078D7E /* snapshots in Resources */ = {isa = PBXBuildFile; fileRef = CD3F17482852C1E000078D7E /* snapshots */; };
 		CD4BE151282D75A300E1404D /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4BE150282D75A300E1404D /* TestHelpers.swift */; };
 		CD4BE153282D75C600E1404D /* HTTPURLResponse+Make.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4BE152282D75C600E1404D /* HTTPURLResponse+Make.swift */; };
 		CD4BE156282D904B00E1404D /* CodableTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4BE155282D904B00E1404D /* CodableTokenStoreTests.swift */; };
@@ -203,6 +206,9 @@
 		CD280A702745872D00C773C7 /* TVShowsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsMapper.swift; sourceTree = "<group>"; };
 		CD280A772745D3C900C773C7 /* SharedAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SharedAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD280A7E2745D3C900C773C7 /* SharedAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharedAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD3F17392852C09C00078D7E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		CD3F173C2852C0E600078D7E /* ProfileSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSnapshotTests.swift; sourceTree = "<group>"; };
+		CD3F17482852C1E000078D7E /* snapshots */ = {isa = PBXFileReference; lastKnownFileType = folder; path = snapshots; sourceTree = "<group>"; };
 		CD4BE150282D75A300E1404D /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		CD4BE152282D75C600E1404D /* HTTPURLResponse+Make.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Make.swift"; sourceTree = "<group>"; };
 		CD4BE155282D904B00E1404D /* CodableTokenStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableTokenStoreTests.swift; sourceTree = "<group>"; };
@@ -513,6 +519,23 @@
 			path = SharedAPITests;
 			sourceTree = "<group>";
 		};
+		CD3F17382852C07D00078D7E /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				CD3F17392852C09C00078D7E /* ProfileViewController.swift */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
+		CD3F173B2852C0C900078D7E /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				CD3F17482852C1E000078D7E /* snapshots */,
+				CD3F173C2852C0E600078D7E /* ProfileSnapshotTests.swift */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
 		CD4BE14F282D756700E1404D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -744,6 +767,7 @@
 		CD9753B627BF026100C69919 /* AuthenticationiOS */ = {
 			isa = PBXGroup;
 			children = (
+				CD3F17382852C07D00078D7E /* UserProfile */,
 				CD8BE6C7281A04CA00ACBA57 /* Login */,
 				CD8BE6CE281A0DB900ACBA57 /* Resources */,
 			);
@@ -753,6 +777,7 @@
 		CD9753C027BF026100C69919 /* AuthenticationiOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				CD3F173B2852C0C900078D7E /* UserProfile */,
 				CD8B7BDF281B174900B5D7AF /* snapshots */,
 				CD8BE6C4281A005400ACBA57 /* Login */,
 				CD8BE6BF2819FE5500ACBA57 /* Helpers */,
@@ -1375,6 +1400,7 @@
 				CDCA60372825B4F9006C2871 /* LOGIN_ERROR_light.png in Resources */,
 				CD8B7BE3281B174900B5D7AF /* LOGIN_dark.png in Resources */,
 				CD1EE7A328249984009AB251 /* LOGIN_LOADING_light.png in Resources */,
+				CD3F17492852C1E000078D7E /* snapshots in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1495,6 +1521,7 @@
 			files = (
 				CD8BE6D0281A0DDE00ACBA57 /* UIColor+Authentication.swift in Sources */,
 				CD8BE6CB281A071F00ACBA57 /* LoginView.swift in Sources */,
+				CD3F173A2852C09C00078D7E /* ProfileViewController.swift in Sources */,
 				CD1EE7A0282491D0009AB251 /* LoginLoadingViewController.swift in Sources */,
 				CD8BE6C9281A04DA00ACBA57 /* LoginViewController.swift in Sources */,
 			);
@@ -1505,6 +1532,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD8BE6C32819FEA700ACBA57 /* XCTestCase+Snapshot.swift in Sources */,
+				CD3F173D2852C0E600078D7E /* ProfileSnapshotTests.swift in Sources */,
 				CD8BE6C6281A04B300ACBA57 /* LoginSnapshotTests.swift in Sources */,
 				CD8BE6C12819FE8200ACBA57 /* UIViewController+Snapshots.swift in Sources */,
 			);
