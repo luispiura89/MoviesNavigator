@@ -22,6 +22,7 @@
 		CD347B122853B60F00860420 /* UserInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD347B112853B60F00860420 /* UserInfoHeader.swift */; };
 		CD347B142853B64B00860420 /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD347B132853B64B00860420 /* UserInfoCell.swift */; };
 		CD347B162853B67900860420 /* UserAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD347B152853B67900860420 /* UserAvatarView.swift */; };
+		CD347B182853D21E00860420 /* UserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD347B172853D21E00860420 /* UserInfoViewModel.swift */; };
 		CD3F173A2852C09C00078D7E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F17392852C09C00078D7E /* ProfileViewController.swift */; };
 		CD3F173D2852C0E600078D7E /* ProfileSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F173C2852C0E600078D7E /* ProfileSnapshotTests.swift */; };
 		CD3F17492852C1E000078D7E /* snapshots in Resources */ = {isa = PBXBuildFile; fileRef = CD3F17482852C1E000078D7E /* snapshots */; };
@@ -216,6 +217,7 @@
 		CD347B112853B60F00860420 /* UserInfoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoHeader.swift; sourceTree = "<group>"; };
 		CD347B132853B64B00860420 /* UserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCell.swift; sourceTree = "<group>"; };
 		CD347B152853B67900860420 /* UserAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatarView.swift; sourceTree = "<group>"; };
+		CD347B172853D21E00860420 /* UserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewModel.swift; sourceTree = "<group>"; };
 		CD3F17392852C09C00078D7E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CD3F173C2852C0E600078D7E /* ProfileSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSnapshotTests.swift; sourceTree = "<group>"; };
 		CD3F17482852C1E000078D7E /* snapshots */ = {isa = PBXFileReference; lastKnownFileType = folder; path = snapshots; sourceTree = "<group>"; };
@@ -805,6 +807,7 @@
 			children = (
 				CDBC2BE1283D9592005F833D /* LoginRequestSenderView.swift */,
 				CDBC2BE8283D9BB5005F833D /* LoginRequestSenderPresenter.swift */,
+				CD347B172853D21E00860420 /* UserInfoViewModel.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1603,6 +1606,7 @@
 				CD4BE15B282DE59B00E1404D /* StoredToken.swift in Sources */,
 				CDBC2BE2283D9592005F833D /* LoginRequestSenderView.swift in Sources */,
 				CDEBD3072829DD210096733D /* SessionToken.swift in Sources */,
+				CD347B182853D21E00860420 /* UserInfoViewModel.swift in Sources */,
 				CDB08EE82846E16D00528B5F /* LoginEndpoint.swift in Sources */,
 				CD4BE15D282DE5C000E1404D /* TokenStoreError.swift in Sources */,
 				CDAA5E532833137E00FE51D8 /* LocalTokenLoader.swift in Sources */,

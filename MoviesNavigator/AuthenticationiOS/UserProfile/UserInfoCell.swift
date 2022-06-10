@@ -11,7 +11,7 @@ public final class UserInfoCell: UICollectionViewCell {
     
     static let identifier = "UserInfoCell"
     
-    private lazy var userNameLabel: UILabel = {
+    public private(set) lazy var userNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "User Name"
@@ -21,7 +21,7 @@ public final class UserInfoCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var userHandleLabel: UILabel = {
+    public private(set) lazy var userHandleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "@userhandle"
@@ -40,7 +40,7 @@ public final class UserInfoCell: UICollectionViewCell {
         return stackView
     }()
     
-    private lazy var userAvatarImageView = UserAvatarView()
+    public private(set) lazy var userAvatarImageView = UserAvatarView()
     
     private lazy var userInfoStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [userNameLabel, userHandleLabel])
@@ -57,7 +57,7 @@ public final class UserInfoCell: UICollectionViewCell {
             [
                 mainStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
                 mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 45),
-                trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor, constant: 45),
+                trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor, constant: 8),
             ]
         )
     }

@@ -6,8 +6,23 @@
 //
 
 import UIKit
+import Authentication
+
+public protocol UserInfoViewControllerDelegate {
+    func loadUserAvatar()
+}
 
 public final class UserInfoViewController: NSObject, UICollectionViewDataSource {
+    
+    private var delegate: UserInfoViewControllerDelegate?
+    private let viewModel: UserInfoViewModel
+    
+    public init(delegate: UserInfoViewControllerDelegate? = nil, viewModel: UserInfoViewModel) {
+        self.delegate = delegate
+        self.viewModel = viewModel
+    }
+    
+    private var cell: UserInfoCell?
     
     public func collectionView(
         _ collectionView: UICollectionView,
@@ -20,11 +35,14 @@ public final class UserInfoViewController: NSObject, UICollectionViewDataSource 
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(
+        cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: UserInfoCell.identifier,
             for: indexPath
-        ) as! UserInfoCell
-        return cell
+        ) as? UserInfoCell
+        cell?.userNameLabel.text = viewModel.userName
+        cell?.userHandleLabel.text = viewModel.userHandle
+        delegate?.loadUserAvatar()
+        return cell!
     }
     
     public func collectionView(
@@ -37,5 +55,9 @@ public final class UserInfoViewController: NSObject, UICollectionViewDataSource 
             withReuseIdentifier: UserInfoHeader.viewKind,
             for: indexPath
         )
+    }
+    
+    public func setUserAvatar(_ avatar: UIImage) {
+        cell?.userAvatarImageView.image = avatar
     }
 }
