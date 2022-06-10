@@ -23,9 +23,12 @@
 		CD347B142853B64B00860420 /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD347B132853B64B00860420 /* UserInfoCell.swift */; };
 		CD347B162853B67900860420 /* UserAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD347B152853B67900860420 /* UserAvatarView.swift */; };
 		CD347B182853D21E00860420 /* UserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD347B172853D21E00860420 /* UserInfoViewModel.swift */; };
+		CD347B222853F21C00860420 /* PROFILE_DARK.png in Resources */ = {isa = PBXBuildFile; fileRef = CD347B1E2853F21B00860420 /* PROFILE_DARK.png */; };
+		CD347B232853F21C00860420 /* PROFILE_LIGHT.png in Resources */ = {isa = PBXBuildFile; fileRef = CD347B1F2853F21B00860420 /* PROFILE_LIGHT.png */; };
+		CD347B242853F21C00860420 /* PROFILE_LOADING_AVATAR_LIGHT.png in Resources */ = {isa = PBXBuildFile; fileRef = CD347B202853F21B00860420 /* PROFILE_LOADING_AVATAR_LIGHT.png */; };
+		CD347B252853F21C00860420 /* PROFILE_LOADING_AVATAR_DARK.png in Resources */ = {isa = PBXBuildFile; fileRef = CD347B212853F21B00860420 /* PROFILE_LOADING_AVATAR_DARK.png */; };
 		CD3F173A2852C09C00078D7E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F17392852C09C00078D7E /* ProfileViewController.swift */; };
 		CD3F173D2852C0E600078D7E /* ProfileSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F173C2852C0E600078D7E /* ProfileSnapshotTests.swift */; };
-		CD3F17492852C1E000078D7E /* snapshots in Resources */ = {isa = PBXBuildFile; fileRef = CD3F17482852C1E000078D7E /* snapshots */; };
 		CD4BE151282D75A300E1404D /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4BE150282D75A300E1404D /* TestHelpers.swift */; };
 		CD4BE153282D75C600E1404D /* HTTPURLResponse+Make.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4BE152282D75C600E1404D /* HTTPURLResponse+Make.swift */; };
 		CD4BE156282D904B00E1404D /* CodableTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4BE155282D904B00E1404D /* CodableTokenStoreTests.swift */; };
@@ -218,9 +221,12 @@
 		CD347B132853B64B00860420 /* UserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCell.swift; sourceTree = "<group>"; };
 		CD347B152853B67900860420 /* UserAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatarView.swift; sourceTree = "<group>"; };
 		CD347B172853D21E00860420 /* UserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewModel.swift; sourceTree = "<group>"; };
+		CD347B1E2853F21B00860420 /* PROFILE_DARK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PROFILE_DARK.png; sourceTree = "<group>"; };
+		CD347B1F2853F21B00860420 /* PROFILE_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PROFILE_LIGHT.png; sourceTree = "<group>"; };
+		CD347B202853F21B00860420 /* PROFILE_LOADING_AVATAR_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PROFILE_LOADING_AVATAR_LIGHT.png; sourceTree = "<group>"; };
+		CD347B212853F21B00860420 /* PROFILE_LOADING_AVATAR_DARK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PROFILE_LOADING_AVATAR_DARK.png; sourceTree = "<group>"; };
 		CD3F17392852C09C00078D7E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CD3F173C2852C0E600078D7E /* ProfileSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSnapshotTests.swift; sourceTree = "<group>"; };
-		CD3F17482852C1E000078D7E /* snapshots */ = {isa = PBXFileReference; lastKnownFileType = folder; path = snapshots; sourceTree = "<group>"; };
 		CD4BE150282D75A300E1404D /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		CD4BE152282D75C600E1404D /* HTTPURLResponse+Make.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Make.swift"; sourceTree = "<group>"; };
 		CD4BE155282D904B00E1404D /* CodableTokenStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableTokenStoreTests.swift; sourceTree = "<group>"; };
@@ -531,6 +537,17 @@
 			path = SharedAPITests;
 			sourceTree = "<group>";
 		};
+		CD347B1D2853F21B00860420 /* snapshots */ = {
+			isa = PBXGroup;
+			children = (
+				CD347B1E2853F21B00860420 /* PROFILE_DARK.png */,
+				CD347B1F2853F21B00860420 /* PROFILE_LIGHT.png */,
+				CD347B202853F21B00860420 /* PROFILE_LOADING_AVATAR_LIGHT.png */,
+				CD347B212853F21B00860420 /* PROFILE_LOADING_AVATAR_DARK.png */,
+			);
+			path = snapshots;
+			sourceTree = "<group>";
+		};
 		CD3F17382852C07D00078D7E /* UserProfile */ = {
 			isa = PBXGroup;
 			children = (
@@ -546,7 +563,7 @@
 		CD3F173B2852C0C900078D7E /* UserProfile */ = {
 			isa = PBXGroup;
 			children = (
-				CD3F17482852C1E000078D7E /* snapshots */,
+				CD347B1D2853F21B00860420 /* snapshots */,
 				CD3F173C2852C0E600078D7E /* ProfileSnapshotTests.swift */,
 			);
 			path = UserProfile;
@@ -1413,12 +1430,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDCA60382825B4F9006C2871 /* LOGIN_ERROR_dark.png in Resources */,
+				CD347B252853F21C00860420 /* PROFILE_LOADING_AVATAR_DARK.png in Resources */,
 				CD1EE7A428249984009AB251 /* LOGIN_LOADING_dark.png in Resources */,
+				CD347B242853F21C00860420 /* PROFILE_LOADING_AVATAR_LIGHT.png in Resources */,
 				CD8B7BE2281B174900B5D7AF /* LOGIN_light.png in Resources */,
 				CDCA60372825B4F9006C2871 /* LOGIN_ERROR_light.png in Resources */,
+				CD347B232853F21C00860420 /* PROFILE_LIGHT.png in Resources */,
 				CD8B7BE3281B174900B5D7AF /* LOGIN_dark.png in Resources */,
+				CD347B222853F21C00860420 /* PROFILE_DARK.png in Resources */,
 				CD1EE7A328249984009AB251 /* LOGIN_LOADING_light.png in Resources */,
-				CD3F17492852C1E000078D7E /* snapshots in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
