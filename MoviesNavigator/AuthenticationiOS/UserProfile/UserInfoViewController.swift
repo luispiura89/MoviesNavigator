@@ -60,4 +60,8 @@ public final class UserInfoViewController: NSObject, UICollectionViewDataSource 
     public func setUserAvatar(_ avatar: UIImage) {
         cell?.userAvatarImageView.image = avatar
     }
+    
+    public func startLoading() {
+        cell?.userAvatarImageView.isLoading = true
+    }
 }

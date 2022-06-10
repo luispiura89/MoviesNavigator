@@ -9,12 +9,18 @@ import UIKit
 
 public final class UserAvatarView: UIImageView {
     
+    var isLoading: Bool {
+        set { newValue ? loadingIndicator.startAnimating() : loadingIndicator.stopAnimating() }
+        get { loadingIndicator.isAnimating }
+    }
+    
     private let imageSize: CGFloat = 125
     private let retryButtonSize: CGFloat = 50
     
     private lazy var loadingIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .medium)
         indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.color = .white
         return indicator
     }()
     

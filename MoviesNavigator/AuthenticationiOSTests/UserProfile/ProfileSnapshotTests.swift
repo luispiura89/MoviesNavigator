@@ -17,10 +17,19 @@ final class ProfileSnapshotTests: XCTestCase {
         
         sut.setControllers([controller])
         
-        record(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "PROFILE_LIGHT")
-        record(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "PROFILE_DARK_LIGHT")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "PROFILE_LIGHT")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "PROFILE_DARK_LIGHT")
     }
     
+    func test_profile_rendersUserInfoAndLoadingAvatar() {
+        let delegate = DelegateStub.alwaysLoading
+        let (sut, controller) = makeSUT(withUserInfoDelegate: delegate)
+        
+        sut.setControllers([controller])
+        
+        record(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "PROFILE_LOADING_AVATAR_LIGHT")
+        record(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "PROFILE_LOADING_AVATAR_DARK")
+    }
     // MARK: - Helpers
     
     private func makeSUT(
@@ -49,16 +58,26 @@ final class ProfileSnapshotTests: XCTestCase {
             DelegateStub(outcome: .successful)
         }
         
+        static var alwaysLoading: DelegateStub {
+            DelegateStub(outcome: .loading)
+        }
+        
         init(outcome: RequestOutcome) {
             self.outcome = outcome
         }
         
         enum RequestOutcome {
             case successful
+            case loading
         }
         
         func loadUserAvatar() {
-            controller?.setUserAvatar(.make(withColor: .orange))
+            switch outcome {
+            case .successful:
+                controller?.setUserAvatar(.make(withColor: .orange))
+            case .loading:
+                controller?.startLoading()
+            }
         }
         
     }
