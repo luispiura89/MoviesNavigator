@@ -18,7 +18,7 @@ final class ProfileSnapshotTests: XCTestCase {
         sut.setControllers([controller])
         
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "PROFILE_LIGHT")
-        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "PROFILE_DARK_LIGHT")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "PROFILE_DARK")
     }
     
     func test_profile_rendersUserInfoAndLoadingAvatar() {
@@ -27,8 +27,8 @@ final class ProfileSnapshotTests: XCTestCase {
         
         sut.setControllers([controller])
         
-        record(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "PROFILE_LOADING_AVATAR_LIGHT")
-        record(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "PROFILE_LOADING_AVATAR_DARK")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "PROFILE_LOADING_AVATAR_LIGHT")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "PROFILE_LOADING_AVATAR_DARK")
     }
     // MARK: - Helpers
     
