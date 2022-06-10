@@ -64,4 +64,8 @@ public final class UserInfoViewController: NSObject, UICollectionViewDataSource 
     public func startLoading() {
         cell?.userAvatarImageView.isLoading = true
     }
+    
+    public func loadingFailed() {
+        cell?.userAvatarImageView.loadingFailed = true
+    }
 }

@@ -30,6 +30,17 @@ final class ProfileSnapshotTests: XCTestCase {
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "PROFILE_LOADING_AVATAR_LIGHT")
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "PROFILE_LOADING_AVATAR_DARK")
     }
+    
+    func test_profile_rendersUserInfoAndRetryActionAfterLoadingFail() {
+        let delegate = DelegateStub.alwaysFailing
+        let (sut, controller) = makeSUT(withUserInfoDelegate: delegate)
+        
+        sut.setControllers([controller])
+        
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "PROFILE_RETRY_LOADING_LIGHT")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "PROFILE_RETRY_LOADING_DARK")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -62,6 +73,10 @@ final class ProfileSnapshotTests: XCTestCase {
             DelegateStub(outcome: .loading)
         }
         
+        static var alwaysFailing: DelegateStub {
+            DelegateStub(outcome: .fail)
+        }
+        
         init(outcome: RequestOutcome) {
             self.outcome = outcome
         }
@@ -69,6 +84,7 @@ final class ProfileSnapshotTests: XCTestCase {
         enum RequestOutcome {
             case successful
             case loading
+            case fail
         }
         
         func loadUserAvatar() {
@@ -77,6 +93,8 @@ final class ProfileSnapshotTests: XCTestCase {
                 controller?.setUserAvatar(.make(withColor: .orange))
             case .loading:
                 controller?.startLoading()
+            case .fail:
+                controller?.loadingFailed()
             }
         }
         

@@ -14,6 +14,11 @@ public final class UserAvatarView: UIImageView {
         get { loadingIndicator.isAnimating }
     }
     
+    var loadingFailed: Bool {
+        set { retryButton.isHidden = !newValue }
+        get { !retryButton.isHidden }
+    }
+    
     private let imageSize: CGFloat = 125
     private let retryButtonSize: CGFloat = 50
     

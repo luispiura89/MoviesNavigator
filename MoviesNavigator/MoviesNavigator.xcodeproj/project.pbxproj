@@ -27,6 +27,8 @@
 		CD347B232853F21C00860420 /* PROFILE_LIGHT.png in Resources */ = {isa = PBXBuildFile; fileRef = CD347B1F2853F21B00860420 /* PROFILE_LIGHT.png */; };
 		CD347B242853F21C00860420 /* PROFILE_LOADING_AVATAR_LIGHT.png in Resources */ = {isa = PBXBuildFile; fileRef = CD347B202853F21B00860420 /* PROFILE_LOADING_AVATAR_LIGHT.png */; };
 		CD347B252853F21C00860420 /* PROFILE_LOADING_AVATAR_DARK.png in Resources */ = {isa = PBXBuildFile; fileRef = CD347B212853F21B00860420 /* PROFILE_LOADING_AVATAR_DARK.png */; };
+		CD347B282853F3C900860420 /* PROFILE_RETRY_LOADING_DARK.png in Resources */ = {isa = PBXBuildFile; fileRef = CD347B262853F3C900860420 /* PROFILE_RETRY_LOADING_DARK.png */; };
+		CD347B292853F3C900860420 /* PROFILE_RETRY_LOADING_LIGHT.png in Resources */ = {isa = PBXBuildFile; fileRef = CD347B272853F3C900860420 /* PROFILE_RETRY_LOADING_LIGHT.png */; };
 		CD3F173A2852C09C00078D7E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F17392852C09C00078D7E /* ProfileViewController.swift */; };
 		CD3F173D2852C0E600078D7E /* ProfileSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F173C2852C0E600078D7E /* ProfileSnapshotTests.swift */; };
 		CD4BE151282D75A300E1404D /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4BE150282D75A300E1404D /* TestHelpers.swift */; };
@@ -225,6 +227,8 @@
 		CD347B1F2853F21B00860420 /* PROFILE_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PROFILE_LIGHT.png; sourceTree = "<group>"; };
 		CD347B202853F21B00860420 /* PROFILE_LOADING_AVATAR_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PROFILE_LOADING_AVATAR_LIGHT.png; sourceTree = "<group>"; };
 		CD347B212853F21B00860420 /* PROFILE_LOADING_AVATAR_DARK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PROFILE_LOADING_AVATAR_DARK.png; sourceTree = "<group>"; };
+		CD347B262853F3C900860420 /* PROFILE_RETRY_LOADING_DARK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PROFILE_RETRY_LOADING_DARK.png; sourceTree = "<group>"; };
+		CD347B272853F3C900860420 /* PROFILE_RETRY_LOADING_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PROFILE_RETRY_LOADING_LIGHT.png; sourceTree = "<group>"; };
 		CD3F17392852C09C00078D7E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CD3F173C2852C0E600078D7E /* ProfileSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSnapshotTests.swift; sourceTree = "<group>"; };
 		CD4BE150282D75A300E1404D /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
@@ -540,6 +544,8 @@
 		CD347B1D2853F21B00860420 /* snapshots */ = {
 			isa = PBXGroup;
 			children = (
+				CD347B262853F3C900860420 /* PROFILE_RETRY_LOADING_DARK.png */,
+				CD347B272853F3C900860420 /* PROFILE_RETRY_LOADING_LIGHT.png */,
 				CD347B1E2853F21B00860420 /* PROFILE_DARK.png */,
 				CD347B1F2853F21B00860420 /* PROFILE_LIGHT.png */,
 				CD347B202853F21B00860420 /* PROFILE_LOADING_AVATAR_LIGHT.png */,
@@ -1429,7 +1435,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD347B292853F3C900860420 /* PROFILE_RETRY_LOADING_LIGHT.png in Resources */,
 				CDCA60382825B4F9006C2871 /* LOGIN_ERROR_dark.png in Resources */,
+				CD347B282853F3C900860420 /* PROFILE_RETRY_LOADING_DARK.png in Resources */,
 				CD347B252853F21C00860420 /* PROFILE_LOADING_AVATAR_DARK.png in Resources */,
 				CD1EE7A428249984009AB251 /* LOGIN_LOADING_dark.png in Resources */,
 				CD347B242853F21C00860420 /* PROFILE_LOADING_AVATAR_LIGHT.png in Resources */,
