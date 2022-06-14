@@ -30,6 +30,9 @@
 		CD347B282853F3C900860420 /* PROFILE_RETRY_LOADING_DARK.png in Resources */ = {isa = PBXBuildFile; fileRef = CD347B262853F3C900860420 /* PROFILE_RETRY_LOADING_DARK.png */; };
 		CD347B292853F3C900860420 /* PROFILE_RETRY_LOADING_LIGHT.png in Resources */ = {isa = PBXBuildFile; fileRef = CD347B272853F3C900860420 /* PROFILE_RETRY_LOADING_LIGHT.png */; };
 		CD35189628593E9200D8447C /* StoredSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD35189528593E9200D8447C /* StoredSession.swift */; };
+		CD3518982859492400D8447C /* CreateSessionMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3518972859492400D8447C /* CreateSessionMapperTests.swift */; };
+		CD35189A28594A8500D8447C /* CreateSessionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD35189928594A8500D8447C /* CreateSessionMapper.swift */; };
+		CD35189C28594AF300D8447C /* RemoteSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD35189B28594AF300D8447C /* RemoteSession.swift */; };
 		CD3F173A2852C09C00078D7E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F17392852C09C00078D7E /* ProfileViewController.swift */; };
 		CD3F173D2852C0E600078D7E /* ProfileSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F173C2852C0E600078D7E /* ProfileSnapshotTests.swift */; };
 		CD4BE151282D75A300E1404D /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4BE150282D75A300E1404D /* TestHelpers.swift */; };
@@ -230,6 +233,9 @@
 		CD347B262853F3C900860420 /* PROFILE_RETRY_LOADING_DARK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PROFILE_RETRY_LOADING_DARK.png; sourceTree = "<group>"; };
 		CD347B272853F3C900860420 /* PROFILE_RETRY_LOADING_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PROFILE_RETRY_LOADING_LIGHT.png; sourceTree = "<group>"; };
 		CD35189528593E9200D8447C /* StoredSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredSession.swift; sourceTree = "<group>"; };
+		CD3518972859492400D8447C /* CreateSessionMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSessionMapperTests.swift; sourceTree = "<group>"; };
+		CD35189928594A8500D8447C /* CreateSessionMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSessionMapper.swift; sourceTree = "<group>"; };
+		CD35189B28594AF300D8447C /* RemoteSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSession.swift; sourceTree = "<group>"; };
 		CD3F17392852C09C00078D7E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CD3F173C2852C0E600078D7E /* ProfileSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSnapshotTests.swift; sourceTree = "<group>"; };
 		CD4BE150282D75A300E1404D /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
@@ -932,6 +938,7 @@
 			children = (
 				CDEBD2FF2829CCB40096733D /* GetNewTokenMapperTests.swift */,
 				CDB08EE32846D5D200528B5F /* LoginEndpointTests.swift */,
+				CD3518972859492400D8447C /* CreateSessionMapperTests.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -941,6 +948,7 @@
 			children = (
 				CDEBD3032829DCF00096733D /* NewRequestTokenMapper.swift */,
 				CDB08EE72846E16D00528B5F /* LoginEndpoint.swift */,
+				CD35189928594A8500D8447C /* CreateSessionMapper.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -949,6 +957,7 @@
 			isa = PBXGroup;
 			children = (
 				CDEBD3062829DD210096733D /* SessionToken.swift */,
+				CD35189B28594AF300D8447C /* RemoteSession.swift */,
 			);
 			path = NewToken;
 			sourceTree = "<group>";
@@ -1631,9 +1640,11 @@
 			files = (
 				CD4BE160282DE5F800E1404D /* CodableTokenStore.swift in Sources */,
 				CDBC2BE9283D9BB5005F833D /* LoginRequestSenderPresenter.swift in Sources */,
+				CD35189C28594AF300D8447C /* RemoteSession.swift in Sources */,
 				CD35189628593E9200D8447C /* StoredSession.swift in Sources */,
 				CDBC2BE2283D9592005F833D /* LoginRequestSenderView.swift in Sources */,
 				CDEBD3072829DD210096733D /* SessionToken.swift in Sources */,
+				CD35189A28594A8500D8447C /* CreateSessionMapper.swift in Sources */,
 				CD347B182853D21E00860420 /* UserInfoViewModel.swift in Sources */,
 				CDB08EE82846E16D00528B5F /* LoginEndpoint.swift in Sources */,
 				CD4BE15D282DE5C000E1404D /* TokenStoreError.swift in Sources */,
@@ -1648,6 +1659,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD3518982859492400D8447C /* CreateSessionMapperTests.swift in Sources */,
 				CDB08EE42846D5D200528B5F /* LoginEndpointTests.swift in Sources */,
 				CD4BE153282D75C600E1404D /* HTTPURLResponse+Make.swift in Sources */,
 				CDBC2BE5283D96F2005F833D /* LoginRequestSenderPresenterTests.swift in Sources */,
