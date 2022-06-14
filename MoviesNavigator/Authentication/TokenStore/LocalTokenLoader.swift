@@ -26,11 +26,8 @@ public final class LocalTokenLoader {
         store.fetch { [weak self] result in
             completion(
                 Result {
-                    let storedToken = try result.get()
-                    guard storedToken.expirationDate > currentDate else {
-                        throw Error.expiredToken
-                    }
-                    return storedToken.token
+                    let session = try result.get()
+                    return session.id
                 }.mapError { _ in
                     self?.store.deleteIgnoringCompletion()
                     return Error.expiredToken

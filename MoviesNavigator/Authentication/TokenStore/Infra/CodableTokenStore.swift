@@ -16,23 +16,19 @@ public final class CodableTokenStore: TokenStore {
         self.storeURL = storeURL
     }
     
-    private struct CodableStoredToken: Codable {
-        let token: String
-        let expirationDate: Date
+    private struct CodableStoredSession: Codable {
+        let id: String
     }
     
     public func fetch(completion: @escaping FetchTokenCompletion) {
         queueOperation { [storeURL] in
-            guard let storedTokenData = try? Data(contentsOf: storeURL) else {
+            guard let storedSessionData = try? Data(contentsOf: storeURL) else {
                 return completion(.failure(TokenStoreError.emptyStore))
             }
             completion(
                 Result {
-                    let codableStoredToken = try JSONDecoder().decode(CodableStoredToken.self, from: storedTokenData)
-                    return StoredToken(
-                        token: codableStoredToken.token,
-                        expirationDate: codableStoredToken.expirationDate
-                    )
+                    let codableStoredSession = try JSONDecoder().decode(CodableStoredSession.self, from: storedSessionData)
+                    return StoredSession(id: codableStoredSession.id)
                 }.mapError { _ in
                     TokenStoreError.operationFailed
                 }
@@ -40,16 +36,13 @@ public final class CodableTokenStore: TokenStore {
         }
     }
     
-    public func store(_ token: StoredToken, completion: @escaping TokenOperationCompletion) {
+    public func store(_ session: StoredSession, completion: @escaping TokenOperationCompletion) {
         queueOperation { [storeURL] in
             completion(
                 Result{
-                    let codableStoredToken = CodableStoredToken(
-                        token: token.token,
-                        expirationDate: token.expirationDate
-                    )
+                    let codableStoredSession = CodableStoredSession(id: session.id)
                     let encoder = JSONEncoder()
-                    let data = try encoder.encode(codableStoredToken)
+                    let data = try encoder.encode(codableStoredSession)
                     try data.write(to: storeURL)
                 }.mapError { _ in
                     TokenStoreError.operationFailed

@@ -63,8 +63,8 @@ extension LocalTokenLoader {
 
 private extension TokenStore {
     
-    func storeIgnoringResult(_ token: StoredToken) {
-        store(token) { _ in }
+    func storeIgnoringResult(_ session: StoredSession) {
+        store(session) { _ in }
     }
     
 }
@@ -73,10 +73,7 @@ extension AnyPublisher where Output == SessionToken {
     
     func saveToken(store: TokenStore) -> AnyPublisher<Output, Failure> {
         handleEvents(receiveOutput: { token in
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
-            guard let date = formatter.date(from: token.expiresAt) else { return }
-            store.storeIgnoringResult(StoredToken(token: token.requestToken, expirationDate: date))
+            store.storeIgnoringResult(StoredSession(id: token.requestToken))
         })
         .eraseToAnyPublisher()
     }

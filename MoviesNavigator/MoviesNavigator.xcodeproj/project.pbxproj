@@ -29,13 +29,13 @@
 		CD347B252853F21C00860420 /* PROFILE_LOADING_AVATAR_DARK.png in Resources */ = {isa = PBXBuildFile; fileRef = CD347B212853F21B00860420 /* PROFILE_LOADING_AVATAR_DARK.png */; };
 		CD347B282853F3C900860420 /* PROFILE_RETRY_LOADING_DARK.png in Resources */ = {isa = PBXBuildFile; fileRef = CD347B262853F3C900860420 /* PROFILE_RETRY_LOADING_DARK.png */; };
 		CD347B292853F3C900860420 /* PROFILE_RETRY_LOADING_LIGHT.png in Resources */ = {isa = PBXBuildFile; fileRef = CD347B272853F3C900860420 /* PROFILE_RETRY_LOADING_LIGHT.png */; };
+		CD35189628593E9200D8447C /* StoredSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD35189528593E9200D8447C /* StoredSession.swift */; };
 		CD3F173A2852C09C00078D7E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F17392852C09C00078D7E /* ProfileViewController.swift */; };
 		CD3F173D2852C0E600078D7E /* ProfileSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F173C2852C0E600078D7E /* ProfileSnapshotTests.swift */; };
 		CD4BE151282D75A300E1404D /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4BE150282D75A300E1404D /* TestHelpers.swift */; };
 		CD4BE153282D75C600E1404D /* HTTPURLResponse+Make.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4BE152282D75C600E1404D /* HTTPURLResponse+Make.swift */; };
 		CD4BE156282D904B00E1404D /* CodableTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4BE155282D904B00E1404D /* CodableTokenStoreTests.swift */; };
 		CD4BE159282DE58600E1404D /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4BE158282DE58600E1404D /* TokenStore.swift */; };
-		CD4BE15B282DE59B00E1404D /* StoredToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4BE15A282DE59B00E1404D /* StoredToken.swift */; };
 		CD4BE15D282DE5C000E1404D /* TokenStoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4BE15C282DE5C000E1404D /* TokenStoreError.swift */; };
 		CD4BE160282DE5F800E1404D /* CodableTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4BE15F282DE5F800E1404D /* CodableTokenStore.swift */; };
 		CD5AE0482746AED900CED0DE /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5AE0472746AED900CED0DE /* HTTPClient.swift */; };
@@ -229,13 +229,13 @@
 		CD347B212853F21B00860420 /* PROFILE_LOADING_AVATAR_DARK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PROFILE_LOADING_AVATAR_DARK.png; sourceTree = "<group>"; };
 		CD347B262853F3C900860420 /* PROFILE_RETRY_LOADING_DARK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PROFILE_RETRY_LOADING_DARK.png; sourceTree = "<group>"; };
 		CD347B272853F3C900860420 /* PROFILE_RETRY_LOADING_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PROFILE_RETRY_LOADING_LIGHT.png; sourceTree = "<group>"; };
+		CD35189528593E9200D8447C /* StoredSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredSession.swift; sourceTree = "<group>"; };
 		CD3F17392852C09C00078D7E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CD3F173C2852C0E600078D7E /* ProfileSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSnapshotTests.swift; sourceTree = "<group>"; };
 		CD4BE150282D75A300E1404D /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		CD4BE152282D75C600E1404D /* HTTPURLResponse+Make.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Make.swift"; sourceTree = "<group>"; };
 		CD4BE155282D904B00E1404D /* CodableTokenStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableTokenStoreTests.swift; sourceTree = "<group>"; };
 		CD4BE158282DE58600E1404D /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
-		CD4BE15A282DE59B00E1404D /* StoredToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredToken.swift; sourceTree = "<group>"; };
 		CD4BE15C282DE5C000E1404D /* TokenStoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStoreError.swift; sourceTree = "<group>"; };
 		CD4BE15F282DE5F800E1404D /* CodableTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableTokenStore.swift; sourceTree = "<group>"; };
 		CD5AE0472746AED900CED0DE /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
@@ -598,7 +598,7 @@
 			children = (
 				CD4BE15E282DE5D400E1404D /* Infra */,
 				CD4BE158282DE58600E1404D /* TokenStore.swift */,
-				CD4BE15A282DE59B00E1404D /* StoredToken.swift */,
+				CD35189528593E9200D8447C /* StoredSession.swift */,
 				CD4BE15C282DE5C000E1404D /* TokenStoreError.swift */,
 				CDAA5E522833137E00FE51D8 /* LocalTokenLoader.swift */,
 			);
@@ -1631,7 +1631,7 @@
 			files = (
 				CD4BE160282DE5F800E1404D /* CodableTokenStore.swift in Sources */,
 				CDBC2BE9283D9BB5005F833D /* LoginRequestSenderPresenter.swift in Sources */,
-				CD4BE15B282DE59B00E1404D /* StoredToken.swift in Sources */,
+				CD35189628593E9200D8447C /* StoredSession.swift in Sources */,
 				CDBC2BE2283D9592005F833D /* LoginRequestSenderView.swift in Sources */,
 				CDEBD3072829DD210096733D /* SessionToken.swift in Sources */,
 				CD347B182853D21E00860420 /* UserInfoViewModel.swift in Sources */,

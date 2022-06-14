@@ -34,15 +34,6 @@ final class SceneDelegateTests: XCTestCase {
         )
     }
     
-    func test_scene_rendersLoginWhenSessionHasExpired() {
-        validateLaunchedViewController(
-            store: TokenStoreStub.expiredToken,
-            validation: { viewController in
-                viewController as? LoginViewController
-            }
-        )
-    }
-    
     private func validateLaunchedViewController<T: UIViewController>(
         store: TokenStore,
         validation: @escaping (UIViewController?) -> T?,

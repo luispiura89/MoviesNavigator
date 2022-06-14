@@ -18,7 +18,7 @@ final class LoginScreenAcceptanceTests: XCTestCase {
         let (sut, store) = launch()
 
         XCTAssertTrue(sut.rootViewController is HomeViewController)
-        XCTAssertEqual(store.storedToken.count, 1)
+        XCTAssertEqual(store.storedSessions.count, 1)
     }
     
     private func launch() -> (MockWindow, TokenStoreStub) {

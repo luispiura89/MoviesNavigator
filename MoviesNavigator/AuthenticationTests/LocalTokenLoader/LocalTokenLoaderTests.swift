@@ -17,7 +17,7 @@ final class LocalTokenLoaderTests: XCTestCase {
             store.completeFetchSuccessfully()
         }
         
-        XCTAssertEqual(fetchedToken, "any-token")
+        XCTAssertEqual(fetchedToken, "any-id")
         XCTAssertEqual(store.fetchRequests.count, 1)
         XCTAssertEqual(store.deleteRequests.count, 0)
     }
@@ -27,32 +27,6 @@ final class LocalTokenLoaderTests: XCTestCase {
         
         let error = errorFetchFor(sut, currentDate: Date().decreasing(minutes: 1)) {
             store.completeFetchWithError()
-        }
-        
-        XCTAssertEqual(error, LocalTokenLoader.Error.expiredToken)
-        XCTAssertEqual(store.fetchRequests.count, 1)
-        XCTAssertEqual(store.deleteRequests.count, 1)
-    }
-    
-    func test_fetchToken_deliversErrorOnExpiredTokenAndDeletesStoredToken() {
-        let (sut, store) = makeSUT()
-        
-        let error = errorFetchFor(sut, currentDate: Date()) {
-            store.completeFetchWithExpiredToken()
-            store.completeTokenDeletionSuccessfully()
-        }
-        
-        XCTAssertEqual(error, LocalTokenLoader.Error.expiredToken)
-        XCTAssertEqual(store.fetchRequests.count, 1)
-        XCTAssertEqual(store.deleteRequests.count, 1)
-    }
-    
-    func test_fetchToken_deliversErrorOnExpiredTokenAndDeletionError() {
-        let (sut, store) = makeSUT()
-        
-        let error = errorFetchFor(sut, currentDate: Date()) {
-            store.completeFetchWithExpiredToken()
-            store.completeTokenDeletionWithError()
         }
         
         XCTAssertEqual(error, LocalTokenLoader.Error.expiredToken)
@@ -126,7 +100,7 @@ final class LocalTokenLoaderTests: XCTestCase {
             fetchRequests.append(completion)
         }
         
-        func store(_ token: StoredToken, completion: @escaping TokenOperationCompletion) {
+        func store(_ session: StoredSession, completion: @escaping TokenOperationCompletion) {
             
         }
         
@@ -135,7 +109,7 @@ final class LocalTokenLoaderTests: XCTestCase {
         }
         
         func completeFetchSuccessfully(at index: Int = 0) {
-            fetchRequests[index](.success(StoredToken(token: "any-token", expirationDate: Date())))
+            fetchRequests[index](.success(StoredSession(id: "any-id")))
         }
         
         func completeFetchWithError(at index: Int = 0) {
@@ -145,10 +119,7 @@ final class LocalTokenLoaderTests: XCTestCase {
         func completeFetchWithExpiredToken(at index: Int = 0) {
             fetchRequests[index](
                 .success(
-                    StoredToken(
-                        token: "any-token",
-                        expirationDate: Date().decreasing(hours: 1)
-                    )
+                    StoredSession(id: "any-id")
                 )
             )
         }

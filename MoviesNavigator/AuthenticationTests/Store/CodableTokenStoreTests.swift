@@ -20,10 +20,10 @@ final class CodableTokenStoreTests: XCTestCase {
         clearSideEffects()
     }
     
-    func test_fetch_deliversEmptyTokenErrorWhenThereIsNoStoredToken() {
+    func test_fetch_deliversEmptyTokenErrorWhenThereIsNoStoredSession() {
         let sut = makeSUT(withURL: storeURL())
         
-        expectStoredToken(in: sut, toBeEqualsTo: nil)
+        expectStoredSessionID(in: sut, toBeEqualsTo: nil)
     }
     
     func test_fetch_deliversOperationErrorWhenFetchingInvalidData() {
@@ -31,50 +31,47 @@ final class CodableTokenStoreTests: XCTestCase {
         
         try! Data("Any data".utf8).write(to: storeURL())
         
-        expectStoredToken(in: sut, toBeEqualsTo: nil)
+        expectStoredSessionID(in: sut, toBeEqualsTo: nil)
     }
     
     func test_fetch_deliversEmptyTokenErrorWhenTokenStoreOperationFailed() {
         let instanceToRead = makeSUT(withURL: storeURL())
         let instanceToWrite = makeSUT(withURL: cachesDirectory())
         
-        store(token: StoredToken(token: "any-token", expirationDate: Date()), in: instanceToWrite)
+        storeSession(in: instanceToWrite)
         
-        expectStoredToken(in: instanceToRead, toBeEqualsTo: nil)
+        expectStoredSessionID(in: instanceToRead, toBeEqualsTo: nil)
     }
     
-    func test_fetch_deliversStoredTokenWhenThereIsAStoredToken() {
+    func test_fetch_deliversStoredSessionWhenThereIsAStoredSession() {
         let instanceToRead = makeSUT(withURL: storeURL())
         let instanceToWrite = makeSUT(withURL: storeURL())
-        let token = StoredToken(token: "any-token", expirationDate: Date())
         
-        store(token: token, in: instanceToWrite)
+        storeSession(in: instanceToWrite)
         
-        expectStoredToken(in: instanceToRead, toBeEqualsTo: token.token)
+        expectStoredSessionID(in: instanceToRead)
     }
     
     func test_fetch_deliversEmptyTokenErrorAfterTokenDeletion() {
         let instanceToRead = makeSUT(withURL: storeURL())
         let instanceToWrite = makeSUT(withURL: storeURL())
         let instanceToDelete = makeSUT(withURL: storeURL())
-        let token = StoredToken(token: "any-token", expirationDate: Date())
         
-        store(token: token, in: instanceToWrite)
-        expectStoredToken(in: instanceToRead, toBeEqualsTo: token.token)
+        storeSession(in: instanceToWrite)
+        expectStoredSessionID(in: instanceToRead)
         delete(from: instanceToDelete)
-        expectStoredToken(in: instanceToRead, toBeEqualsTo: nil)
+        expectStoredSessionID(in: instanceToRead, toBeEqualsTo: nil)
     }
     
-    func test_fetch_deliversPreviouslyStoredTokenAfterTokenDeletionError() {
+    func test_fetch_deliversPreviouslyStoredSessionAfterTokenDeletionError() {
         let instanceToRead = makeSUT(withURL: storeURL())
         let instanceToWrite = makeSUT(withURL: storeURL())
         let instanceToDelete = makeSUT(withURL: invalidURL())
-        let token = StoredToken(token: "any-token", expirationDate: Date())
 
-        store(token: token, in: instanceToWrite)
-        expectStoredToken(in: instanceToRead, toBeEqualsTo: token.token)
+        storeSession(in: instanceToWrite)
+        expectStoredSessionID(in: instanceToRead)
         delete(from: instanceToDelete)
-        expectStoredToken(in: instanceToRead, toBeEqualsTo: token.token)
+        expectStoredSessionID(in: instanceToRead)
     }
     
     func test_store_sideEffectsRunSerially() {
@@ -86,7 +83,7 @@ final class CodableTokenStoreTests: XCTestCase {
         sut.fetch { _ in
             exp1.fulfill()
         }
-        sut.store(StoredToken(token: "any-token", expirationDate: Date())) { _ in
+        sut.store(StoredSession(id: "any-id")) { _ in
             exp2.fulfill()
         }
         sut.deleteToken { _ in
@@ -121,25 +118,25 @@ final class CodableTokenStoreTests: XCTestCase {
         cachesDirectory().appendingPathComponent("\(type(of: self)).store")
     }
     
-    private func expectStoredToken(
+    private func expectStoredSessionID(
         in store: TokenStore,
-        toBeEqualsTo token: String?,
+        toBeEqualsTo sessionId: String? = "any-id",
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
         let exp = expectation(description: "Wait for token fetch")
         var fetchedToken: String?
         store.fetch { result in
-            fetchedToken = try? result.get().token
+            fetchedToken = try? result.get().id
             exp.fulfill()
         }
         wait(for: [exp], timeout: 1.0)
-        XCTAssertEqual(fetchedToken, token, file: file, line: line)
+        XCTAssertEqual(fetchedToken, sessionId, file: file, line: line)
     }
     
-    private func store(token: StoredToken, in instanceToWrite: TokenStore) {
+    private func storeSession(in instanceToWrite: TokenStore) {
         let exp = expectation(description: "Wait for token store")
-        instanceToWrite.store(token) { result in
+        instanceToWrite.store(StoredSession(id: "any-id")) { result in
             exp.fulfill()
         }
         wait(for: [exp], timeout: 1.0)

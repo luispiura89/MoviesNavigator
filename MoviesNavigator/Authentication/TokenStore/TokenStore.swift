@@ -8,13 +8,13 @@
 import Foundation
 
 public protocol TokenStore {
-    typealias FetchTokenResult = Result<StoredToken, Error>
+    typealias FetchTokenResult = Result<StoredSession, Error>
     typealias FetchTokenCompletion = (FetchTokenResult) -> Void
     
     typealias TokenOperationResult = Result<Void, Error>
     typealias TokenOperationCompletion = (TokenOperationResult) -> Void
     
     func fetch(completion: @escaping FetchTokenCompletion)
-    func store(_ token: StoredToken, completion: @escaping TokenOperationCompletion)
+    func store(_ token: StoredSession, completion: @escaping TokenOperationCompletion)
     func deleteToken(completion: @escaping TokenOperationCompletion)
 }
