@@ -10,9 +10,11 @@ import Foundation
 public enum LoginEndpoint {
     case validateTokenWithLogin
     case getNewToken
+    case createSession
     
     struct Constants {
         static let authentication = "authentication"
+        static let session = "/session"
         static let token = "/token"
         static let new = "/new"
         static let validateWithLogin = "/validate_with_login"
@@ -26,11 +28,15 @@ public enum LoginEndpoint {
         var urlComponents = URLComponents(string: baseURL.absoluteString)
         
         urlComponents?.path.append(Constants.authentication)
-        urlComponents?.path.append(Constants.token)
         switch self {
         case .validateTokenWithLogin:
+            urlComponents?.path.append(Constants.token)
             urlComponents?.path.append(Constants.validateWithLogin)
         case .getNewToken:
+            urlComponents?.path.append(Constants.token)
+            urlComponents?.path.append(Constants.new)
+        case .createSession:
+            urlComponents?.path.append(Constants.session)
             urlComponents?.path.append(Constants.new)
         }
         
@@ -48,6 +54,9 @@ public enum LoginEndpoint {
             bodyParams[Constants.password] = params[1]
             bodyParams[Constants.requestToken] = params[2]
             return bodyParams
+        case .createSession:
+            guard params.count == 1 else { return nil }
+            return [Constants.requestToken: params[0]]
         default:
             return nil
         }
