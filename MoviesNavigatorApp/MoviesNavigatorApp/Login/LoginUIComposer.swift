@@ -25,7 +25,7 @@ public final class LoginUIComposer {
         )
         let errorView = HeaderErrorViewController()
         let loginView = LoginViewAdapter(onSuccess: onSuccess)
-        let loginPresenter = LoadResourcePresenter<SessionToken, LoginViewAdapter>(
+        let loginPresenter = LoadResourcePresenter<RemoteSession, LoginViewAdapter>(
             loadingView: WeakReferenceProxy<LoginLoadingViewController>(
                 instance: loginLoadingViewController
             ),

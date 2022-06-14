@@ -10,8 +10,8 @@ import Authentication
 import AuthenticationiOS
 import Combine
 
-typealias LoginPresenter = LoadResourcePresenter<SessionToken, LoginViewAdapter>
-public typealias LoginPublisherHandler = (String, String) -> AnyPublisher<SessionToken, Error>
+typealias LoginPresenter = LoadResourcePresenter<RemoteSession, LoginViewAdapter>
+public typealias LoginPublisherHandler = (String, String) -> AnyPublisher<RemoteSession, Error>
 
 final class LoginPresentationAdapter: LoginLoadingViewControllerDelegate {
     

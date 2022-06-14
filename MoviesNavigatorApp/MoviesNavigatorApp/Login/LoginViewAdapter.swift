@@ -16,7 +16,7 @@ final class LoginViewAdapter: ResourceView {
         self.onSuccess = onSuccess
     }
     
-    func update(_ viewModel: ResourceViewModel<SessionToken>) {
+    func update(_ viewModel: ResourceViewModel<RemoteSession>) {
         onSuccess()
     }
     

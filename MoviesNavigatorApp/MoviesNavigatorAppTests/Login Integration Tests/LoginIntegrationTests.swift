@@ -154,7 +154,7 @@ final class LoginIntegrationTests: XCTestCase {
         private(set) var requests = [
             (
                 session: (user: String, password: String),
-                subject: PassthroughSubject<SessionToken, Error>
+                subject: PassthroughSubject<RemoteSession, Error>
             )
         ]()
         
@@ -172,15 +172,15 @@ final class LoginIntegrationTests: XCTestCase {
         
         func completeLoginSuccessfully(at index: Int = 0) {
             requests[index].subject.send(
-                SessionToken(requestToken: "any-token", expiresAt: "")
+                RemoteSession(id: "any-id")
             )
         }
         
         func loginPublisher(
             user: String,
             password: String
-        ) -> AnyPublisher<SessionToken, Error> {
-            let publisher = PassthroughSubject<SessionToken, Error>()
+        ) -> AnyPublisher<RemoteSession, Error> {
+            let publisher = PassthroughSubject<RemoteSession, Error>()
             let session = (user, password)
             requests.append((session, publisher))
             return publisher.eraseToAnyPublisher()

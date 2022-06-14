@@ -96,6 +96,32 @@ extension AnyPublisher where Output == SessionToken {
         .eraseToAnyPublisher()
     }
     
+    func createSession(
+        from url: URL,
+        httpClient: HTTPClient,
+        endpoint: LoginEndpoint
+    ) -> AnyPublisher<RemoteSession, Error> {
+        mapError { $0 }
+        .flatMap {
+            httpClient.postPublisher(
+                from: url,
+                params: endpoint.getParameters($0.requestToken)!
+            )
+        }
+        .tryMap(CreateSessionMapper.map)
+        .eraseToAnyPublisher()
+    }
+}
+
+extension AnyPublisher where Output == RemoteSession {
+    
+    func saveToken(store: TokenStore) -> AnyPublisher<Output, Failure> {
+        handleEvents(receiveOutput: { session in
+            store.storeIgnoringResult(StoredSession(id: session.id))
+        })
+        .eraseToAnyPublisher()
+    }
+
 }
 
 extension AnyPublisher {

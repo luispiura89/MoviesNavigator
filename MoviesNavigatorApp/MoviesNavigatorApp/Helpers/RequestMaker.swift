@@ -61,6 +61,7 @@ final class RequestMaker {
         { [baserURL] user, password in
             let firstEndpoint: LoginEndpoint = .getNewToken
             let secondEndpoint: LoginEndpoint = .validateTokenWithLogin
+            let thirdEndpoint: LoginEndpoint = .createSession
             return httpClient
                 .getPublisher(from: firstEndpoint.getURL(from: baserURL, apiKey: apiKey))
                 .tryMapWithErasure(mapper: NewTokenRequestMapper.map)
@@ -69,6 +70,11 @@ final class RequestMaker {
                     httpClient: httpClient,
                     session: (user: user, password: password),
                     endpoint: secondEndpoint
+                )
+                .createSession(
+                    from: thirdEndpoint.getURL(from: baserURL, apiKey: apiKey),
+                    httpClient: httpClient,
+                    endpoint: thirdEndpoint
                 )
                 .saveToken(store: store)
         }

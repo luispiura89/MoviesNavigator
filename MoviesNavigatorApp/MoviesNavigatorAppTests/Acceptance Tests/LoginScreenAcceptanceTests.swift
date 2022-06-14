@@ -36,12 +36,20 @@ final class LoginScreenAcceptanceTests: XCTestCase {
     }
     
     private func makeSuccessfulLoginResponse(url: URL) -> HTTPClient.HTTPRequestResult {
-        return .success(
-            (
-                try! successfulHTTPResponseData(expirationDate: .distantFuture),
-                .succesfulResponse
+        url.absoluteString.contains("authentication/session/new") ?
+            .success(
+                (
+                    try! successfulCreateSessionHTTPResponseData(),
+                    .succesfulResponse
+                )
             )
-        )
+        :
+            .success(
+                (
+                    try! successfulHTTPResponseData(expirationDate: .distantFuture),
+                    .succesfulResponse
+                )
+            )
     }
     
     private func successfulHTTPResponseData(expirationDate: Date) throws -> Data {
@@ -50,6 +58,14 @@ final class LoginScreenAcceptanceTests: XCTestCase {
         let json: [String: Any] = [
             "expires_at": "2022-05-10 00:07:44 UTC",
             "request_token": "any-token",
+            "success": true
+        ]
+        return try JSONSerialization.data(withJSONObject: json)
+    }
+    
+    private func successfulCreateSessionHTTPResponseData() throws -> Data {
+        let json: [String: Any] = [
+            "session_id": "any-id",
             "success": true
         ]
         return try JSONSerialization.data(withJSONObject: json)
