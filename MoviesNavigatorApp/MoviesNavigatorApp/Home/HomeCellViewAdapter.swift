@@ -8,6 +8,7 @@
 import Foundation
 import SharedPresentation
 import TVShowsiOS
+import SharediOS
 import UIKit
 
 final class HomeCellViewAdapter: ResourceView, ErrorView, LoadingView {

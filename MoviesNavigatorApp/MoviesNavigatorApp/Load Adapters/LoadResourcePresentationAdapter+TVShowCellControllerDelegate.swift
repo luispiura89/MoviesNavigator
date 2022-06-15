@@ -7,6 +7,7 @@
 
 import Foundation
 import TVShowsiOS
+import SharediOS
 
 extension LoadResourcePresentationAdapter: TVShowCellControllerDelegate where Resource == Data {
     public func requestImage() {
