@@ -25,11 +25,11 @@ extension HomeViewController {
     }
     
     @discardableResult
-    private func cell(at index: Int) -> TVShowHomeCell? {
+    private func cell(at index: Int) -> TVShowCell? {
         guard renderedCells() > index else { return nil }
         let ds = collectionView.dataSource
         let index = IndexPath(row: index, section: showsSection)
-        return ds?.collectionView(collectionView, cellForItemAt: index) as? TVShowHomeCell
+        return ds?.collectionView(collectionView, cellForItemAt: index) as? TVShowCell
     }
     
     func isShowingRetryActionOnCell(at index: Int) -> Bool {
@@ -58,7 +58,7 @@ extension HomeViewController {
     }
     
     @discardableResult
-    func displayCell(at index: Int) -> TVShowHomeCell? {
+    func displayCell(at index: Int) -> TVShowCell? {
         cell(at: index)
     }
     

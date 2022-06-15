@@ -57,7 +57,7 @@
 		CD845A6D276BF10A000881E0 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD845A6C276BF10A000881E0 /* Colors.xcassets */; };
 		CD845A70276BF239000881E0 /* UIColor+TVShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A6F276BF239000881E0 /* UIColor+TVShows.swift */; };
 		CD845A73276BF3E8000881E0 /* TVShowCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A72276BF3E8000881E0 /* TVShowCellController.swift */; };
-		CD845A76276BFB46000881E0 /* TVShowHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A75276BFB46000881E0 /* TVShowHomeCell.swift */; };
+		CD845A76276BFB46000881E0 /* TVShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A75276BFB46000881E0 /* TVShowCell.swift */; };
 		CD8B7BE2281B174900B5D7AF /* LOGIN_light.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8B7BE0281B174900B5D7AF /* LOGIN_light.png */; };
 		CD8B7BE3281B174900B5D7AF /* LOGIN_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8B7BE1281B174900B5D7AF /* LOGIN_dark.png */; };
 		CD8BE6C12819FE8200ACBA57 /* UIViewController+Snapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8BE6C02819FE8200ACBA57 /* UIViewController+Snapshots.swift */; };
@@ -261,7 +261,7 @@
 		CD845A6C276BF10A000881E0 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		CD845A6F276BF239000881E0 /* UIColor+TVShows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+TVShows.swift"; sourceTree = "<group>"; };
 		CD845A72276BF3E8000881E0 /* TVShowCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowCellController.swift; sourceTree = "<group>"; };
-		CD845A75276BFB46000881E0 /* TVShowHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowHomeCell.swift; sourceTree = "<group>"; };
+		CD845A75276BFB46000881E0 /* TVShowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowCell.swift; sourceTree = "<group>"; };
 		CD8B7BE0281B174900B5D7AF /* LOGIN_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOGIN_light.png; sourceTree = "<group>"; };
 		CD8B7BE1281B174900B5D7AF /* LOGIN_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOGIN_dark.png; sourceTree = "<group>"; };
 		CD8BE6C02819FE8200ACBA57 /* UIViewController+Snapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Snapshots.swift"; sourceTree = "<group>"; };
@@ -753,7 +753,7 @@
 		CD845A74276BFB1E000881E0 /* TV Shows Cells */ = {
 			isa = PBXGroup;
 			children = (
-				CD845A75276BFB46000881E0 /* TVShowHomeCell.swift */,
+				CD845A75276BFB46000881E0 /* TVShowCell.swift */,
 				CD8E77A82773B371007F5A7A /* HomeHeader.swift */,
 			);
 			path = "TV Shows Cells";
@@ -1552,7 +1552,7 @@
 				CD845A70276BF239000881E0 /* UIColor+TVShows.swift in Sources */,
 				CD8E77AB2773BCF5007F5A7A /* HomeHeaderController.swift in Sources */,
 				CD845A73276BF3E8000881E0 /* TVShowCellController.swift in Sources */,
-				CD845A76276BFB46000881E0 /* TVShowHomeCell.swift in Sources */,
+				CD845A76276BFB46000881E0 /* TVShowCell.swift in Sources */,
 				CD8120E0277A6C1A00277EF1 /* UIImage+TVShows.swift in Sources */,
 				CD845A65276BEDD2000881E0 /* HomeViewController.swift in Sources */,
 				CD8E77A92773B371007F5A7A /* HomeHeader.swift in Sources */,

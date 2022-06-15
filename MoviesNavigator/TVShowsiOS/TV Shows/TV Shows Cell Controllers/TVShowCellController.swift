@@ -16,7 +16,7 @@ public protocol TVShowCellControllerDelegate {
 public final class TVShowCellController: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
     private let viewModel: TVShowViewModel
-    private var cell: TVShowHomeCell?
+    private var cell: TVShowCell?
     private let delegate: TVShowCellControllerDelegate?
     
     private enum State: Equatable {
@@ -38,7 +38,7 @@ public final class TVShowCellController: NSObject, UICollectionViewDataSource, U
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        cell = (collectionView.dequeueReusableCell(withReuseIdentifier: TVShowHomeCell.dequeueIdentifier, for: indexPath) as? TVShowHomeCell)
+        cell = (collectionView.dequeueReusableCell(withReuseIdentifier: TVShowCell.dequeueIdentifier, for: indexPath) as? TVShowCell)
         cell?.retryActionHandler = { [weak self] in
             self?.retryDownload()
         }

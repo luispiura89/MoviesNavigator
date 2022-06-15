@@ -7,7 +7,7 @@
 
 import UIKit
 
-public final class TVShowHomeCell: UICollectionViewCell {
+public final class TVShowCell: UICollectionViewCell {
     
     static var dequeueIdentifier = "TVShowTableViewCell"
     

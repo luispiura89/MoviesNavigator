@@ -37,7 +37,7 @@ public final class HomeViewController: UICollectionViewController {
     
     private func registerCells() {
         collectionView.register(
-            TVShowHomeCell.self, forCellWithReuseIdentifier: TVShowHomeCell.dequeueIdentifier)
+            TVShowCell.self, forCellWithReuseIdentifier: TVShowCell.dequeueIdentifier)
         collectionView.register(
             HomeHeader.self, forSupplementaryViewOfKind: HomeHeader.viewKind, withReuseIdentifier: HomeHeader.reuseIdentifier)
     }
