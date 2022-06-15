@@ -11,7 +11,7 @@ public typealias CellController = UICollectionViewDataSource
 
 public final class ProfileViewController: UICollectionViewController {
     
-    private var controllers = [CellController]()
+    private var controllers = [Int: [CellController]]()
     
     convenience init() {
         self.init(collectionViewLayout: Self.makeLayout())
@@ -20,7 +20,10 @@ public final class ProfileViewController: UICollectionViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .blackBackground
-        collectionView.register(UserInfoCell.self, forCellWithReuseIdentifier: UserInfoCell.identifier)
+        collectionView.register(
+            UserInfoCell.self,
+            forCellWithReuseIdentifier: UserInfoCell.identifier
+        )
         collectionView.register(
             UserInfoHeader.self,
             forSupplementaryViewOfKind: UserInfoHeader.viewKind,
@@ -28,8 +31,8 @@ public final class ProfileViewController: UICollectionViewController {
         )
     }
     
-    public func setControllers(_ controllers: [CellController]) {
-        self.controllers = controllers
+    public func setControllers(_ controllers: [CellController], forSection section: Int = 0) {
+        self.controllers[section] = controllers
         collectionView.reloadData()
     }
     
@@ -37,14 +40,15 @@ public final class ProfileViewController: UICollectionViewController {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        controllers.count
+        controllers[section]?.count ?? 0
     }
     
     public override func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        controllers[indexPath.row].collectionView(collectionView, cellForItemAt: indexPath)
+        let controllers = cellControllers(forSection: indexPath.section)
+        return controllers[indexPath.row].collectionView(collectionView, cellForItemAt: indexPath)
     }
     
     public override func collectionView(
@@ -52,11 +56,16 @@ public final class ProfileViewController: UICollectionViewController {
         viewForSupplementaryElementOfKind kind: String,
         at indexPath: IndexPath
     ) -> UICollectionReusableView {
-        controllers[indexPath.row].collectionView?(
+        let controllers = cellControllers(forSection: indexPath.section)
+        return controllers[indexPath.row].collectionView?(
             collectionView,
             viewForSupplementaryElementOfKind: "",
             at: indexPath
         ) ?? UICollectionReusableView()
+    }
+    
+    private func cellControllers(forSection section: Int = 0) -> [CellController] {
+        controllers[section] ?? []
     }
     
     private static func makeLayout() -> UICollectionViewCompositionalLayout {
