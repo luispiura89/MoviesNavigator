@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SharediOS
 
 public final class UserAvatarView: UIImageView {
     
@@ -31,7 +32,7 @@ public final class UserAvatarView: UIImageView {
     
     private lazy var retryButton: UIButton = {
         let button = UIButton()
-        button.setImage(.reload, for: .normal)
+        button.setImage(.retryLoading, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [

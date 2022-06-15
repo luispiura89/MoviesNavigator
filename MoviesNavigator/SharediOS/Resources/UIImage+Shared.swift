@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIImage {
-    static var retryLoading: UIImage? {
+    public static var retryLoading: UIImage? {
         UIImage(named: "ReloadIcon", in: Bundle(for: TVShowCell.self), compatibleWith: nil)
     }
 }
