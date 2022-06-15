@@ -9,6 +9,6 @@ import UIKit
 
 extension UIImage {
     static var retryLoading: UIImage? {
-        UIImage(named: "ReloadIcon", in: Bundle(for: HomeViewController.self), compatibleWith: nil)
+        UIImage(named: "ReloadIcon", in: Bundle(for: TVShowCell.self), compatibleWith: nil)
     }
 }

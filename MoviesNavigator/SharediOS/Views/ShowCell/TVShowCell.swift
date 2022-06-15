@@ -9,7 +9,7 @@ import UIKit
 
 public final class TVShowCell: UICollectionViewCell {
     
-    static var dequeueIdentifier = "TVShowTableViewCell"
+    public static var dequeueIdentifier = "TVShowTableViewCell"
     
     var retryActionHandler: (() -> Void)?
     
