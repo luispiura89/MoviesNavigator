@@ -61,7 +61,7 @@ extension LocalTokenLoader {
     
 }
 
-private extension TokenStore {
+private extension SessionStore {
     
     func storeIgnoringResult(_ session: StoredSession) {
         store(session) { _ in }
@@ -70,14 +70,6 @@ private extension TokenStore {
 }
 
 extension AnyPublisher where Output == SessionToken {
-    
-    func saveToken(store: TokenStore) -> AnyPublisher<Output, Failure> {
-        handleEvents(receiveOutput: { token in
-            store.storeIgnoringResult(StoredSession(id: token.requestToken))
-        })
-        .eraseToAnyPublisher()
-    }
-    
     
     func validateToken(
         from url: URL,
@@ -115,7 +107,7 @@ extension AnyPublisher where Output == SessionToken {
 
 extension AnyPublisher where Output == RemoteSession {
     
-    func saveToken(store: TokenStore) -> AnyPublisher<Output, Failure> {
+    func saveSession(in store: SessionStore) -> AnyPublisher<Output, Failure> {
         handleEvents(receiveOutput: { session in
             store.storeIgnoringResult(StoredSession(id: session.id))
         })

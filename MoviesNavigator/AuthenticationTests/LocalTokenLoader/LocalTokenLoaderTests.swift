@@ -91,20 +91,20 @@ final class LocalTokenLoaderTests: XCTestCase {
         return receivedResult!
     }
     
-    private final class TokenStoreSpy: TokenStore {
+    private final class TokenStoreSpy: SessionStore {
         
-        private(set) var fetchRequests = [FetchTokenCompletion]()
-        private(set) var deleteRequests = [TokenOperationCompletion]()
+        private(set) var fetchRequests = [FetchSessionCompletion]()
+        private(set) var deleteRequests = [SessionOperationCompletion]()
 
-        func fetch(completion: @escaping FetchTokenCompletion) {
+        func fetch(completion: @escaping FetchSessionCompletion) {
             fetchRequests.append(completion)
         }
         
-        func store(_ session: StoredSession, completion: @escaping TokenOperationCompletion) {
+        func store(_ session: StoredSession, completion: @escaping SessionOperationCompletion) {
             
         }
         
-        func deleteToken(completion: @escaping TokenOperationCompletion) {
+        func deleteSession(completion: @escaping SessionOperationCompletion) {
             deleteRequests.append(completion)
         }
         

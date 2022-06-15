@@ -35,7 +35,7 @@ final class SceneDelegateTests: XCTestCase {
     }
     
     private func validateLaunchedViewController<T: UIViewController>(
-        store: TokenStore,
+        store: SessionStore,
         validation: @escaping (UIViewController?) -> T?,
         file: StaticString = #filePath,
         line: UInt = #line

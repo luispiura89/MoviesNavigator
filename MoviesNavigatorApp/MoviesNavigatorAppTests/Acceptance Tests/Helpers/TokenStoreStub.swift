@@ -8,7 +8,7 @@
 import Foundation
 import Authentication
 
-final class TokenStoreStub: TokenStore {
+final class TokenStoreStub: SessionStore {
     
     private(set) var storedSessions = [StoredSession]()
     
@@ -20,21 +20,21 @@ final class TokenStoreStub: TokenStore {
         TokenStoreStub(fetchStub: .success(StoredSession(id: "any-id")))
     }
     
-    private let fetchStub: TokenStore.FetchTokenResult
+    private let fetchStub: SessionStore.FetchSessionResult
     
-    init(fetchStub: TokenStore.FetchTokenResult) {
+    init(fetchStub: SessionStore.FetchSessionResult) {
         self.fetchStub = fetchStub
     }
     
-    func fetch(completion: @escaping FetchTokenCompletion) {
+    func fetch(completion: @escaping FetchSessionCompletion) {
         completion(fetchStub)
     }
     
-    func store(_ session: StoredSession, completion: @escaping TokenOperationCompletion) {
+    func store(_ session: StoredSession, completion: @escaping SessionOperationCompletion) {
         storedSessions.append(session)
     }
     
-    func deleteToken(completion: @escaping TokenOperationCompletion) {
+    func deleteSession(completion: @escaping SessionOperationCompletion) {
         
     }
     

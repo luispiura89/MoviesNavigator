@@ -7,10 +7,10 @@
 
 import Foundation
 
-public final class CodableTokenStore: TokenStore {
+public final class CodableSessionStore: SessionStore {
     
     private let storeURL: URL
-    private let queue = DispatchQueue(label: "\(CodableTokenStore.self).queue", attributes: .concurrent)
+    private let queue = DispatchQueue(label: "\(CodableSessionStore.self).queue", attributes: .concurrent)
     
     public init(storeURL: URL) {
         self.storeURL = storeURL
@@ -20,7 +20,7 @@ public final class CodableTokenStore: TokenStore {
         let id: String
     }
     
-    public func fetch(completion: @escaping FetchTokenCompletion) {
+    public func fetch(completion: @escaping FetchSessionCompletion) {
         queueOperation { [storeURL] in
             guard let storedSessionData = try? Data(contentsOf: storeURL) else {
                 return completion(.failure(TokenStoreError.emptyStore))
@@ -36,7 +36,7 @@ public final class CodableTokenStore: TokenStore {
         }
     }
     
-    public func store(_ session: StoredSession, completion: @escaping TokenOperationCompletion) {
+    public func store(_ session: StoredSession, completion: @escaping SessionOperationCompletion) {
         queueOperation { [storeURL] in
             completion(
                 Result{
@@ -51,7 +51,7 @@ public final class CodableTokenStore: TokenStore {
         }
     }
     
-    public func deleteToken(completion: @escaping TokenOperationCompletion) {
+    public func deleteSession(completion: @escaping SessionOperationCompletion) {
         queueOperation { [storeURL] in
             completion(
                 Result{

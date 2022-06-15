@@ -86,7 +86,7 @@ final class CodableTokenStoreTests: XCTestCase {
         sut.store(StoredSession(id: "any-id")) { _ in
             exp2.fulfill()
         }
-        sut.deleteToken { _ in
+        sut.deleteSession { _ in
             exp3.fulfill()
         }
         
@@ -99,8 +99,8 @@ final class CodableTokenStoreTests: XCTestCase {
         try? FileManager.default.removeItem(at: storeURL())
     }
     
-    private func makeSUT(withURL url: URL) -> TokenStore {
-        return CodableTokenStore(storeURL: url)
+    private func makeSUT(withURL url: URL) -> SessionStore {
+        return CodableSessionStore(storeURL: url)
     }
     
     private func cachesDirectory() -> URL {
@@ -119,7 +119,7 @@ final class CodableTokenStoreTests: XCTestCase {
     }
     
     private func expectStoredSessionID(
-        in store: TokenStore,
+        in store: SessionStore,
         toBeEqualsTo sessionId: String? = "any-id",
         file: StaticString = #filePath,
         line: UInt = #line
@@ -134,7 +134,7 @@ final class CodableTokenStoreTests: XCTestCase {
         XCTAssertEqual(fetchedToken, sessionId, file: file, line: line)
     }
     
-    private func storeSession(in instanceToWrite: TokenStore) {
+    private func storeSession(in instanceToWrite: SessionStore) {
         let exp = expectation(description: "Wait for token store")
         instanceToWrite.store(StoredSession(id: "any-id")) { result in
             exp.fulfill()
@@ -142,9 +142,9 @@ final class CodableTokenStoreTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    private func delete(from instanceToDelete: TokenStore) {
+    private func delete(from instanceToDelete: SessionStore) {
         let exp = expectation(description: "Wait for token deletion")
-        instanceToDelete.deleteToken { result in
+        instanceToDelete.deleteSession { result in
             exp.fulfill()
         }
         wait(for: [exp], timeout: 1.0)

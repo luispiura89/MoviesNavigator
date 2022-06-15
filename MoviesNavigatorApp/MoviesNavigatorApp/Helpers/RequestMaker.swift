@@ -56,7 +56,7 @@ final class RequestMaker {
         httpClient: HTTPClient,
         baserURL: URL,
         apiKey: String,
-        store: TokenStore
+        store: SessionStore
     ) -> LoginPublisherHandler {
         { [baserURL] user, password in
             let firstEndpoint: LoginEndpoint = .getNewToken
@@ -76,7 +76,7 @@ final class RequestMaker {
                     httpClient: httpClient,
                     endpoint: thirdEndpoint
                 )
-                .saveToken(store: store)
+                .saveSession(in: store)
         }
     }
 }

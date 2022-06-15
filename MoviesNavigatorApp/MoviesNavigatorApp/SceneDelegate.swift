@@ -21,8 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
     }()
     
-    private lazy var store: TokenStore = {
-        CodableTokenStore(storeURL: storeURL)
+    private lazy var store: SessionStore = {
+        CodableSessionStore(storeURL: storeURL)
     }()
     
     private lazy var localTokenLoader: LocalTokenLoader = {
@@ -49,7 +49,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private let apiKey = "5c43afd0842f0fd15d2aba1eaaf17ec7"
     private var cancellable: AnyCancellable?
     
-    convenience init(httpClient: HTTPClient, store: TokenStore) {
+    convenience init(httpClient: HTTPClient, store: SessionStore) {
         self.init()
         self.httpClient = httpClient
         self.store = store

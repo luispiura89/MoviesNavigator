@@ -16,9 +16,9 @@ public final class LocalTokenLoader {
         case expiredToken
     }
     
-    private let store: TokenStore
+    private let store: SessionStore
     
-    public init(store: TokenStore) {
+    public init(store: SessionStore) {
         self.store = store
     }
     
@@ -37,8 +37,8 @@ public final class LocalTokenLoader {
     }
 }
 
-private extension TokenStore {
+private extension SessionStore {
     func deleteIgnoringCompletion() {
-        deleteToken { _ in }
+        deleteSession { _ in }
     }
 }
