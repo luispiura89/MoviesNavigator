@@ -9,9 +9,11 @@ import UIKit
 import SharedPresentation
 import SharediOS
 
+typealias CellController = UICollectionViewDataSource & UICollectionViewDelegate
+
 public final class HomeViewController: UICollectionViewController {
     
-    private var controllers = [TVShowCellController]()
+    private var controllers = [CellController]()
     private var headers =  [HomeHeaderController]()
     public private(set) var loadShowsController: HomeRefreshController?
     public private(set) var errorViewController: HeaderErrorViewController?
@@ -37,9 +39,14 @@ public final class HomeViewController: UICollectionViewController {
     
     private func registerCells() {
         collectionView.register(
-            TVShowCell.self, forCellWithReuseIdentifier: TVShowCell.dequeueIdentifier)
+            TVShowCell.self,
+            forCellWithReuseIdentifier: TVShowCell.dequeueIdentifier
+        )
         collectionView.register(
-            HomeHeader.self, forSupplementaryViewOfKind: HomeHeader.viewKind, withReuseIdentifier: HomeHeader.reuseIdentifier)
+            HomeHeader.self,
+            forSupplementaryViewOfKind: HomeHeader.viewKind,
+            withReuseIdentifier: HomeHeader.reuseIdentifier
+        )
     }
     
     public func setHeaders(headers: [HomeHeaderController]) {
@@ -51,7 +58,10 @@ public final class HomeViewController: UICollectionViewController {
         collectionView.reloadData()
     }
     
-    public override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public override func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
         controllers.count
     }
     
@@ -59,19 +69,37 @@ public final class HomeViewController: UICollectionViewController {
         headers.count
     }
     
-    public override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        controllers[indexPath.row].collectionView(collectionView, cellForItemAt: indexPath)
+    public override func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        controllers[indexPath.row].collectionView(
+            collectionView,
+            cellForItemAt: indexPath
+        )
     }
     
-    public override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    public override func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath
+    ) -> UICollectionReusableView {
         headers[indexPath.section].collectionView(
             collectionView,
             viewForSupplementaryElementOfKind: HomeHeader.viewKind,
-            at: indexPath)
+            at: indexPath
+        )
     }
     
-    public override func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        controllers[indexPath.row].collectionView(collectionView, didEndDisplaying: cell, forItemAt: indexPath)
+    public override func collectionView(
+        _ collectionView: UICollectionView,
+        didEndDisplaying cell: UICollectionViewCell,
+        forItemAt indexPath: IndexPath
+    ) {
+        controllers[indexPath.row].collectionView?(
+            collectionView, didEndDisplaying:
+                cell, forItemAt: indexPath
+        )
     }
     
     private static func makeLayout() -> UICollectionViewCompositionalLayout {
