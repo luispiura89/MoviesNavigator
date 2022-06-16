@@ -8,14 +8,16 @@
 import XCTest
 import AuthenticationiOS
 import Authentication
+import SharediOS
 
 final class ProfileSnapshotTests: XCTestCase {
     
     func test_profile_rendersUserInfoAndAvatar() {
         let delegate = DelegateStub.alwaysSucceed
-        let (sut, controller) = makeSUT(withUserInfoDelegate: delegate)
+        let (sut, controller, showControllers) = makeSUT(withUserInfoDelegate: delegate)
         
-        sut.setControllers([controller])
+        sut.setControllers([controller], forSection: 0)
+        sut.setControllers(showControllers, forSection: 1)
         
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "PROFILE_LIGHT")
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "PROFILE_DARK")
@@ -23,9 +25,10 @@ final class ProfileSnapshotTests: XCTestCase {
     
     func test_profile_rendersUserInfoAndLoadingAvatar() {
         let delegate = DelegateStub.alwaysLoading
-        let (sut, controller) = makeSUT(withUserInfoDelegate: delegate)
+        let (sut, controller, showControllers) = makeSUT(withUserInfoDelegate: delegate)
         
-        sut.setControllers([controller])
+        sut.setControllers([controller], forSection: 0)
+        sut.setControllers(showControllers, forSection: 1)
         
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "PROFILE_LOADING_AVATAR_LIGHT")
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "PROFILE_LOADING_AVATAR_DARK")
@@ -33,9 +36,10 @@ final class ProfileSnapshotTests: XCTestCase {
     
     func test_profile_rendersUserInfoAndRetryActionAfterLoadingFail() {
         let delegate = DelegateStub.alwaysFailing
-        let (sut, controller) = makeSUT(withUserInfoDelegate: delegate)
+        let (sut, controller, showControllers) = makeSUT(withUserInfoDelegate: delegate)
         
-        sut.setControllers([controller])
+        sut.setControllers([controller], forSection: 0)
+        sut.setControllers(showControllers, forSection: 1)
         
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "PROFILE_RETRY_LOADING_LIGHT")
         assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "PROFILE_RETRY_LOADING_DARK")
@@ -44,25 +48,40 @@ final class ProfileSnapshotTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT(
-        withUserInfoDelegate userInfoDelegate: DelegateStub
-    ) -> (ProfileViewController, UserInfoViewController) {
+        withUserInfoDelegate delegate: DelegateStub
+    ) -> (ProfileViewController, UserInfoViewController, [TVShowCellController]) {
         let controller = ProfileViewController()
         controller.loadViewIfNeeded()
         
         let userInfoController = UserInfoViewController(
-            delegate: userInfoDelegate,
+            delegate: delegate,
             viewModel: UserInfoViewModel(
                 userName: "Any User Name",
                 userHandle: "@any-user-handle"
             )
         )
-        userInfoDelegate.controller = userInfoController
-        return (controller, userInfoController)
+        let likedShowCell = TVShowCellController(
+            viewModel: ("Any show", "Any overview", "June 15, 2022", "5.0"),
+            delegate: delegate
+        )
+        let anotherLikedShowCell = TVShowCellController(
+            viewModel: ("Another show", "Another overview", "June 15, 2022", "5.0"),
+            delegate: delegate
+        )
+        let thirdLikedShowCell = TVShowCellController(
+            viewModel: ("Third show", "Third overview", "June 15, 2022", "5.0"),
+            delegate: delegate
+        )
+        let likedShowCells = [likedShowCell, anotherLikedShowCell, thirdLikedShowCell]
+        delegate.controller = userInfoController
+        delegate.tvShowCellController = likedShowCells
+        return (controller, userInfoController, likedShowCells)
     }
     
-    private final class DelegateStub: UserInfoViewControllerDelegate {
+    private final class DelegateStub: UserInfoViewControllerDelegate, TVShowCellControllerDelegate {
         
         weak var controller: UserInfoViewController?
+        var tvShowCellController: [TVShowCellController]?
         private let outcome: RequestOutcome
         
         static var alwaysSucceed: DelegateStub {
@@ -97,6 +116,19 @@ final class ProfileSnapshotTests: XCTestCase {
                 controller?.loadingFailed()
             }
         }
+        
+        func requestImage() {
+            switch outcome {
+            case .successful:
+                tvShowCellController?.forEach { $0.setPosterImage(UIImage.make(withColor: .blue)) }
+            case .loading:
+                tvShowCellController?.forEach { $0.setLoadingState() }
+            case .fail:
+                tvShowCellController?.forEach { $0.setLoadingErrorState() }
+            }
+        }
+        
+        func cancelDownload() {}
         
     }
     

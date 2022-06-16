@@ -30,9 +30,10 @@ public final class TVShowViewAdapter: ResourceView {
                 guard let self = self, let url = loaders[viewModel] else {
                     return nil
                 }
+                let viewData = (viewModel.name, viewModel.overview, viewModel.firstAirDate, viewModel.voteAverage)
                 let posterLoaderMaker = PosterLoaderMaker(loader: { self.posterLoader(url).dispatchOnMainQueue() })
                 let presentationAdapter = LoadPosterPresentationAdapter(loader: posterLoaderMaker.makeRequest, loaderMaker: posterLoaderMaker)
-                let cell = TVShowCellController(viewModel: viewModel, delegate: presentationAdapter)
+                let cell = TVShowCellController(viewModel: viewData, delegate: presentationAdapter)
                 let adapter = HomeCellViewAdapter(cell: cell)
                 presentationAdapter.presenter = LoadResourcePresenter<Data, HomeCellViewAdapter>(
                     loadingView: adapter,

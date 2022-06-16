@@ -6,16 +6,17 @@
 //
 
 import UIKit
-import TVShows
 
 public protocol TVShowCellControllerDelegate {
     func requestImage()
     func cancelDownload()
 }
 
+public typealias TVShowCellViewModel = (name: String, overview: String, firstAirDate: String, voteAverage: String)
+
 public final class TVShowCellController: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    private let viewModel: TVShowViewModel
+    private let viewModel: TVShowCellViewModel
     private var cell: TVShowCell?
     private let delegate: TVShowCellControllerDelegate?
     
@@ -28,7 +29,7 @@ public final class TVShowCellController: NSObject, UICollectionViewDataSource, U
     
     private var state: State = .none
     
-    public init(viewModel: TVShowViewModel, delegate: TVShowCellControllerDelegate?) {
+    public init(viewModel: TVShowCellViewModel, delegate: TVShowCellControllerDelegate?) {
         self.viewModel = viewModel
         self.delegate = delegate
     }
