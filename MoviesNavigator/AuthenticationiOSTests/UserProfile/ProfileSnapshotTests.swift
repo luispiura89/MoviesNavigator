@@ -33,16 +33,27 @@ final class ProfileSnapshotTests: XCTestCase {
         )
     }
     
+    func test_profile_rendersUserInfoAndEmptyFavoriteShows() {
+        let withFavorites = false
+        assertInfoAndFavorites(
+            screenData: makeSUT(withUserInfoDelegate: .alwaysSucceed, withFavorites: withFavorites),
+            name: "PROFILE_WITH_INFO_AND_NO_FAVORITES",
+            withFavorites: withFavorites
+        )
+    }
+    
     // MARK: - Helpers
     
     private func assertInfoAndFavorites(
         screenData: (
             ProfileViewController,
             UserInfoViewController,
-            [TVShowCellController],
+            [UICollectionViewDataSource],
             [UICollectionViewDataSource]
         ),
         name: String,
+        withFavorites: Bool = true,
+        recordSnapshot: Bool = false,
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
@@ -50,14 +61,23 @@ final class ProfileSnapshotTests: XCTestCase {
         sut.setHeaders(headers)
         sut.setControllers([controller], forSection: 0)
         sut.setControllers(showControllers, forSection: 1)
+        if !withFavorites {
+            sut.updateForEmptyFavoriteShows()
+        }
         
-        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "\(name)_LIGHT", file: file, line: line)
-        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "\(name)_DARK", file: file, line: line)
+        if recordSnapshot {
+            record(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "\(name)_LIGHT", file: file, line: line)
+            record(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "\(name)_DARK", file: file, line: line)
+        } else {
+            assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "\(name)_LIGHT", file: file, line: line)
+            assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "\(name)_DARK", file: file, line: line)
+        }
     }
     
     private func makeSUT(
-        withUserInfoDelegate delegate: DelegateStub
-    ) -> (ProfileViewController, UserInfoViewController, [TVShowCellController], [UICollectionViewDataSource]) {
+        withUserInfoDelegate delegate: DelegateStub,
+        withFavorites: Bool = true
+    ) -> (ProfileViewController, UserInfoViewController, [UICollectionViewDataSource], [UICollectionViewDataSource]) {
         let controller = ProfileViewController()
         controller.loadViewIfNeeded()
         
@@ -80,13 +100,14 @@ final class ProfileSnapshotTests: XCTestCase {
             viewModel: ("Third show", "Third overview", "June 15, 2022", "5.0"),
             delegate: delegate
         )
-        let likedShowCells = [likedShowCell, anotherLikedShowCell, thirdLikedShowCell]
+        let controllers: [UICollectionViewDataSource] =
+        withFavorites ? [likedShowCell, anotherLikedShowCell, thirdLikedShowCell] : [EmptyFavoritesShowCellController()]
         delegate.controller = userInfoController
-        delegate.tvShowCellController = likedShowCells
+        delegate.tvShowCellController = [likedShowCell, anotherLikedShowCell, thirdLikedShowCell]
         
         let headers: [UICollectionViewDataSource] = [UserInfoHeaderController(), UserFavoriteShowsHeaderController()]
         
-        return (controller, userInfoController, likedShowCells, headers)
+        return (controller, userInfoController, controllers, headers)
     }
     
     private final class DelegateStub: UserInfoViewControllerDelegate, TVShowCellControllerDelegate {

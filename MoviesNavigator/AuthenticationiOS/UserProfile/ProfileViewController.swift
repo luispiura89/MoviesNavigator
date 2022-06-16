@@ -40,11 +40,19 @@ public final class ProfileViewController: UICollectionViewController {
             forSupplementaryViewOfKind: UserFavoriteShowsHeader.viewKind,
             withReuseIdentifier: UserFavoriteShowsHeader.viewKind
         )
+        collectionView.register(
+            EmptyFavoriteShowsCell.self,
+            forCellWithReuseIdentifier: EmptyFavoriteShowsCell.identifier
+        )
     }
     
     public func setControllers(_ controllers: [CellController], forSection section: Int = 0) {
         self.controllers[section] = controllers
         collectionView.reloadData()
+    }
+    
+    public func updateForEmptyFavoriteShows() {
+        collectionView.collectionViewLayout = Self.makeLayout(hasFavoriteShows: false)
     }
     
     public func setHeaders(_ headers: [CellController]) {
@@ -87,9 +95,11 @@ public final class ProfileViewController: UICollectionViewController {
         controllers[section] ?? []
     }
     
-    private static func makeLayout() -> UICollectionViewCompositionalLayout {
+    private static func makeLayout(hasFavoriteShows: Bool = true) -> UICollectionViewCompositionalLayout {
         UICollectionViewCompositionalLayout { section, _ in
-            section == 0 ? makeUserProfileSectionLayout() : makeLikedShowsSectionLayout()
+            section == 0 ?
+            makeUserProfileSectionLayout() :
+            hasFavoriteShows ? makeLikedShowsSectionLayout() : makeUserProfileSectionLayout()
         }
     }
     
