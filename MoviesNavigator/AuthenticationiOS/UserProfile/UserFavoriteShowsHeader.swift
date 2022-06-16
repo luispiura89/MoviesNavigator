@@ -1,22 +1,22 @@
 //
-//  UserInfoHeader.swift
+//  UserLikedShowsHeader.swift
 //  AuthenticationiOS
 //
-//  Created by Luis Francisco Piura Mejia on 10/6/22.
+//  Created by Luis Francisco Piura Mejia on 16/6/22.
 //
 
 import UIKit
 
-public final class UserInfoHeader: UICollectionReusableView {
+public final class UserFavoriteShowsHeader: UICollectionReusableView {
     
-    static let viewKind = "UserInfoHeader"
+    static let viewKind = "UserFavoriteShowsHeader"
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Profile"
+        label.text = "Favorite Shows"
         label.adjustsFontForContentSizeCategory = true
-        label.font = .preferredFont(forTextStyle: .title1)
+        label.font = .preferredFont(forTextStyle: .title2)
         label.textColor = .primaryGreen
         return label
     }()

@@ -13,6 +13,7 @@ public typealias CellController = UICollectionViewDataSource
 public final class ProfileViewController: UICollectionViewController {
     
     private var controllers = [Int: [CellController]]()
+    private var headers = [CellController]()
     
     convenience init() {
         self.init(collectionViewLayout: Self.makeLayout())
@@ -34,11 +35,20 @@ public final class ProfileViewController: UICollectionViewController {
             forSupplementaryViewOfKind: UserInfoHeader.viewKind,
             withReuseIdentifier: UserInfoHeader.viewKind
         )
+        collectionView.register(
+            UserFavoriteShowsHeader.self,
+            forSupplementaryViewOfKind: UserFavoriteShowsHeader.viewKind,
+            withReuseIdentifier: UserFavoriteShowsHeader.viewKind
+        )
     }
     
     public func setControllers(_ controllers: [CellController], forSection section: Int = 0) {
         self.controllers[section] = controllers
         collectionView.reloadData()
+    }
+    
+    public func setHeaders(_ headers: [CellController]) {
+        self.headers = headers
     }
     
     public override func collectionView(
@@ -58,6 +68,19 @@ public final class ProfileViewController: UICollectionViewController {
     ) -> UICollectionViewCell {
         let controllers = cellControllers(forSection: indexPath.section)
         return controllers[indexPath.row].collectionView(collectionView, cellForItemAt: indexPath)
+    }
+    
+    public override func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath
+    ) -> UICollectionReusableView {
+        guard indexPath.section < headers.count else { return UICollectionReusableView() }
+        return headers[indexPath.section].collectionView?(
+            collectionView,
+            viewForSupplementaryElementOfKind: "",
+            at: indexPath
+        ) ?? UICollectionReusableView()
     }
     
     private func cellControllers(forSection section: Int = 0) -> [CellController] {

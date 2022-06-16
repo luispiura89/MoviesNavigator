@@ -14,8 +14,9 @@ final class ProfileSnapshotTests: XCTestCase {
     
     func test_profile_rendersUserInfoAndAvatar() {
         let delegate = DelegateStub.alwaysSucceed
-        let (sut, controller, showControllers) = makeSUT(withUserInfoDelegate: delegate)
+        let (sut, controller, showControllers, headers) = makeSUT(withUserInfoDelegate: delegate)
         
+        sut.setHeaders(headers)
         sut.setControllers([controller], forSection: 0)
         sut.setControllers(showControllers, forSection: 1)
         
@@ -25,8 +26,9 @@ final class ProfileSnapshotTests: XCTestCase {
     
     func test_profile_rendersUserInfoAndLoadingAvatar() {
         let delegate = DelegateStub.alwaysLoading
-        let (sut, controller, showControllers) = makeSUT(withUserInfoDelegate: delegate)
+        let (sut, controller, showControllers, headers) = makeSUT(withUserInfoDelegate: delegate)
         
+        sut.setHeaders(headers)
         sut.setControllers([controller], forSection: 0)
         sut.setControllers(showControllers, forSection: 1)
         
@@ -36,8 +38,9 @@ final class ProfileSnapshotTests: XCTestCase {
     
     func test_profile_rendersUserInfoAndRetryActionAfterLoadingFail() {
         let delegate = DelegateStub.alwaysFailing
-        let (sut, controller, showControllers) = makeSUT(withUserInfoDelegate: delegate)
+        let (sut, controller, showControllers, headers) = makeSUT(withUserInfoDelegate: delegate)
         
+        sut.setHeaders(headers)
         sut.setControllers([controller], forSection: 0)
         sut.setControllers(showControllers, forSection: 1)
         
@@ -49,7 +52,7 @@ final class ProfileSnapshotTests: XCTestCase {
     
     private func makeSUT(
         withUserInfoDelegate delegate: DelegateStub
-    ) -> (ProfileViewController, UserInfoViewController, [TVShowCellController]) {
+    ) -> (ProfileViewController, UserInfoViewController, [TVShowCellController], [UICollectionViewDataSource]) {
         let controller = ProfileViewController()
         controller.loadViewIfNeeded()
         
@@ -75,7 +78,10 @@ final class ProfileSnapshotTests: XCTestCase {
         let likedShowCells = [likedShowCell, anotherLikedShowCell, thirdLikedShowCell]
         delegate.controller = userInfoController
         delegate.tvShowCellController = likedShowCells
-        return (controller, userInfoController, likedShowCells)
+        
+        let headers: [UICollectionViewDataSource] = [UserInfoHeaderController(), UserFavoriteShowsHeaderController()]
+        
+        return (controller, userInfoController, likedShowCells, headers)
     }
     
     private final class DelegateStub: UserInfoViewControllerDelegate, TVShowCellControllerDelegate {
