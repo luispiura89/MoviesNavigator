@@ -88,22 +88,24 @@ final class ProfileSnapshotTests: XCTestCase {
                 userHandle: "@any-user-handle"
             )
         )
-        let likedShowCell = TVShowCellController(
+        let favoriteShowCell = TVShowCellController(
             viewModel: ("Any show", "Any overview", "June 15, 2022", "5.0"),
             delegate: delegate
         )
-        let anotherLikedShowCell = TVShowCellController(
+        let anotherFavoriteShowCell = TVShowCellController(
             viewModel: ("Another show", "Another overview", "June 15, 2022", "5.0"),
             delegate: delegate
         )
-        let thirdLikedShowCell = TVShowCellController(
+        let thirdFavoriteShowCell = TVShowCellController(
             viewModel: ("Third show", "Third overview", "June 15, 2022", "5.0"),
             delegate: delegate
         )
         let controllers: [UICollectionViewDataSource] =
-        withFavorites ? [likedShowCell, anotherLikedShowCell, thirdLikedShowCell] : [EmptyFavoritesShowCellController()]
-        delegate.controller = userInfoController
-        delegate.tvShowCellController = [likedShowCell, anotherLikedShowCell, thirdLikedShowCell]
+        withFavorites ?
+        [favoriteShowCell, anotherFavoriteShowCell, thirdFavoriteShowCell] :
+        [EmptyFavoritesShowCellController()]
+        delegate.userInfoController = userInfoController
+        delegate.tvShowCellController = [favoriteShowCell, anotherFavoriteShowCell, thirdFavoriteShowCell]
         
         let headers: [UICollectionViewDataSource] = [UserInfoHeaderController(), UserFavoriteShowsHeaderController()]
         
@@ -112,7 +114,7 @@ final class ProfileSnapshotTests: XCTestCase {
     
     private final class DelegateStub: UserInfoViewControllerDelegate, TVShowCellControllerDelegate {
         
-        weak var controller: UserInfoViewController?
+        weak var userInfoController: UserInfoViewController?
         var tvShowCellController: [TVShowCellController]?
         private let outcome: RequestOutcome
         
@@ -141,11 +143,11 @@ final class ProfileSnapshotTests: XCTestCase {
         func loadUserAvatar() {
             switch outcome {
             case .successful:
-                controller?.setUserAvatar(.make(withColor: .orange))
+                userInfoController?.setUserAvatar(.make(withColor: .orange))
             case .loading:
-                controller?.startLoading()
+                userInfoController?.startLoading()
             case .fail:
-                controller?.loadingFailed()
+                userInfoController?.loadingFailed()
             }
         }
         
