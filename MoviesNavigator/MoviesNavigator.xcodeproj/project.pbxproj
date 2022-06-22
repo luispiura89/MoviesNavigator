@@ -50,6 +50,9 @@
 		CD68DDC4285A521200F04B0A /* UIColor+TVShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A6F276BF239000881E0 /* UIColor+TVShows.swift */; };
 		CD68DDC5285A521900F04B0A /* UIImage+Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8120DF277A6C1A00277EF1 /* UIImage+Shared.swift */; };
 		CD68DDC7285A525D00F04B0A /* UIColor+Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD68DDC6285A525D00F04B0A /* UIColor+Shared.swift */; };
+		CD7A1D272863948600FF8E10 /* ProfileLoadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7A1D262863948600FF8E10 /* ProfileLoadingController.swift */; };
+		CD7A1D2A28639DE300FF8E10 /* PROFILE_LOADING_LIGHT.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7A1D2828639DE200FF8E10 /* PROFILE_LOADING_LIGHT.png */; };
+		CD7A1D2B28639DE300FF8E10 /* PROFILE_LOADING_DARK.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7A1D2928639DE200FF8E10 /* PROFILE_LOADING_DARK.png */; };
 		CD845A3D276BC302000881E0 /* TVShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A3C276BC302000881E0 /* TVShowPresenter.swift */; };
 		CD845A40276BC38F000881E0 /* TVShowPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A3F276BC38F000881E0 /* TVShowPresenterTests.swift */; };
 		CD845A43276BC5FE000881E0 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A42276BC5FE000881E0 /* TestHelpers.swift */; };
@@ -258,6 +261,9 @@
 		CD5AE04D2746B11C00CED0DE /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		CD68DDC1285A514200F04B0A /* SharedResources.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SharedResources.xcassets; sourceTree = "<group>"; };
 		CD68DDC6285A525D00F04B0A /* UIColor+Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Shared.swift"; sourceTree = "<group>"; };
+		CD7A1D262863948600FF8E10 /* ProfileLoadingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLoadingController.swift; sourceTree = "<group>"; };
+		CD7A1D2828639DE200FF8E10 /* PROFILE_LOADING_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PROFILE_LOADING_LIGHT.png; sourceTree = "<group>"; };
+		CD7A1D2928639DE200FF8E10 /* PROFILE_LOADING_DARK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PROFILE_LOADING_DARK.png; sourceTree = "<group>"; };
 		CD8120DF277A6C1A00277EF1 /* UIImage+Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Shared.swift"; sourceTree = "<group>"; };
 		CD845A3C276BC302000881E0 /* TVShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowPresenter.swift; sourceTree = "<group>"; };
 		CD845A3F276BC38F000881E0 /* TVShowPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowPresenterTests.swift; sourceTree = "<group>"; };
@@ -568,6 +574,8 @@
 		CD347B1D2853F21B00860420 /* snapshots */ = {
 			isa = PBXGroup;
 			children = (
+				CD7A1D2928639DE200FF8E10 /* PROFILE_LOADING_DARK.png */,
+				CD7A1D2828639DE200FF8E10 /* PROFILE_LOADING_LIGHT.png */,
 				CD85BC80285BE37A00C41E10 /* PROFILE_WITH_INFO_AND_NO_FAVORITES_DARK.png */,
 				CD85BC81285BE37A00C41E10 /* PROFILE_WITH_INFO_AND_NO_FAVORITES_LIGHT.png */,
 				CD347B262853F3C900860420 /* PROFILE_RETRY_LOADING_DARK.png */,
@@ -584,6 +592,7 @@
 			isa = PBXGroup;
 			children = (
 				CD3F17392852C09C00078D7E /* ProfileViewController.swift */,
+				CD7A1D262863948600FF8E10 /* ProfileLoadingController.swift */,
 				CD347B0F2853B5E100860420 /* UserInfoViewController.swift */,
 				CD347B112853B60F00860420 /* UserInfoHeader.swift */,
 				CD347B132853B64B00860420 /* UserInfoCell.swift */,
@@ -1496,6 +1505,8 @@
 				CD8B7BE2281B174900B5D7AF /* LOGIN_light.png in Resources */,
 				CDCA60372825B4F9006C2871 /* LOGIN_ERROR_light.png in Resources */,
 				CD347B232853F21C00860420 /* PROFILE_LIGHT.png in Resources */,
+				CD7A1D2A28639DE300FF8E10 /* PROFILE_LOADING_LIGHT.png in Resources */,
+				CD7A1D2B28639DE300FF8E10 /* PROFILE_LOADING_DARK.png in Resources */,
 				CD8B7BE3281B174900B5D7AF /* LOGIN_dark.png in Resources */,
 				CD347B222853F21C00860420 /* PROFILE_DARK.png in Resources */,
 				CD85BC83285BE37A00C41E10 /* PROFILE_WITH_INFO_AND_NO_FAVORITES_LIGHT.png in Resources */,
@@ -1629,6 +1640,7 @@
 				CD3F173A2852C09C00078D7E /* ProfileViewController.swift in Sources */,
 				CD1EE7A0282491D0009AB251 /* LoginLoadingViewController.swift in Sources */,
 				CD85BC7B285BADFC00C41E10 /* UserFavoriteShowsHeader.swift in Sources */,
+				CD7A1D272863948600FF8E10 /* ProfileLoadingController.swift in Sources */,
 				CD8BE6C9281A04DA00ACBA57 /* LoginViewController.swift in Sources */,
 				CD347B142853B64B00860420 /* UserInfoCell.swift in Sources */,
 				CD85BC77285BA83200C41E10 /* UserInfoHeaderController.swift in Sources */,

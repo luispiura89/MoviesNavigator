@@ -14,9 +14,12 @@ public final class ProfileViewController: UICollectionViewController {
     
     private var controllers = [Int: [CellController]]()
     private var headers = [CellController]()
+    public private(set) var loadingController: ProfileLoadingController?
     
-    convenience init() {
+    public convenience init(loadingController: ProfileLoadingController? = nil) {
         self.init(collectionViewLayout: Self.makeLayout())
+        self.loadingController = loadingController
+        collectionView.refreshControl = loadingController?.view
     }
     
     public override func viewDidLoad() {

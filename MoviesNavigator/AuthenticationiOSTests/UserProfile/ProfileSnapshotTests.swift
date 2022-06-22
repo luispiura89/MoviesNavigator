@@ -42,6 +42,22 @@ final class ProfileSnapshotTests: XCTestCase {
         )
     }
     
+    func test_profile_rendersLoadingIndicator() {
+        let sut = makeSUT(withUserInfoDelegate: .alwaysLoading)
+        
+        let controller = sut.profileViewController
+        controller.startLoading()
+        
+        assert(
+            snapshot: controller.snapshot(for: .iPhone13(style: .light)),
+            named: "PROFILE_LOADING_LIGHT"
+        )
+        assert(
+            snapshot: controller.snapshot(for: .iPhone13(style: .dark)),
+            named: "PROFILE_LOADING_DARK"
+        )
+    }
+    
     // MARK: - Helpers
     
     private func assertInfoAndFavorites(
@@ -77,8 +93,13 @@ final class ProfileSnapshotTests: XCTestCase {
     private func makeSUT(
         withUserInfoDelegate delegate: DelegateStub,
         withFavorites: Bool = true
-    ) -> (ProfileViewController, UserInfoViewController, [UICollectionViewDataSource], [UICollectionViewDataSource]) {
-        let controller = ProfileViewController()
+    ) -> (
+        profileViewController: ProfileViewController,
+        infoController: UserInfoViewController,
+        favoriteShowsControllers: [UICollectionViewDataSource],
+        headerControllers: [UICollectionViewDataSource]
+    ) {
+        let controller = ProfileViewController(loadingController: ProfileLoadingController())
         controller.loadViewIfNeeded()
         
         let userInfoController = UserInfoViewController(
@@ -164,6 +185,14 @@ final class ProfileSnapshotTests: XCTestCase {
         
         func cancelDownload() {}
         
+    }
+    
+}
+
+private extension ProfileViewController {
+    
+    func startLoading() {
+        loadingController?.isLoading = true
     }
     
 }
