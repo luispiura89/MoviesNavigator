@@ -15,15 +15,20 @@ public final class ProfileViewController: UICollectionViewController {
     private var controllers = [Int: [CellController]]()
     private var headers = [CellController]()
     public private(set) var loadingController: ProfileLoadingController?
+    public private(set) var errorViewController: HeaderErrorViewController?
     
-    public convenience init(loadingController: ProfileLoadingController? = nil) {
+    public convenience init(
+        loadingController: ProfileLoadingController? = nil,
+        errorViewController: HeaderErrorViewController? = nil
+    ) {
         self.init(collectionViewLayout: Self.makeLayout())
         self.loadingController = loadingController
-        collectionView.refreshControl = loadingController?.view
+        self.errorViewController = errorViewController
     }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.refreshControl = loadingController?.view
         collectionView.backgroundColor = .blackBackground
         collectionView.register(
             UserInfoCell.self,
@@ -47,6 +52,7 @@ public final class ProfileViewController: UICollectionViewController {
             EmptyFavoriteShowsCell.self,
             forCellWithReuseIdentifier: EmptyFavoriteShowsCell.identifier
         )
+        errorViewController?.pinErrorViewOnTop(ofView: view)
     }
     
     public func setControllers(_ controllers: [CellController], forSection section: Int = 0) {

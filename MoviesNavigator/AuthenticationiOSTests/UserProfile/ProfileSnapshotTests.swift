@@ -9,6 +9,7 @@ import XCTest
 import AuthenticationiOS
 import Authentication
 import SharediOS
+import SharedPresentation
 
 final class ProfileSnapshotTests: XCTestCase {
     
@@ -58,6 +59,22 @@ final class ProfileSnapshotTests: XCTestCase {
         )
     }
     
+    func test_profile_rendersErrorView() {
+        let sut = makeSUT(withUserInfoDelegate: .alwaysLoading)
+        
+        let controller = sut.profileViewController
+        controller.rendersError()
+        
+        assert(
+            snapshot: controller.snapshot(for: .iPhone13(style: .light)),
+            named: "PROFILE_ERROR_LIGHT"
+        )
+        assert(
+            snapshot: controller.snapshot(for: .iPhone13(style: .dark)),
+            named: "PROFILE_ERROR_DARK"
+        )
+    }
+    
     // MARK: - Helpers
     
     private func assertInfoAndFavorites(
@@ -99,7 +116,10 @@ final class ProfileSnapshotTests: XCTestCase {
         favoriteShowsControllers: [UICollectionViewDataSource],
         headerControllers: [UICollectionViewDataSource]
     ) {
-        let controller = ProfileViewController(loadingController: ProfileLoadingController())
+        let controller = ProfileViewController(
+            loadingController: .init(),
+            errorViewController: .init()
+        )
         controller.loadViewIfNeeded()
         
         let userInfoController = UserInfoViewController(
@@ -195,6 +215,9 @@ private extension ProfileViewController {
         loadingController?.isLoading = true
     }
     
+    func rendersError() {
+        errorViewController?.update(.init(message: "This is an error"))
+    }
 }
 
 private extension UIImage {

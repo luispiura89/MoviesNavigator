@@ -53,6 +53,8 @@
 		CD7A1D272863948600FF8E10 /* ProfileLoadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7A1D262863948600FF8E10 /* ProfileLoadingController.swift */; };
 		CD7A1D2A28639DE300FF8E10 /* PROFILE_LOADING_LIGHT.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7A1D2828639DE200FF8E10 /* PROFILE_LOADING_LIGHT.png */; };
 		CD7A1D2B28639DE300FF8E10 /* PROFILE_LOADING_DARK.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7A1D2928639DE200FF8E10 /* PROFILE_LOADING_DARK.png */; };
+		CD7A1D2E2863A31800FF8E10 /* PROFILE_ERROR_DARK.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7A1D2C2863A31800FF8E10 /* PROFILE_ERROR_DARK.png */; };
+		CD7A1D2F2863A31800FF8E10 /* PROFILE_ERROR_LIGHT.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7A1D2D2863A31800FF8E10 /* PROFILE_ERROR_LIGHT.png */; };
 		CD845A3D276BC302000881E0 /* TVShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A3C276BC302000881E0 /* TVShowPresenter.swift */; };
 		CD845A40276BC38F000881E0 /* TVShowPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A3F276BC38F000881E0 /* TVShowPresenterTests.swift */; };
 		CD845A43276BC5FE000881E0 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD845A42276BC5FE000881E0 /* TestHelpers.swift */; };
@@ -264,6 +266,8 @@
 		CD7A1D262863948600FF8E10 /* ProfileLoadingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLoadingController.swift; sourceTree = "<group>"; };
 		CD7A1D2828639DE200FF8E10 /* PROFILE_LOADING_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PROFILE_LOADING_LIGHT.png; sourceTree = "<group>"; };
 		CD7A1D2928639DE200FF8E10 /* PROFILE_LOADING_DARK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PROFILE_LOADING_DARK.png; sourceTree = "<group>"; };
+		CD7A1D2C2863A31800FF8E10 /* PROFILE_ERROR_DARK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PROFILE_ERROR_DARK.png; sourceTree = "<group>"; };
+		CD7A1D2D2863A31800FF8E10 /* PROFILE_ERROR_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PROFILE_ERROR_LIGHT.png; sourceTree = "<group>"; };
 		CD8120DF277A6C1A00277EF1 /* UIImage+Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Shared.swift"; sourceTree = "<group>"; };
 		CD845A3C276BC302000881E0 /* TVShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowPresenter.swift; sourceTree = "<group>"; };
 		CD845A3F276BC38F000881E0 /* TVShowPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowPresenterTests.swift; sourceTree = "<group>"; };
@@ -574,6 +578,8 @@
 		CD347B1D2853F21B00860420 /* snapshots */ = {
 			isa = PBXGroup;
 			children = (
+				CD7A1D2C2863A31800FF8E10 /* PROFILE_ERROR_DARK.png */,
+				CD7A1D2D2863A31800FF8E10 /* PROFILE_ERROR_LIGHT.png */,
 				CD7A1D2928639DE200FF8E10 /* PROFILE_LOADING_DARK.png */,
 				CD7A1D2828639DE200FF8E10 /* PROFILE_LOADING_LIGHT.png */,
 				CD85BC80285BE37A00C41E10 /* PROFILE_WITH_INFO_AND_NO_FAVORITES_DARK.png */,
@@ -1501,6 +1507,7 @@
 				CD347B282853F3C900860420 /* PROFILE_RETRY_LOADING_DARK.png in Resources */,
 				CD347B252853F21C00860420 /* PROFILE_LOADING_AVATAR_DARK.png in Resources */,
 				CD1EE7A428249984009AB251 /* LOGIN_LOADING_dark.png in Resources */,
+				CD7A1D2E2863A31800FF8E10 /* PROFILE_ERROR_DARK.png in Resources */,
 				CD347B242853F21C00860420 /* PROFILE_LOADING_AVATAR_LIGHT.png in Resources */,
 				CD8B7BE2281B174900B5D7AF /* LOGIN_light.png in Resources */,
 				CDCA60372825B4F9006C2871 /* LOGIN_ERROR_light.png in Resources */,
@@ -1512,6 +1519,7 @@
 				CD85BC83285BE37A00C41E10 /* PROFILE_WITH_INFO_AND_NO_FAVORITES_LIGHT.png in Resources */,
 				CD1EE7A328249984009AB251 /* LOGIN_LOADING_light.png in Resources */,
 				CD85BC82285BE37A00C41E10 /* PROFILE_WITH_INFO_AND_NO_FAVORITES_DARK.png in Resources */,
+				CD7A1D2F2863A31800FF8E10 /* PROFILE_ERROR_LIGHT.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
